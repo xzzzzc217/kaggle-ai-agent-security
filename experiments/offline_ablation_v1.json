@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "scope": "deterministic fixture simulation; not a Kaggle score",
+  "claims_tested": [
+    "adaptive scheduling uses more of a tight interaction budget",
+    "novelty scheduling limits redundant returned mechanisms",
+    "snapshot findings are retained only after cold replay"
+  ],
+  "rows": [
+    {
+      "scenario": "tight_budget_all_replayable",
+      "variant": "official_starter_v17",
+      "attack_sha256": "c4ee5499ff43137c5128caf3e2645fb8f3448ec711c895d5ef1229562028e73d",
+      "budget_s": 220.0,
+      "elapsed_s": 40.0,
+      "remaining_s": 180.0,
+      "interactions": 4,
+      "findings": 4,
+      "unique_mechanisms": 2,
+      "unreplayable_findings": 0,
+      "snapshots": 0,
+      "restores": 0
+    },
+    {
+      "scenario": "tight_budget_all_replayable",
+      "variant": "adaptive_budget_v1",
+      "attack_sha256": "ec9744b77197f4a1a1838c587d4ecf5aeb680b6e45aaa5a4d422b35f96613ef6",
+      "budget_s": 220.0,
+      "elapsed_s": 120.0,
+      "remaining_s": 100.0,
+      "interactions": 12,
+      "findings": 9,
+      "unique_mechanisms": 4,
+      "unreplayable_findings": 0,
+      "snapshots": 1,
+      "restores": 3
+    },
+    {
+      "scenario": "tight_budget_all_replayable",
+      "variant": "novelty_scheduler_v1",
+      "attack_sha256": "6a7b8de3dc1e6b9532fd0fd6f7b0e2324ac3424ee47e1da1300e202449b1898c",
+      "budget_s": 220.0,
+      "elapsed_s": 120.0,
+      "remaining_s": 100.0,
+      "interactions": 12,
+      "findings": 8,
+      "unique_mechanisms": 4,
+      "unreplayable_findings": 0,
+      "snapshots": 1,
+      "restores": 3
+    },
+    {
+      "scenario": "tight_budget_all_replayable",
+      "variant": "snapshot_archive_v1",
+      "attack_sha256": "a3fc1fd31ffd51246df97c29cdeb6a2344a5113751643a61630412fc79f97ade",
+      "budget_s": 220.0,
+      "elapsed_s": 150.0,
+      "remaining_s": 70.0,
+      "interactions": 15,
+      "findings": 8,
+      "unique_mechanisms": 4,
+      "unreplayable_findings": 0,
+      "snapshots": 1,
+      "restores": 2
+    },
+    {
+      "scenario": "snapshot_discovery_not_replayable",
+      "variant": "official_starter_v17",
+      "attack_sha256": "c4ee5499ff43137c5128caf3e2645fb8f3448ec711c895d5ef1229562028e73d",
+      "budget_s": 900.0,
+      "elapsed_s": 120.0,
+      "remaining_s": 780.0,
+      "interactions": 12,
+      "findings": 9,
+      "unique_mechanisms": 4,
+      "unreplayable_findings": 3,
+      "snapshots": 1,
+      "restores": 3
+    },
+    {
+      "scenario": "snapshot_discovery_not_replayable",
+      "variant": "adaptive_budget_v1",
+      "attack_sha256": "ec9744b77197f4a1a1838c587d4ecf5aeb680b6e45aaa5a4d422b35f96613ef6",
+      "budget_s": 900.0,
+      "elapsed_s": 120.0,
+      "remaining_s": 780.0,
+      "interactions": 12,
+      "findings": 9,
+      "unique_mechanisms": 4,
+      "unreplayable_findings": 3,
+      "snapshots": 1,
+      "restores": 3
+    },
+    {
+      "scenario": "snapshot_discovery_not_replayable",
+      "variant": "novelty_scheduler_v1",
+      "attack_sha256": "6a7b8de3dc1e6b9532fd0fd6f7b0e2324ac3424ee47e1da1300e202449b1898c",
+      "budget_s": 900.0,
+      "elapsed_s": 120.0,
+      "remaining_s": 780.0,
+      "interactions": 12,
+      "findings": 8,
+      "unique_mechanisms": 4,
+      "unreplayable_findings": 2,
+      "snapshots": 1,
+      "restores": 3
+    },
+    {
+      "scenario": "snapshot_discovery_not_replayable",
+      "variant": "snapshot_archive_v1",
+      "attack_sha256": "a3fc1fd31ffd51246df97c29cdeb6a2344a5113751643a61630412fc79f97ade",
+      "budget_s": 900.0,
+      "elapsed_s": 150.0,
+      "remaining_s": 750.0,
+      "interactions": 15,
+      "findings": 6,
+      "unique_mechanisms": 4,
+      "unreplayable_findings": 0,
+      "snapshots": 1,
+      "restores": 2
+    }
+  ]
+}
