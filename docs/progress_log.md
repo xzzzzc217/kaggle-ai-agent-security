@@ -132,3 +132,33 @@
 
 - 完成首次 GitHub 推送。
 - B000 状态变化后同步更新材料、测试并推送。
+
+## 2026-07-23：迁入多项目 Kaggle 工作区
+
+**事实**
+
+- 将当前项目整体迁入 `D:\kaggle\ai-agent-security`。
+- `.git`、虚拟环境、本地竞赛数据、Kaggle 产物和全部源码随项目一起迁移。
+- `D:\kaggle` 改为 Kaggle 活动总目录，可容纳多个相互独立的平行项目。
+- GitHub remote、`master` 历史和 B000 submission 标识保持不变。
+
+**解释与限制**
+
+- 这次变更只调整本地工作区边界，不改变算法、Notebook 或 Kaggle submission。
+- 总目录的 `README.md` 是本地项目索引，不属于任一竞赛 Git 仓库。
+
+**证据**
+
+- 项目 Git 顶层：`D:/kaggle/ai-agent-security`
+- GitHub remote：`https://github.com/xzzzzc217/kaggle-ai-agent-security.git`
+- 最新项目提交和远端 `master` 在迁移后重新核对。
+
+**决策**
+
+- 后续 Kaggle 竞赛均建立为 `D:\kaggle` 下的独立平行子文件夹。
+- 文档命令优先使用项目相对路径；必须使用绝对路径时写明当前项目子目录。
+
+**下一门槛**
+
+- 在新路径完成完整测试、SDK 验证和 GitHub 推送。
+- 将 B000 监控任务的工作目录更新为新路径。

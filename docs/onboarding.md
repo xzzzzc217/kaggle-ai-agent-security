@@ -29,7 +29,8 @@ C:\Users\21398\.kaggle\access_token
 
 ## 3. 本地验证
 
-在 `D:\kaggle` 运行：
+在当前项目根目录运行（当前本地路径为
+`D:\kaggle\ai-agent-security`）：
 
 ```powershell
 uv sync
