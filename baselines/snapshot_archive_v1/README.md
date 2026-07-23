@@ -13,4 +13,6 @@ This directly targets a code-competition failure mode: a path may work after res
 an in-memory snapshot but fail when the evaluator replays only `user_messages`.
 
 Status: fixture-level source validation, archive deduplication, and full-replay gating
-are unit-tested. Real SDK replay is pending competition access.
+are unit-tested; the submission shape validates against competition SDK 3.1.2. The
+deterministic smoke result is not comparable to the Kaggle leaderboard. This variant
+has not been submitted for a competition rerun.

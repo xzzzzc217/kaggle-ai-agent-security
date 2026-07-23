@@ -4,7 +4,7 @@
 
 | ID | UTC date | Git commit | Hypothesis | Single change | Local evidence | Public score | Runtime | Decision |
 |---|---|---|---|---|---|---:|---:|---|
-| B000 | 2026-07-23 | 93c5597 | 官方 starter 可以完成 competition rerun | 无，原样基线 | SDK 3.1.2 validate 通过；deterministic smoke 为 0（不可与榜单比较）；私有 Notebook version 2 `COMPLETE`，云端 `attack.py` 哈希一致 | — | 23s notebook commit；rerun pending | 等待首次 competition rerun |
+| B000 | 2026-07-23 | 78ebc6e / 7cf2455 | 官方 starter 可以完成 competition rerun | 无，原样基线；仅补齐 Code Competition 占位输出 | SDK 3.1.2 validate 通过；deterministic fixture harness 已运行（不可与榜单比较）；私有 Notebook version 3 `COMPLETE`；云端 `attack.py` 哈希一致；submission `54925726` 已创建 | — | 普通 notebook commit 完成；rerun `PENDING` | 等待首次 competition rerun |
 | E001 | 2026-07-23 | d184f45 | 自适应预算估计能在不侵占退出余量的前提下执行更多候选 | 用观测到的交互时延替换固定 180/360 秒门槛 | 220 秒模拟预算下 18 次 vs 固定门槛 5 次；8 项测试通过 | — | simulated | SDK replay 后决定 |
 | E002 | 2026-07-23 | 748d9a4 | 优先覆盖不同工具调用签名能提高单位预算的新颖机制数 | 在 E001 上加入签名归一化、跨机制轮转与每签名保留上限 | 首轮 4 次覆盖 4 种签名；失败调用不计入；假环境端到端回放通过；17 项测试通过 | — | simulated | SDK replay 后决定 |
 | E003 | 2026-07-23 | 0db9fb6 | 只扩展已验证 source 状态并强制冷重放，可提高 evaluator 可复现率 | 在 E002 上加入 source-gated archive、分支去重与 fresh-reset replay gate | 失败 source 不 snapshot；仅 snapshot 成功但冷重放失败的候选被拒绝；23 项测试通过 | — | simulated | SDK replay 后决定 |

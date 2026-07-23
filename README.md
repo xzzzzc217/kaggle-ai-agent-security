@@ -2,6 +2,15 @@
 
 本仓库服务于一个明确目标：在与 LLM/Agent 高度相关的 Kaggle 竞赛中获得奖牌或官方奖项，并把全过程沉淀为可核验的求职与深造材料。
 
+## 阅读入口
+
+- [`docs/project_overview.md`](docs/project_overview.md)：竞赛讲解、核心判断、技术路线与当前进度
+- [`docs/progress_log.md`](docs/progress_log.md)：按时间追加的阶段成果、证据和下一门槛
+- [`experiments/README.md`](experiments/README.md)：单变量实验账本
+- [`experiments/offline_ablation_v1.md`](experiments/offline_ablation_v1.md)：第一轮确定性消融
+- [`evidence/2026-07-23_b000_v3.md`](evidence/2026-07-23_b000_v3.md)：首次正式提交的脱敏证据
+- [`docs/safety.md`](docs/safety.md)：研究授权边界与工程控制
+
 ## 当前主赛
 
 **AI Agent Security - Multi-Step Tool Attacks**
@@ -40,8 +49,9 @@
 - [x] 建立跨版本确定性消融，量化预算利用、机制覆盖与冷重放失败
 - [x] 登录 Kaggle、接受比赛规则并配置新版 API Token
 - [x] 下载并校验竞赛 SDK/数据
-- [x] 生成并云端成功运行绑定 attack 哈希、Git commit 与实验编号的私有 Notebook version 2
-- [ ] 完成官方 baseline 首次 Kaggle competition rerun
+- [x] 生成并云端成功运行绑定 attack 哈希、Git commit 与实验编号的私有 Notebook version 3
+- [x] 创建官方 baseline competition submission `54925726`
+- [ ] 完成官方 baseline 首次 Kaggle competition rerun（当前 `PENDING`）
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

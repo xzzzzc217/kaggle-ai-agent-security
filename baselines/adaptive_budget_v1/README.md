@@ -8,5 +8,6 @@ candidate, and preserves a hard reserve before starting more work. Candidate pro
 and sandbox-only destinations remain the same as the starter so that the first
 comparison isolates scheduling.
 
-Status: locally unit-tested; competition SDK replay and Kaggle score are pending account
-join and data access.
+Status: locally unit-tested and validated against competition SDK 3.1.2. The
+deterministic smoke result is mechanism evidence only and is not comparable to the
+Kaggle leaderboard. This variant has not been submitted for a competition rerun.

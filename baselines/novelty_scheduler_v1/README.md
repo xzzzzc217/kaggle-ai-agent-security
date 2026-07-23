@@ -12,5 +12,6 @@ Why this should matter: the official metric explicitly rewards diversity through
 `unique_cell_count`, while the private guardrail makes repeated variants of one public
 mechanism a fragile strategy.
 
-Status: locally unit-tested against representative trace shapes; SDK replay and Kaggle
-score remain pending competition access.
+Status: locally unit-tested against representative and SDK 3.1.2 trace shapes, including
+failed-call filtering. The deterministic smoke result is not comparable to the Kaggle
+leaderboard. This variant has not been submitted for a competition rerun.
