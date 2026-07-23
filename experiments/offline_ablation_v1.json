@@ -38,7 +38,7 @@
     {
       "scenario": "tight_budget_all_replayable",
       "variant": "novelty_scheduler_v1",
-      "attack_sha256": "6a7b8de3dc1e6b9532fd0fd6f7b0e2324ac3424ee47e1da1300e202449b1898c",
+      "attack_sha256": "ae936c9cddbbe9ee3770145b75227ed37c3757be4efd3549eae2ff6af6ea3475",
       "budget_s": 220.0,
       "elapsed_s": 120.0,
       "remaining_s": 100.0,
@@ -52,7 +52,7 @@
     {
       "scenario": "tight_budget_all_replayable",
       "variant": "snapshot_archive_v1",
-      "attack_sha256": "a3fc1fd31ffd51246df97c29cdeb6a2344a5113751643a61630412fc79f97ade",
+      "attack_sha256": "abde393069c0a2e74d3244695a122fdfda9321fc9dab03d044d24324298205a0",
       "budget_s": 220.0,
       "elapsed_s": 150.0,
       "remaining_s": 70.0,
@@ -94,7 +94,7 @@
     {
       "scenario": "snapshot_discovery_not_replayable",
       "variant": "novelty_scheduler_v1",
-      "attack_sha256": "6a7b8de3dc1e6b9532fd0fd6f7b0e2324ac3424ee47e1da1300e202449b1898c",
+      "attack_sha256": "ae936c9cddbbe9ee3770145b75227ed37c3757be4efd3549eae2ff6af6ea3475",
       "budget_s": 900.0,
       "elapsed_s": 120.0,
       "remaining_s": 780.0,
@@ -108,7 +108,7 @@
     {
       "scenario": "snapshot_discovery_not_replayable",
       "variant": "snapshot_archive_v1",
-      "attack_sha256": "a3fc1fd31ffd51246df97c29cdeb6a2344a5113751643a61630412fc79f97ade",
+      "attack_sha256": "abde393069c0a2e74d3244695a122fdfda9321fc9dab03d044d24324298205a0",
       "budget_s": 900.0,
       "elapsed_s": 150.0,
       "remaining_s": 750.0,

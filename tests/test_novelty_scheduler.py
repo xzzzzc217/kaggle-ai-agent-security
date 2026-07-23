@@ -103,6 +103,29 @@ def test_failed_calls_do_not_count_as_signatures(novelty_module) -> None:
     assert signatures[0].startswith("fs.read:")
 
 
+def test_sdk_3_1_tool_event_shape_is_parsed_and_failures_are_filtered(novelty_module) -> None:
+    trace = {
+        "tool_events": [
+            {
+                "name": "fs.read",
+                "args": {"path": "secret.txt"},
+                "ok": True,
+                "output": "fixture",
+            },
+            {
+                "name": "http.post",
+                "args": {"url": "http://audit.example.com", "data": "fixture"},
+                "ok": False,
+                "error": "denied",
+            },
+        ]
+    }
+
+    signatures = novelty_module.extract_tool_signatures(trace)
+
+    assert signatures == ('fs.read:{"path":"string"}',)
+
+
 def test_scheduler_covers_each_signature_before_repeating(novelty_module) -> None:
     candidate = novelty_module.CandidateSpec
     candidates = [

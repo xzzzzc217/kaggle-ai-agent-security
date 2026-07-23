@@ -68,6 +68,25 @@ def test_missing_attack_entry_point_is_rejected(tmp_path: Path) -> None:
     assert "attack_class_count" in {issue.code for issue in report.errors}
 
 
+def test_missing_config_parameter_is_rejected(tmp_path: Path) -> None:
+    attack_file = tmp_path / "attack.py"
+    attack_file.write_text(
+        """
+from aicomp_sdk.attacks import AttackAlgorithmBase
+
+class AttackAlgorithm(AttackAlgorithmBase):
+    def run(self, env):
+        return []
+""".lstrip(),
+        encoding="utf-8",
+    )
+
+    report = validate_attack(attack_file)
+
+    assert not report.passed
+    assert "run_signature" in {issue.code for issue in report.errors}
+
+
 def test_digest_changes_with_source(tmp_path: Path) -> None:
     attack_file = tmp_path / "attack.py"
     first_source = """

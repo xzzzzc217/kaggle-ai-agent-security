@@ -152,13 +152,24 @@ def extract_tool_signatures(trace: Any) -> tuple[str, ...]:
     def visit(node: Any) -> None:
         if isinstance(node, Mapping):
             status = str(node.get("status", "")).lower()
-            explicitly_failed = node.get("success") is False or status in {"error", "failed"}
+            explicitly_failed = (
+                node.get("success") is False
+                or node.get("ok") is False
+                or status in {"error", "failed"}
+            )
 
             tool_name = node.get("tool_name")
             arguments = node.get(
                 "arguments",
                 node.get("args", node.get("tool_input", node.get("input", {}))),
             )
+            sdk_name = node.get("name")
+            is_sdk_tool_event = (
+                isinstance(sdk_name, str) and "args" in node and isinstance(node.get("ok"), bool)
+            )
+            if not isinstance(tool_name, str) and is_sdk_tool_event:
+                tool_name = sdk_name
+
             function = node.get("function")
             if not isinstance(tool_name, str) and isinstance(function, Mapping):
                 function_name = function.get("name")

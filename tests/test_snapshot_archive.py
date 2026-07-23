@@ -52,6 +52,20 @@ def source_trace(*, success: bool) -> dict[str, object]:
     }
 
 
+def sdk_source_trace(*, success: bool) -> dict[str, object]:
+    return {
+        "tool_events": [
+            {
+                "name": "fs.read",
+                "args": {"path": "config.json"},
+                "ok": success,
+                "output": "fixture" if success else "",
+                "error": None if success else "denied",
+            }
+        ]
+    }
+
+
 def test_archive_requires_a_successful_source_tool(snapshot_module) -> None:
     archive = snapshot_module.SnapshotArchive()
 
@@ -71,6 +85,27 @@ def test_archive_requires_a_successful_source_tool(snapshot_module) -> None:
     assert rejected is None
     assert accepted is not None
     assert accepted.source_signatures[0].startswith("fs.read:")
+
+
+def test_archive_accepts_only_successful_sdk_3_1_source_events(snapshot_module) -> None:
+    archive = snapshot_module.SnapshotArchive()
+
+    rejected = archive.add(
+        prefix_label="config",
+        prefix_messages=("read config",),
+        snapshot="state",
+        trace=sdk_source_trace(success=False),
+    )
+    accepted = archive.add(
+        prefix_label="config",
+        prefix_messages=("read config",),
+        snapshot="state",
+        trace=sdk_source_trace(success=True),
+    )
+
+    assert rejected is None
+    assert accepted is not None
+    assert accepted.source_signatures == ('fs.read:{"path":"string"}',)
 
 
 def test_archive_deduplicates_states_and_branch_mechanisms(snapshot_module) -> None:

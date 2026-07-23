@@ -156,12 +156,12 @@ def _validate_contract(tree: ast.Module) -> list[PreflightIssue]:
     run_method = run_methods[0]
     positional = [*run_method.args.posonlyargs, *run_method.args.args]
     argument_names = [argument.arg for argument in positional]
-    if len(argument_names) < 2 or argument_names[:2] != ["self", "env"]:
+    if len(argument_names) < 3 or argument_names[:3] != ["self", "env", "config"]:
         issues.append(
             PreflightIssue(
                 "error",
                 "run_signature",
-                "run must begin with positional arguments (self, env)",
+                "run must begin with positional arguments (self, env, config)",
                 run_method.lineno,
             )
         )
