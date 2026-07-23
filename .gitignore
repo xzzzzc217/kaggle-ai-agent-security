@@ -1,0 +1,29 @@
+# Credentials and local environment
+.env
+.venv/
+kaggle.json
+access_token
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Kaggle inputs, generated submissions, and model artifacts
+data/
+artifacts/
+outputs/
+submissions/
+*.zip
+*.tar.gz
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
