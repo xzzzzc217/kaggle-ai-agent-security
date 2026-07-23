@@ -1,6 +1,7 @@
 # Kaggle onboarding（账号所有者动作）
 
-当前浏览器会话未登录 Kaggle，本机也没有 Kaggle API 凭证。下面几步涉及账号条款和私密 Token，必须由账号所有者完成。
+状态：**已于 2026-07-23 完成**。账号已加入比赛，新版 API Token 已配置，
+Kaggle CLI 可以列出竞赛文件。下面保留凭证轮换和故障恢复步骤。
 
 ## 1. 加入比赛
 
@@ -13,13 +14,18 @@
 
 ## 2. 创建 API Token
 
-在 Kaggle Settings 的 API 区域创建 Token。优先使用 Kaggle 当前推荐的 token 方式；若下载得到 `kaggle.json`，将其放到：
+在 Kaggle Settings 的 **API Tokens (Recommended)** 区域创建具名 Token。项目使用的
+Kaggle CLI 1.8.4 支持新版 Token。将 Token 原文单独保存到：
 
 ```text
-C:\Users\21398\.kaggle\kaggle.json
+C:\Users\21398\.kaggle\access_token
 ```
 
-不要把 Token 粘贴到聊天、Notebook、Git 或实验日志中。
+文件中只放 Token 原文，不加引号，也不包装成 JSON。`kaggle.json` 仅用于
+**Legacy API Credentials**，不要把新版 Token 写入该文件。
+
+不要把 Token 粘贴到聊天、Notebook、Git、命令输出或实验日志中。若 Token
+曾被回显，应立即在 Kaggle Settings 中撤销并重新生成。
 
 ## 3. 本地验证
 
@@ -34,4 +40,5 @@ uv sync
 
 ## 4. 完成信号
 
-只需告知：“已加入比赛并配置 Token”。不要发送 Token 内容。随后即可自动下载 SDK、复现 baseline、创建首次提交并开始实验。
+轮换完成后只需告知：“已重新配置”。不要发送 Token 内容。验证过程只检查
+文件是否存在并调用 Kaggle CLI，不读取或打印 Token。

@@ -32,14 +32,16 @@
 - [x] 审计本机算力与软件资产
 - [x] 筛选当前开放且与 LLM 高度相关的竞赛
 - [x] 选定主赛并记录硬截止日期
-- [x] 保存官方 starter baseline（待 SDK 到位后运行）
+- [x] 保存官方 starter baseline，并用竞赛 SDK 3.1.2 完成确定性管线复现
 - [x] 建立离线测试骨架并完成自适应预算调度实验
 - [x] 完成按工具调用签名去重的新颖度调度实验
 - [x] 完成 source 验证、snapshot 归档与冷重放门控实验
 - [x] 建立 submission preflight，验证接口、离线边界与版本摘要
 - [x] 建立跨版本确定性消融，量化预算利用、机制覆盖与冷重放失败
-- [ ] 登录 Kaggle、接受比赛规则并配置 API Token
-- [ ] 下载竞赛 SDK/数据并完成官方 baseline 首次提交
+- [x] 登录 Kaggle、接受比赛规则并配置新版 API Token
+- [x] 下载并校验竞赛 SDK/数据
+- [x] 生成并云端成功运行绑定 attack 哈希、Git commit 与实验编号的私有 Notebook version 2
+- [ ] 完成官方 baseline 首次 Kaggle competition rerun
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note
@@ -56,7 +58,8 @@
 
 ## 立即行动
 
-唯一需要账号所有者完成的动作记录在 [`docs/onboarding.md`](docs/onboarding.md)。完成后运行：
+账号 onboarding 已完成，验证记录与凭证轮换说明见
+[`docs/onboarding.md`](docs/onboarding.md)。重新验证竞赛访问时运行：
 
 ```powershell
 uv sync
@@ -70,4 +73,15 @@ uv sync
 ```powershell
 .\.venv\Scripts\python.exe .\scripts\preflight_submission.py `
   .\baselines\snapshot_archive_v1\attack.py
+```
+
+构建可由 Kaggle CLI 推送的私有 Notebook 包：
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.build_kaggle_notebook `
+  .\baselines\official_starter_v17\attack.py `
+  .\submissions\B000 `
+  --experiment-id B000 `
+  --kernel-id heralces/ai-agent-security-b000-official-baseline `
+  --title "AI Agent Security B000 Official Baseline"
 ```
