@@ -43,12 +43,30 @@ else:
 """
 
 SERVER_SOURCE = """\
-import kaggle_evaluation.jed_attack_134815.jed_attack_inference_server
+import csv
+import os
+from pathlib import Path
 
-# Save & Run All only verifies that the notebook starts successfully.
-# Competition scoring happens in Kaggle's separate competition rerun.
-server = kaggle_evaluation.jed_attack_134815.jed_attack_inference_server
-server.JEDAttackInferenceServer().serve()
+if os.getenv("KAGGLE_IS_COMPETITION_RERUN"):
+    import kaggle_evaluation.jed_attack_134815.jed_attack_inference_server
+
+    server = kaggle_evaluation.jed_attack_134815.jed_attack_inference_server
+    server.JEDAttackInferenceServer().serve()
+else:
+    # Code Competition submissions require this output to exist on the committed
+    # notebook version. The hidden gateway overwrites it with real rerun scores.
+    rows = (
+        "gpt_oss_public",
+        "gpt_oss_private",
+        "gemma_public",
+        "gemma_private",
+    )
+    output_path = Path("/kaggle/working/submission.csv")
+    with output_path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(("Id", "Score"))
+        writer.writerows((row_id, 0.0) for row_id in rows)
+    print("placeholder submission.csv written")
 """
 
 

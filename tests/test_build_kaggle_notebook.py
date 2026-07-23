@@ -88,4 +88,8 @@ def test_notebook_starts_competition_inference_server(tmp_path: Path) -> None:
     server_cell = "".join(notebook["cells"][3]["source"])
 
     assert "JEDAttackInferenceServer().serve()" in server_cell
+    assert 'os.getenv("KAGGLE_IS_COMPETITION_RERUN")' in server_cell
+    assert 'Path("/kaggle/working/submission.csv")' in server_cell
+    assert '"gpt_oss_public"' in server_cell
+    assert '"gemma_private"' in server_cell
     assert "/kaggle/working/attack.py" in "".join(notebook["cells"][2]["source"])
