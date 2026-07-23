@@ -162,3 +162,39 @@
 
 - 在新路径完成完整测试、SDK 验证和 GitHub 推送。
 - 将 B000 监控任务的工作目录更新为新路径。
+
+## 2026-07-23：B000 首次 competition rerun 完成
+
+**事实**
+
+- Submission `54925726` 从 `PENDING` 变为 `COMPLETE`。
+- 提交创建时间为 2026-07-23 10:35:13 UTC；首次观测到完成的时间为
+  2026-07-23 12:40:51 UTC。
+- Public score 为 `0.075`。
+- Kaggle CLI 当前没有返回 private score，也没有提供精确完成时间或实际运行时长。
+
+**解释与限制**
+
+- `0.075` 是官方 starter 在隐藏 competition rerun 上得到的真实 public score，可作为
+  后续 E001–E003 单变量提交的比较锚点。
+- 该结果只验证 B000 攻击算法和提交管线能够完成评分，不证明当前方案达到奖牌水平。
+- 从提交创建到首次观测完成约 2 小时 6 分钟，但这包含队列等待，不能当作算法运行时。
+- Private score 为空；其可见时间以 Kaggle 最终评测流程为准。
+
+**证据**
+
+- [`../evidence/2026-07-23_b000_v3.md`](../evidence/2026-07-23_b000_v3.md)
+- Notebook：`heralces/ai-agent-security-b000-official-baseline` version 3
+- Submission ref：`54925726`
+- 攻击源码 SHA-256：
+  `c4ee5499ff43137c5128caf3e2645fb8f3448ec711c895d5ef1229562028e73d`
+
+**决策**
+
+- 保留 B000 作为真实排行榜基线，不重复提交。
+- 暂停 B000 状态心跳；后续提交必须使用新的实验 ID 和单变量假设。
+
+**下一门槛**
+
+- 写明 E001 相对 B000 的唯一变更、预算配置和判定门槛。
+- 通过 preflight 与 SDK validate 后，再由用户确认是否创建下一次正式 submission。

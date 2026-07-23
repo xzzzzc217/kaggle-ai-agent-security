@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-07-23  
-> 当前阶段：官方基线 B000 已提交 Kaggle competition rerun，等待评分  
+> 当前阶段：官方基线 B000 competition rerun 已完成，public score `0.075`
 > Kaggle submission ref：`54925726`  
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -166,7 +166,7 @@ Notebook 包装和占位输出，不包含 E001–E003 的搜索改动。这样�
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
 | 本地搜索机制 | 第一轮完成 | E001–E003 算法原型、E004 SDK 契约实验；确定性消融；42 项测试 | 接入真实评分反馈 |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md) | 保持版本可追溯 |
-| B000 competition rerun | 进行中 | submission `54925726`，当前 `PENDING`；[状态证据](../evidence/2026-07-23_b000_v3.md) | 获得首个可解释 public score 或失败日志 |
+| B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -195,13 +195,13 @@ guardrail；它只用于决定哪些改动值得消耗正式提交。
 | [`../tests`](../tests) | 42 项自动化回归测试 |
 
 目前最明确的工程成果是：已经从“无法创建 Token / request blocked”推进到账号入赛、
-SDK 下载、四个算法版本校验、私有 Notebook 云端运行和正式 competition submission
-入队。下一项关键证据是 B000 的真实评分或可诊断失败日志。
+SDK 下载、四个算法版本校验、私有 Notebook 云端运行，并完成首次正式 competition
+rerun。B000 的 public score `0.075` 是后续单变量比较的真实锚点，不代表当前已经达到
+奖牌水平。
 
 ## 7. 下一步
 
-1. 等待并记录 B000 rerun 的 public score、耗时或失败信息；private score 的可见时间
-   以 Kaggle 最终评测流程为准。
+1. 以 B000 public score `0.075` 为锚点，定义 E001 的提交配置和成功/失败门槛。
 2. 根据第一份真实反馈校准本地 harness，避免围绕错误代理指标优化。
 3. 为真实 trace 建立 source、transformation、sink 和 predicate 分类。
 4. 分别提交 E001、E002、E003；每次只改变一个主要机制。
