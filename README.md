@@ -36,6 +36,7 @@
 - [x] 建立离线测试骨架并完成自适应预算调度实验
 - [x] 完成按工具调用签名去重的新颖度调度实验
 - [x] 完成 source 验证、snapshot 归档与冷重放门控实验
+- [x] 建立 submission preflight，验证接口、离线边界与版本摘要
 - [ ] 登录 Kaggle、接受比赛规则并配置 API Token
 - [ ] 下载竞赛 SDK/数据并完成官方 baseline 首次提交
 - [ ] 建立本地可复现评测与攻击轨迹分析
@@ -62,3 +63,10 @@ uv sync
 ```
 
 任何 API Token 都不得提交到本仓库。
+
+候选版本进入 Kaggle Notebook 前必须通过：
+
+```powershell
+.\.venv\Scripts\python.exe .\scripts\preflight_submission.py `
+  .\baselines\snapshot_archive_v1\attack.py
+```
