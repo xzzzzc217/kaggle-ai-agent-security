@@ -230,3 +230,40 @@
 
 - 构建并验证私有 E001 Notebook。
 - 只创建一次 E001 competition submission，并监控至终态。
+
+## 2026-07-24：创建 E001 正式 submission
+
+**事实**
+
+- 私有 Notebook `heralces/ai-agent-security-e001-adaptive-budget` version 1 云端状态为
+  `COMPLETE`。
+- 云端 `attack.py` SHA-256 与预注册源码一致：
+  `ec9744b77197f4a1a1838c587d4ecf5aeb680b6e45aaa5a4d422b35f96613ef6`。
+- 普通 commit 输出 `attack.py` 和占位 `submission.csv`；日志没有 exception 或
+  traceback。
+- 2026-07-24 13:50:27 UTC 创建 competition submission `54952586`，当前为 `PENDING`。
+- B000 submission `54925726` 保持 `COMPLETE / 0.075`。
+
+**解释与限制**
+
+- Notebook v1 `COMPLETE` 只验证打包和普通 commit；E001 假设必须等待 competition
+  rerun 的真实 public score。
+- 占位 CSV 的四个 `0.0` 不是模型评分。
+- Kaggle 环境日志中的 debugger、`mistune` 和 `nbconvert` warning 不影响普通 commit。
+
+**证据**
+
+- [`../evidence/2026-07-24_e001_preflight.md`](../evidence/2026-07-24_e001_preflight.md)
+- Notebook version：1
+- Submission ref：`54952586`
+- Notebook build commit：`c221fb6`
+
+**决策**
+
+- 只监控 submission `54952586`，不创建第二条 E001 submission。
+- 保持预注册门槛：`>0.075` 支持，`=0.075` 未证实，更低或失败则拒绝。
+
+**下一门槛**
+
+- E001 submission 进入 `COMPLETE` 或 `ERROR/FAILED` 终态。
+- 按预注册规则更新实验结论、证据与 GitHub。

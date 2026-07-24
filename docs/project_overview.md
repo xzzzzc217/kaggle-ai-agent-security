@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-07-23  
-> 当前阶段：B000 public score `0.075`；E001 自适应预算实验已预注册并通过提交前检查
+> 当前阶段：B000 public score `0.075`；E001 submission `54952586` 正在 competition rerun
 > Kaggle submission ref：`54925726`  
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -167,6 +167,7 @@ Notebook 包装和占位输出，不包含 E001–E003 的搜索改动。这样�
 | 本地搜索机制 | E001 进入正式验证 | E001–E003 算法原型、E004 SDK 契约实验；确定性消融；42 项测试；[E001 预注册](../evidence/2026-07-24_e001_preflight.md) | 完成 E001 单变量 rerun |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
+| E001 competition rerun | 进行中 | Notebook v1 `COMPLETE`；submission `54952586` 为 `PENDING`；[预注册与状态证据](../evidence/2026-07-24_e001_preflight.md) | 终态分数严格高于 `0.075` 才支持假设 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
