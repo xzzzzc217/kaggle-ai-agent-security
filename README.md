@@ -52,6 +52,8 @@
 - [x] 生成并云端成功运行绑定 attack 哈希、Git commit 与实验编号的私有 Notebook version 3
 - [x] 创建官方 baseline competition submission `54925726`
 - [x] 完成官方 baseline 首次 Kaggle competition rerun（public score `0.075`；private score 当前未返回）
+- [x] 预注册 E001 自适应预算实验并通过 preflight、测试和 SDK validate
+- [ ] 完成 E001 单变量 competition rerun
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

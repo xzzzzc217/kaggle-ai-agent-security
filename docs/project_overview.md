@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-07-23  
-> 当前阶段：官方基线 B000 competition rerun 已完成，public score `0.075`
+> 当前阶段：B000 public score `0.075`；E001 自适应预算实验已预注册并通过提交前检查
 > Kaggle submission ref：`54925726`  
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -164,7 +164,7 @@ Notebook 包装和占位输出，不包含 E001–E003 的搜索改动。这样�
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | 第一轮完成 | E001–E003 算法原型、E004 SDK 契约实验；确定性消融；42 项测试 | 接入真实评分反馈 |
+| 本地搜索机制 | E001 进入正式验证 | E001–E003 算法原型、E004 SDK 契约实验；确定性消融；42 项测试；[E001 预注册](../evidence/2026-07-24_e001_preflight.md) | 完成 E001 单变量 rerun |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
@@ -190,6 +190,7 @@ guardrail；它只用于决定哪些改动值得消耗正式提交。
 | [`../experiments/offline_ablation_v1.json`](../experiments/offline_ablation_v1.json) | 绑定源码哈希的机器可读结果 |
 | [`progress_log.md`](progress_log.md) | 追加式阶段成果与决策日志 |
 | [`../evidence/2026-07-23_b000_v3.md`](../evidence/2026-07-23_b000_v3.md) | SDK、Notebook v3、哈希、测试与 submission 的脱敏证据 |
+| [`../evidence/2026-07-24_e001_preflight.md`](../evidence/2026-07-24_e001_preflight.md) | E001 的假设、唯一变量、源码哈希和预注册判定门槛 |
 | [`../scripts/preflight_submission.py`](../scripts/preflight_submission.py) | 接口、网络边界和摘要检查 |
 | [`../scripts/build_kaggle_notebook.py`](../scripts/build_kaggle_notebook.py) | 可复现私有 Notebook 构建 |
 | [`../tests`](../tests) | 42 项自动化回归测试 |

@@ -198,3 +198,35 @@
 
 - 写明 E001 相对 B000 的唯一变更、预算配置和判定门槛。
 - 通过 preflight 与 SDK validate 后，再由用户确认是否创建下一次正式 submission。
+
+## 2026-07-24：预注册 E001 自适应预算实验
+
+**事实**
+
+- 用户确认继续推进下一阶段。
+- E001 只把官方 starter 的固定 180/360 秒余量替换为自适应预算控制器。
+- 攻击源码 SHA-256 为
+  `ec9744b77197f4a1a1838c587d4ecf5aeb680b6e45aaa5a4d422b35f96613ef6`。
+- Submission preflight、42 项测试、Ruff 和 SDK 3.1.2 validate 全部通过。
+
+**解释与限制**
+
+- 本地 fixture 只说明预算控制按设计工作，不能预测隐藏模型上的真实分数。
+- B000 的 `0.075` 是唯一真实对照；private score 当前不可见。
+
+**证据**
+
+- [`../evidence/2026-07-24_e001_preflight.md`](../evidence/2026-07-24_e001_preflight.md)
+- [`../baselines/adaptive_budget_v1/attack.py`](../baselines/adaptive_budget_v1/attack.py)
+- Source commit：`d184f45`
+
+**决策**
+
+- 只有 E001 rerun 完成且 public score 严格高于 `0.075` 才支持假设。
+- 相等视为未证实；更低或运行失败则拒绝该变更。
+- 不根据出分结果修改门槛，不自动重试失败提交。
+
+**下一门槛**
+
+- 构建并验证私有 E001 Notebook。
+- 只创建一次 E001 competition submission，并监控至终态。
