@@ -57,7 +57,8 @@
 - [x] 云端验证 E001 私有 Notebook v1，并创建 submission `54952586`
 - [x] 完成 E001 单变量 rerun：public score `0.075`，与 B000 相同，未证明提升
 - [x] 预注册 E002 机制新颖度调度实验并通过 preflight、测试和 SDK validate
-- [ ] 云端验证 E002 私有 Notebook，并创建唯一一次 E002 competition submission
+- [x] 云端验证 E002 私有 Notebook v1，并创建唯一 submission `54995012`
+- [ ] 等待 E002 competition rerun 终态；期间不重试或重复提交
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

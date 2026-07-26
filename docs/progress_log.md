@@ -341,3 +341,42 @@
 
 - 提交并推送本预注册，使 Notebook 构建绑定一个出分前固定的 Git commit。
 - 构建、云端验证私有 E002 Notebook，并核对云端 `attack.py` 哈希。
+
+## 2026-07-26：创建 E002 正式 submission
+
+**事实**
+
+- 私有 Notebook `heralces/ai-agent-security-e002-novelty-scheduler` version 1 在云端
+  进入 `COMPLETE`。
+- Notebook 绑定预注册后的 build commit `b947bf1`；云端 `attack.py` SHA-256 与本地
+  `ae936c9cddbbe9ee3770145b75227ed37c3757be4efd3549eae2ff6af6ea3475`
+  完全一致。
+- 普通 commit 产出 `attack.py` 和占位 `submission.csv`；日志无 exception、traceback
+  或执行错误。
+- 正式提交前再次查询历史，确认不存在 E002；2026-07-26 07:44:30 UTC 只创建
+  submission `54995012`，当前为 `PENDING`。
+
+**解释与限制**
+
+- Notebook v1 `COMPLETE` 只验证打包、普通 commit 和源码一致性；E002 假设仍须等待
+  competition rerun 的真实 public score。
+- 占位 CSV 的四个 `0.0` 不是模型评分。
+- Notebook 普通 commit 约 20 秒完成；competition submission 的排队时长不能解释为
+  算法运行时，也不能据此推断每周 GPU 配额消耗。
+
+**证据**
+
+- [`../evidence/2026-07-26_e002_preflight.md`](../evidence/2026-07-26_e002_preflight.md)
+- Notebook version：1
+- Submission ref：`54995012`
+- Notebook build commit：`b947bf1`
+
+**决策**
+
+- 只监控 submission `54995012`，不创建第二条 E002 submission。
+- 保持预注册门槛：`>0.075` 支持，`=0.075` 未证实，更低或失败则拒绝。
+
+**下一门槛**
+
+- E002 submission 进入 `COMPLETE` 或 `ERROR/FAILED` 终态。
+- 按预注册规则更新实验结论、证据和 GitHub。
