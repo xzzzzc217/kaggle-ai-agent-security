@@ -380,3 +380,40 @@
 
 - E002 submission 进入 `COMPLETE` 或 `ERROR/FAILED` 终态。
 - 按预注册规则更新实验结论、证据和 GitHub。
+
+## 2026-07-26：E002 完成且评分下降
+
+**事实**
+
+- Submission `54995012` 从 `PENDING` 变为 `COMPLETE`。
+- 提交创建时间为 2026-07-26 07:44:30 UTC；首次观测完成时间为
+  2026-07-26 12:15:22 UTC。
+- E002 public score 为 `0.060`，比直接对照 E001 的 `0.075` 低 `0.015`。
+- Kaggle CLI 没有返回 private score 或精确算法运行时。
+
+**解释与限制**
+
+- 按出分前预注册规则，`0.060 < 0.075` 表示拒绝当前新颖度调度变更。
+- 从提交到首次观测完成约 4 小时 31 分钟，包含队列等待，不是算法运行时，也不能
+  据此推断 GPU 配额消耗。
+- 本地 harness 中的机制覆盖改善没有转化为真实 public score；这说明本地证据的
+  外推边界，但单次总分不能定位轮转顺序、签名上限或隐藏评测交互中的具体原因。
+
+**证据**
+
+- [`../evidence/2026-07-26_e002_preflight.md`](../evidence/2026-07-26_e002_preflight.md)
+- Submission ref：`54995012`
+- Notebook：`heralces/ai-agent-security-e002-novelty-scheduler` version 1
+- Public score：`0.060`
+
+**决策**
+
+- 拒绝 E002，不重复提交，不修改预注册门槛。
+- 不把 E002 作为下一实验的默认基础。
+- E003 当前叠加在 E002 上，不能直接形成相对有效对照的单变量结论；先做 trace
+  诊断，再把冷重放门控隔离到 E001 上重新预注册。
+
+**下一门槛**
+
+- 整理可获得 trace 的 source、transformation、sink 和 predicate 分类。
+- 明确下一候选相对 E001 的唯一变量、源码哈希和严格判定门槛后再提交。

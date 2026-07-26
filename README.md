@@ -58,7 +58,8 @@
 - [x] 完成 E001 单变量 rerun：public score `0.075`，与 B000 相同，未证明提升
 - [x] 预注册 E002 机制新颖度调度实验并通过 preflight、测试和 SDK validate
 - [x] 云端验证 E002 私有 Notebook v1，并创建唯一 submission `54995012`
-- [ ] 等待 E002 competition rerun 终态；期间不重试或重复提交
+- [x] 完成 E002 rerun：public score `0.060`，低于 E001 的 `0.075`，按预注册拒绝变更
+- [ ] 诊断 E002 的真实分数下降，并把下一机制隔离到有效对照上重新预注册
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

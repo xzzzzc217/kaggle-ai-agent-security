@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-07-23  
-> 当前阶段：B000 与 E001 public score 均为 `0.075`；E002 submission `54995012` 正在等待 rerun
+> 当前阶段：E002 public score `0.060`，低于 E001 的 `0.075`；按预注册拒绝新颖度调度变更
 > Kaggle submission ref：`54925726`  
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -164,11 +164,11 @@ Notebook 包装和占位输出，不包含 E001–E003 的搜索改动。这样�
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | E002 已提交 | E001–E003 算法原型、E004 SDK 契约实验；确定性消融；42 项测试；[E002 证据](../evidence/2026-07-26_e002_preflight.md) | 等待 E002 rerun 终态 |
+| 本地搜索机制 | E002 已拒绝 | 本地机制覆盖改善，但 E002 真实 public score 下降；42 项测试；[E002 证据](../evidence/2026-07-26_e002_preflight.md) | 用真实结果校准 harness，并隔离下一变量 |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
-| E002 competition rerun | `PENDING` | 私有 Notebook v1 `COMPLETE`；云端源码哈希一致；submission `54995012`；public/private score 尚未返回；[证据](../evidence/2026-07-26_e002_preflight.md) | 只监控既有 ref；`>0.075` 才支持假设 |
+| E002 competition rerun | 完成，拒绝变更 | submission `54995012` 为 `COMPLETE`；public score `0.060`，低于 E001 `0.075`；private score 未返回；[证据](../evidence/2026-07-26_e002_preflight.md) | 不重复提交；不把 E002 作为默认基础 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -205,10 +205,10 @@ rerun。B000 的 public score `0.075` 是后续单变量比较的真实锚点，
 
 ## 7. 下一步
 
-1. 只监控 E002 submission `54995012`，不重试或重复提交；`>0.075` 才支持假设。
-2. 记录“本地预算利用改善没有转化为榜单提升”，校准本地 harness 的解释边界。
-3. 为真实 trace 建立 source、transformation、sink 和 predicate 分类。
-4. E002 终态后再决定是否验证 E003；每次只改变一个主要机制。
+1. 记录 E002 本地覆盖改善却使 public score 从 `0.075` 降至 `0.060`，校准 harness。
+2. 为可获得的真实 trace 建立 source、transformation、sink 和 predicate 分类。
+3. 不直接提交建立在 E002 上的 E003；先把冷重放门控隔离到 E001 对照上重新预注册。
+4. 每次只改变一个主要机制，并保持失败结果与退出条件可追溯。
 5. 绘制分数、机制覆盖、有效候选数和运行时间的消融曲线。
 6. 保留至少两个机制低相关的最终候选，降低私榜 guardrail 风险。
 7. 把可公开部分整理为 Working Note；真实攻击目标适配、凭证和竞赛私有资产永不发布。
