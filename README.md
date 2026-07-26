@@ -9,6 +9,7 @@
 - [`experiments/README.md`](experiments/README.md)：单变量实验账本
 - [`experiments/offline_ablation_v1.md`](experiments/offline_ablation_v1.md)：第一轮确定性消融
 - [`evidence/2026-07-23_b000_v3.md`](evidence/2026-07-23_b000_v3.md)：首次正式提交的脱敏证据
+- [`evidence/2026-07-26_e002_preflight.md`](evidence/2026-07-26_e002_preflight.md)：E002 的预注册与提交前证据
 - [`docs/safety.md`](docs/safety.md)：研究授权边界与工程控制
 
 ## 当前主赛
@@ -55,7 +56,8 @@
 - [x] 预注册 E001 自适应预算实验并通过 preflight、测试和 SDK validate
 - [x] 云端验证 E001 私有 Notebook v1，并创建 submission `54952586`
 - [x] 完成 E001 单变量 rerun：public score `0.075`，与 B000 相同，未证明提升
-- [ ] 预注册并验证 E002 机制新颖度调度实验
+- [x] 预注册 E002 机制新颖度调度实验并通过 preflight、测试和 SDK validate
+- [ ] 云端验证 E002 私有 Notebook，并创建唯一一次 E002 competition submission
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note
@@ -69,6 +71,8 @@
 - 已有栈：PyTorch 2.6 CUDA、Transformers、Datasets、Accelerate、PEFT、bitsandbytes、TRL
 
 本地机器用于 SDK 单测、搜索算法开发和小模型实验；正式 code submission 使用 Kaggle 的隔离运行环境。
+Kaggle 普通 GPU Notebook 按每周配额管理；本项目先在本地完成预检，只把必要的短时
+构建与验证放到云端，避免用交互空闲或重复 commit 消耗配额。
 
 ## 立即行动
 

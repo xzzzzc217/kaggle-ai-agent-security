@@ -303,3 +303,41 @@
 
 - 预注册 E002 相对 E001 的唯一变量、源码哈希和判定门槛。
 - 明确 E002 必须严格高于 `0.075` 才支持新颖度调度改善真实评分。
+
+## 2026-07-26：预注册 E002 新颖度调度实验
+
+**事实**
+
+- E002 以 E001 submission `54952586` 的真实 public score `0.075` 为直接对照。
+- 唯一实验变量是新颖度调度：成功工具调用签名归一化、跨签名轮转、失败事件过滤和
+  每签名保留上限；候选消息和 E001 自适应预算保持不变。
+- 攻击源码 SHA-256 为
+  `ae936c9cddbbe9ee3770145b75227ed37c3757be4efd3549eae2ff6af6ea3475`。
+- Submission preflight、42 项测试、Ruff lint/format 和 SDK 3.1.2 validate 全部通过。
+- 此时尚未创建 E002 Notebook 或 competition submission。
+
+**解释与限制**
+
+- 本地 fixture 证明调度、失败过滤和去重机制按设计工作，不包含目标模型、隐藏 fixture
+  或 guardrail，不能预测真实榜单分数。
+- 普通 Notebook 占位 CSV 的 `0.0` 不是模型评分。
+- Kaggle 普通 GPU Notebook 使用每周配额，因此先完成本地预检，云端只运行必要的
+  短时 commit；competition rerun 的排队时间不解释为算法运行时或 GPU 消耗。
+
+**证据**
+
+- [`../evidence/2026-07-26_e002_preflight.md`](../evidence/2026-07-26_e002_preflight.md)
+- [`../baselines/novelty_scheduler_v1/attack.py`](../baselines/novelty_scheduler_v1/attack.py)
+- Source commit：`748d9a4`
+- SDK compatibility commit：`a0360da`
+
+**决策**
+
+- E002 rerun `COMPLETE` 且 public score `>0.075` 才支持新颖度调度假设。
+- `=0.075` 视为未证实；更低、无分或运行失败则拒绝，不自动重试。
+- 正式提交前查询历史，确保 E002 只创建一次。
+
+**下一门槛**
+
+- 提交并推送本预注册，使 Notebook 构建绑定一个出分前固定的 Git commit。
+- 构建、云端验证私有 E002 Notebook，并核对云端 `attack.py` 哈希。
