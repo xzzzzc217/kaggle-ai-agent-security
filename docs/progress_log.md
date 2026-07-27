@@ -456,3 +456,42 @@
 
 - 提交并推送本预注册，使 Notebook 构建绑定出分前固定的 Git commit。
 - 构建、云端验证私有 E005 Notebook，并核对云端 `attack.py` 哈希。
+
+## 2026-07-27：创建 E005 正式 submission
+
+**事实**
+
+- 私有 Notebook `heralces/ai-agent-security-e005-bounded-goexplore` version 1 在云端
+  进入 `COMPLETE`。
+- Notebook 绑定预注册 build commit `d5f93d4`；云端 `attack.py` SHA-256 与本地
+  `3a0c4f75bcb133c95197133b4ff1e953cb35df17ae57c4b0f36e524607b96eed`
+  完全一致。
+- 普通 commit 产出 `attack.py` 和占位 `submission.csv`；日志无 exception、traceback
+  或执行错误。
+- 正式提交前再次查询历史，确认不存在 E005；2026-07-27 01:12:06 UTC 只创建
+  submission `55014937`，当前为 `PENDING`。
+
+**解释与限制**
+
+- Notebook v1 `COMPLETE` 只验证打包、普通 commit、SDK import 和源码一致性；E005
+  假设仍须等待 competition rerun 的真实 public score。
+- 占位 CSV 的四个 `0.0` 不是模型评分。
+- 普通 Notebook 使用 T4 但只执行短时打包；真正 Go-Explore 搜索由 competition
+  rerun 执行，队列等待不解释为算法运行时或 GPU 配额消耗。
+
+**证据**
+
+- [`../evidence/2026-07-27_e005_preflight.md`](../evidence/2026-07-27_e005_preflight.md)
+- Notebook version：1
+- Submission ref：`55014937`
+- Notebook build commit：`d5f93d4`
+
+**决策**
+
+- 只监控 submission `55014937`，不创建第二条 E005 submission。
+- 保持预注册门槛：`>0.075` 支持，`=0.075` 未证实，更低或失败则拒绝。
+
+**下一门槛**
+
+- E005 submission 进入 `COMPLETE` 或 `ERROR/FAILED` 终态。
+- 按预注册规则更新实验结论、证据和 GitHub。

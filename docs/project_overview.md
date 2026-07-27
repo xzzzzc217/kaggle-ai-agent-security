@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-07-23  
-> 当前阶段：E002 已拒绝；E005 有界 Go-Explore 已预注册，等待云端验证
+> 当前阶段：E002 已拒绝；E005 submission `55014937` 正在等待 competition rerun
 > Kaggle submission ref：`54925726`  
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -173,12 +173,12 @@ Notebook 包装和占位输出，不包含 E001–E003 的搜索改动。这样�
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | E005 已预注册 | E002 已拒绝；有界 Go-Explore 完成超时回归；47 项测试；[E005 证据](../evidence/2026-07-27_e005_preflight.md) | 云端验证 E005 私有 Notebook |
+| 本地搜索机制 | E005 已提交 | E002 已拒绝；有界 Go-Explore 完成超时回归；47 项测试；[E005 证据](../evidence/2026-07-27_e005_preflight.md) | 等待 E005 rerun 终态 |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
 | E002 competition rerun | 完成，拒绝变更 | submission `54995012` 为 `COMPLETE`；public score `0.060`，低于 E001 `0.075`；private score 未返回；[证据](../evidence/2026-07-26_e002_preflight.md) | 不重复提交；不把 E002 作为默认基础 |
-| E005 competition rerun | 提交前预注册完成 | 源码 SHA-256 `3a0c4f75…96eed`；原生和 5% 余量版本超时；80% / 900 秒边界完成；preflight、47 项测试、Ruff 与 SDK validate 通过 | 只创建一次可追溯的 E005 submission |
+| E005 competition rerun | `PENDING` | 私有 Notebook v1 `COMPLETE`；云端源码哈希一致；submission `55014937`；public/private score 尚未返回；[证据](../evidence/2026-07-27_e005_preflight.md) | 只监控既有 ref；`>0.075` 才支持假设 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -216,10 +216,9 @@ rerun。B000 的 public score `0.075` 是后续单变量比较的真实锚点，
 
 ## 7. 下一步
 
-1. 构建并云端验证绑定预注册 commit 与源码哈希的私有 E005 Notebook。
-2. 确认历史中没有 E005 后，只创建一次 competition submission；`>0.075` 才支持假设。
-3. 为可获得的真实 trace 建立 source、transformation、sink 和 predicate 分类。
-4. E005 终态后再决定 Go-Explore 参数消融或把冷重放门控隔离到 E001。
+1. 只监控 E005 submission `55014937`，不重试或重复提交；`>0.075` 才支持假设。
+2. 为可获得的真实 trace 建立 source、transformation、sink 和 predicate 分类。
+3. E005 终态后再决定 Go-Explore 参数消融或把冷重放门控隔离到 E001。
 5. 绘制分数、机制覆盖、有效候选数和运行时间的消融曲线。
 6. 保留至少两个机制低相关的最终候选，降低私榜 guardrail 风险。
 7. 把可公开部分整理为 Working Note；真实攻击目标适配、凭证和竞赛私有资产永不发布。

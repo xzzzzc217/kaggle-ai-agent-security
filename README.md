@@ -63,7 +63,8 @@
 - [x] 诊断 E002 的实验边界，放弃把 E002 作为下一候选基础
 - [x] 实现 E005 有界 Go-Explore，并通过超时回归、47 项测试和 SDK validate
 - [x] 以 E001 `0.075` 为对照预注册 E005
-- [ ] 云端验证 E005 私有 Notebook，并创建唯一一次 E005 competition submission
+- [x] 云端验证 E005 私有 Notebook v1，并创建唯一 submission `55014937`
+- [ ] 等待 E005 competition rerun 终态；期间不重试或重复提交
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note
