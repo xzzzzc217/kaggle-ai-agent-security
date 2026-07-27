@@ -495,3 +495,41 @@
 
 - E005 submission 进入 `COMPLETE` 或 `ERROR/FAILED` 终态。
 - 按预注册规则更新实验结论、证据和 GitHub。
+
+## 2026-07-27：E005 完成但真实分数为零
+
+**事实**
+
+- Submission `55014937` 从 `PENDING` 变为 `COMPLETE`。
+- 提交创建时间为 2026-07-27 01:12:06 UTC；首次观测完成时间为
+  2026-07-27 02:14:25 UTC。
+- E005 public score 为 `0.000`，比直接对照 E001 的 `0.075` 低 `0.075`。
+- Kaggle CLI 没有返回 private score、候选数量、重放日志或精确算法运行时。
+
+**解释与限制**
+
+- 按出分前预注册规则，`0.000 < 0.075` 表示拒绝当前有界 Go-Explore 候选。
+- 从提交到首次观测完成约 1 小时 2 分钟，包含队列等待，不是算法运行时，也不能据此
+  推断 GPU 配额消耗。
+- 本地确定性 agent `0.00` 与真实榜单 `0.000` 来源不同；数值相同不意味着本地 agent
+  可以预测隐藏评测。
+- CLI 只证明最终没有可计分贡献，不能区分无候选、重放无 predicate、无可计分 cell
+  或目标模型/guardrail/资源边界导致的失效。
+
+**证据**
+
+- [`../evidence/2026-07-27_e005_preflight.md`](../evidence/2026-07-27_e005_preflight.md)
+- Submission ref：`55014937`
+- Notebook：`heralces/ai-agent-security-e005-bounded-goexplore` version 1
+- Public score：`0.000`
+
+**决策**
+
+- 拒绝 E005，不重复提交，不修改预注册门槛。
+- 没有生成/重放诊断证据前，不继续 Go-Explore 参数消融。
+- 回到 E001 手写候选路线，下一实验只隔离新增攻击模板覆盖。
+
+**下一门槛**
+
+- 从公开 predicate 和 fixture 中选择一个 E001 未覆盖、能形成独立 score cell 的模板族。
+- 固定候选消息、源码哈希和严格高于 `0.075` 的判定门槛后再提交。
