@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-07-23  
-> 当前阶段：E005 已拒绝；B001 公开 two-probe 参考基线已完成本地验证与预注册，尚未提交
+> 当前阶段：E005 已拒绝；B001 公开 two-probe 参考基线 submission `55030205` 正在评分
 > Kaggle submission ref：`54925726`  
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -186,13 +186,13 @@ evaluator 回放单独保留预算。
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | B001 已预注册 | 公开 two-probe 参考实现；54 项测试；保留域适配；[B001 证据](../evidence/2026-07-27_b001_preflight.md) | 云端验证并只提交一次 B001 |
+| 本地搜索机制 | B001 已提交 | 公开 two-probe 参考实现；54 项测试；保留域适配；[B001 证据](../evidence/2026-07-27_b001_preflight.md) | 等待真实 rerun，按预注册门槛决策 |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
 | E002 competition rerun | 完成，拒绝变更 | submission `54995012` 为 `COMPLETE`；public score `0.060`，低于 E001 `0.075`；private score 未返回；[证据](../evidence/2026-07-26_e002_preflight.md) | 不重复提交；不把 E002 作为默认基础 |
 | E005 competition rerun | 完成，拒绝候选 | submission `55014937` 为 `COMPLETE`；真实 public score `0.000`；private score 未返回；[证据](../evidence/2026-07-27_e005_preflight.md) | 不重复提交；无诊断证据前不做参数消融 |
-| B001 公开参考复现 | 提交前 | 公开来源和上游 Notebook 哈希已固定；源码 commit `0fe6d3c`；本地确定性 `0.00` 仅作边界验证 | Public Score `>0.075` 才保留；`>=60` 记为强复现 |
+| B001 公开参考复现 | `PENDING` | 私有 Notebook v1 `COMPLETE`；云端哈希一致；submission `55030205`；本地确定性 `0.00` 仅作边界验证 | Public Score `>0.075` 才保留；`>=60` 记为强复现 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -231,8 +231,8 @@ rerun。B000 的 public score `0.075` 是后续单变量比较的真实锚点，
 
 ## 7. 下一步
 
-1. 构建并云端验证唯一 B001 私有 Notebook，核对云端 `attack.py` 哈希。
-2. 只创建一次 B001 competition submission，并按预注册门槛等待真实分数。
+1. 只监控 B001 submission `55030205`，不创建重复提交。
+2. 按预注册门槛记录真实 Public Score；Private Score 只按 Kaggle 实际返回。
 3. 若 B001 复现成功，以它作为公开参考对照，再预注册项目原创的单变量改进。
 4. 为可获得的 trace 建立 source、transformation、sink 和 predicate 分类。
 5. 无法区分 Go-Explore 候选生成与重放失败前，不做参数消融。

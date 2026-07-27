@@ -69,7 +69,8 @@
 - [x] 调研公开 replay-dense 路线，并建立有明确出处的 B001 two-probe 参考实现
 - [x] B001 通过 54 项测试、preflight、Ruff、SDK validate 和本地预算边界验证
 - [x] 预注册 B001：第三方 88–89 分仅作来源，真实复现必须等待本账号 rerun
-- [ ] 构建并云端验证唯一 B001 私有 Notebook，创建一次 competition submission
+- [x] 云端验证 B001 私有 Notebook v1、核对源码哈希，并创建唯一 submission `55030205`
+- [ ] 等待 B001 competition rerun 终态，按预注册门槛判断是否建立新参考基线
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

@@ -580,3 +580,42 @@
 - 提交并推送本预注册，使 B001 Notebook 绑定出分前固定 commit。
 - 构建并云端验证唯一 B001 私有 Notebook，核对云端源码哈希。
 - 正式提交前查询历史，确保 B001 submission 只创建一次。
+
+## 2026-07-27：创建 B001 正式 submission
+
+**事实**
+
+- 私有 Notebook `heralces/ai-agent-security-b001-public-two-probe` version 1 进入
+  `COMPLETE`。
+- Notebook 绑定预注册 commit `3332d8c`；云端 `attack.py` SHA-256 与本地
+  `daf204fb5f824a90f812d23e006d390d8bb8219ef86ce7b6a7f6ecc9e8ed8431`
+  完全一致。
+- 普通 commit 日志无 exception、traceback 或执行错误；生成 `attack.py` 和占位
+  `submission.csv`。
+- Notebook 使用 CPU；短时打包不需要消耗 Kaggle GPU/TPU 周配额。
+- 正式提交前再次查询历史，确认不存在 B001；2026-07-27 13:39:35 UTC 只创建
+  submission `55030205`，当前为 `PENDING`。
+
+**解释与限制**
+
+- Notebook v1 `COMPLETE` 只验证私有打包、SDK import 和源码一致性，不验证目标模型分数。
+- 占位 CSV 的四个 `0.0` 不是 B001 Public/Private Score。
+- competition rerun 的排队时间、GPU/TPU 使用和算法精确运行时在当前 CLI 中不可见，
+  不从等待时长臆测。
+
+**证据**
+
+- [`../evidence/2026-07-27_b001_preflight.md`](../evidence/2026-07-27_b001_preflight.md)
+- Notebook version：1
+- Submission ref：`55030205`
+- Notebook build commit：`3332d8c`
+
+**决策**
+
+- 只监控 submission `55030205`，不创建第二条 B001 submission。
+- 保持预注册门槛：`>0.075` 保留，`>=60.000` 强复现，`<=0.075` 或失败则拒绝。
+
+**下一门槛**
+
+- B001 submission 进入 `COMPLETE` 或 `ERROR/FAILED` 终态。
+- 按预注册规则更新实验结论、证据、项目索引和 GitHub。
