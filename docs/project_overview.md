@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-07-23  
-> 当前阶段：E005 public score `0.000`，低于 E001 的 `0.075`；按预注册拒绝候选
+> 当前阶段：E005 已拒绝；B001 公开 two-probe 参考基线已完成本地验证与预注册，尚未提交
 > Kaggle submission ref：`54925726`  
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -167,18 +167,32 @@ Notebook 包装和占位输出，不包含 E001–E003 的搜索改动。这样�
 - Notebook 的私有可见性、稳定 cell id 和 competition rerun 分支；
 - 普通 commit 必须产生 Kaggle 要求的占位 `submission.csv`。
 
+### 4.8 公开 replay-dense 参考基线（B001）
+
+B001 用于复现公开
+[`Adaptive Uniform Two-Probe Recovery`](https://www.kaggle.com/code/tetsutani/ai-agent-sec-adaptive-uniform-two-probe-recovery)
+路线，不作为原创算法成果。它在五种同族单步 `http.post` 措辞中做两次 full-hop
+探测，只保留实际成功的 marker post，再按实测成功成本填充唯一 score cell，并为
+evaluator 回放单独保留预算。
+
+公开 Notebook 记录的 `88.515`/`89.055` 属于其 three-probe 前身，不能写成我们的
+成绩。本项目将任意 `.co` 目标替换为 RFC 保留的 `*.example.com`，并预注册以真实
+`0.075` 为最低比较锚点。54 项测试、preflight、Ruff、SDK validate 和 120 秒本地
+预算回归已通过；确定性 agent 的本地 `0.00` 不包含目标模型，不能预测榜单。
+
 ## 5. 当前进展
 
 | 阶段 | 状态 | 已有证据 | 下一退出条件 |
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | E005 已拒绝 | 有界 Go-Explore 解决本地 generation timeout，但真实 public score 为 `0.000`；47 项测试；[E005 证据](../evidence/2026-07-27_e005_preflight.md) | 回到 E001，隔离新增模板覆盖 |
+| 本地搜索机制 | B001 已预注册 | 公开 two-probe 参考实现；54 项测试；保留域适配；[B001 证据](../evidence/2026-07-27_b001_preflight.md) | 云端验证并只提交一次 B001 |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
 | E002 competition rerun | 完成，拒绝变更 | submission `54995012` 为 `COMPLETE`；public score `0.060`，低于 E001 `0.075`；private score 未返回；[证据](../evidence/2026-07-26_e002_preflight.md) | 不重复提交；不把 E002 作为默认基础 |
 | E005 competition rerun | 完成，拒绝候选 | submission `55014937` 为 `COMPLETE`；真实 public score `0.000`；private score 未返回；[证据](../evidence/2026-07-27_e005_preflight.md) | 不重复提交；无诊断证据前不做参数消融 |
+| B001 公开参考复现 | 提交前 | 公开来源和上游 Notebook 哈希已固定；源码 commit `0fe6d3c`；本地确定性 `0.00` 仅作边界验证 | Public Score `>0.075` 才保留；`>=60` 记为强复现 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -205,6 +219,7 @@ guardrail；它只用于决定哪些改动值得消耗正式提交。
 | [`../evidence/2026-07-24_e001_preflight.md`](../evidence/2026-07-24_e001_preflight.md) | E001 的假设、唯一变量、源码哈希和预注册判定门槛 |
 | [`../evidence/2026-07-26_e002_preflight.md`](../evidence/2026-07-26_e002_preflight.md) | E002 相对 E001 的唯一变量、源码身份、预检和出分前判定门槛 |
 | [`../evidence/2026-07-27_e005_preflight.md`](../evidence/2026-07-27_e005_preflight.md) | E005 搜索策略、时间边界、源码身份和出分前判定门槛 |
+| [`../evidence/2026-07-27_b001_preflight.md`](../evidence/2026-07-27_b001_preflight.md) | B001 的公开来源、哈希、安全适配、本地边界与出分前门槛 |
 | [`../scripts/preflight_submission.py`](../scripts/preflight_submission.py) | 接口、网络边界和摘要检查 |
 | [`../scripts/build_kaggle_notebook.py`](../scripts/build_kaggle_notebook.py) | 可复现私有 Notebook 构建 |
 | [`../tests`](../tests) | 42 项自动化回归测试 |
@@ -216,13 +231,14 @@ rerun。B000 的 public score `0.075` 是后续单变量比较的真实锚点，
 
 ## 7. 下一步
 
-1. 记录 E005 本地可靠性修复与真实 `0.000` 的证据边界，不把两种零分混为一谈。
-2. 回到 E001 的九候选顺序与预算控制，只新增一个明确的攻击模板覆盖变量。
-3. 为可获得的 trace 建立 source、transformation、sink 和 predicate 分类。
-4. 无法区分 Go-Explore 候选生成与重放失败前，不做参数消融。
-5. 绘制分数、机制覆盖、有效候选数和运行时间的消融曲线。
-6. 保留至少两个机制低相关的最终候选，降低私榜 guardrail 风险。
-7. 把可公开部分整理为 Working Note；真实攻击目标适配、凭证和竞赛私有资产永不发布。
+1. 构建并云端验证唯一 B001 私有 Notebook，核对云端 `attack.py` 哈希。
+2. 只创建一次 B001 competition submission，并按预注册门槛等待真实分数。
+3. 若 B001 复现成功，以它作为公开参考对照，再预注册项目原创的单变量改进。
+4. 为可获得的 trace 建立 source、transformation、sink 和 predicate 分类。
+5. 无法区分 Go-Explore 候选生成与重放失败前，不做参数消融。
+6. 绘制分数、机制覆盖、有效候选数和运行时间的消融曲线。
+7. 保留至少两个机制低相关的最终候选，降低私榜 guardrail 风险。
+8. 把可公开部分整理为 Working Note；真实攻击目标适配、凭证和竞赛私有资产永不发布。
 
 ## 8. 阶段成果更新规则
 

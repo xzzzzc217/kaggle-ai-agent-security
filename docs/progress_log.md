@@ -533,3 +533,50 @@
 
 - 从公开 predicate 和 fixture 中选择一个 E001 未覆盖、能形成独立 score cell 的模板族。
 - 固定候选消息、源码哈希和严格高于 `0.075` 的判定门槛后再提交。
+
+## 2026-07-27：建立并预注册 B001 公开 two-probe 参考基线
+
+**事实**
+
+- 当前公开榜首可见分数已超过 `110`，而本项目最佳仍为 B000/E001 的 `0.075`；继续在
+  九条 starter 候选上做小幅调度调整的信息增益过低。
+- 下载并审查公开 Notebook
+  `tetsutani/ai-agent-sec-adaptive-uniform-two-probe-recovery`；其说明记录 three-probe
+  前身曾获得 Hosted `88.515` 和 `89.055`。
+- 建立 B001 可追溯副本，保留 two-probe、full-hop 成功验证和 replay-cost ledger，
+  只把任意 `.co` 目标改为唯一的 `*.example.com` 保留域。
+- 上游 Notebook SHA-256 为
+  `54b7d943dc717ea9c357d954dd3ac3f1f4d6bf3eae9d43b65092f25913666bb1`。
+- B001 源码 SHA-256 为
+  `daf204fb5f824a90f812d23e006d390d8bb8219ef86ce7b6a7f6ecc9e8ed8431`，
+  source commit 为 `0fe6d3c`。
+- 54 项测试、preflight、Ruff 和 SDK 3.1.2 validate 通过。
+- 120 秒确定性 agent 评测约 63 秒完成，本地 `0.00`、0 finding、0 unique cell。
+- 截至 2026-07-27 13:33 UTC 尚未创建 B001 Notebook 或 competition submission。
+
+**解释与限制**
+
+- B001 是公开参考复现，不是原创算法实验；第三方分数不能写成我们的榜单成绩。
+- 本地确定性 agent 会把请求载荷替换为 `demo`，其 `0.00` 只验证算法按预算返回，不能
+  预测 GPT-OSS/Gemma。
+- `*.example.com` 适配保持 score cell 的唯一 host 维度，但更长的 token 序列可能影响
+  模型延迟或工具遵循率，必须由真实 rerun 验证。
+- 普通 Notebook 占位 CSV 的 `0.0` 仍不是评测结果。
+
+**证据**
+
+- [`../evidence/2026-07-27_b001_preflight.md`](../evidence/2026-07-27_b001_preflight.md)
+- [`../baselines/public_two_probe_v1/attack.py`](../baselines/public_two_probe_v1/attack.py)
+- [`../baselines/public_two_probe_v1/README.md`](../baselines/public_two_probe_v1/README.md)
+
+**决策**
+
+- 允许 B001 进入一次正式复现。
+- Public Score `>0.075` 才保留为后续基线；`>=60.000` 额外记为强复现。
+- `<=0.075`、空分或失败则拒绝当前适配；不自动重试，不修改门槛。
+
+**下一门槛**
+
+- 提交并推送本预注册，使 B001 Notebook 绑定出分前固定 commit。
+- 构建并云端验证唯一 B001 私有 Notebook，核对云端源码哈希。
+- 正式提交前查询历史，确保 B001 submission 只创建一次。

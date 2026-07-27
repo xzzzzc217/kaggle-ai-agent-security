@@ -11,6 +11,7 @@
 - [`evidence/2026-07-23_b000_v3.md`](evidence/2026-07-23_b000_v3.md)：首次正式提交的脱敏证据
 - [`evidence/2026-07-26_e002_preflight.md`](evidence/2026-07-26_e002_preflight.md)：E002 的预注册与提交前证据
 - [`evidence/2026-07-27_e005_preflight.md`](evidence/2026-07-27_e005_preflight.md)：E005 有界 Go-Explore 的预注册证据
+- [`evidence/2026-07-27_b001_preflight.md`](evidence/2026-07-27_b001_preflight.md)：B001 公开 two-probe 参考基线的来源、适配与预注册
 - [`docs/safety.md`](docs/safety.md)：研究授权边界与工程控制
 
 ## 当前主赛
@@ -65,7 +66,10 @@
 - [x] 以 E001 `0.075` 为对照预注册 E005
 - [x] 云端验证 E005 私有 Notebook v1，并创建唯一 submission `55014937`
 - [x] 完成 E005 rerun：真实 public score `0.000`，按预注册拒绝候选
-- [ ] 回到 E001 路线，隔离并预注册新增攻击模板覆盖实验
+- [x] 调研公开 replay-dense 路线，并建立有明确出处的 B001 two-probe 参考实现
+- [x] B001 通过 54 项测试、preflight、Ruff、SDK validate 和本地预算边界验证
+- [x] 预注册 B001：第三方 88–89 分仅作来源，真实复现必须等待本账号 rerun
+- [ ] 构建并云端验证唯一 B001 私有 Notebook，创建一次 competition submission
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note
