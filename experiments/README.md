@@ -9,6 +9,7 @@
 | E002 | 2026-07-26 | 748d9a4 / a0360da / b947bf1 | 优先覆盖不同成功工具调用签名能提高单位预算的新颖机制数，并使 public score 高于 E001 的 0.075 | 在 E001 上加入签名归一化、跨机制轮转、失败事件过滤与每签名保留上限；候选消息和自适应预算不变 | 首轮 4 次覆盖 4 种签名；失败调用不计入；假环境端到端回放通过；preflight、42 项测试、Ruff 与 SDK 3.1.2 validate 通过；Notebook v1 `COMPLETE`、云端哈希一致；submission `54995012`；[证据](../evidence/2026-07-26_e002_preflight.md) | 0.060 | 07:44 UTC 提交；12:15 UTC 首次观测完成（含排队，非算法运行时） | 比 E001 低 0.015，按预注册拒绝；不重复提交，不作为下一实验默认基础 |
 | E003 | 2026-07-23 | 0db9fb6 | 只扩展已验证 source 状态并强制冷重放，可提高 evaluator 可复现率 | 在 E002 上加入 source-gated archive、分支去重与 fresh-reset replay gate | 失败 source 不 snapshot；仅 snapshot 成功但冷重放失败的候选被拒绝；23 项测试通过 | — | simulated | SDK replay 后决定 |
 | E004 | 2026-07-23 | a0360da | 解析 SDK 3.1.2 原生 trace 后，实际工具新颖度与 source-gated snapshot 分支才会生效 | 工具事件兼容 `name/args/ok`，并排除 `ok=False` | 原生成功 `fs.read` 可建 archive，失败事件被拒绝；四版本 SDK validate 通过；38 项测试通过 | — | SDK contract | 保留；后续候选的必要兼容修复 |
+| E005 | 2026-07-27 | c97de46 | 有墙钟和内存边界的 SDK Go-Explore 能比 E001 手写候选发现更多可重放高价值 cell，并使 public score 高于 0.075 | 用 SDK Go-Explore 替换固定九候选搜索；最多使用 80% 总预算且不超过 900 秒；不继承 E002 去重 | 原生和 5% 余量版本在 10 秒外层预算中超时；E005 完成但确定性 agent score 同为 0.00；preflight、47 项测试、Ruff 与 SDK 3.1.2 validate 通过；[预注册证据](../evidence/2026-07-27_e005_preflight.md) | — | preflight | 已预注册；只创建一次正式提交；`>0.075` 支持，`=0.075` 未证实，更低或失败则拒绝 |
 
 统一假时钟、假环境和独立冷重放的横向结果见
 [`offline_ablation_v1.md`](offline_ablation_v1.md)，机器可读记录见

@@ -417,3 +417,42 @@
 
 - 整理可获得 trace 的 source、transformation、sink 和 predicate 分类。
 - 明确下一候选相对 E001 的唯一变量、源码哈希和严格判定门槛后再提交。
+
+## 2026-07-27：实现并预注册 E005 有界 Go-Explore
+
+**事实**
+
+- E002 已被拒绝，因此 E005 不继承其签名轮转、去重或 finding 上限。
+- 下一候选改用竞赛 SDK 3.1.2 自带 Go-Explore 搜索；正式编号跳到 E005，保留
+  E003/E004 早期原型身份。
+- 同一 10 秒 scorer-equivalent 评测中，SDK 原生 Go-Explore 和 5% 余量版本都超过
+  generation 截止时间；最多使用 80% 总预算且不超过 900 秒后能够完成。
+- E001 与 E005 在公开 fixture 的确定性 agent 上都得到本地 `0.00`。
+- E005 攻击源码 SHA-256 为
+  `3a0c4f75bcb133c95197133b4ff1e953cb35df17ae57c4b0f36e524607b96eed`。
+- Submission preflight、47 项测试、Ruff lint/format 和 SDK 3.1.2 validate 全部通过。
+
+**解释与限制**
+
+- 本地 `0.00` 不是占位 CSV 或 Kaggle 分数；确定性 agent 与目标 GPT-OSS/Gemma 不同，
+  因此不能据此宣称 E005 与 E001 相同。
+- 超时回归只证明有界包装解决了已复现的 generation 可靠性问题，不证明 Go-Explore
+  能提高隐藏评测分数。
+- 这次测试不需要 GPU/TPU；普通 Kaggle Notebook 仍只做短时打包。
+
+**证据**
+
+- [`../evidence/2026-07-27_e005_preflight.md`](../evidence/2026-07-27_e005_preflight.md)
+- [`../baselines/bounded_goexplore_v1/attack.py`](../baselines/bounded_goexplore_v1/attack.py)
+- Source commit：`c97de46`
+
+**决策**
+
+- E005 以 E001 public score `0.075` 为直接对照。
+- E005 rerun `COMPLETE` 且 public score `>0.075` 才支持 Go-Explore 假设。
+- `=0.075` 视为未证实；更低、无分或失败则拒绝，不自动重试。
+
+**下一门槛**
+
+- 提交并推送本预注册，使 Notebook 构建绑定出分前固定的 Git commit。
+- 构建、云端验证私有 E005 Notebook，并核对云端 `attack.py` 哈希。

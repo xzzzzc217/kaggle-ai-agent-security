@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-07-23  
-> 当前阶段：E002 public score `0.060`，低于 E001 的 `0.075`；按预注册拒绝新颖度调度变更
+> 当前阶段：E002 已拒绝；E005 有界 Go-Explore 已预注册，等待云端验证
 > Kaggle submission ref：`54925726`  
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -143,7 +143,16 @@ E004 不是第五个攻击算法版本，而是一次跨版本的兼容实验。
 结构 `name/args/ok` 接入 E002/E003 的签名与 source 解析，并明确排除 `ok=False`
 事件。验证对象仍是四个 `attack.py`：官方 starter、E001、E002 和 E003。
 
-### 4.6 官方基线提交工程（B000）
+### 4.6 有界 Go-Explore（E005）
+
+E005 不继承 E002 的新颖度调度，而是调用 SDK 3.1.2 自带 Go-Explore 搜索，使用其
+prompt bank、snapshot archive、cell novelty 和 reward hint 扩展多步链路。
+
+原生 Go-Explore 和仅保留 5% 退出余量的版本都会在短预算回归中越过外层 generation
+截止时间。E005 因此最多委托 80% 总预算，并把 archive 搜索限制在 900 秒。相同 10 秒
+公开 fixture 评测中，E005 能可靠返回；确定性 agent 的 `0.00` 不能预测目标模型分数。
+
+### 4.7 官方基线提交工程（B000）
 
 B000 使用原样官方 starter 作为攻击算法，只增加 Kaggle Code Competition 必需的
 Notebook 包装和占位输出，不包含 E001–E003 的搜索改动。这样首个真实分数只验证官方
@@ -164,11 +173,12 @@ Notebook 包装和占位输出，不包含 E001–E003 的搜索改动。这样�
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | E002 已拒绝 | 本地机制覆盖改善，但 E002 真实 public score 下降；42 项测试；[E002 证据](../evidence/2026-07-26_e002_preflight.md) | 用真实结果校准 harness，并隔离下一变量 |
+| 本地搜索机制 | E005 已预注册 | E002 已拒绝；有界 Go-Explore 完成超时回归；47 项测试；[E005 证据](../evidence/2026-07-27_e005_preflight.md) | 云端验证 E005 私有 Notebook |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
 | E002 competition rerun | 完成，拒绝变更 | submission `54995012` 为 `COMPLETE`；public score `0.060`，低于 E001 `0.075`；private score 未返回；[证据](../evidence/2026-07-26_e002_preflight.md) | 不重复提交；不把 E002 作为默认基础 |
+| E005 competition rerun | 提交前预注册完成 | 源码 SHA-256 `3a0c4f75…96eed`；原生和 5% 余量版本超时；80% / 900 秒边界完成；preflight、47 项测试、Ruff 与 SDK validate 通过 | 只创建一次可追溯的 E005 submission |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -194,6 +204,7 @@ guardrail；它只用于决定哪些改动值得消耗正式提交。
 | [`../evidence/2026-07-23_b000_v3.md`](../evidence/2026-07-23_b000_v3.md) | SDK、Notebook v3、哈希、测试与 submission 的脱敏证据 |
 | [`../evidence/2026-07-24_e001_preflight.md`](../evidence/2026-07-24_e001_preflight.md) | E001 的假设、唯一变量、源码哈希和预注册判定门槛 |
 | [`../evidence/2026-07-26_e002_preflight.md`](../evidence/2026-07-26_e002_preflight.md) | E002 相对 E001 的唯一变量、源码身份、预检和出分前判定门槛 |
+| [`../evidence/2026-07-27_e005_preflight.md`](../evidence/2026-07-27_e005_preflight.md) | E005 搜索策略、时间边界、源码身份和出分前判定门槛 |
 | [`../scripts/preflight_submission.py`](../scripts/preflight_submission.py) | 接口、网络边界和摘要检查 |
 | [`../scripts/build_kaggle_notebook.py`](../scripts/build_kaggle_notebook.py) | 可复现私有 Notebook 构建 |
 | [`../tests`](../tests) | 42 项自动化回归测试 |
@@ -205,10 +216,10 @@ rerun。B000 的 public score `0.075` 是后续单变量比较的真实锚点，
 
 ## 7. 下一步
 
-1. 记录 E002 本地覆盖改善却使 public score 从 `0.075` 降至 `0.060`，校准 harness。
-2. 为可获得的真实 trace 建立 source、transformation、sink 和 predicate 分类。
-3. 不直接提交建立在 E002 上的 E003；先把冷重放门控隔离到 E001 对照上重新预注册。
-4. 每次只改变一个主要机制，并保持失败结果与退出条件可追溯。
+1. 构建并云端验证绑定预注册 commit 与源码哈希的私有 E005 Notebook。
+2. 确认历史中没有 E005 后，只创建一次 competition submission；`>0.075` 才支持假设。
+3. 为可获得的真实 trace 建立 source、transformation、sink 和 predicate 分类。
+4. E005 终态后再决定 Go-Explore 参数消融或把冷重放门控隔离到 E001。
 5. 绘制分数、机制覆盖、有效候选数和运行时间的消融曲线。
 6. 保留至少两个机制低相关的最终候选，降低私榜 guardrail 风险。
 7. 把可公开部分整理为 Working Note；真实攻击目标适配、凭证和竞赛私有资产永不发布。
