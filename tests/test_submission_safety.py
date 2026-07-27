@@ -47,6 +47,27 @@ def _sdk_goexplore_prompts(tree: ast.Module) -> list[str]:
     return prompts
 
 
+def _named_template_prompts(tree: ast.Module) -> list[str]:
+    """Collect prompt banks that are passed to interact through a local variable."""
+    prompts: list[str] = []
+    for assignment in (node for node in tree.body if isinstance(node, ast.AnnAssign | ast.Assign)):
+        target_names: set[str] = set()
+        if isinstance(assignment, ast.AnnAssign) and isinstance(assignment.target, ast.Name):
+            target_names.add(assignment.target.id)
+        elif isinstance(assignment, ast.Assign):
+            target_names.update(
+                target.id for target in assignment.targets if isinstance(target, ast.Name)
+            )
+        if not any(name.endswith("TEMPLATES") for name in target_names):
+            continue
+        prompts.extend(
+            node.value
+            for node in ast.walk(assignment.value)
+            if isinstance(node, ast.Constant) and isinstance(node.value, str)
+        )
+    return prompts
+
+
 @pytest.mark.parametrize("attack_file", ATTACK_FILES, ids=lambda path: path.parent.name)
 def test_executable_prompts_only_use_reserved_destinations(attack_file: Path) -> None:
     tree = ast.parse(attack_file.read_text(encoding="utf-8"))
@@ -72,6 +93,8 @@ def test_executable_prompts_only_use_reserved_destinations(attack_file: Path) ->
 
     if not prompt_literals:
         prompt_literals.extend(_sdk_goexplore_prompts(tree))
+    if not prompt_literals:
+        prompt_literals.extend(_named_template_prompts(tree))
 
     assert prompt_literals
     for prompt in prompt_literals:
