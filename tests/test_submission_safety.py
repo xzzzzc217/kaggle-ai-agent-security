@@ -101,6 +101,11 @@ def test_executable_prompts_only_use_reserved_destinations(attack_file: Path) ->
         for match in URL_PATTERN.findall(prompt):
             hostname = urlparse(match).hostname
             assert hostname is not None
-            assert hostname == "example.com" or hostname.endswith(".example.com")
+            assert (
+                hostname == "example.com"
+                or hostname.endswith(".example.com")
+                or hostname == "invalid"
+                or hostname.endswith(".invalid")
+            )
         for domain in EMAIL_PATTERN.findall(prompt):
             assert domain.endswith(".invalid")

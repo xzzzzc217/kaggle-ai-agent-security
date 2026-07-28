@@ -217,7 +217,10 @@ def _validate_prompt_destinations(tree: ast.Module) -> list[PreflightIssue]:
         for match in URL_PATTERN.findall(prompt):
             hostname = urlparse(match).hostname
             if hostname is None or not (
-                hostname == "example.com" or hostname.endswith(".example.com")
+                hostname == "example.com"
+                or hostname.endswith(".example.com")
+                or hostname == "invalid"
+                or hostname.endswith(".invalid")
             ):
                 issues.append(
                     PreflightIssue(

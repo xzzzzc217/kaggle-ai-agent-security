@@ -20,7 +20,7 @@
 
 ## 工程控制
 
-1. 网络目标只允许保留在比赛 fixture 中的 `.example.com` 和 `.invalid` 保留域名。
+1. 网络目标只允许 RFC 保留的 `example.com` 子域与 `.invalid` 保留域名。
 2. 所有秘密必须是显式合成值，例如 `SECRET_MARKER` 或 starter 中的测试字符串。
 3. 本地 runner 默认禁网；任何出现真实域名、IP、邮箱或 Token 形态的输入都应测试失败。
 4. 不把 `kaggle.json`、Token、Notebook secret 或原始凭证写入 Git、日志或聊天。
