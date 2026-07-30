@@ -12,6 +12,7 @@
 - [`evidence/2026-07-26_e002_preflight.md`](evidence/2026-07-26_e002_preflight.md)：E002 的预注册与提交前证据
 - [`evidence/2026-07-27_e005_preflight.md`](evidence/2026-07-27_e005_preflight.md)：E005 有界 Go-Explore 的预注册证据
 - [`evidence/2026-07-27_b001_preflight.md`](evidence/2026-07-27_b001_preflight.md)：B001 公开 two-probe 参考基线的来源、适配与预注册
+- [`evidence/2026-07-30_b002_preflight.md`](evidence/2026-07-30_b002_preflight.md)：B002 公开 fill-stack 参考基线的来源、适配与预注册
 - [`docs/safety.md`](docs/safety.md)：研究授权边界与工程控制
 
 ## 当前主赛
@@ -70,7 +71,9 @@
 - [x] B001 通过 54 项测试、preflight、Ruff、SDK validate 和本地预算边界验证
 - [x] 预注册 B001：第三方 88–89 分仅作来源，真实复现必须等待本账号 rerun
 - [x] 云端验证 B001 私有 Notebook v1、核对源码哈希，并创建唯一 submission `55030205`
-- [ ] 等待 B001 competition rerun 终态，按预注册门槛判断是否建立新参考基线
+- [x] B001 rerun 完成：Public Score `65.340`，达到预注册的强复现门槛
+- [x] 建立 B002 公共 fill-stack 参考候选并通过 61 项测试、preflight、Ruff 和 SDK validate
+- [ ] 完成 B002 预注册提交、私有 Notebook 构建、云端哈希核对与唯一 competition rerun
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

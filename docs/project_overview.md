@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-07-23  
-> 当前阶段：E005 已拒绝；B001 公开 two-probe 参考基线 submission `55030205` 正在评分
+> 当前阶段：B001 以 `65.340` 强复现；B002 公开 fill-stack 候选已完成本地预检
 > Kaggle submission ref：`54925726`  
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -186,13 +186,14 @@ evaluator 回放单独保留预算。
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | B001 已提交 | 公开 two-probe 参考实现；54 项测试；保留域适配；[B001 证据](../evidence/2026-07-27_b001_preflight.md) | 等待真实 rerun，按预注册门槛决策 |
+| 本地搜索机制 | B002 已预检 | 公开 fill-stack 参考实现；61 项测试；`*.invalid` 保留域适配；[B002 证据](../evidence/2026-07-30_b002_preflight.md) | 完成预注册后构建唯一私有 Notebook |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
 | E002 competition rerun | 完成，拒绝变更 | submission `54995012` 为 `COMPLETE`；public score `0.060`，低于 E001 `0.075`；private score 未返回；[证据](../evidence/2026-07-26_e002_preflight.md) | 不重复提交；不把 E002 作为默认基础 |
 | E005 competition rerun | 完成，拒绝候选 | submission `55014937` 为 `COMPLETE`；真实 public score `0.000`；private score 未返回；[证据](../evidence/2026-07-27_e005_preflight.md) | 不重复提交；无诊断证据前不做参数消融 |
-| B001 公开参考复现 | `PENDING` | 私有 Notebook v1 `COMPLETE`；云端哈希一致；submission `55030205`；本地确定性 `0.00` 仅作边界验证 | Public Score `>0.075` 才保留；`>=60` 记为强复现 |
+| B001 公开参考复现 | 强复现 | submission `55030205` 为 `COMPLETE`；Public Score `65.340`；超过 `>=60` 预注册门槛 | 作为 B002 的真实对照 |
+| B002 fill-stack 参考 | 本地预检完成 | 上游哈希固定；61 项测试、preflight、Ruff、SDK validate 通过；1-hop 与预算回归通过 | `>65.340` 保留；`>=89.390` 达到 2026-07-30 前 200 分数带 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -220,20 +221,20 @@ guardrail；它只用于决定哪些改动值得消耗正式提交。
 | [`../evidence/2026-07-26_e002_preflight.md`](../evidence/2026-07-26_e002_preflight.md) | E002 相对 E001 的唯一变量、源码身份、预检和出分前判定门槛 |
 | [`../evidence/2026-07-27_e005_preflight.md`](../evidence/2026-07-27_e005_preflight.md) | E005 搜索策略、时间边界、源码身份和出分前判定门槛 |
 | [`../evidence/2026-07-27_b001_preflight.md`](../evidence/2026-07-27_b001_preflight.md) | B001 的公开来源、哈希、安全适配、本地边界与出分前门槛 |
+| [`../evidence/2026-07-30_b002_preflight.md`](../evidence/2026-07-30_b002_preflight.md) | B002 的公开来源、哈希、1-hop/replay 校准、安全适配与判定门槛 |
 | [`../scripts/preflight_submission.py`](../scripts/preflight_submission.py) | 接口、网络边界和摘要检查 |
 | [`../scripts/build_kaggle_notebook.py`](../scripts/build_kaggle_notebook.py) | 可复现私有 Notebook 构建 |
-| [`../tests`](../tests) | 42 项自动化回归测试 |
+| [`../tests`](../tests) | 61 项自动化回归测试 |
 
-目前最明确的工程成果是：已经从“无法创建 Token / request blocked”推进到账号入赛、
-SDK 下载、四个算法版本校验、私有 Notebook 云端运行，并完成首次正式 competition
-rerun。B000 的 public score `0.075` 是后续单变量比较的真实锚点，不代表当前已经达到
-奖牌水平。
+目前最明确的竞赛成果是：B001 已把真实 Public Score 从 `0.075` 提升到 `65.340`，
+证明 replay-dense 公共路线可在本账号复现；B002 继续针对有效候选吞吐做参考复现。
+当前分数仍低于 2026-07-30 榜单快照第 200 名的 `89.390`，不代表已经达到奖牌水平。
 
 ## 7. 下一步
 
-1. 只监控 B001 submission `55030205`，不创建重复提交。
-2. 按预注册门槛记录真实 Public Score；Private Score 只按 Kaggle 实际返回。
-3. 若 B001 复现成功，以它作为公开参考对照，再预注册项目原创的单变量改进。
+1. 提交并推送 B002 预注册，使 Notebook 构建绑定出分前固定的 Git commit。
+2. 构建唯一 B002 私有 Notebook，核对云端 `attack.py` 哈希后只创建一次 rerun。
+3. 按 `>65.340`、`>=89.390` 与 `>=100.000` 的固定门槛决定下一轮路线。
 4. 为可获得的 trace 建立 source、transformation、sink 和 predicate 分类。
 5. 无法区分 Go-Explore 候选生成与重放失败前，不做参数消融。
 6. 绘制分数、机制覆盖、有效候选数和运行时间的消融曲线。
