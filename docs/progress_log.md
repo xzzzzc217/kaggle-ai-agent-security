@@ -666,3 +666,40 @@
 - Public Score `>65.340` 才替换 B001；`>=89.390` 记为达到当前前 200 分数带；
   `>=100.000` 记为强竞争复现。
 - `<=65.340`、空分或超时则拒绝，不自动重试。
+
+## 2026-07-30：创建 B002 正式 submission
+
+**事实**
+
+- 私有 Notebook `heralces/ai-agent-security-b002-public-fillstack` version 1 进入
+  `COMPLETE`。
+- Notebook 绑定预注册 commit `1d7613f`；scriptVersionId 为 `339078295`。
+- 云端 `attack.py` SHA-256 与本地
+  `feb2fa2c85146afddf59186d5c12dfd05749c992b5c762ab7d99cabd21a2616f`
+  完全一致。
+- 普通 commit 日志无 exception、traceback 或执行错误；生成 `attack.py` 和占位
+  `submission.csv`。
+- 仅上传本地 CSV 的首次尝试返回 Kaggle API `400`，未创建 submission；正确的
+  Code Competition 提交绑定 Notebook v1。
+- 正式提交前再次查询历史，确认不存在 B002；2026-07-30 13:57:21 UTC 只创建
+  submission `55110969`，当前为 `PENDING`。
+
+**解释与限制**
+
+- Notebook v1 `COMPLETE` 只验证私有打包、SDK import 和源码一致性，不验证目标模型分数。
+- 占位 CSV 的四个 `0.0` 不是 B002 Public/Private Score。
+- competition rerun 的排队时间、GPU/TPU 使用和算法精确运行时在当前 CLI 中不可见，
+  不从等待时长臆测。
+
+**证据**
+
+- [`../evidence/2026-07-30_b002_preflight.md`](../evidence/2026-07-30_b002_preflight.md)
+- Notebook version：1
+- Submission ref：`55110969`
+- Notebook build commit：`1d7613f`
+
+**决策**
+
+- 只监控 submission `55110969`，不创建第二条 B002 submission。
+- 保持预注册门槛：`>65.340` 保留，`>=89.390` 达到 2026-07-30 前 200 分数带，
+  `>=100.000` 强竞争复现，`<=65.340` 或失败则拒绝。

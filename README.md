@@ -73,7 +73,8 @@
 - [x] 云端验证 B001 私有 Notebook v1、核对源码哈希，并创建唯一 submission `55030205`
 - [x] B001 rerun 完成：Public Score `65.340`，达到预注册的强复现门槛
 - [x] 建立 B002 公共 fill-stack 参考候选并通过 61 项测试、preflight、Ruff 和 SDK validate
-- [ ] 完成 B002 预注册提交、私有 Notebook 构建、云端哈希核对与唯一 competition rerun
+- [x] 完成 B002 预注册提交、私有 Notebook 构建、云端哈希核对，并创建唯一 submission `55110969`
+- [ ] 等待 B002 competition rerun 终态，按预注册门槛判断是否替换 B001
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note
