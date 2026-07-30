@@ -194,6 +194,7 @@ evaluator 回放单独保留预算。
 | E005 competition rerun | 完成，拒绝候选 | submission `55014937` 为 `COMPLETE`；真实 public score `0.000`；private score 未返回；[证据](../evidence/2026-07-27_e005_preflight.md) | 不重复提交；无诊断证据前不做参数消融 |
 | B001 公开参考复现 | 强复现 | submission `55030205` 为 `COMPLETE`；Public Score `65.340`；超过 `>=60` 预注册门槛 | 作为 B002 的真实对照 |
 | B002 fill-stack 参考 | `PENDING` | 私有 Notebook v1 `COMPLETE`；云端哈希一致；submission `55110969`；1-hop 与预算回归通过 | `>65.340` 保留；`>=89.390` 达到 2026-07-30 前 200 分数带 |
+| B003 replay-safe split | 本地候选完成 | 公开 `nctuan/jed-v25` 适配；68 项测试、preflight、Ruff、SDK validate 通过；[B003 证据](../evidence/2026-07-30_b003_local_candidate.md) | B002 终态后重新预注册再决定是否提交 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -222,9 +223,10 @@ guardrail；它只用于决定哪些改动值得消耗正式提交。
 | [`../evidence/2026-07-27_e005_preflight.md`](../evidence/2026-07-27_e005_preflight.md) | E005 搜索策略、时间边界、源码身份和出分前判定门槛 |
 | [`../evidence/2026-07-27_b001_preflight.md`](../evidence/2026-07-27_b001_preflight.md) | B001 的公开来源、哈希、安全适配、本地边界与出分前门槛 |
 | [`../evidence/2026-07-30_b002_preflight.md`](../evidence/2026-07-30_b002_preflight.md) | B002 的公开来源、哈希、1-hop/replay 校准、安全适配与判定门槛 |
+| [`../evidence/2026-07-30_b003_local_candidate.md`](../evidence/2026-07-30_b003_local_candidate.md) | B003 的公开来源、哈希、延迟分流、安全适配与暂不提交决策 |
 | [`../scripts/preflight_submission.py`](../scripts/preflight_submission.py) | 接口、网络边界和摘要检查 |
 | [`../scripts/build_kaggle_notebook.py`](../scripts/build_kaggle_notebook.py) | 可复现私有 Notebook 构建 |
-| [`../tests`](../tests) | 61 项自动化回归测试 |
+| [`../tests`](../tests) | 68 项自动化回归测试 |
 
 目前最明确的竞赛成果是：B001 已把真实 Public Score 从 `0.075` 提升到 `65.340`，
 证明 replay-dense 公共路线可在本账号复现；B002 继续针对有效候选吞吐做参考复现。

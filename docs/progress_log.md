@@ -703,3 +703,28 @@
 - 只监控 submission `55110969`，不创建第二条 B002 submission。
 - 保持预注册门槛：`>65.340` 保留，`>=89.390` 达到 2026-07-30 前 200 分数带，
   `>=100.000` 强竞争复现，`<=65.340` 或失败则拒绝。
+
+## 2026-07-30：准备 B003 公开 replay-safe split 后备候选
+
+**事实**
+
+- 拉取公开 Notebook `nctuan/jed-v25`，上游 SHA-256 为
+  `2005325799dfed256e063428212d1259fdadaa6c3816ffac3ca5e400bbd8b5db`。
+- B003 采用一次冷启动、live validation-fill、前 8 个候选延迟分类、慢行 frame template
+  和 `0.98` replay-safe sizing。
+- 安全适配使用唯一 `*.invalid` 保留域；SDK 工具不发生真实网络请求。
+- B003 源码 SHA-256 为
+  `f9e19bec312a3fd4410506af1418463bd30254c5d4c024c3343007566e46d0b6`。
+- 68 项测试、preflight、Ruff 与 SDK 3.1.2 validate 全部通过。
+
+**解释与限制**
+
+- B003 与 B002 的机制差异较大，不能在 B002 出分前定义清晰的直接对照门槛。
+- 默认 `PROBE_HOPS=0`，即使用 grader 配置的 hop cap；这比 B002 的 1-hop 探测更保守，
+  也可能牺牲候选吞吐。
+- 这是公共参考栈的整体复现，不作为项目原创实验。
+
+**决策**
+
+- 暂不创建 B003 Notebook 或 competition submission。
+- 等 B002 `55110969` 进入终态后，再按真实分数重新预注册 B003 或转向原创单变量改进。
