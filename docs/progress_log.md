@@ -728,3 +728,55 @@
 
 - 暂不创建 B003 Notebook 或 competition submission。
 - 等 B002 `55110969` 进入终态后，再按真实分数重新预注册 B003 或转向原创单变量改进。
+
+## 2026-07-31：B002 以 `COMPLETE` 空分结束
+
+**事实**
+
+- 2026-07-31 01:30 UTC 首次观测到 submission `55110969` 为 `COMPLETE`。
+- Kaggle CLI 的表格与 CSV 输出均未返回 Public Score 或 Private Score。
+- B001 submission `55030205` 仍为当前唯一高分可比较对照，Public Score `65.340`。
+
+**解释与限制**
+
+- `COMPLETE` 只说明 rerun 流程进入终态；空分不能解释为 `0.000`，也不能与 B001 比较。
+- 普通 Notebook 的占位 `submission.csv` 不代表 competition rerun 分数。
+- 当前 CLI 未返回可比较运行时或额外错误说明，不臆测空分的内部原因。
+
+**证据**
+
+- [`../evidence/2026-07-30_b002_preflight.md`](../evidence/2026-07-30_b002_preflight.md)
+- Submission ref：`55110969`
+
+**决策**
+
+- 按出分前规则把空分视为可靠性失败，拒绝 B002，不替换 B001。
+- 不重试 B002，不创建重复 submission。
+
+**下一门槛**
+
+- 以 B001 `65.340` 为直接对照预注册 B003，完成提交前证据链后只创建一次 rerun。
+
+## 2026-07-31：预注册 B003 replay-safe split 参考候选
+
+**事实**
+
+- B003 源码保持 commit `86057bc` 与 SHA-256
+  `f9e19bec312a3fd4410506af1418463bd30254c5d4c024c3343007566e46d0b6`。
+- 直接对照固定为 B001 submission `55030205` 的 Public Score `65.340`。
+- 主要机制固定为 live validation-fill、前 8 候选延迟分类、慢行 Harmony frame
+  template、`0.98` replay-safe sizing、grader hop cap 和单 post。
+- 68 项测试、preflight、Ruff 与 SDK 3.1.2 validate 的本地证据保持有效。
+
+**解释与限制**
+
+- B002 空分不能提供数值对照；B003 与 B001 是不同的公共参考栈整体比较，不作为原创消融。
+- 本地确定性 agent 只能验证接口、预算和安全边界，不能预测目标模型 fire rate。
+
+**决策**
+
+- `>65.340` 才保留 B003；`>=89.390` 记为达到固定的 2026-07-30 前 200 分数带；
+  `>=100.000` 记为强竞争复现。
+- `<=65.340`、空分、失败或超时均拒绝，且不自动重试。
+- 预注册文档提交并推送后，允许构建私有 Notebook；云端哈希与历史去重通过后，
+  只创建一次 competition submission。

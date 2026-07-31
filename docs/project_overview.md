@@ -1,8 +1,8 @@
 # 竞赛说明、技术路线与项目进展
 
-> 最后更新：2026-07-23  
-> 当前阶段：B001 以 `65.340` 强复现；B002 公开 fill-stack 候选已完成本地预检
-> Kaggle submission ref：`54925726`  
+> 最后更新：2026-07-31
+> 当前阶段：B001 以 `65.340` 保持真实最佳；B002 空分拒绝；B003 已预注册
+> 当前真实最佳 submission ref：`55030205`
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
 ## 1. 这是什么竞赛
@@ -186,15 +186,15 @@ evaluator 回放单独保留预算。
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | B002 已提交 | 公开 fill-stack 参考实现；61 项测试；`*.invalid` 保留域适配；[B002 证据](../evidence/2026-07-30_b002_preflight.md) | 等待真实 rerun，按预注册门槛决策 |
+| 本地搜索机制 | B003 已预注册 | 公开 replay-safe split 参考实现；68 项测试；`*.invalid` 保留域适配；[B003 证据](../evidence/2026-07-30_b003_local_candidate.md) | 云端核验后只创建一次 competition rerun |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
 | E002 competition rerun | 完成，拒绝变更 | submission `54995012` 为 `COMPLETE`；public score `0.060`，低于 E001 `0.075`；private score 未返回；[证据](../evidence/2026-07-26_e002_preflight.md) | 不重复提交；不把 E002 作为默认基础 |
 | E005 competition rerun | 完成，拒绝候选 | submission `55014937` 为 `COMPLETE`；真实 public score `0.000`；private score 未返回；[证据](../evidence/2026-07-27_e005_preflight.md) | 不重复提交；无诊断证据前不做参数消融 |
-| B001 公开参考复现 | 强复现 | submission `55030205` 为 `COMPLETE`；Public Score `65.340`；超过 `>=60` 预注册门槛 | 作为 B002 的真实对照 |
-| B002 fill-stack 参考 | `PENDING` | 私有 Notebook v1 `COMPLETE`；云端哈希一致；submission `55110969`；1-hop 与预算回归通过 | `>65.340` 保留；`>=89.390` 达到 2026-07-30 前 200 分数带 |
-| B003 replay-safe split | 本地候选完成 | 公开 `nctuan/jed-v25` 适配；68 项测试、preflight、Ruff、SDK validate 通过；[B003 证据](../evidence/2026-07-30_b003_local_candidate.md) | B002 终态后重新预注册再决定是否提交 |
+| B001 公开参考复现 | 强复现，当前最佳 | submission `55030205` 为 `COMPLETE`；Public Score `65.340`；超过 `>=60` 预注册门槛 | 作为 B003 的真实直接对照 |
+| B002 fill-stack 参考 | 完成，可靠性失败 | submission `55110969` 为 `COMPLETE`，Public/Private Score 均为空；1-hop 与预算回归通过但真实 rerun 未返回可比较分数 | 按预注册拒绝；不重试、不替换 B001 |
+| B003 replay-safe split | 已预注册 | 公开 `nctuan/jed-v25` 适配；68 项测试、preflight、Ruff、SDK validate 通过；[B003 证据](../evidence/2026-07-30_b003_local_candidate.md) | `>65.340` 保留；空分、失败或 `<=65.340` 拒绝 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -229,14 +229,15 @@ guardrail；它只用于决定哪些改动值得消耗正式提交。
 | [`../tests`](../tests) | 68 项自动化回归测试 |
 
 目前最明确的竞赛成果是：B001 已把真实 Public Score 从 `0.075` 提升到 `65.340`，
-证明 replay-dense 公共路线可在本账号复现；B002 继续针对有效候选吞吐做参考复现。
+证明 replay-dense 公共路线可在本账号复现。B002 以 `COMPLETE` 空分结束，按预注册
+作为可靠性失败拒绝；B003 改用 replay-safe sizing 与延迟分流，作为下一条低相关参考路线。
 当前分数仍低于 2026-07-30 榜单快照第 200 名的 `89.390`，不代表已经达到奖牌水平。
 
 ## 7. 下一步
 
-1. 只监控 B002 submission `55110969`，不创建重复提交。
-2. 按 `>65.340`、`>=89.390` 与 `>=100.000` 的固定门槛记录真实 Public Score。
-3. 若 B002 复现成功，以它作为公开参考对照，再预注册项目原创的单变量改进。
+1. 构建并云端核验 B003，确认不存在相同候选后只创建一次 competition rerun。
+2. 按 `>65.340`、`>=89.390` 与 `>=100.000` 的固定门槛记录 B003 真实 Public Score。
+3. B002 不重试；B003 空分、失败或 `<=65.340` 时同样拒绝。
 4. 为可获得的 trace 建立 source、transformation、sink 和 predicate 分类。
 5. 无法区分 Go-Explore 候选生成与重放失败前，不做参数消融。
 6. 绘制分数、机制覆盖、有效候选数和运行时间的消融曲线。

@@ -2,7 +2,7 @@
 
 > 记录日期：2026-07-30
 >
-> 当前状态：本地候选已冻结；B002 submission `55110969` 仍在 `PENDING`，因此尚未预注册或提交 B003
+> 当前状态：B002 已以 `COMPLETE` 空分被拒绝；B003 已相对 B001 `65.340` 预注册，尚未提交
 
 ## 1. 角色与来源
 
@@ -62,10 +62,27 @@ url_suffix=.invalid
   - 无成功候选时只返回有界 fallback。
 
 本地确定性 agent 不保留请求中的 `SECRET_MARKER`，不能预测 GPT-OSS/Gemma 的 fire
-rate、frame template 合规率或榜单成绩。B003 只作为 B002 出分后的后备候选；正式
-预注册必须等 B002 终态后重新固定直接对照和门槛。
+rate、frame template 合规率或榜单成绩。B002 的真实 rerun 为空分，不能作为数值对照；
+因此 B003 的直接对照固定为仍有可比较分数的 B001。
 
-## 5. 当前决策
+## 5. 2026-07-31 正式预注册
 
-暂不创建 B003 Kaggle Notebook 或 competition submission。后续只在 B002 `55110969`
-进入终态、且新预注册明确直接对照后，才允许 B003 消耗正式 rerun。
+**直接对照**：B001，submission `55030205`，Public Score `65.340`。
+
+**假设**：相对 B001 的 two-probe 参考栈，B003 的 live validation-fill、延迟分流、
+Harmony frame template 和 `0.98` replay-safe sizing 能在保持 rerun 可靠性的同时，
+使 Public Score 严格高于 `65.340`。
+
+固定判定如下：
+
+| 真实结果 | 固定判定 |
+|---|---|
+| `COMPLETE` 且 Public Score `>65.340` | 保留 B003，作为新的真实参考基线 |
+| Public Score `>=89.390` | 达到 2026-07-30 榜单快照的前 200 分数带 |
+| Public Score `>=100.000` | 记为强竞争复现，优先在该栈上做原创单变量改进 |
+| Public Score `<=65.340` | 未证明提升，拒绝且不替换 B001 |
+| `ERROR`、`FAILED`、空分或 replay timeout | 因可靠性失败拒绝，不自动重试 |
+
+只有在预注册文档提交并推送、源码哈希复核、preflight、SDK validate、测试、Kaggle
+历史去重和云端 `attack.py` 哈希核对全部通过后，才允许创建一次 B003 competition
+submission。每个候选最多提交一次；不得因 B002 空分而重试 B002。
