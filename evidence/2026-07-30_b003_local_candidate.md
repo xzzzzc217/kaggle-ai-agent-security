@@ -2,7 +2,7 @@
 
 > 记录日期：2026-07-30
 >
-> 当前状态：已创建唯一 Kaggle competition submission `55123773`，等待 rerun 终态
+> 当前状态：唯一 Kaggle competition submission `55123773` 已完成，Public Score `81.585`
 
 ## 1. 角色与来源
 
@@ -117,9 +117,21 @@ competition rerun 分数。正式提交前再次查询历史，确认不存在 B
 submission_ref=55123773
 created_at=2026-07-31 01:34:44.977000 UTC
 description=B003 replay-safe split | attack f9e19bec | prereg 0747344 | SDK 3.1.2
-status=PENDING
-public_score=
+status=COMPLETE
+first_observed_terminal_at=2026-07-31 15:42:51 UTC
+public_score=81.585
 private_score=
+error_description=
 ```
 
-后续只监控 submission `55123773`，不自动重试或重复创建 B003 submission。
+Kaggle CLI CSV 输出返回 Public Score `81.585`，Private Score 仍为空；Kaggle Python API
+对同一 ref 的 `publicScore`/`privateScore` 字段仍返回 `None`，但 `status` 为
+`SubmissionStatus.COMPLETE` 且 `errorDescription=None`。按出分前预注册，`81.585`
+严格高于 B001 的 `65.340`，因此保留 B003 并替换 B001 作为新的真实参考基线。
+
+该分数未达到固定的 2026-07-30 前 200 分数带 `89.390`，也未达到 `100.000` 强竞争
+复现线。2026-07-31 15:45 UTC 下载的公开榜快照中，`81.585` 对应 rank `830`，当时
+第 200 名为 `89.595`；这是易变榜单快照，不改变预注册判定门槛。
+
+B003 已终态，不自动重试或重复创建 B003 submission。下一候选需以 B003 `81.585`
+为真实直接对照，并先完成新的单变量预注册。

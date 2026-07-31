@@ -814,3 +814,44 @@
 - 只监控 submission `55123773`，不创建第二条 B003 submission。
 - 保持预注册门槛：`>65.340` 保留，`>=89.390` 达到固定前 200 分数带，
   `>=100.000` 强竞争复现；`<=65.340`、空分或失败则拒绝。
+
+## 2026-07-31：B003 完成并替换 B001 为真实参考基线
+
+**事实**
+
+- 2026-07-31 15:42:51 UTC 首次在本任务中观测到 submission `55123773` 进入
+  `COMPLETE`。
+- Kaggle CLI CSV 输出显示 B003 Public Score 为 `81.585`，Private Score 为空。
+- Kaggle Python API 对同一 ref 返回 `status=SubmissionStatus.COMPLETE`、
+  `publicScore=None`、`privateScore=None`、`errorDescription=None`；因此实际可比较
+  Public Score 以 CLI submissions 表格为准。
+- 同一轮公开榜下载快照显示 `81.585` 对应 rank `830`；2026-07-31 15:45 UTC 的
+  第 200 名为 `89.595`。这是当前榜单快照，不改变预注册时固定的 `89.390` 参考线。
+
+**解释与限制**
+
+- `81.585 > 65.340`，B003 明确超过 B001，支持 replay-safe split 参考栈优于此前
+  two-probe 参考栈的预注册假设。
+- `81.585 < 89.390`，未达到固定的 2026-07-30 前 200 分数带；也低于 `100.000`
+  强竞争复现线。
+- B003 仍是有出处的公开参考复现，不作为原创算法贡献；Private Score 当前不可见。
+
+**证据**
+
+- [`../evidence/2026-07-30_b003_local_candidate.md`](../evidence/2026-07-30_b003_local_candidate.md)
+- Submission ref：`55123773`
+- Public Score：`81.585`
+- Private Score：空
+- First observed terminal：`2026-07-31 15:42:51 UTC`
+
+**决策**
+
+- 保留 B003，替换 B001 作为新的真实参考基线。
+- 不重试 B003，不重复创建相同 candidate 的 competition submission。
+- 下一候选必须以 B003 `81.585` 为直接对照；优先设计结构上不同、可证伪的原创单变量
+  改进，并在任何 Notebook/competition submission 前先完成预注册、提交和推送。
+
+**下一门槛**
+
+- 新候选 Public Score 必须严格高于 `81.585` 才能替换 B003。
+- `>=89.390` 仍记录为达到固定前 200 分数带，`>=100.000` 记录为强竞争复现。
