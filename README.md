@@ -78,7 +78,8 @@
 - [x] 准备 B003 公开 replay-safe split 后备候选并通过 68 项测试、preflight、Ruff 和 SDK validate
 - [x] B002 rerun 以 `COMPLETE` 空分结束，按预注册作为可靠性失败拒绝且不重试
 - [x] 以 B001 `65.340` 为直接对照重新预注册 B003，并固定接受、拒绝与竞争门槛
-- [ ] 构建、云端核验并创建唯一 B003 competition rerun
+- [x] 构建并云端核验 B003 私有 Notebook v1，创建唯一 submission `55123773`
+- [ ] 等待 B003 competition rerun 终态，按固定门槛判断是否替换 B001
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

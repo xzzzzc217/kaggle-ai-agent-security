@@ -2,7 +2,7 @@
 
 > 记录日期：2026-07-30
 >
-> 当前状态：B002 已以 `COMPLETE` 空分被拒绝；B003 已相对 B001 `65.340` 预注册，尚未提交
+> 当前状态：已创建唯一 Kaggle competition submission `55123773`，等待 rerun 终态
 
 ## 1. 角色与来源
 
@@ -86,3 +86,40 @@ Harmony frame template 和 `0.98` replay-safe sizing 能在保持 rerun 可靠�
 只有在预注册文档提交并推送、源码哈希复核、preflight、SDK validate、测试、Kaggle
 历史去重和云端 `attack.py` 哈希核对全部通过后，才允许创建一次 B003 competition
 submission。每个候选最多提交一次；不得因 B002 空分而重试 B002。
+
+## 6. 云端打包与正式提交
+
+预注册文档 commit 为：
+
+```text
+preregistration_commit=0747344125732bc2a5d7eb337fa1e36c78159b69
+```
+
+私有 Notebook `heralces/ai-agent-security-b003-replaysafe-split` version 1 已进入
+`COMPLETE`。构建 manifest 固定 `experiment_id=B003`、SDK `3.1.2`、GPU T4、
+private、internet disabled，并绑定上述预注册 commit。
+
+下载云端输出后核验：
+
+```text
+source_sha256=f9e19bec312a3fd4410506af1418463bd30254c5d4c024c3343007566e46d0b6
+cloud_sha256=f9e19bec312a3fd4410506af1418463bd30254c5d4c024c3343007566e46d0b6
+hash_match=True
+log_error_matches=0
+artifact_secret_matches=0
+```
+
+云端普通 commit 只生成 `attack.py` 和四行 `0.0` 占位 `submission.csv`；占位值不是
+competition rerun 分数。正式提交前再次查询历史，确认不存在 B003 submission，随后
+绑定 Notebook v1 创建唯一 rerun：
+
+```text
+submission_ref=55123773
+created_at=2026-07-31 01:34:44.977000 UTC
+description=B003 replay-safe split | attack f9e19bec | prereg 0747344 | SDK 3.1.2
+status=PENDING
+public_score=
+private_score=
+```
+
+后续只监控 submission `55123773`，不自动重试或重复创建 B003 submission。

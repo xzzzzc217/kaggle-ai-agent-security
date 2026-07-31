@@ -780,3 +780,37 @@
 - `<=65.340`、空分、失败或超时均拒绝，且不自动重试。
 - 预注册文档提交并推送后，允许构建私有 Notebook；云端哈希与历史去重通过后，
   只创建一次 competition submission。
+
+## 2026-07-31：创建 B003 正式 submission
+
+**事实**
+
+- B002 终态与 B003 预注册文档已提交并推送，commit 为 `0747344`。
+- 私有 Notebook `heralces/ai-agent-security-b003-replaysafe-split` version 1
+  进入 `COMPLETE`。
+- 构建 manifest 绑定完整 commit
+  `0747344125732bc2a5d7eb337fa1e36c78159b69`。
+- 云端 `attack.py` SHA-256 与本地
+  `f9e19bec312a3fd4410506af1418463bd30254c5d4c024c3343007566e46d0b6`
+  完全一致；日志无 error/exception 匹配，产物凭据扫描为 0。
+- 正式提交前再次查询历史，确认不存在 B003；2026-07-31 01:34:44 UTC 只创建
+  submission `55123773`，当前为 `PENDING`。
+
+**解释与限制**
+
+- Notebook v1 `COMPLETE` 只验证私有打包、SDK import 和源码一致性，不验证目标模型分数。
+- 四行 `0.0` 是 Code Competition 普通 commit 占位值，不是 Public/Private Score。
+- rerun 排队与算法精确运行时在当前 CLI 中不可见。
+
+**证据**
+
+- [`../evidence/2026-07-30_b003_local_candidate.md`](../evidence/2026-07-30_b003_local_candidate.md)
+- Notebook version：1
+- Submission ref：`55123773`
+- Pre-registration commit：`0747344`
+
+**决策**
+
+- 只监控 submission `55123773`，不创建第二条 B003 submission。
+- 保持预注册门槛：`>65.340` 保留，`>=89.390` 达到固定前 200 分数带，
+  `>=100.000` 强竞争复现；`<=65.340`、空分或失败则拒绝。
