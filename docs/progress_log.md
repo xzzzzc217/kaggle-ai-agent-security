@@ -855,3 +855,48 @@
 
 - 新候选 Public Score 必须严格高于 `81.585` 才能替换 B003。
 - `>=89.390` 仍记录为达到固定前 200 分数带，`>=100.000` 记录为强竞争复现。
+
+## 2026-08-01：实现并预注册 B004 slow-row multi-post 候选
+
+**事实**
+
+- B004 以 B003 submission `55123773` 的真实 Public Score `81.585` 为直接对照。
+- B004 源码位于 `baselines/replaysafe_multipost_v1/attack.py`，source commit 为
+  `af266f4`，SHA-256 为
+  `7e101927bc3f96f59d91d0b04aa5e17fb18de89e0667890c95b75dac26ba7db5`。
+- 唯一行为变量是将 B003 的 `SLOW_MULTIPOST_N` 默认值从 `1` 改为 `4`；其余 B003
+  默认值保持不变。
+- B003/B004 目标测试 7 项通过；全量测试 72 项通过；preflight、Ruff、SDK validate、
+  `git diff --check` 和秘密扫描均通过。
+- SDK scoring audit 显示单个成功 `http.post` finding 的 raw score 为 `18.0`，同一
+  finding 内四个成功 `http.post` 的 raw score 为 `66.0`。
+- 截至本记录，尚未创建 B004 Kaggle Notebook 或 competition submission。
+
+**解释与限制**
+
+- 本地证据只证明接口、安全 URL、动态样本形状和 SDK 打分上界；不能预测隐藏模型是否
+  会稳定执行四个连续 post。
+- B004 的风险是更长的 prompt 与更多工具调用可能降低遵循率或增加 replay 时间；本次
+  不同时调整 replay 成本系数，以保持单变量纪律。
+- B004 是 B003 后的原创单变量改动，不是新的公开参考整体复现。
+
+**证据**
+
+- [`../evidence/2026-08-01_b004_preflight.md`](../evidence/2026-08-01_b004_preflight.md)
+- [`../baselines/replaysafe_multipost_v1/attack.py`](../baselines/replaysafe_multipost_v1/attack.py)
+- [`../tests/test_replaysafe_multipost.py`](../tests/test_replaysafe_multipost.py)
+
+**决策**
+
+- 预注册 B004，允许在本预注册文档提交并推送后进入一次私有 Notebook 构建与云端哈希
+  核验。
+- B004 rerun `COMPLETE` 且 Public Score `>81.585` 才替换 B003。
+- Public Score `>=89.390` 记为达到固定前 200 分数带，`>=100.000` 记为强竞争复现。
+- `<=81.585`、空分、失败或超时均拒绝，且不自动重试。
+
+**下一门槛**
+
+- 提交并推送本预注册文档。
+- 构建唯一 B004 私有 Notebook，核验 manifest、云端 `attack.py` 哈希、安全 URL、
+  运行日志和产物秘密扫描。
+- 正式提交前再次查询 Kaggle 历史，确认不存在相同 B004 候选。
