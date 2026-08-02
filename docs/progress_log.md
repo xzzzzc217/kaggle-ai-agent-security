@@ -979,3 +979,50 @@
   原创机制或尚未复现的公开高分路线。
 - B005 的接受门槛必须严格高于 `88.650`；`>=89.390` 记为达到固定前 200 分数带，
   `>=100.000` 记为强竞争复现；空分、失败、超时或 `<=88.650` 拒绝且不重试。
+
+## 2026-08-02：实现并预注册 B005 replay-safe tail-extension 候选
+
+**事实**
+
+- B005 以 B004 submission `55168834` 的真实 Public Score `88.650` 为直接对照。
+- B005 源码位于 `baselines/replaysafe_tail99_v1/attack.py`，source commit 为
+  `a4a70ac`，SHA-256 为
+  `9d86d633b50a72f7499f7ad6c4f81c03fb61887e12351da977f7cb64e413c67f`。
+- 唯一行为变量是将 B004 的 `REPLAY_SAFE_FRAC` 默认值从 `0.98` 改为 `0.99`；B004 的
+  prompt、`SLOW_MULTIPOST_N=4`、latency split、probe hops、保留域和 replay-cost 系数保持
+  不变。
+- 与 B004 源码 diff 只包含 docstring 标识和 `REPLAY_SAFE_FRAC` 常量变化。
+- B004/B005/B003 目标测试 9 项通过；全量测试 76 项通过；preflight、Ruff、SDK validate、
+  `git diff --check` 和秘密扫描均通过。
+- 9000 秒假环境样本显示 B005 相对 B004 返回约 1.0% 更多候选：13s 慢行样本为 `675→682`，
+  20s 慢行为 `439→443`，30s 慢行为 `292→295`。
+- 截至本记录，尚未创建 B005 Kaggle Notebook 或 competition submission。
+
+**解释与限制**
+
+- B005 不改变攻击 wording，也不继续调整 multi-post 数；它只测试 B004 成功后是否仍有安全
+  replay tail 可用于补足 `88.650` 到固定前 200 参考线 `89.390` 的 `0.740` 缺口。
+- 本地假环境只能验证候选数量、预算边界和动态样本形状；不能预测隐藏 replay 是否在 `0.99`
+  下仍稳定完成。
+- `0.99` 比 B004 更接近 replay budget 边界，主要风险是隐藏重放耗时增加导致失败、空分或
+  score 下降。
+
+**证据**
+
+- [`../evidence/2026-08-02_b005_preflight.md`](../evidence/2026-08-02_b005_preflight.md)
+- [`../baselines/replaysafe_tail99_v1/attack.py`](../baselines/replaysafe_tail99_v1/attack.py)
+- [`../tests/test_replaysafe_tail99.py`](../tests/test_replaysafe_tail99.py)
+
+**决策**
+
+- 预注册 B005，允许在本预注册文档提交并推送后进入一次私有 Notebook 构建与云端哈希核验。
+- B005 rerun `COMPLETE` 且 Public Score `>88.650` 才替换 B004。
+- Public Score `>=89.390` 记为达到固定前 200 分数带，`>=100.000` 记为强竞争复现。
+- `<=88.650`、空分、失败或超时均拒绝，且不自动重试。
+
+**下一门槛**
+
+- 提交并推送本预注册文档。
+- 构建唯一 B005 私有 Notebook，核验 manifest、云端 `attack.py` 哈希、安全 URL、运行日志和
+  产物秘密扫描。
+- 正式提交前再次查询 Kaggle 历史，确认不存在相同 B005 候选。

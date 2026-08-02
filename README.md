@@ -15,6 +15,7 @@
 - [`evidence/2026-07-30_b002_preflight.md`](evidence/2026-07-30_b002_preflight.md)：B002 公开 fill-stack 参考基线的来源、适配与预注册
 - [`evidence/2026-07-30_b003_local_candidate.md`](evidence/2026-07-30_b003_local_candidate.md)：B003 replay-safe split 参考候选的来源、适配与预注册
 - [`evidence/2026-08-01_b004_preflight.md`](evidence/2026-08-01_b004_preflight.md)：B004 slow-row multi-post 单变量候选的来源、适配、预注册与提交监控
+- [`evidence/2026-08-02_b005_preflight.md`](evidence/2026-08-02_b005_preflight.md)：B005 replay-safe tail-extension 单变量候选的来源、预算边界与预注册
 - [`docs/safety.md`](docs/safety.md)：研究授权边界与工程控制
 
 ## 当前主赛
@@ -84,7 +85,8 @@
 - [x] 实现 B004 slow-row multi-post 单变量候选，并完成本地预检、SDK validate 与预注册
 - [x] 构建并云端核验 B004 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55168834`
 - [x] 完成 B004 rerun：Public Score `88.650`，替换 B003 成为新的真实参考基线；未达到固定前 200 参考线 `89.390`
-- [ ] 以 B004 `88.650` 为直接对照，设计结构不同、可证伪、单变量的 B005
+- [x] 以 B004 `88.650` 为直接对照，设计并预注册 B005 replay-safe tail-extension 单变量候选
+- [ ] 构建并云端核验 B005 私有 Notebook，确认历史去重后最多创建一次 competition submission
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note
