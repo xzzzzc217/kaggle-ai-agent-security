@@ -900,3 +900,47 @@
 - 构建唯一 B004 私有 Notebook，核验 manifest、云端 `attack.py` 哈希、安全 URL、
   运行日志和产物秘密扫描。
 - 正式提交前再次查询 Kaggle 历史，确认不存在相同 B004 候选。
+
+## 2026-08-01：创建 B004 唯一 Kaggle submission，等待真实评分
+
+**事实**
+
+- B004 预注册文档先于正式提交在 commit `22ca5a9` 提交并推送。
+- 使用 `scripts.build_kaggle_notebook` 构建私有 Notebook
+  `heralces/ai-agent-security-b004-slow-multipost` version 1，manifest 绑定的
+  Git commit 为 `22ca5a96a657addb37432b8aa14f1ffc3c8b27c6`。
+- Kaggle Notebook v1 运行状态为 `COMPLETE`；下载的云端 `attack.py` SHA-256 与本地
+  候选哈希一致：
+  `7e101927bc3f96f59d91d0b04aa5e17fb18de89e0667890c95b75dac26ba7db5`。
+- 云端运行日志错误扫描为 `0`，下载产物秘密扫描为 `0`。
+- 正式提交前重新查询 Kaggle 历史，未发现 B004 相同候选；随后创建唯一 competition
+  submission `55168834`。
+- submission `55168834` 的创建时间为 2026-08-01 18:22:47.167 UTC；截至
+  2026-08-02 05:52 UTC 最新 CLI 观测仍为 `SubmissionStatus.PENDING`，Public/Private
+  Score 均为空。
+
+**解释与限制**
+
+- Notebook `COMPLETE`、云端哈希一致和日志/秘密扫描通过只证明正式提交前的产物可追溯；
+  不代表 Kaggle 已完成隐藏 rerun。
+- `submission.csv` 内的 `0.0` 占位值不是 leaderboard score。
+- B004 出分前不能判断 slow-row multi-post 是否优于 B003，也不能把它当作新基线。
+
+**证据**
+
+- [`../evidence/2026-08-01_b004_preflight.md`](../evidence/2026-08-01_b004_preflight.md)
+- [`../submissions/B004/submission-manifest.json`](../submissions/B004/submission-manifest.json)
+- [`../artifacts/kaggle/B004_v1/attack.py`](../artifacts/kaggle/B004_v1/attack.py)
+
+**决策**
+
+- 只监控 B004 submission `55168834`；不重复提交、不重推相同 Notebook。
+- B003 submission `55123773` 的 Public Score `81.585` 仍是当前真实最佳。
+- B004 未知期间不创建 B005；等待期间只做本地候选研究、公开参考审计和轨迹分析。
+
+**下一门槛**
+
+- 若 `55168834` 变为 `COMPLETE`，记录真实 Public Score、Private Score 的可见状态和首次
+  观测终态时间。
+- 按预注册：`>81.585` 才替换 B003；`>=89.390` 记为达到固定前 200 分数带；`>=100.000`
+  记为强竞争复现；空分、失败、超时或 `<=81.585` 则拒绝且不重试。
