@@ -86,7 +86,8 @@
 - [x] 构建并云端核验 B004 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55168834`
 - [x] 完成 B004 rerun：Public Score `88.650`，替换 B003 成为新的真实参考基线；未达到固定前 200 参考线 `89.390`
 - [x] 以 B004 `88.650` 为直接对照，设计并预注册 B005 replay-safe tail-extension 单变量候选
-- [ ] 构建并云端核验 B005 私有 Notebook，确认历史去重后最多创建一次 competition submission
+- [x] 构建并云端核验 B005 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55185029`
+- [ ] 监控 B005 submission `55185029` 的真实 Public Score；未知前不创建 B006
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

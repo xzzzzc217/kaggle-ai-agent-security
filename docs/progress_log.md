@@ -1026,3 +1026,46 @@
 - 构建唯一 B005 私有 Notebook，核验 manifest、云端 `attack.py` 哈希、安全 URL、运行日志和
   产物秘密扫描。
 - 正式提交前再次查询 Kaggle 历史，确认不存在相同 B005 候选。
+
+## 2026-08-02：创建 B005 唯一 Kaggle submission，等待真实评分
+
+**事实**
+
+- B005 预注册文档先于正式提交在 commit `3e5f741` 提交并推送。
+- 使用 `scripts.build_kaggle_notebook` 构建私有 Notebook
+  `heralces/ai-agent-security-b005-tail99` version 1，manifest 绑定的 Git commit 为
+  `3e5f741f8829990f5a7f9a387f81e7266b9a3d59`。
+- Kaggle Notebook v1 运行状态为 `COMPLETE`；下载的云端 `attack.py` SHA-256 与本地候选哈希
+  一致：
+  `9d86d633b50a72f7499f7ad6c4f81c03fb61887e12351da977f7cb64e413c67f`。
+- 云端运行日志错误扫描为 `0`，下载产物秘密扫描为 `0`。
+- 正式提交前重新查询 Kaggle 历史，未发现 B005 相同候选；随后创建唯一 competition
+  submission `55185029`。
+- submission `55185029` 的创建时间为 2026-08-02 11:54:44.773 UTC；截至本记录最新 CLI 观测为
+  `SubmissionStatus.PENDING`，Public/Private Score 均为空。
+
+**解释与限制**
+
+- Notebook `COMPLETE`、云端哈希一致和日志/秘密扫描通过只证明正式提交前的产物可追溯；
+  不代表 Kaggle 已完成隐藏 rerun。
+- `submission.csv` 内的 `0.0` 占位值不是 leaderboard score。
+- B005 出分前不能判断 replay-safe tail extension 是否优于 B004，也不能把它当作新基线。
+
+**证据**
+
+- [`../evidence/2026-08-02_b005_preflight.md`](../evidence/2026-08-02_b005_preflight.md)
+- [`../submissions/B005/submission-manifest.json`](../submissions/B005/submission-manifest.json)
+- [`../artifacts/kaggle/B005_v1/attack.py`](../artifacts/kaggle/B005_v1/attack.py)
+
+**决策**
+
+- 只监控 B005 submission `55185029`；不重复提交、不重推相同 Notebook。
+- B004 submission `55168834` 的 Public Score `88.650` 仍是当前真实最佳。
+- B005 未知期间不创建 B006；等待期间只做本地候选研究、公开参考审计和轨迹分析。
+
+**下一门槛**
+
+- 若 `55185029` 变为 `COMPLETE`，记录真实 Public Score、Private Score 的可见状态和首次观测
+  终态时间。
+- 按预注册：`>88.650` 才替换 B004；`>=89.390` 记为达到固定前 200 分数带；`>=100.000`
+  记为强竞争复现；空分、失败、超时或 `<=88.650` 则拒绝且不重试。
