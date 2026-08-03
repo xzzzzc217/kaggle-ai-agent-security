@@ -1107,3 +1107,50 @@
   slow-row multi-post 低相关的机制。
 - B006 的接受门槛必须严格高于 `91.930`；`>=100.000` 记为强竞争复现；空分、失败、超时或
   `<=91.930` 拒绝且不重试。
+
+## 2026-08-03：实现并预注册 B006 replay-safe threshold8 候选
+
+**事实**
+
+- B006 以 B005 submission `55185029` 的真实 Public Score `91.930` 为直接对照。
+- B006 源码位于 `baselines/replaysafe_threshold8_v1/attack.py`，source commit 为
+  `59df333`，SHA-256 为
+  `7c9c7e41c019d030c034192926c9c916c7651fed913b83a3ed499801b9144128`。
+- 唯一行为变量是将 B005 的 `SPLIT_THRESHOLD_S` 默认值从 `12.0` 改为 `8.0`；B005 的
+  prompt、`REPLAY_SAFE_FRAC=0.99`、`SLOW_MULTIPOST_N=4`、probe hops、保留域和
+  replay-cost 系数保持不变。
+- 与 B005 源码 diff 只包含 docstring 标识和 `SPLIT_THRESHOLD_S` 常量变化。
+- B006 目标测试 2 项通过；全量测试 80 项通过；preflight、Ruff、SDK validate、
+  `git diff --check` 和秘密扫描均通过。
+- 9000 秒假环境样本显示 B006 相对 B005 不改变候选数，但把 9-12 秒中速样本从 plain
+  单 post 路由到 frame / four-endpoint 分支。
+- 截至本记录，尚未创建 B006 Kaggle Notebook 或 competition submission。
+
+**解释与限制**
+
+- B006 测试的是 latency routing 边界，而不是继续调 `REPLAY_SAFE_FRAC` 或
+  `SLOW_MULTIPOST_N`。
+- 本地假环境只能验证路由形状、候选数量、保留域 URL 和接口契约；不能预测隐藏模型在中速行
+  是否更愿意执行 frame / four-endpoint 指令。
+- 因样本候选数不变，B006 的上涨空间来自机制质量替换；若中速行原本更适合 plain 模板或
+  frame 模板更触发隐藏 guardrail，B006 可能低于 B005。
+
+**证据**
+
+- [`../evidence/2026-08-03_b006_preflight.md`](../evidence/2026-08-03_b006_preflight.md)
+- [`../baselines/replaysafe_threshold8_v1/attack.py`](../baselines/replaysafe_threshold8_v1/attack.py)
+- [`../tests/test_replaysafe_threshold8.py`](../tests/test_replaysafe_threshold8.py)
+
+**决策**
+
+- 预注册 B006，允许在本预注册文档提交并推送后进入一次私有 Notebook 构建与云端哈希核验。
+- B006 rerun `COMPLETE` 且 Public Score `>91.930` 才替换 B005。
+- Public Score `>=100.000` 记为强竞争复现。
+- `<=91.930`、空分、失败或超时均拒绝，且不自动重试。
+
+**下一门槛**
+
+- 提交并推送本预注册文档。
+- 构建唯一 B006 私有 Notebook，核验 manifest、云端 `attack.py` 哈希、安全 URL、运行日志和
+  产物秘密扫描。
+- 正式提交前再次查询 Kaggle 历史，确认不存在相同 B006 候选。

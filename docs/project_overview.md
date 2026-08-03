@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-08-03
-> 当前阶段：B005 replay-safe tail-extension 以 Public Score `91.930` 刷新真实最佳，并达到固定前 200 分数带 `89.390`；下一步设计 B006
+> 当前阶段：B006 replay-safe threshold8 已完成本地候选与预注册；尚未创建 Kaggle Notebook 或正式 submission
 > 当前真实最佳 submission ref：`55185029`
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -186,7 +186,7 @@ evaluator 回放单独保留预算。
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | B006 候选研究 | B005 replay-safe tail-extension 已完成并成为当前真实最佳；76 项测试；`*.invalid` 保留域适配；[B005 证据](../evidence/2026-08-02_b005_preflight.md) | 以 B005 `91.930` 为直接对照，预注册结构不同、可证伪、单变量的 B006 |
+| 本地搜索机制 | B006 已预注册 | B006 replay-safe threshold8 单变量候选；80 项测试；`*.invalid` 保留域适配；[B006 证据](../evidence/2026-08-03_b006_preflight.md) | 构建唯一 B006 私有 Notebook，云端核验后再决定是否创建一次正式 submission |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3、B004 v1 与 B005 v1 均 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md)、[B005 证据](../evidence/2026-08-02_b005_preflight.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
@@ -197,6 +197,7 @@ evaluator 回放单独保留预算。
 | B003 replay-safe split | 完成，已被 B004 超过 | submission `55123773` 为 `COMPLETE`；Public Score `81.585`；Private Score 为空；68 项测试、preflight、Ruff、SDK validate 通过；[B003 证据](../evidence/2026-07-30_b003_local_candidate.md) | 保留为历史基线；不重试 |
 | B004 slow-row multi-post | 完成，已被 B005 超过 | B003 子候选；`SLOW_MULTIPOST_N` 从 `1` 改为 `4`；源码 SHA `7e101927bc3f96f59d91d0b04aa5e17fb18de89e0667890c95b75dac26ba7db5`；Notebook `heralces/ai-agent-security-b004-slow-multipost` v1 `COMPLETE`；云端哈希一致；唯一 submission `55168834` 为 `COMPLETE`，Public Score `88.650`，Private Score 为空；[B004 证据](../evidence/2026-08-01_b004_preflight.md) | 保留为历史基线；未达到固定前 200 参考线 `89.390`；不重试 |
 | B005 replay-safe tail-extension | 完成，当前最佳 | B004 子候选；唯一行为变量为 `REPLAY_SAFE_FRAC` 从 `0.98` 改为 `0.99`；源码 SHA `9d86d633b50a72f7499f7ad6c4f81c03fb61887e12351da977f7cb64e413c67f`；Notebook `heralces/ai-agent-security-b005-tail99` v1 `COMPLETE`；云端哈希一致；唯一 submission `55185029` 为 `COMPLETE`，Public Score `91.930`，Private Score 为空；[B005 证据](../evidence/2026-08-02_b005_preflight.md) | 保留为新的真实参考基线；已达到固定前 200 参考线 `89.390`；未达到强竞争线 `100.000`；不重试 |
+| B006 replay-safe threshold8 | 已预注册，未提交 | B005 子候选；唯一行为变量为 `SPLIT_THRESHOLD_S` 从 `12.0` 改为 `8.0`；源码 SHA `7c9c7e41c019d030c034192926c9c916c7651fed913b83a3ed499801b9144128`；source commit `59df333`；80 项测试、preflight、Ruff、SDK validate 通过；尚未创建 Notebook 或 formal submission；[B006 证据](../evidence/2026-08-03_b006_preflight.md) | 提交前先构建私有 Notebook、核验 manifest/云端哈希/日志/秘密扫描并查询历史去重；`>91.930` 才替换 B005 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -228,9 +229,10 @@ guardrail；它只用于决定哪些改动值得消耗正式提交。
 | [`../evidence/2026-07-30_b003_local_candidate.md`](../evidence/2026-07-30_b003_local_candidate.md) | B003 的公开来源、哈希、延迟分流、安全适配与暂不提交决策 |
 | [`../evidence/2026-08-01_b004_preflight.md`](../evidence/2026-08-01_b004_preflight.md) | B004 的 B003 父版本、单变量 multi-post 放大、哈希、预检、云端核验、唯一提交与判定门槛 |
 | [`../evidence/2026-08-02_b005_preflight.md`](../evidence/2026-08-02_b005_preflight.md) | B005 的 B004 父版本、单变量 replay-safe tail extension、哈希、预算样本、云端核验、唯一提交与判定门槛 |
+| [`../evidence/2026-08-03_b006_preflight.md`](../evidence/2026-08-03_b006_preflight.md) | B006 的 B005 父版本、单变量 latency threshold 调整、哈希、路由样本与预注册判定门槛 |
 | [`../scripts/preflight_submission.py`](../scripts/preflight_submission.py) | 接口、网络边界和摘要检查 |
 | [`../scripts/build_kaggle_notebook.py`](../scripts/build_kaggle_notebook.py) | 可复现私有 Notebook 构建 |
-| [`../tests`](../tests) | 76 项自动化回归测试 |
+| [`../tests`](../tests) | 80 项自动化回归测试 |
 
 目前最明确的竞赛成果是：B005 已把真实 Public Score 从 B004 的 `88.650` 提升到
 `91.930`，在本账号隐藏 rerun 中支持 replay-safe tail-extension 单变量假设。B002 以
@@ -238,11 +240,13 @@ guardrail；它只用于决定哪些改动值得消耗正式提交。
 固定榜单快照第 200 名参考线 `89.390`，但仍低于强竞争参考线 `100.000`；这只说明达到
 固定前 200 分数带，不等同于确认奖牌区。B005 submission `55185029` 于 2026-08-03
 03:24 UTC 首次观测到 `COMPLETE`，Public Score `91.930`，Private Score 为空。
+B006 已作为 B005 的单变量子候选完成本地预注册，但尚未创建 Kaggle Notebook 或正式
+competition submission。
 
 ## 7. 下一步
 
-1. 不重试 B005，不重复提交或重推相同候选。
-2. 以 B005 `91.930` 为直接对照，设计并预注册 B006；B006 必须结构不同、可证伪、单变量。
+1. 提交并推送 B006 预注册文档后，才允许构建唯一 B006 私有 Notebook。
+2. B006 正式提交前必须核验 manifest、云端 `attack.py` 哈希、安全 URL、运行日志、产物秘密扫描和 Kaggle 历史去重。
 3. B006 必须严格高于 `91.930` 才能替换当前最佳；`>=100.000` 记录为强竞争复现。
 4. B006 若空分、失败、超时或 `<=91.930`，按预注册拒绝且不重试。
 5. 为可获得的 trace 建立 source、transformation、sink 和 predicate 分类。
