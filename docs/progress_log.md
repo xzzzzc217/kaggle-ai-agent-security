@@ -1154,3 +1154,48 @@
 - 构建唯一 B006 私有 Notebook，核验 manifest、云端 `attack.py` 哈希、安全 URL、运行日志和
   产物秘密扫描。
 - 正式提交前再次查询 Kaggle 历史，确认不存在相同 B006 候选。
+
+## 2026-08-03：创建 B006 唯一 Kaggle submission，等待真实评分
+
+**事实**
+
+- B006 预注册文档先于正式提交在 commit `b896105` 提交并推送。
+- 使用 `scripts.build_kaggle_notebook` 构建私有 Notebook
+  `heralces/ai-agent-security-b006-threshold8` version 1，manifest 绑定的 Git commit 为
+  `b89610512eb08a3afbd14412e26b47a46b04508f`。
+- Kaggle Notebook v1 运行状态为 `COMPLETE`；下载的云端 `attack.py` SHA-256 与本地候选哈希
+  一致：
+  `7c9c7e41c019d030c034192926c9c916c7651fed913b83a3ed499801b9144128`。
+- 云端运行日志错误扫描为 `0`，下载产物秘密扫描为 `0`。
+- 正式提交前重新查询 Kaggle 历史，未发现 B006 相同候选；随后创建唯一 competition
+  submission `55203390`。
+- submission `55203390` 的创建时间为 2026-08-03 05:36:55.310 UTC；截至本记录最新 CLI 观测为
+  `SubmissionStatus.PENDING`，Public/Private Score 均为空。
+- 一次错误的本地 CSV 上传形式曾返回 HTTP 400；查询 submissions 确认它没有创建 B006
+  competition submission。唯一实际 B006 submission 是 `55203390`。
+
+**解释与限制**
+
+- Notebook `COMPLETE`、云端哈希一致和日志/秘密扫描通过只证明正式提交前的产物可追溯；
+  不代表 Kaggle 已完成隐藏 rerun。
+- `submission.csv` 内的 `0.0` 占位值不是 leaderboard score。
+- B006 出分前不能判断 threshold8 routing 是否优于 B005，也不能把它当作新基线。
+
+**证据**
+
+- [`../evidence/2026-08-03_b006_preflight.md`](../evidence/2026-08-03_b006_preflight.md)
+- [`../submissions/B006/submission-manifest.json`](../submissions/B006/submission-manifest.json)
+- [`../artifacts/kaggle/B006_v1/attack.py`](../artifacts/kaggle/B006_v1/attack.py)
+
+**决策**
+
+- 只监控 B006 submission `55203390`；不重复提交、不重推相同 Notebook。
+- B005 submission `55185029` 的 Public Score `91.930` 仍是当前真实最佳。
+- B006 未知期间不创建 B007；等待期间只做本地候选研究、公开参考审计和轨迹分析。
+
+**下一门槛**
+
+- 若 `55203390` 变为 `COMPLETE`，记录真实 Public Score、Private Score 的可见状态和首次观测
+  终态时间。
+- 按预注册：`>91.930` 才替换 B005；`>=100.000` 记为强竞争复现；空分、失败、超时或
+  `<=91.930` 则拒绝且不重试。
