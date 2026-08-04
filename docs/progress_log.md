@@ -1199,3 +1199,40 @@
   终态时间。
 - 按预注册：`>91.930` 才替换 B005；`>=100.000` 记为强竞争复现；空分、失败、超时或
   `<=91.930` 则拒绝且不重试。
+
+## 2026-08-04：B006 rerun 完成但低于 B005，按预注册拒绝
+
+**事实**
+
+- submission `55203390` 从 `SubmissionStatus.PENDING` 变为 `SubmissionStatus.COMPLETE`。
+- 2026-08-04 00:45 UTC 首次在本任务中观测到 B006 终态。
+- Kaggle CLI 显示 Public Score `80.535`；Private Score 仍为空。
+- 相对直接对照 B005 `91.930` 下降 `-11.395`。
+- 该分数也低于历史 B003 `81.585`，说明 threshold8 routing 不只是未提升，而是明显伤害了真实 rerun 表现。
+
+**解释与限制**
+
+- 结果证伪 B006 的单变量假设：把 9-12 秒中速行从 plain 单 post 路由到 frame / four-endpoint
+  分支，在本账号隐藏 rerun 中降低了有效得分。
+- 本地 fake-clock 审计只验证了路由形状和候选数不变，不能代表隐藏模型 compliance 或 guardrail
+  行为；本次真实分数说明中速行更可能应保留 plain 模板，或 frame 模板在该延迟段触发率更差。
+- Private Score 当前不可见；最终候选选择仍以可见 Public rerun 和机制低相关性作为阶段依据。
+
+**证据**
+
+- [`../evidence/2026-08-03_b006_preflight.md`](../evidence/2026-08-03_b006_preflight.md)
+- Kaggle submissions CLI：`55203390` `SubmissionStatus.COMPLETE`，Public Score `80.535`。
+
+**决策**
+
+- 按预注册拒绝 B006，不重试 B006，不重推相同 Notebook。
+- B005 submission `55185029` 的 Public Score `91.930` 继续保持当前真实最佳。
+- 下一候选 B007 必须以 B005 `91.930` 为直接对照，优先选择与 latency-threshold、tail-extension
+  和 slow-row multi-post 低相关的机制；任何正式 submission 前必须先完成预注册、提交和推送。
+
+**下一门槛**
+
+- 审计尚未可靠复现的公开高分路线与本地原创机制，固定 B007 的来源哈希、唯一行为变量、
+  接受/拒绝门槛和失败退出条件。
+- B007 的接受门槛必须严格高于 `91.930`；`>=100.000` 记为强竞争复现；空分、失败、超时或
+  `<=91.930` 拒绝且不重试。
