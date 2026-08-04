@@ -94,7 +94,8 @@
 - [x] 构建并云端核验 B006 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55203390`
 - [x] 完成 B006 rerun：Public Score `80.535`，低于 B005，按预注册拒绝且不重试
 - [x] 以 B005 `91.930` 为直接对照，实现并预注册 B007 fast-row direct-burst 单变量候选
-- [ ] 构建并云端核验 B007 私有 Notebook，确认历史去重后最多创建一次 competition submission
+- [x] 构建并云端核验 B007 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55229800`
+- [ ] 监控 B007 submission `55229800` 的真实 Public Score，并按预注册决定保留或拒绝
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

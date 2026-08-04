@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-08-04
-> 当前阶段：B007 fast-row direct-burst 已实现并预注册；尚未创建 Kaggle submission
+> 当前阶段：B007 fast-row direct-burst 已创建唯一 Kaggle submission，等待真实评分
 > 当前真实最佳 submission ref：`55185029`，Public Score `91.930`
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -186,7 +186,7 @@ evaluator 回放单独保留预算。
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | B007 已预注册 | B007 fast-row direct-burst 单变量候选；85 项测试；`*.invalid` 保留域适配；候选 SHA `269c8d2fcd2d431dc213309ef4c3c8e859fab1dc6ceb7811f9fd74ec002e0c5f`；[B007 证据](../evidence/2026-08-04_b007_preflight.md) | 构建并云端核验 B007，去重后最多创建一次正式 submission |
+| 本地搜索机制 | B007 已提交，等待评分 | B007 fast-row direct-burst 单变量候选；85 项测试；`*.invalid` 保留域适配；候选 SHA `269c8d2fcd2d431dc213309ef4c3c8e859fab1dc6ceb7811f9fd74ec002e0c5f`；Notebook v1 `COMPLETE`；唯一 submission `55229800` `PENDING`；[B007 证据](../evidence/2026-08-04_b007_preflight.md) | 只监控 B007，不重复提交；未知期间不创建 B008 |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3、B004 v1 与 B005 v1 均 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md)、[B005 证据](../evidence/2026-08-02_b005_preflight.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
@@ -198,7 +198,7 @@ evaluator 回放单独保留预算。
 | B004 slow-row multi-post | 完成，已被 B005 超过 | B003 子候选；`SLOW_MULTIPOST_N` 从 `1` 改为 `4`；源码 SHA `7e101927bc3f96f59d91d0b04aa5e17fb18de89e0667890c95b75dac26ba7db5`；Notebook `heralces/ai-agent-security-b004-slow-multipost` v1 `COMPLETE`；云端哈希一致；唯一 submission `55168834` 为 `COMPLETE`，Public Score `88.650`，Private Score 为空；[B004 证据](../evidence/2026-08-01_b004_preflight.md) | 保留为历史基线；未达到固定前 200 参考线 `89.390`；不重试 |
 | B005 replay-safe tail-extension | 完成，当前最佳 | B004 子候选；唯一行为变量为 `REPLAY_SAFE_FRAC` 从 `0.98` 改为 `0.99`；源码 SHA `9d86d633b50a72f7499f7ad6c4f81c03fb61887e12351da977f7cb64e413c67f`；Notebook `heralces/ai-agent-security-b005-tail99` v1 `COMPLETE`；云端哈希一致；唯一 submission `55185029` 为 `COMPLETE`，Public Score `91.930`，Private Score 为空；[B005 证据](../evidence/2026-08-02_b005_preflight.md) | 保留为新的真实参考基线；已达到固定前 200 参考线 `89.390`；未达到强竞争线 `100.000`；不重试 |
 | B006 replay-safe threshold8 | 完成，拒绝 | B005 子候选；唯一行为变量为 `SPLIT_THRESHOLD_S` 从 `12.0` 改为 `8.0`；源码 SHA `7c9c7e41c019d030c034192926c9c916c7651fed913b83a3ed499801b9144128`；source commit `59df333`；Notebook `heralces/ai-agent-security-b006-threshold8` v1 `COMPLETE`；云端哈希一致；唯一 submission `55203390` 为 `COMPLETE`，Public Score `80.535`，Private Score 为空；[B006 证据](../evidence/2026-08-03_b006_preflight.md) | 低于 B005 `91.930`，按预注册拒绝且不重试 |
-| B007 fast-row direct-burst | 已预注册，未提交 | B005 子候选；唯一行为变量为 post-classification fast/plain branch 的 `FAST_BURST_K` 从 `1` 改为 `2`；源码 SHA `269c8d2fcd2d431dc213309ef4c3c8e859fab1dc6ceb7811f9fd74ec002e0c5f`；source commit `22a5bad`；公开路线审计包含 `dimong4/ai-agent-security` Notebook SHA `009c481f5dfa50bca2aa2255cc727b41269b39733dbc3efdccb5789a873e50c3`，但 B007 保留 B005 的 `.invalid` 和 slow-frame 机制；[B007 证据](../evidence/2026-08-04_b007_preflight.md) | 直接对照 B005 `91.930`；`>91.930` 才替换，`>=100.000` 记为强竞争复现；不允许自动重试 |
+| B007 fast-row direct-burst | 已提交，等待评分 | B005 子候选；唯一行为变量为 post-classification fast/plain branch 的 `FAST_BURST_K` 从 `1` 改为 `2`；源码 SHA `269c8d2fcd2d431dc213309ef4c3c8e859fab1dc6ceb7811f9fd74ec002e0c5f`；source commit `22a5bad`；prereg commit `eaed697`；Notebook `heralces/ai-agent-security-b007-fastburst` v1 `COMPLETE`；云端哈希一致；唯一 submission `55229800` 当前 `PENDING`；[B007 证据](../evidence/2026-08-04_b007_preflight.md) | 直接对照 B005 `91.930`；`>91.930` 才替换，`>=100.000` 记为强竞争复现；不允许自动重试 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -244,16 +244,17 @@ guardrail；它只用于决定哪些改动值得消耗正式提交。
 03:24 UTC 首次观测到 `COMPLETE`，Public Score `91.930`，Private Score 为空。
 B006 唯一 Kaggle submission `55203390` 于 2026-08-04 00:45 UTC 首次观测到
 `COMPLETE`，Public Score `80.535`，Private Score 为空；按预注册低于 B005，已拒绝且不重试。
-B007 已在本地实现并预注册：它不改变 B005 的 replay tail、latency threshold 或 slow-row
-four-endpoint frame plan，只在 post-classification fast/plain 分支使用二连 direct `http.post`。
-截至本文件更新，尚未创建 B007 Kaggle Notebook 或 competition submission。
+B007 已在本地实现、预注册、构建为私有 Notebook v1 并完成云端哈希核验。它不改变 B005 的
+replay tail、latency threshold 或 slow-row four-endpoint frame plan，只在
+post-classification fast/plain 分支使用二连 direct `http.post`。唯一 B007 competition
+submission 为 `55229800`，创建时间 2026-08-04 04:58:47.290 UTC；当前状态为
+`SubmissionStatus.PENDING`，Public/Private Score 均为空。
 
 ## 7. 下一步
 
 1. 不重试 B006，不重推相同 Notebook。
-2. 提交并推送 B007 预注册文档后，构建唯一 B007 私有 Notebook，核验 manifest、云端 `attack.py`
-   SHA、安全 URL、运行日志和产物秘密扫描。
-3. 正式提交前再次查询 Kaggle 历史，确认不存在相同 B007 候选；随后最多创建一次 B007 competition submission。
+2. 只监控 B007 submission `55229800`；不重复提交、不重推相同 Notebook。
+3. B007 未知期间不创建 B008；只做本地候选研究、公开参考审计和轨迹分析。
 4. B007 必须严格高于 `91.930` 才能替换当前最佳；`>=100.000` 记录为强竞争复现。
 5. 为可获得的 trace 建立 source、transformation、sink 和 predicate 分类。
 6. 绘制分数、机制覆盖、有效候选数和运行时间的消融曲线。
