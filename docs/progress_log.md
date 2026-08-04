@@ -1236,3 +1236,50 @@
   接受/拒绝门槛和失败退出条件。
 - B007 的接受门槛必须严格高于 `91.930`；`>=100.000` 记为强竞争复现；空分、失败、超时或
   `<=91.930` 拒绝且不重试。
+
+## 2026-08-04：实现并预注册 B007 fast-row direct-burst 候选
+
+**事实**
+
+- 当前真实直接对照仍为 B005 submission `55185029`，Public Score `91.930`，Private Score 为空。
+- B006 submission `55203390` 已按预注册拒绝，Public Score `80.535`，不得重试。
+- 公开路线审计查询了当前公开 notebooks，并拉取 `dimong4/ai-agent-security`；该公开 notebook 的
+  SHA-256 固定为
+  `009c481f5dfa50bca2aa2255cc727b41269b39733dbc3efdccb5789a873e50c3`。
+- B007 源码位于 `baselines/replaysafe_fastburst_v1/attack.py`，source commit `22a5bad`，
+  SHA-256 为
+  `269c8d2fcd2d431dc213309ef4c3c8e859fab1dc6ceb7811f9fd74ec002e0c5f`。
+- 唯一行为变量是 post-classification fast/plain branch 的 `FAST_BURST_K` 从 `1` 改为 `2`。
+  B005 的 `SPLIT_THRESHOLD_S=12.0`、`REPLAY_SAFE_FRAC=0.99`、`SLOW_MULTIPOST_N=4`、
+  probe hops、保留域和 replay-cost 系数保持不变。
+- B007 目标测试 3 项通过；全量测试 85 项通过；preflight、SDK 3.1.2 validate、Ruff、
+  `git diff --check` 和新文件秘密扫描均通过。
+
+**解释与限制**
+
+- B007 是 fast/plain 行机制测试，不继续调整 B006 失败的 latency threshold，也不继续盲调 tail 或
+  slow-row post count。
+- 本地 9000 秒 fake-clock 审计只能证明路由形状：5-12 秒 fast/plain 行在首 8 个分类候选后使用
+  二连 direct `http.post`；13 秒及以上 slow/frame 行保持 B005 的四端点 forge 形状。
+- 公开 `dimong4/ai-agent-security` 仅作为 direct-burst 机制线索；B007 没有照搬其 `.co` URL 或全局
+  `BURST_K=2` 配置，而是保留项目安全边界的唯一 `*.invalid` 目标域。
+- 本地 fixture 不能预测隐藏模型是否会稳定执行两个 direct posts，也不能预测真实 Public Score。
+
+**证据**
+
+- [`../evidence/2026-08-04_b007_preflight.md`](../evidence/2026-08-04_b007_preflight.md)
+- [`../baselines/replaysafe_fastburst_v1/attack.py`](../baselines/replaysafe_fastburst_v1/attack.py)
+- [`../tests/test_replaysafe_fastburst.py`](../tests/test_replaysafe_fastburst.py)
+
+**决策**
+
+- 预注册 B007；必须先提交并推送本预注册文档，再允许构建唯一 B007 私有 Notebook。
+- B007 的直接判定门槛固定为：Public Score `>91.930` 才替换 B005；`>=100.000` 记为强竞争复现；
+  `<=91.930`、空分、失败或超时均拒绝且不重试。
+
+**下一门槛**
+
+- 构建 B007 私有 Notebook 前再次检查历史去重、候选哈希、manifest、动态样本契约、安全 URL、
+  SDK validate、本地测试和秘密扫描。
+- 云端 Notebook `COMPLETE` 后必须核验云端 `attack.py` SHA 与本地一致、日志错误扫描 0、
+  产物秘密扫描 0；随后最多创建一次 B007 competition submission。
