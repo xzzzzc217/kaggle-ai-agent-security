@@ -97,7 +97,8 @@
 - [x] 构建并云端核验 B007 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55229800`
 - [x] 完成 B007 rerun：Public Score `76.905`，低于 B005，按预注册拒绝且不重试
 - [x] 以 B005 `91.930` 为直接对照，实现 B008 replay-safe classify5 单变量候选
-- [ ] 预注册 B008 并在全部提交前检查通过后最多创建一次正式 submission
+- [x] 预注册、构建并云端核验 B008 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55266445`
+- [ ] 监控 B008 submission `55266445` 的真实 Public Score，并按预注册决定保留或拒绝
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note
