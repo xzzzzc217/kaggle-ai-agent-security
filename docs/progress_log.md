@@ -1364,3 +1364,48 @@
   接受/拒绝门槛和失败退出条件。
 - B008 的接受门槛必须严格高于 `91.930`；`>=100.000` 记为强竞争复现；空分、失败、超时或
   `<=91.930` 拒绝且不重试。
+
+## 2026-08-05：实现并预注册 B008 replay-safe classify5 候选
+
+**事实**
+
+- 当前真实直接对照仍为 B005 submission `55185029`，Public Score `91.930`，Private Score 为空。
+- B006 submission `55203390` 与 B007 submission `55229800` 均已按预注册拒绝且不得重试。
+- 公开路线审计拉取了当前高票/高分公开 notebooks；B008 采用的机制线索来自
+  `kaiwalyaatulraut/ai-agent-security-competition-solution`，Notebook SHA-256 为
+  `0bf4faaf5b72b4ca58e8661909bbb4fb99005604701340154667fa78ec821ce9`。
+- B008 源码位于 `baselines/replaysafe_classify5_v1/attack.py`，source commit `4b1ce2b`，
+  SHA-256 为
+  `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`。
+- 唯一行为变量是 `SPLIT_CLASSIFY_N` 从 `8` 改为 `5`。B005 的 `SPLIT_THRESHOLD_S=12.0`、
+  `REPLAY_SAFE_FRAC=0.99`、`SLOW_MULTIPOST_N=4`、`BURST_K=1`、probe hops、保留域和
+  replay-cost 系数保持不变。
+- B008 目标测试 3 项通过；全量测试 90 项通过；preflight、SDK 3.1.2 validate、Ruff、
+  `git diff --check` 和新文件秘密扫描均通过。
+
+**解释与限制**
+
+- B008 不重复 B006 的 threshold routing，也不重复 B007 的 fast/plain direct-burst；它只减少
+  慢行进入 B005 four-endpoint frame plan 之前的 plain classification 开销。
+- 本地 9000 秒 fake-clock 审计显示 5/8/9/12 秒 fast/plain 行完全不变；13 秒和 20 秒 slow/frame
+  行候选总数不变，但各多 3 个 four-endpoint forge 候选。
+- 该改动的预期收益较窄；真实分数可能被隐藏 fixture mix、模型合规率或 leaderboard 方差淹没。
+
+**证据**
+
+- [`../evidence/2026-08-05_b008_preflight.md`](../evidence/2026-08-05_b008_preflight.md)
+- [`../baselines/replaysafe_classify5_v1/attack.py`](../baselines/replaysafe_classify5_v1/attack.py)
+- [`../tests/test_replaysafe_classify5.py`](../tests/test_replaysafe_classify5.py)
+
+**决策**
+
+- 预注册 B008；必须先提交并推送本预注册文档，再允许构建唯一 B008 私有 Notebook。
+- B008 的直接判定门槛固定为：Public Score `>91.930` 才替换 B005；`>=100.000` 记为强竞争复现；
+  `<=91.930`、空分、失败或超时均拒绝且不重试。
+
+**下一门槛**
+
+- 构建 B008 私有 Notebook 前再次检查历史去重、候选哈希、manifest、动态样本契约、安全 URL、
+  SDK validate、本地测试和秘密扫描。
+- 云端 Notebook `COMPLETE` 后必须核验云端 `attack.py` SHA 与本地一致、日志错误扫描 0、
+  产物秘密扫描 0；随后最多创建一次 B008 competition submission。
