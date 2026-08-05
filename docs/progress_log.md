@@ -1326,3 +1326,41 @@
   终态时间。
 - 按预注册：`>91.930` 才替换 B005；`>=100.000` 记为强竞争复现；空分、失败、超时或
   `<=91.930` 则拒绝且不重试。
+
+## 2026-08-05：B007 rerun 完成但低于 B005，按预注册拒绝
+
+**事实**
+
+- submission `55229800` 从 `SubmissionStatus.PENDING` 变为 `SubmissionStatus.COMPLETE`。
+- 2026-08-05 07:48 UTC 首次在本任务中观测到 B007 终态。
+- Kaggle CLI 显示 Public Score `76.905`；Private Score 仍为空。
+- 相对直接对照 B005 `91.930` 下降 `-15.025`。
+- 该分数低于 B006 `80.535` 和 B003 `81.585`，说明 fast/plain direct-burst 在本账号隐藏
+  rerun 中明显伤害真实表现。
+
+**解释与限制**
+
+- B007 证伪了本次单变量假设：把 post-classification fast/plain branch 从单次 direct post
+  改为二连 direct post 没有提升 Public Score，反而显著降低。
+- 本地 fake-clock 审计只验证了 fast/plain burst2 与 slow/frame forge4 的路由形状；真实分数
+  表明二连 direct prompt 可能降低执行合规率、有效 sink 命中率，或该 fast/plain 分支并非当前瓶颈。
+- Private Score 当前不可见；阶段决策仍按预注册只使用可见 Public rerun 与可靠性状态。
+
+**证据**
+
+- [`../evidence/2026-08-04_b007_preflight.md`](../evidence/2026-08-04_b007_preflight.md)
+- Kaggle submissions CLI：`55229800` `SubmissionStatus.COMPLETE`，Public Score `76.905`。
+
+**决策**
+
+- 按预注册拒绝 B007，不重试 B007，不重推相同 Notebook。
+- B005 submission `55185029` 的 Public Score `91.930` 继续保持当前真实最佳。
+- 下一正式候选 B008 必须以 B005 `91.930` 为直接对照，并优先选择与 fastburst、threshold、
+  tail-extension 和 slow-row multipost 低相关的机制。
+
+**下一门槛**
+
+- 审计尚未可靠复现的公开高分路线与本地原创机制，固定 B008 的来源哈希、唯一行为变量、
+  接受/拒绝门槛和失败退出条件。
+- B008 的接受门槛必须严格高于 `91.930`；`>=100.000` 记为强竞争复现；空分、失败、超时或
+  `<=91.930` 拒绝且不重试。
