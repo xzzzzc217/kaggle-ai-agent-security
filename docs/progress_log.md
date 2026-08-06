@@ -1535,3 +1535,46 @@
   SDK validate、本地测试和秘密扫描。
 - 云端 Notebook `COMPLETE` 后必须核验云端 `attack.py` SHA 与本地一致、日志错误扫描 0、
   产物秘密扫描 0；随后最多创建一次 B009 competition submission。
+
+## 2026-08-06：创建 B009 唯一 Kaggle submission，等待真实评分
+
+**事实**
+
+- B009 预注册文档已在 commit `b84827b` 提交并推送。
+- 使用 `scripts.build_kaggle_notebook` 构建私有 Notebook
+  `heralces/ai-agent-security-b009-probe4` version 1；manifest 绑定的 Git commit 为
+  `b84827b6e4cfc13553be933ee48706cbee619130`。
+- Kaggle Notebook v1 状态为 `COMPLETE`；下载的云端 `attack.py` SHA-256 与本地候选一致：
+  `5fec8ee21232e8448d7cb17822b6e393ce33891ad20326c3eeb00b26581e63ff`。
+- 云端运行日志错误扫描为 `0`；下载产物与 Notebook bundle 的秘密扫描为 `0`。
+- 正式提交前再次查询 Kaggle 历史，未发现 B009 或 attack hash prefix `5fec8ee2` 的既有
+  competition submission。
+- 随后使用 Notebook output binding 创建唯一 B009 competition submission `55299759`。
+- submission `55299759` 创建时间为 2026-08-06 13:42:57.073 UTC；截至本记录最新 CLI/API 观测为
+  `SubmissionStatus.PENDING`，Public/Private Score 均为空。
+
+**解释与限制**
+
+- Notebook `COMPLETE`、manifest 绑定、云端哈希一致和日志/秘密扫描通过只证明 B009 正式提交前的
+  产物可追溯；不代表隐藏 rerun 已完成评分。
+- `submission.csv` 中的 `0.0` 仍只是 Code Competition 普通运行占位值，不是 leaderboard score。
+- B009 出分前不能判断 probe4 是否优于 B008，也不能把 B009 当作新基线。
+
+**证据**
+
+- [`../evidence/2026-08-06_b009_preflight.md`](../evidence/2026-08-06_b009_preflight.md)
+- [`../submissions/B009/submission-manifest.json`](../submissions/B009/submission-manifest.json)
+- [`../artifacts/kaggle/B009_v1/attack.py`](../artifacts/kaggle/B009_v1/attack.py)
+
+**决策**
+
+- 只监控 B009 submission `55299759`；不重复提交、不重推相同 Notebook。
+- B008 submission `55266445` 的 Public Score `92.165` 仍是当前真实最佳。
+- B009 未知期间不创建 B010；等待期间只做本地候选研究、公开参考审计和轨迹分析。
+
+**下一门槛**
+
+- 若 `55299759` 变为 `COMPLETE`，记录真实 Public Score、Private Score 的可见状态和首次观测
+  终态时间。
+- 按预注册：`>92.165` 才替换 B008；`>=100.000` 记为强竞争复现；空分、失败、超时或
+  `<=92.165` 则拒绝且不重试。
