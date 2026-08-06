@@ -1491,3 +1491,47 @@
   `SPLIT_CLASSIFY_N`。
 - 接受门槛固定为 Public Score `>92.165`；`>=100.000` 记为强竞争复现；空分、失败、超时或
   `<=92.165` 拒绝且不重试。
+
+## 2026-08-06：实现并预注册 B009 replay-safe probe4 候选
+
+**事实**
+
+- 当前真实直接对照为 B008 submission `55266445`，Public Score `92.165`，Private Score 为空。
+- B009 源码位于 `baselines/replaysafe_probe4_v1/attack.py`，source commit `727ad45`，SHA-256 为
+  `5fec8ee21232e8448d7cb17822b6e393ce33891ad20326c3eeb00b26581e63ff`。
+- 唯一行为变量是 live validation 的 `PROBE_HOPS` 从 `0` 改为 `4`。B008 的
+  `SPLIT_CLASSIFY_N=5`、`SPLIT_THRESHOLD_S=12.0`、`REPLAY_SAFE_FRAC=0.99`、
+  `SLOW_MULTIPOST_N=4`、`BURST_K=1`、保留域和 replay-cost 系数保持不变。
+- 公开路线审计拉取了 Foysal V15、Nikita 0011、tetsutani uniform recovery、haodou conservative
+  replay-safe sizing 和 nctuan slow-multipost；B009 只采用 probe-hop 线索，不照搬 unsafe `.co`
+  或多模板路线。
+- B009 目标测试 3 项通过；全量测试 95 项通过；preflight、SDK 3.1.2 validate、Ruff、
+  `git diff --check` 和秘密扫描均通过。
+
+**解释与限制**
+
+- B009 不改变候选消息、URL、安全域、slow-row four-endpoint frame plan 或 replay-safe tail；
+  它只把 live fill 的 validation hop cap 降到 4。
+- 本地常量时延 fake-clock 审计显示 B009 与 B008 返回候选数和候选消息形状完全一致，仅
+  `max_tool_hops` 从 8 变为 4。
+- 该本地审计不能证明隐藏 rerun 会变快；如果隐藏 env 在 4 次 tool call 后没有额外 wrap-up 成本，
+  B009 可能中性。
+
+**证据**
+
+- [`../evidence/2026-08-06_b009_preflight.md`](../evidence/2026-08-06_b009_preflight.md)
+- [`../baselines/replaysafe_probe4_v1/attack.py`](../baselines/replaysafe_probe4_v1/attack.py)
+- [`../tests/test_replaysafe_probe4.py`](../tests/test_replaysafe_probe4.py)
+
+**决策**
+
+- 预注册 B009；必须先提交并推送本预注册文档，再允许构建唯一 B009 私有 Notebook。
+- B009 的直接判定门槛固定为：Public Score `>92.165` 才替换 B008；`>=100.000` 记为强竞争复现；
+  `<=92.165`、空分、失败或超时均拒绝且不重试。
+
+**下一门槛**
+
+- 构建 B009 私有 Notebook 前再次检查历史去重、候选哈希、manifest、动态样本契约、安全 URL、
+  SDK validate、本地测试和秘密扫描。
+- 云端 Notebook `COMPLETE` 后必须核验云端 `attack.py` SHA 与本地一致、日志错误扫描 0、
+  产物秘密扫描 0；随后最多创建一次 B009 competition submission。
