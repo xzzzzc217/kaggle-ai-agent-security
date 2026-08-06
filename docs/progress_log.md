@@ -1452,3 +1452,42 @@
   终态时间。
 - 按预注册：`>91.930` 才替换 B005；`>=100.000` 记为强竞争复现；空分、失败、超时或
   `<=91.930` 则拒绝且不重试。
+
+## 2026-08-06：B008 rerun 完成并小幅刷新当前真实最佳
+
+**事实**
+
+- submission `55266445` 从 `SubmissionStatus.PENDING` 变为 `SubmissionStatus.COMPLETE`。
+- 2026-08-06 11:27 UTC 首次在本任务中观测到 B008 终态。
+- Kaggle CLI 显示 Public Score `92.165`；Private Score 仍为空。
+- Kaggle API 对同一 ref 的 Public/Private 字段仍为空，`errorDescription` 为空；以 CLI 可见 Public Score
+  作为本次真实 public 记录。
+- 相对直接对照 B005 `91.930` 提升 `+0.235`。
+
+**解释与限制**
+
+- 结果支持 B008 的单变量假设：对已超过 12 秒阈值的慢行，把 `SPLIT_CLASSIFY_N` 从 `8` 降到
+  `5`，在本账号隐藏 rerun 中略微提高了 Public Score。
+- 提升幅度较小，说明 classify5 只是局部改善，并未突破强竞争参考线。
+- B008 继续高于固定的 2026-07-30 top-200 参考线 `89.390`，但实时排名和奖牌边界会漂移；
+  未重新核验实时 leaderboard 前不能声称进入奖牌区。
+
+**证据**
+
+- [`../evidence/2026-08-05_b008_preflight.md`](../evidence/2026-08-05_b008_preflight.md)
+- [`../submissions/B008/submission-manifest.json`](../submissions/B008/submission-manifest.json)
+- [`../artifacts/kaggle/B008_v1/attack.py`](../artifacts/kaggle/B008_v1/attack.py)
+
+**决策**
+
+- 按预注册接受 B008，替换 B005 成为新的真实参考基线。
+- 当前真实最佳为 B008 submission `55266445`，Public Score `92.165`，Private Score 为空。
+- 不重试 B008，不重推相同 Notebook。
+
+**下一门槛**
+
+- B009 必须以 B008 `92.165` 为直接对照。
+- B009 需要机制低相关、可证伪、单变量；避免重复 B006 threshold8、B007 fastburst 或只盲调
+  `SPLIT_CLASSIFY_N`。
+- 接受门槛固定为 Public Score `>92.165`；`>=100.000` 记为强竞争复现；空分、失败、超时或
+  `<=92.165` 拒绝且不重试。
