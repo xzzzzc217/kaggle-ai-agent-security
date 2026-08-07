@@ -20,6 +20,7 @@
 - [`evidence/2026-08-04_b007_preflight.md`](evidence/2026-08-04_b007_preflight.md)：B007 fast-row direct-burst 单变量候选的公开路线审计、安全适配与预注册
 - [`evidence/2026-08-05_b008_preflight.md`](evidence/2026-08-05_b008_preflight.md)：B008 replay-safe classify5 单变量候选的公开路线审计、安全适配与终态判定
 - [`evidence/2026-08-06_b009_preflight.md`](evidence/2026-08-06_b009_preflight.md)：B009 replay-safe probe4 单变量候选的公开路线审计、安全适配、预注册、提交监控与终态判定
+- [`evidence/2026-08-07_b010_preflight.md`](evidence/2026-08-07_b010_preflight.md)：B010 slow-commentary 单变量候选的公开路线审计、安全适配与预注册
 - [`docs/safety.md`](docs/safety.md)：研究授权边界与工程控制
 
 ## 当前主赛
@@ -104,7 +105,8 @@
 - [x] 以 B008 `92.165` 为直接对照，实现 B009 replay-safe probe4 单变量候选
 - [x] 预注册、构建并云端核验 B009 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55299759`
 - [x] B009 rerun 以 `ERROR` 终态结束且无 Public Score，按预注册作为可靠性失败拒绝且不重试
-- [ ] 以 B008 `92.165` 为直接对照，审计并预注册机制低相关 B010
+- [x] 以 B008 `92.165` 为直接对照，审计并预注册 B010 slow-commentary 单变量候选
+- [ ] 构建并云端核验 B010 私有 Notebook v1，确认历史去重后最多创建一次 competition submission
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

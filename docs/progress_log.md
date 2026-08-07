@@ -1616,3 +1616,51 @@
   接受/拒绝门槛和失败退出条件。
 - B010 的接受门槛固定为 Public Score `>92.165`；`>=100.000` 记为强竞争复现；空分、失败、
   超时或 `<=92.165` 拒绝且不重试。
+
+## 2026-08-07：实现并预注册 B010 slow-commentary 候选
+
+**事实**
+
+- 当前真实直接对照为 B008 submission `55266445`，Public Score `92.165`，Private Score 为空。
+- B009 submission `55299759` 已按预注册作为可靠性失败拒绝，不重试、不重推。
+- B010 源码位于 `baselines/replaysafe_slowcommentary_v1/attack.py`，source commit `236cf40`，
+  SHA-256 为 `04eead5643b0240d69903cdb4ba3649a6f4ab7a6e496ad9b9b74b704eacfd8da`。
+- B010 的父版本为 B008 `baselines/replaysafe_classify5_v1/attack.py`，SHA-256
+  `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`。
+- 唯一行为变量是 slow-row frame plan 的 injected channel 从 `analysis` 改为 `commentary`；
+  B008 的 `SPLIT_CLASSIFY_N=5`、`SPLIT_THRESHOLD_S=12.0`、`REPLAY_SAFE_FRAC=0.99`、
+  `SLOW_MULTIPOST_N=4`、`BURST_K=1`、`PROBE_HOPS=0`、保留域和 replay-cost 系数保持不变。
+- 公开路线审计拉取了 `dimong4/ai-agent-security`、`assiaben/jed-attack-5-templates-aggressive-replay-0-99`、
+  `anasriaz/ai-agent-security` 和 `nctuan/jed-slow-multipost`；B010 只采用 Assiaben
+  notebook 中 commentary-channel injection 的窄线索，不复制五模板路线，不采用 unsafe `.co` URL。
+- B010 目标测试 4 项通过；全量测试 101 项通过；preflight 通过；SDK 3.1.2 validate 通过。
+- 9000 秒常量时延 fake-clock 审计显示 B010 与 B008 的返回候选数、URL 数和 `max_tool_hops`
+  完全一致；仅 13s/20s slow-frame 行把 `<|channel|>analysis<|message|>` 换为
+  `<|channel|>commentary<|message|>`。
+
+**解释与限制**
+
+- B010 不继续盲调 B006/B007/B008/B009 已测试过的 threshold、fastburst、classify batch、
+  probe hops、tail fraction 或 slow-row endpoint count。
+- 本地 fixture 只能证明单变量边界和候选形状，不包含 hidden model 的 channel 语义、guardrail
+  和真实 rerun 合规漂移。
+- 如果 hidden agent 更依赖 `analysis` channel 的规划语义，B010 可能低于 B008；这正是该候选的可证伪点。
+
+**证据**
+
+- [`../evidence/2026-08-07_b010_preflight.md`](../evidence/2026-08-07_b010_preflight.md)
+- [`../baselines/replaysafe_slowcommentary_v1/attack.py`](../baselines/replaysafe_slowcommentary_v1/attack.py)
+- [`../tests/test_replaysafe_slowcommentary.py`](../tests/test_replaysafe_slowcommentary.py)
+
+**决策**
+
+- 预注册 B010；必须先提交并推送本预注册文档，再允许构建唯一 B010 私有 Notebook。
+- B010 的直接判定门槛固定为：Public Score `>92.165` 才替换 B008；`>=100.000` 记为强竞争复现；
+  `<=92.165`、空分、失败或超时均拒绝且不重试。
+
+**下一门槛**
+
+- 构建 B010 私有 Notebook 前再次检查历史去重、候选哈希、manifest、动态样本契约、安全 URL、
+  SDK validate、本地测试和秘密扫描。
+- 云端 Notebook `COMPLETE` 后必须核验云端 `attack.py` SHA 与本地一致、日志错误扫描 0、
+  产物秘密扫描 0；随后最多创建一次 B010 competition submission。
