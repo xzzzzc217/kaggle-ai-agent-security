@@ -1664,3 +1664,46 @@
   SDK validate、本地测试和秘密扫描。
 - 云端 Notebook `COMPLETE` 后必须核验云端 `attack.py` SHA 与本地一致、日志错误扫描 0、
   产物秘密扫描 0；随后最多创建一次 B010 competition submission。
+
+## 2026-08-07：创建 B010 唯一 Kaggle submission，等待真实评分
+
+**事实**
+
+- B010 预注册文档已在 commit `e91bf35` 提交并推送。
+- 使用 `scripts.build_kaggle_notebook` 构建私有 Notebook
+  `heralces/ai-agent-security-b010-slow-commentary` version 1；manifest 绑定的 Git commit 为
+  `e91bf3583adebb7c24b4d1698336f456f0b477fa`。
+- Kaggle Notebook v1 状态为 `COMPLETE`；下载的云端 `attack.py` SHA-256 与本地候选一致：
+  `04eead5643b0240d69903cdb4ba3649a6f4ab7a6e496ad9b9b74b704eacfd8da`。
+- 云端运行日志错误扫描为 `0`；下载产物秘密扫描为 `0`。
+- 正式提交前再次查询 Kaggle 历史，未发现 B010 或 attack hash prefix `04eead56` 的既有
+  competition submission。
+- 随后使用 Notebook output binding 创建唯一 B010 competition submission `55327331`。
+- submission `55327331` 创建时间为 2026-08-07 14:48:07.930 UTC；截至本记录最新 CLI/API 观测为
+  `SubmissionStatus.PENDING`，Public/Private Score 均为空。
+
+**解释与限制**
+
+- Notebook `COMPLETE`、manifest 绑定、云端哈希一致和日志/秘密扫描通过只证明 B010 正式提交前的
+  工程可靠性，不代表真实评分已提升。
+- B010 出分前不能判断 slow-commentary 是否优于 B008，也不能把 B010 当作新基线。
+- B010 是本候选的唯一正式 competition submission；不得重复提交或重推相同 Notebook。
+
+**证据**
+
+- [`../evidence/2026-08-07_b010_preflight.md`](../evidence/2026-08-07_b010_preflight.md)
+- [`../submissions/B010/submission-manifest.json`](../submissions/B010/submission-manifest.json)
+- [`../artifacts/kaggle/B010_v1/attack.py`](../artifacts/kaggle/B010_v1/attack.py)
+
+**决策**
+
+- 只监控 B010 submission `55327331`；不重复提交、不重推相同 Notebook。
+- B008 submission `55266445` 的 Public Score `92.165` 仍是当前真实最佳。
+- B010 未知期间不创建 B011；等待期间只做本地候选研究、公开参考审计和轨迹分析。
+
+**下一门槛**
+
+- 若 `55327331` 变为 `COMPLETE`，记录真实 Public Score、Private Score 的可见状态和首次观测
+  终态时间。
+- 按预注册：`>92.165` 才替换 B008；`>=100.000` 记为强竞争复现；空分、失败、超时或
+  `<=92.165` 则拒绝且不重试。
