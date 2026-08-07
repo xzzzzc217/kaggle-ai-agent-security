@@ -1578,3 +1578,41 @@
   终态时间。
 - 按预注册：`>92.165` 才替换 B008；`>=100.000` 记为强竞争复现；空分、失败、超时或
   `<=92.165` 则拒绝且不重试。
+
+## 2026-08-07：B009 rerun 以系统错误终态结束，按预注册拒绝
+
+**事实**
+
+- submission `55299759` 从 `SubmissionStatus.PENDING` 变为 `SubmissionStatus.ERROR`。
+- 2026-08-07 07:30 UTC 首次在本任务中观测到 B009 终态。
+- Kaggle CLI 的 Public/Private Score 均为空。
+- Kaggle API 对同一 ref 的 `_public_score` / `_private_score` 均为 `None`，错误描述为：
+  `A system error. Please try resubmitting to resolve the error and contact Kaggle Support if it persists.`
+- 当前真实最佳仍为 B008 submission `55266445`，Public Score `92.165`，Private Score 为空。
+
+**解释与限制**
+
+- 该结果不能判定 probe4 的算法分数，只能判定 B009 本次正式 rerun 未产生可比较 Public Score。
+- 虽然 Kaggle 错误信息建议 resubmitting，但本项目对每个候选最多正式提交一次；B009 的
+  `ERROR` 终态按预注册作为可靠性失败处理。
+- B009 不作为新基线，且不得重试或重推相同 Notebook。
+
+**证据**
+
+- [`../evidence/2026-08-06_b009_preflight.md`](../evidence/2026-08-06_b009_preflight.md)
+- [`../submissions/B009/submission-manifest.json`](../submissions/B009/submission-manifest.json)
+- [`../artifacts/kaggle/B009_v1/attack.py`](../artifacts/kaggle/B009_v1/attack.py)
+
+**决策**
+
+- 按预注册拒绝 B009，不重试 B009，不重推相同 Notebook。
+- B008 submission `55266445` 的 Public Score `92.165` 继续保持当前真实最佳。
+- 下一正式候选 B010 必须以 B008 `92.165` 为直接对照，并与 probe4、classify5、fastburst、
+  threshold8、tail-extension 和 slow-row multipost 保持机制低相关。
+
+**下一门槛**
+
+- 审计尚未可靠复现的公开高分路线与本地原创机制，固定 B010 的来源哈希、唯一行为变量、
+  接受/拒绝门槛和失败退出条件。
+- B010 的接受门槛固定为 Public Score `>92.165`；`>=100.000` 记为强竞争复现；空分、失败、
+  超时或 `<=92.165` 拒绝且不重试。
