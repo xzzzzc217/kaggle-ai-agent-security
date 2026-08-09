@@ -1748,3 +1748,38 @@
   接受/拒绝门槛和失败退出条件。
 - B011 的接受门槛固定为 Public Score `>92.165`；`>=100.000` 记为强竞争复现；空分、失败、
   超时或 `<=92.165` 拒绝且不重试。
+
+## 2026-08-09：B011 首轮公开路线与本地机制筛查，暂不预注册
+
+**事实**
+
+- 当前真实最佳仍为 B008 submission `55266445`，Public Score `92.165`，Private Score 为空。
+- 最新 Kaggle submissions 查询仍显示 B010 submission `55327331` 是最近一次正式提交，Public Score
+  `52.330`，低于 B008；未发现 B011 competition submission。
+- 只读拉取并审计了 Foysal V15、Anvith Pilk、tetsutani adaptive uniform、Canqiang、Nikita
+  0011 和 PengWang fill-v26 等公开 Notebook，固定了 notebook/code SHA。
+- 本地筛查了 replay 预算倍率和 slowest-row 预测余量两条小机制：`REPLAY_BUDGET_MULT` 提升在样本中
+  不增加候选数；`SLOWEST_MULT` 从 `1.35` 收紧到 `1.15`/`1.05` 只在多数常量时延样本中增加约一个候选。
+
+**解释与限制**
+
+- 公开 adaptive template-bank 路线机制上与 B008 不同，但若直接采用会替换整套 prompt-selection
+  机制，不满足当前 B011 的单变量边界。
+- Foysal 的 frame-template override 与 B010 刚被证伪的 channel/prompt-token 方向相关，缺少足够证据继续消耗
+  正式提交额度。
+- `SLOWEST_MULT` 收紧是可审计的单变量想法，但本地增量过小，暂不值得用一次正式 Kaggle rerun 验证。
+
+**证据**
+
+- [`../evidence/2026-08-09_b011_public_audit.md`](../evidence/2026-08-09_b011_public_audit.md)
+
+**决策**
+
+- 本轮不预注册 B011，不构建 Notebook，不创建 competition submission。
+- B008 submission `55266445` 的 Public Score `92.165` 继续保持当前真实最佳。
+
+**下一门槛**
+
+- 继续寻找机制低相关且单变量边界更强的 B011 候选。
+- B011 预注册仍必须先固定来源/父版本哈希、候选源码 SHA、直接比较 B008 `92.165`、单一假设、
+  接受/拒绝门槛和失败退出条件。
