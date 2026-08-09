@@ -1707,3 +1707,44 @@
   终态时间。
 - 按预注册：`>92.165` 才替换 B008；`>=100.000` 记为强竞争复现；空分、失败、超时或
   `<=92.165` 则拒绝且不重试。
+
+## 2026-08-09：B010 rerun 完成但明显低于 B008，按预注册拒绝
+
+**事实**
+
+- submission `55327331` 从 `SubmissionStatus.PENDING` 变为 `SubmissionStatus.COMPLETE`。
+- 2026-08-09 05:10 UTC 首次在本任务中观测到 B010 终态。
+- Kaggle CLI 显示 Public Score `52.330`；Private Score 仍为空。
+- Kaggle API 对同一 ref 返回 `status=SubmissionStatus.COMPLETE`、`_public_score='52.330'`、
+  `_private_score=None`、`errorDescription=None`。
+- 当前真实最佳仍为 B008 submission `55266445`，Public Score `92.165`，Private Score 为空。
+- 同一次最新 submissions/API 查询中，若干历史有分 submission 的 status 字段显示为
+  `SubmissionStatus.ERROR`，但仍保留 `_public_score` 且无 `errorDescription`；这被视为 Kaggle/API
+  表示漂移，不改变先前已记录的 score-bearing 结果与当前最佳判断。
+
+**解释与限制**
+
+- `52.330` 直接证伪 B010 的 slow-commentary 假设：把 slow-row frame channel 从 `analysis`
+  改为 `commentary` 在本账号真实 rerun 上明显伤害得分。
+- 该结果支持保留 B008 的 `analysis` slow-frame 形状，不继续沿同一 channel-token 方向盲调。
+- Private Score 当前不可见；阶段决策仍按预注册只使用可见 Public rerun 与可靠性状态。
+
+**证据**
+
+- [`../evidence/2026-08-07_b010_preflight.md`](../evidence/2026-08-07_b010_preflight.md)
+- [`../submissions/B010/submission-manifest.json`](../submissions/B010/submission-manifest.json)
+- [`../artifacts/kaggle/B010_v1/attack.py`](../artifacts/kaggle/B010_v1/attack.py)
+
+**决策**
+
+- 按预注册拒绝 B010，不重试 B010，不重推相同 Notebook。
+- B008 submission `55266445` 的 Public Score `92.165` 继续保持当前真实最佳。
+- 下一正式候选 B011 必须以 B008 `92.165` 为直接对照，并与 probe4、slow-commentary、
+  classify5、fastburst、threshold8、tail-extension 和 slow-row multipost 保持机制低相关。
+
+**下一门槛**
+
+- 审计尚未可靠复现的公开高分路线与本地原创机制，固定 B011 的来源哈希、唯一行为变量、
+  接受/拒绝门槛和失败退出条件。
+- B011 的接受门槛固定为 Public Score `>92.165`；`>=100.000` 记为强竞争复现；空分、失败、
+  超时或 `<=92.165` 拒绝且不重试。

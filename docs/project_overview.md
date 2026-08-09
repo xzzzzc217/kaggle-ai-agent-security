@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-08-06
-> 当前阶段：B010 slow-commentary 已提交，等待真实 rerun 评分
+> 当前阶段：B010 已按预注册拒绝，转入 B011 机制审计
 > 当前真实最佳 submission ref：`55266445`，Public Score `92.165`
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -186,7 +186,7 @@ evaluator 回放单独保留预算。
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | B010 已提交，待评分 | B009 replay-safe probe4 已以 `ERROR` 终态拒绝；B010 slow-commentary 已按 B008 `92.165` 预注册并创建唯一 submission `55327331`；[B010 证据](../evidence/2026-08-07_b010_preflight.md) | 只监控 B010，不重复提交；B010 未知期间不创建 B011 |
+| 本地搜索机制 | B011 机制审计中 | B010 slow-commentary 已以 Public Score `52.330` 证伪并拒绝；当前真实最佳仍为 B008 `92.165`；[B010 证据](../evidence/2026-08-07_b010_preflight.md) | 以 B008 `92.165` 为直接对照预注册机制低相关 B011；不重试 B010 |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3、B004 v1 与 B005 v1 均 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md)、[B005 证据](../evidence/2026-08-02_b005_preflight.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
@@ -201,7 +201,7 @@ evaluator 回放单独保留预算。
 | B007 fast-row direct-burst | 完成，拒绝 | B005 子候选；唯一行为变量为 post-classification fast/plain branch 的 `FAST_BURST_K` 从 `1` 改为 `2`；源码 SHA `269c8d2fcd2d431dc213309ef4c3c8e859fab1dc6ceb7811f9fd74ec002e0c5f`；source commit `22a5bad`；prereg commit `eaed697`；Notebook `heralces/ai-agent-security-b007-fastburst` v1 `COMPLETE`；云端哈希一致；唯一 submission `55229800` 为 `COMPLETE`，Public Score `76.905`，Private Score 为空；[B007 证据](../evidence/2026-08-04_b007_preflight.md) | 低于 B005 `91.930`，按预注册拒绝且不重试 |
 | B008 replay-safe classify5 | 完成，当前最佳 | B005 子候选；唯一行为变量为 `SPLIT_CLASSIFY_N` 从 `8` 改为 `5`；源码 SHA `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`；source commit `4b1ce2b`；prereg commit `34aaa89`；公开 `kaiwalyaatulraut/ai-agent-security-competition-solution` 只作为 classify5 线索；90 项测试、preflight、SDK validate、Ruff、`git diff --check` 和秘密扫描通过；Notebook `heralces/ai-agent-security-b008-classify5` v1 `COMPLETE`；云端哈希一致；唯一 submission `55266445` 为 `COMPLETE`，Public Score `92.165`，Private Score 为空；[B008 证据](../evidence/2026-08-05_b008_preflight.md) | 高于 B005 `91.930`，保留为新的真实参考基线；已达到固定前 200 参考线 `89.390`；未达到强竞争线 `100.000`；不重试 |
 | B009 replay-safe probe4 | 完成，可靠性失败 | B008 子候选；唯一行为变量为 live validation `PROBE_HOPS` 从 `0` 改为 `4`；源码 SHA `5fec8ee21232e8448d7cb17822b6e393ce33891ad20326c3eeb00b26581e63ff`；source commit `727ad45`；prereg commit `b84827b`；公开 Foysal/Nikita 路线只作为 probe-hop 线索；95 项测试、preflight、SDK validate、Ruff、`git diff --check` 和秘密扫描通过；常量时延样本显示候选消息形状与 B008 一致，仅 validation hops 变为 4；Notebook `heralces/ai-agent-security-b009-probe4` v1 `COMPLETE`；云端哈希一致；唯一 submission `55299759` 为 `ERROR`，Public/Private Score 均为空；API errorDescription 为 Kaggle system error；[B009 证据](../evidence/2026-08-06_b009_preflight.md) | 按预注册作为可靠性失败拒绝；不按 Kaggle 提示重试；B008 `92.165` 保持当前真实最佳 |
-| B010 replay-safe slow-commentary | 已提交，待评分 | B008 子候选；唯一行为变量为 slow-row frame plan 的 injected channel 从 `analysis` 改为 `commentary`；源码 SHA `04eead5643b0240d69903cdb4ba3649a6f4ab7a6e496ad9b9b74b704eacfd8da`；source commit `236cf40`；prereg commit `e91bf35`；公开 Assiaben commentary template 只作为窄线索；B010 不复制五模板路线且保留 `.invalid`；101 项测试、preflight、SDK validate、Ruff、`git diff --check` 和秘密扫描通过；Notebook `heralces/ai-agent-security-b010-slow-commentary` v1 `COMPLETE`；云端哈希一致；唯一 submission `55327331` 为 `PENDING`，Public/Private Score 均为空；[B010 证据](../evidence/2026-08-07_b010_preflight.md) | 只监控 B010；`>92.165` 才替换 B008；未知期间不创建 B011 |
+| B010 replay-safe slow-commentary | 完成，拒绝 | B008 子候选；唯一行为变量为 slow-row frame plan 的 injected channel 从 `analysis` 改为 `commentary`；源码 SHA `04eead5643b0240d69903cdb4ba3649a6f4ab7a6e496ad9b9b74b704eacfd8da`；source commit `236cf40`；prereg commit `e91bf35`；公开 Assiaben commentary template 只作为窄线索；B010 不复制五模板路线且保留 `.invalid`；101 项测试、preflight、SDK validate、Ruff、`git diff --check` 和秘密扫描通过；Notebook `heralces/ai-agent-security-b010-slow-commentary` v1 `COMPLETE`；云端哈希一致；唯一 submission `55327331` 为 `COMPLETE`，Public Score `52.330`，Private Score 为空；[B010 证据](../evidence/2026-08-07_b010_preflight.md) | 低于 B008 `92.165`，按预注册拒绝且不重试；B008 保持当前真实最佳 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -240,7 +240,7 @@ guardrail；它只用于决定哪些改动值得消耗正式提交。
 | [`../evidence/2026-08-07_b010_preflight.md`](../evidence/2026-08-07_b010_preflight.md) | B010 的 B008 父版本、slow-frame commentary-channel 单变量、公开路线审计、安全 URL 适配、哈希、路由样本与预注册判定门槛 |
 | [`../scripts/preflight_submission.py`](../scripts/preflight_submission.py) | 接口、网络边界和摘要检查 |
 | [`../scripts/build_kaggle_notebook.py`](../scripts/build_kaggle_notebook.py) | 可复现私有 Notebook 构建 |
-| [`../tests`](../tests) | 80 项自动化回归测试 |
+| [`../tests`](../tests) | 101 项自动化回归测试 |
 
 目前最明确的竞赛成果是：B008 已把真实 Public Score 从 B005 的 `91.930` 提升到
 `92.165`，在本账号隐藏 rerun 中支持 classify5 单变量假设。B002 以 `COMPLETE` 空分结束，
@@ -266,15 +266,18 @@ frame plan 的 injected channel 从 `analysis` 改为 `commentary`，不改变 B
 classification batch、latency threshold、replay tail、slow-row four-endpoint count、probe hops、
 replay-cost coefficient 或保留域；本地预检、SDK validate、101 项测试与路由样本已通过。
 私有 Notebook v1 已 `COMPLETE`，云端 `attack.py` 哈希一致，唯一 competition submission
-`55327331` 创建于 2026-08-07 14:48:07.930 UTC，当前仍等待真实评分。
+`55327331` 创建于 2026-08-07 14:48:07.930 UTC，2026-08-09 05:10 UTC 首次观测到
+`SubmissionStatus.COMPLETE`，Public Score `52.330`，Private Score 为空；按预注册低于 B008
+而拒绝。
 
 ## 7. 下一步
 
-1. 不重试 B006、B007、B008 或 B009，不重推相同 Notebook。
+1. 不重试 B006、B007、B008、B009 或 B010，不重推相同 Notebook。
 2. 以 B008 submission `55266445` 的 Public Score `92.165` 作为下一候选直接对照。
-3. 只监控 B010 submission `55327331`，不重复提交、不重推相同 Notebook。
-4. 在不知道 B010 真实终态前不创建 B011；等待期间只做本地候选研究、公开参考审计和轨迹分析。
-5. B010 的接受门槛固定为 `>92.165`；`>=100.000` 记录为强竞争复现；`<=92.165`、空分、失败或超时拒绝且不重试。
+3. B011 必须机制低相关、可证伪、单变量，并以 B008 `92.165` 为直接对照。
+4. 不重复 channel-token 方向，不盲调 `SPLIT_THRESHOLD_S`、`FAST_BURST_K`、`SPLIT_CLASSIFY_N`、
+   `PROBE_HOPS`、`REPLAY_SAFE_FRAC` 或 `SLOW_MULTIPOST_N`。
+5. B011 的接受门槛固定为 `>92.165`；`>=100.000` 记录为强竞争复现；`<=92.165`、空分、失败或超时拒绝且不重试。
 6. 为可获得的 trace 建立 source、transformation、sink 和 predicate 分类。
 7. 绘制分数、机制覆盖、有效候选数和运行时间的消融曲线。
 8. 保留至少两个机制低相关的最终候选，降低私榜 guardrail 风险。

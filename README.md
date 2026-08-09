@@ -107,7 +107,8 @@
 - [x] B009 rerun 以 `ERROR` 终态结束且无 Public Score，按预注册作为可靠性失败拒绝且不重试
 - [x] 以 B008 `92.165` 为直接对照，审计并预注册 B010 slow-commentary 单变量候选
 - [x] 构建并云端核验 B010 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55327331`
-- [ ] 监控 B010 submission `55327331` 的真实终态与 Public Score
+- [x] 完成 B010 rerun：Public Score `52.330`，低于 B008，按预注册拒绝且不重试
+- [ ] 以 B008 `92.165` 为直接对照，审计机制低相关 B011
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note
