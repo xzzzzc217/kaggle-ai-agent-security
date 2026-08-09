@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-08-06
-> 当前阶段：B010 已按预注册拒绝，转入 B011 机制审计
+> 当前阶段：B010 已按预注册拒绝；B011 机制审计中，但需先解决当前 leaderboard 选择风险
 > 当前真实最佳 submission ref：`55266445`，Public Score `92.165`
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -186,7 +186,7 @@ evaluator 回放单独保留预算。
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | B011 机制审计中 | B010 slow-commentary 已以 Public Score `52.330` 证伪并拒绝；B011 首轮公开路线与本地机制筛查未形成正式预注册候选；当前真实最佳仍为 B008 `92.165`；[B010 证据](../evidence/2026-08-07_b010_preflight.md)、[B011 审计](../evidence/2026-08-09_b011_public_audit.md) | 以 B008 `92.165` 为直接对照预注册机制低相关 B011；不重试 B010 |
+| 本地搜索机制 | B011 机制审计中，但正式提交暂停 | B010 slow-commentary 已以 Public Score `52.330` 证伪并拒绝；B011 首轮公开路线与本地机制筛查未形成正式预注册候选；当前真实最佳仍为 B008 `92.165`；当前 public leaderboard team row 却显示 B010 `52.330` / rank `637`；[B010 证据](../evidence/2026-08-07_b010_preflight.md)、[B011 审计](../evidence/2026-08-09_b011_public_audit.md)、[leaderboard 审计](../evidence/2026-08-09_current_leaderboard_audit.md) | 先解决 Kaggle 提交选择/榜单风险；再以 B008 `92.165` 为直接对照预注册机制低相关 B011 |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3、B004 v1 与 B005 v1 均 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md)、[B005 证据](../evidence/2026-08-02_b005_preflight.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
@@ -272,17 +272,18 @@ replay-cost coefficient 或保留域；本地预检、SDK validate、101 项测�
 
 ## 7. 下一步
 
-1. 不重试 B006、B007、B008、B009 或 B010，不重推相同 Notebook。
-2. 以 B008 submission `55266445` 的 Public Score `92.165` 作为下一候选直接对照。
-3. B011 首轮公开路线与本地机制筛查已经记录，但未形成正式预注册候选；下一轮必须先找到更强的单变量证据。
-4. B011 必须机制低相关、可证伪、单变量，并以 B008 `92.165` 为直接对照。
-5. 不重复 channel-token 方向，不盲调 `SPLIT_THRESHOLD_S`、`FAST_BURST_K`、`SPLIT_CLASSIFY_N`、
+1. 当前 public leaderboard 下载显示账号行使用 B010 `52.330` / rank `637`，不是历史最佳 B008 `92.165`；先处理提交选择风险。
+2. 不重试 B006、B007、B008、B009 或 B010，不重推相同 Notebook，除非用户明确授权一次 narrow best-score restoration 例外。
+3. 以 B008 submission `55266445` 的 Public Score `92.165` 作为下一候选直接对照。
+4. B011 首轮公开路线与本地机制筛查已经记录，但未形成正式预注册候选；下一轮必须先找到更强的单变量证据。
+5. B011 必须机制低相关、可证伪、单变量，并以 B008 `92.165` 为直接对照。
+6. 不重复 channel-token 方向，不盲调 `SPLIT_THRESHOLD_S`、`FAST_BURST_K`、`SPLIT_CLASSIFY_N`、
    `PROBE_HOPS`、`REPLAY_SAFE_FRAC` 或 `SLOW_MULTIPOST_N`。
-6. B011 的接受门槛固定为 `>92.165`；`>=100.000` 记录为强竞争复现；`<=92.165`、空分、失败或超时拒绝且不重试。
-7. 为可获得的 trace 建立 source、transformation、sink 和 predicate 分类。
-8. 绘制分数、机制覆盖、有效候选数和运行时间的消融曲线。
-9. 保留至少两个机制低相关的最终候选，降低私榜 guardrail 风险。
-10. 把可公开部分整理为 Working Note；真实攻击目标适配、凭证和竞赛私有资产永不发布。
+7. B011 的接受门槛固定为 `>92.165`；`>=100.000` 记录为强竞争复现；`<=92.165`、空分、失败或超时拒绝且不重试。
+8. 为可获得的 trace 建立 source、transformation、sink 和 predicate 分类。
+9. 绘制分数、机制覆盖、有效候选数和运行时间的消融曲线。
+10. 保留至少两个机制低相关的最终候选，降低私榜 guardrail 风险。
+11. 把可公开部分整理为 Working Note；真实攻击目标适配、凭证和竞赛私有资产永不发布。
 
 ## 8. 阶段成果更新规则
 

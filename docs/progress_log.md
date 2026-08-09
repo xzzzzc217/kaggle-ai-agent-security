@@ -1783,3 +1783,41 @@
 - 继续寻找机制低相关且单变量边界更强的 B011 候选。
 - B011 预注册仍必须先固定来源/父版本哈希、候选源码 SHA、直接比较 B008 `92.165`、单一假设、
   接受/拒绝门槛和失败退出条件。
+
+## 2026-08-09：当前 public leaderboard 使用 B010 分数，触发选择风险
+
+**事实**
+
+- 使用 Kaggle CLI 下载当前 public leaderboard，共 `816` 个 team rows。
+- 账号/team `heralces` 当前 leaderboard 行显示 rank `637`、score `52.330`、last submission date
+  `2026-08-07 14:48:07`，即 B010 的低分结果。
+- 同一 leaderboard 快照中，如果按已记录的 B008 Public Score `92.165` 计算，约为 rank `59`；
+  score_at_50 为 `92.655`，score_at_100 为 `90.055`，score_at_200 为 `88.065`。
+- 最新 submissions 列表仍显示 B008 `92.165` 是本账号已观测的最高真实 rerun 分数，但 leaderboard
+  当前没有使用该分数作为 team row。
+
+**解释与限制**
+
+- 这说明“当前真实最佳分数记录”和“当前 public leaderboard 可见排名”已经分离：B008 仍是历史最佳
+  实验结果，但可见榜单行被 B010 `52.330` 拉低。
+- 该现象需要尽快通过 Kaggle UI 的提交选择功能或明确授权的恢复策略处理；否则继续探索性提交可能继续
+  牺牲可见 Public 排名。
+- 本次审计没有自动重提 B008，因为这会违反既有“不重试/不重复提交相同候选”的纪律；当前 Kaggle CLI
+  也没有暴露明确的 prior-submission selection 命令。
+
+**证据**
+
+- [`../evidence/2026-08-09_current_leaderboard_audit.md`](../evidence/2026-08-09_current_leaderboard_audit.md)
+
+**决策**
+
+- 暂停创建新的正式 competition submission，直到解决当前 leaderboard/提交选择风险。
+- 继续保留 B008 `92.165` 为当前已观测最高真实分数，但不得把当前 public rank 写成 rank `59`；
+  当前 leaderboard 下载中的账号可见 rank 是 `637`。
+
+**下一门槛**
+
+- 用户确认是否手动在 Kaggle UI 选择 B008 submission `55266445`，或授权一次狭义的 best-score
+  restoration 例外。
+- 在该选择风险解决前，只做本地研究、文档、公开路线审计和轨迹分析，不创建新的正式 competition
+  submission。
