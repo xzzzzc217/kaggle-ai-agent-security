@@ -1855,3 +1855,40 @@
 - 用户完成 Kaggle UI 选择或给出明确授权后，重新下载 leaderboard 核验 team row 是否恢复到 B008
   `92.165`。
 - 若选择风险解决，再恢复 B011 预注册/提交流程；否则仅做本地研究和文档。
+
+## 2026-08-10：B008 是 score-bearing ERROR，不能当作当前可选提交
+
+**事实**
+
+- 用户提供的 Kaggle submissions 截图显示 B008 行有警告/错误图标，但 Public Score 仍为 `92.165`。
+- Kaggle API 对 B008 submission `55266445` 返回：
+  `status=SubmissionStatus.ERROR`、`_public_score='92.165'`、`_private_score=None`、
+  `error_description=''`。
+- Kaggle Notebook worker 对 `heralces/ai-agent-security-b008-classify5` 返回
+  `KernelWorkerStatus.COMPLETE`。
+- B010 submission `55327331` 则返回 `SubmissionStatus.COMPLETE`、Public Score `52.330`，
+  Notebook worker 同样为 `COMPLETE`。
+
+**解释与限制**
+
+- B008 的 Notebook 运行本身不是失败点；失败/警告状态来自 competition submission 层。
+- B008 当前是“有分但 ERROR”的不一致状态，不应继续写成当前可选择或当前 leaderboard-effective
+  submission。
+- 当前可见 leaderboard row 仍使用 B010 `52.330`，所以不能把 B008 的估算 rank 写成当前排名。
+
+**证据**
+
+- [`../evidence/2026-08-10_b008_status_audit.md`](../evidence/2026-08-10_b008_status_audit.md)
+- [`../evidence/2026-08-09_current_leaderboard_audit.md`](../evidence/2026-08-09_current_leaderboard_audit.md)
+
+**决策**
+
+- 暂停新的正式 competition submission。
+- 不再建议“直接手动选择 B008”作为确定可行路径；当前应先处理 B008 score-bearing ERROR 状态。
+- 不重提 B008，除非用户明确授权一次狭义 best-score restoration 例外。
+
+**下一门槛**
+
+- 若用户能在 Kaggle UI 或 Kaggle Support 层恢复/选择 B008，重新下载 leaderboard 核验 team row。
+- 若无法恢复且用户授权 rerun，再按例外流程重新固定恢复目标、风险和退出条件。
+- 否则仅继续本地研究、公开审计和 B011 设计，不创建新正式提交。
