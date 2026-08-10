@@ -111,7 +111,7 @@
 - [x] 构建并云端核验 B010 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55327331`
 - [x] 完成 B010 rerun：Public Score `52.330`，低于 B008，按预注册拒绝且不重试
 - [x] 完成 B011 首轮公开路线与本地机制筛查；未发现值得消耗正式提交额度的单变量候选
-- [x] 核验当前 public leaderboard：账号行显示 B010 `52.330` / rank `637`，而 B008 `92.165` 若计入约为 rank `59`
+- [x] 核验当前 public leaderboard：账号行最新显示 B010 `52.330` / rank `711`，而 B008 `92.165` 若计入约为 rank `70`
 - [ ] 解决 Kaggle 当前榜单/提交选择风险，再创建新的正式 competition submission
 - [ ] 以 B008 `92.165` 为直接对照，预注册机制低相关 B011
 - [ ] 建立本地可复现评测与攻击轨迹分析

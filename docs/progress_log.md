@@ -1821,3 +1821,37 @@
   restoration 例外。
 - 在该选择风险解决前，只做本地研究、文档、公开路线审计和轨迹分析，不创建新的正式 competition
   submission。
+
+## 2026-08-10：leaderboard 选择风险仍未解决，当前 rank 继续下滑
+
+**事实**
+
+- 再次使用 Kaggle CLI 查询 latest submissions，最新正式提交仍是 B010 submission `55327331`，
+  Public Score `52.330`；未出现 B011 或新的 competition submission。
+- 再次下载当前 public leaderboard，共 `910` 个 team rows。
+- 账号/team `heralces` 当前 leaderboard 行显示 rank `711`、score `52.330`、last submission date
+  `2026-08-07 14:48:07`。
+- 同一 leaderboard 快照中，如果按已记录的 B008 Public Score `92.165` 计算，约为 rank `70`；
+  score_at_50 为 `94.160`，score_at_100 为 `90.540`，score_at_200 为 `88.560`。
+
+**解释与限制**
+
+- 该结果确认 leaderboard/提交选择风险仍然存在，且随着参赛队伍和高分提交增加，B008 `92.165`
+  对应的估算可见 rank 已从 `59` 漂移到约 `70`。
+- 当前可见 public rank 是 B010 `52.330` 对应的 `711`，不能把 B008 的估算 rank 写成当前排名。
+- 在用户没有确认选择/恢复策略前，继续创建正式提交会加重选择纪律和当前榜单排名之间的冲突。
+
+**证据**
+
+- [`../evidence/2026-08-09_current_leaderboard_audit.md`](../evidence/2026-08-09_current_leaderboard_audit.md)
+
+**决策**
+
+- 继续暂停新的正式 competition submission。
+- 不重提 B008；等待用户手动选择 B008 或明确授权 best-score restoration 例外。
+
+**下一门槛**
+
+- 用户完成 Kaggle UI 选择或给出明确授权后，重新下载 leaderboard 核验 team row 是否恢复到 B008
+  `92.165`。
+- 若选择风险解决，再恢复 B011 预注册/提交流程；否则仅做本地研究和文档。

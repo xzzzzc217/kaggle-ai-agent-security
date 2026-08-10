@@ -67,3 +67,28 @@ resolve whether the user wants to:
    leaderboard score if manual selection is unavailable, or
 3. continue submitting new candidates while accepting that the visible public
    leaderboard row may remain at the latest scored submission.
+
+## 5. Follow-up snapshot
+
+The next heartbeat repeated the read-only submissions and leaderboard checks.
+The selection risk remained unresolved and the visible rank worsened as the
+leaderboard grew.
+
+```text
+audit_observed_utc=2026-08-10 01:31
+leaderboard_rows=910
+team_name=heralces
+rank=711
+score=52.330
+last_submission_date=2026-08-07 14:48:07
+rank_if_score_92_165=70
+score_at_50=94.160
+score_at_100=90.540
+score_at_200=88.560
+latest_submission_ref=55327331
+latest_submission_score=52.330
+best_recorded_submission_ref=55266445
+best_recorded_public_score=92.165
+```
+
+No new submission, selection, or retry was performed.

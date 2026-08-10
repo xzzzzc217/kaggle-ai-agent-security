@@ -186,7 +186,7 @@ evaluator 回放单独保留预算。
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | B011 机制审计中，但正式提交暂停 | B010 slow-commentary 已以 Public Score `52.330` 证伪并拒绝；B011 首轮公开路线与本地机制筛查未形成正式预注册候选；当前真实最佳仍为 B008 `92.165`；当前 public leaderboard team row 却显示 B010 `52.330` / rank `637`；[B010 证据](../evidence/2026-08-07_b010_preflight.md)、[B011 审计](../evidence/2026-08-09_b011_public_audit.md)、[leaderboard 审计](../evidence/2026-08-09_current_leaderboard_audit.md) | 先解决 Kaggle 提交选择/榜单风险；再以 B008 `92.165` 为直接对照预注册机制低相关 B011 |
+| 本地搜索机制 | B011 机制审计中，但正式提交暂停 | B010 slow-commentary 已以 Public Score `52.330` 证伪并拒绝；B011 首轮公开路线与本地机制筛查未形成正式预注册候选；当前真实最佳仍为 B008 `92.165`；当前 public leaderboard team row 却显示 B010 `52.330` / rank `711`；[B010 证据](../evidence/2026-08-07_b010_preflight.md)、[B011 审计](../evidence/2026-08-09_b011_public_audit.md)、[leaderboard 审计](../evidence/2026-08-09_current_leaderboard_audit.md) | 先解决 Kaggle 提交选择/榜单风险；再以 B008 `92.165` 为直接对照预注册机制低相关 B011 |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3、B004 v1 与 B005 v1 均 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md)、[B005 证据](../evidence/2026-08-02_b005_preflight.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
@@ -272,7 +272,7 @@ replay-cost coefficient 或保留域；本地预检、SDK validate、101 项测�
 
 ## 7. 下一步
 
-1. 当前 public leaderboard 下载显示账号行使用 B010 `52.330` / rank `637`，不是历史最佳 B008 `92.165`；先处理提交选择风险。
+1. 当前 public leaderboard 下载显示账号行使用 B010 `52.330` / rank `711`，不是历史最佳 B008 `92.165`；先处理提交选择风险。
 2. 不重试 B006、B007、B008、B009 或 B010，不重推相同 Notebook，除非用户明确授权一次 narrow best-score restoration 例外。
 3. 以 B008 submission `55266445` 的 Public Score `92.165` 作为下一候选直接对照。
 4. B011 首轮公开路线与本地机制筛查已经记录，但未形成正式预注册候选；下一轮必须先找到更强的单变量证据。
