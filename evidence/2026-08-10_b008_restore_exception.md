@@ -167,3 +167,52 @@ restore_submission_message=B008R restore classify5 | attack 4d433a77 | authorize
 
 Until `55393959` reaches a terminal state, do not create B011 or any other new
 formal competition submission.
+
+## 8. Terminal restoration result
+
+B008R first reached an observed terminal state in this task at
+`2026-08-10 15:36 UTC`:
+
+```text
+restore_submission_ref=55393959
+restore_submission_status=SubmissionStatus.COMPLETE
+restore_submission_public_score=88.760
+restore_submission_private_score=
+restore_submission_error_description=None
+api_raw_public_score=88.760
+api_private_score=None
+first_observed_terminal_utc=2026-08-10 15:36
+```
+
+The Kaggle CLI and the API model's raw `_public_score` both report `88.760`.
+The SDK's `publicScore` convenience accessor returned `None`, while the raw
+score field, CLI row, and leaderboard all agree on `88.760`; the private score
+remains unavailable and no error description is present.
+
+The public leaderboard was downloaded again after the terminal observation:
+
+```text
+leaderboard_entry=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-10T15:36:49.csv
+leaderboard_rows=993
+team_name=heralces
+current_leaderboard_rank=205
+current_leaderboard_score=88.760
+current_leaderboard_last_submission_date=2026-08-10 01:53:43
+current_leaderboard_submission_count=2
+rank_if_92_165_were_leaderboard_effective=79
+score_at_50=94.645
+score_at_100=90.810
+score_at_200=88.830
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-10_1536_b008r_monitor/ai-agent-security-multi-step-tool-attacks.zip
+```
+
+Per the fixed rule, `52.330 < 88.760 < 92.165`, so B008R is a **partial
+restoration**. It repaired the leaderboard-effective score from B010 `52.330`
+to `88.760` and moved the visible rank from the pre-restoration `712` snapshot
+to `205`, but it did not restore the historical B008 score `92.165`. In this
+snapshot it is `0.070` below the top-200 score boundary `88.830`.
+
+Do not repeat B008R or repush the same Notebook. Subsequent candidate work may
+resume with `88.760` as the current leaderboard-effective direct comparator,
+while `92.165` remains the historical observed high-water mark that a candidate
+must exceed before being described as a new historical best.

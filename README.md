@@ -24,7 +24,7 @@
 - [`evidence/2026-08-09_b011_public_audit.md`](evidence/2026-08-09_b011_public_audit.md)：B011 首轮公开路线与本地机制筛查记录；未形成正式预注册候选
 - [`evidence/2026-08-09_current_leaderboard_audit.md`](evidence/2026-08-09_current_leaderboard_audit.md)：当前 public leaderboard 行使用 B010 `52.330` 而非历史最佳 B008 `92.165` 的风险记录
 - [`evidence/2026-08-10_b008_status_audit.md`](evidence/2026-08-10_b008_status_audit.md)：B008 当前为 score-bearing `ERROR` 状态的 API/Notebook 核验
-- [`evidence/2026-08-10_b008_restore_exception.md`](evidence/2026-08-10_b008_restore_exception.md)：用户授权的 B008R 最佳分数恢复例外预注册
+- [`evidence/2026-08-10_b008_restore_exception.md`](evidence/2026-08-10_b008_restore_exception.md)：用户授权的 B008R 最佳分数恢复例外、终态与部分恢复判定
 - [`docs/safety.md`](docs/safety.md)：研究授权边界与工程控制
 
 ## 当前主赛
@@ -113,12 +113,13 @@
 - [x] 构建并云端核验 B010 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55327331`
 - [x] 完成 B010 rerun：Public Score `52.330`，低于 B008，按预注册拒绝且不重试
 - [x] 完成 B011 首轮公开路线与本地机制筛查；未发现值得消耗正式提交额度的单变量候选
-- [x] 核验当前 public leaderboard：账号行最新显示 B010 `52.330` / rank `711`，而 B008 `92.165` 若计入约为 rank `70`
+- [x] 核验恢复前 public leaderboard：账号行当时显示 B010 `52.330` / rank `711`，而 B008 `92.165` 若计入约为 rank `70`
 - [x] 核验 B008 当前状态：competition submission 为 `SubmissionStatus.ERROR` 但保留 Public Score `92.165`；Notebook worker 为 `COMPLETE`
 - [x] 获得用户明确授权，预注册一次狭义 B008R best-score restoration 例外；恢复前快照显示账号行 B010 `52.330` / rank `712`，B008 `92.165` 若计入约为 rank `71`
 - [x] 构建并云端核验 B008R 恢复 Notebook v1，确认 attack hash 仍为 `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`
-- [x] 创建唯一 B008R 恢复 competition submission `55393959`，当前 `SubmissionStatus.PENDING`，等待终态判断 leaderboard 是否恢复
-- [ ] 以 B008 `92.165` 为直接对照，预注册机制低相关 B011
+- [x] 创建唯一 B008R 恢复 competition submission `55393959`；终态 `COMPLETE`、Public Score `88.760`，按预注册记为部分恢复且不重试
+- [x] 核验恢复后 public leaderboard：当前使用 B008R `88.760` / rank `205`；历史高点 B008 `92.165` 在同一快照约为 rank `79`
+- [ ] 以当前 leaderboard-effective `88.760` 为直接对照、历史高点 `92.165` 为新高门槛，预注册机制低相关 B011
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

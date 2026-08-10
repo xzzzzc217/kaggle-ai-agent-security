@@ -1981,3 +1981,49 @@
 - 下一次只查询并监控 B008R submission `55393959`。
 - 若 B008R 终态恢复成功，再重新下载 leaderboard 验证 team row；若失败，先评估 Kaggle Support
   或新候选策略，再决定是否恢复 B011。
+
+## 2026-08-10：B008R 终态为 88.760，部分恢复榜单但未恢复历史高点
+
+**事实**
+
+- 2026-08-10 15:36 UTC 首次在本任务中观测到 B008R submission `55393959` 进入
+  `SubmissionStatus.COMPLETE`。
+- Kaggle CLI Public Score 为 `88.760`，Private Score 为空；Kaggle API model 的 raw
+  `_public_score='88.760'`、`_private_score=None`、`errorDescription=None`。
+- SDK 的 `publicScore` convenience accessor 返回 `None`，但 CLI、API raw score 与 leaderboard
+  三者均一致为 `88.760`。
+- 重新下载的 public leaderboard 共 `993` 个 team rows；team `heralces` 当前为 rank `205`、
+  score `88.760`、last submission date `2026-08-10 01:53:43`、submission count `2`。
+- 同一快照中，score_at_50=`94.645`、score_at_100=`90.810`、score_at_200=`88.830`；
+  历史 B008 `92.165` 若有效计入约为 rank `79`。
+
+**解释与限制**
+
+- `52.330 < 88.760 < 92.165`，因此严格按预注册把 B008R 判为部分恢复：当前可见分数已从
+  B010 `52.330` 恢复到 `88.760`，但没有恢复历史 B008 高点 `92.165`。
+- 当前 rank `205` 是 leaderboard 的真实可见行；B008 `92.165` 对应的 rank `79` 只是同一快照
+  下的估算，不能写成当前排名。
+- 当前分数仅比 top-200 边界 `88.830` 低 `0.070`，但这不是奖牌边界；实时榜线仍会漂移。
+- byte-identical B008R 与原 B008 相差 `3.405`，说明真实 rerun 存在显著波动；后续候选必须区分
+  “改善当前 leaderboard-effective 分数”和“超过历史已观测高点”两种结论。
+
+**证据**
+
+- [`../evidence/2026-08-10_b008_restore_exception.md`](../evidence/2026-08-10_b008_restore_exception.md)
+- `artifacts/kaggle/leaderboards/2026-08-10_1536_b008r_monitor/ai-agent-security-multi-step-tool-attacks.zip`
+- `kaggle competitions submissions ai-agent-security-multi-step-tool-attacks -v`
+
+**决策**
+
+- 不重复提交 B008R，不重推相同 Notebook；恢复例外到此结束。
+- 当前 leaderboard-effective 直接对照固定为 B008R `88.760`；B008 `92.165` 保留为历史已观测
+  高点，只有候选 `>92.165` 才称为新的历史最佳。
+- 恢复 B011 本地机制筛查；在形成更强的低相关单变量证据前，不创建新的正式 submission。
+
+**下一门槛**
+
+- B011 必须先固定父版本/来源哈希、候选源码 SHA、唯一行为变量和去重记录。
+- B011 预注册至少同时报告：`>88.760` 为改善当前 effective 分数、`>92.165` 为刷新历史高点、
+  `>=100.000` 为强竞争复现；空分、失败、ERROR、超时或 `<=88.760` 均拒绝且不重试。
+- 继续避开已证伪或低证据方向：threshold8、fastburst、probe4、slow-commentary、重复 classify5
+  恢复以及小幅预算余量盲调。
