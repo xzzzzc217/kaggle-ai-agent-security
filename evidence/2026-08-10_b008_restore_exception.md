@@ -129,3 +129,41 @@ submission_message=B008R restore classify5 | attack 4d433a77 | authorized restor
 Before formal competition submission, the cloud artifact hash must match the
 local B008 source hash, notebook logs must not show actionable execution errors,
 and artifact credential-value scan must be clean.
+
+## 7. Actual restore creation record
+
+The preregistration above was committed and pushed before any Kaggle write:
+
+```text
+restore_prereg_commit=2e45dd7
+restore_prereg_full_commit=2e45dd7945aa46d5cbfb7b9663bf514307a28eb5
+```
+
+The private restoration Notebook was then built and pushed:
+
+```text
+kernel=heralces/ai-agent-security-b008r-restore-classify5
+kernel_version=1
+kernel_status=KernelWorkerStatus.COMPLETE
+cloud_artifact_dir=artifacts/kaggle/B008R_v1
+cloud_attack_sha256=4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1
+cloud_hash_matches_local=true
+submission_csv_bytes=88
+log_actionable_error_scan=0
+artifact_credential_value_scan=0
+```
+
+The only B008R competition submission created under this restoration exception
+is:
+
+```text
+restore_submission_ref=55393959
+restore_submission_created_utc=2026-08-10 01:53:43.003
+restore_submission_initial_status=SubmissionStatus.PENDING
+restore_submission_initial_public_score=
+restore_submission_initial_private_score=
+restore_submission_message=B008R restore classify5 | attack 4d433a77 | authorized restore | SDK 3.1.2
+```
+
+Until `55393959` reaches a terminal state, do not create B011 or any other new
+formal competition submission.

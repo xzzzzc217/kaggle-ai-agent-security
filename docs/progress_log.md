@@ -1941,3 +1941,43 @@
 - 提交并推送本恢复预注册文档。
 - 构建、推送并云端核验 B008R Notebook。
 - 创建唯一 B008R competition submission 后记录 submission ref，并只监控该恢复提交直到终态。
+
+## 2026-08-10：B008R 恢复提交已创建，等待 Kaggle 终态
+
+**事实**
+
+- B008R 恢复预注册文档已在 commit `2e45dd7` 提交并推送。
+- 构建私有 Notebook `heralces/ai-agent-security-b008r-restore-classify5` v1，绑定
+  `git_commit=2e45dd7945aa46d5cbfb7b9663bf514307a28eb5`。
+- Kaggle Notebook v1 已完成，状态为 `KernelWorkerStatus.COMPLETE`。
+- 下载云端产物到 `artifacts/kaggle/B008R_v1`；云端 `attack.py` SHA-256 为
+  `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`，与 B008 本地源完全一致。
+- `submission.csv` 已生成，大小 `88` bytes。
+- 云端日志可操作错误扫描为 0；产物凭据值扫描为 0。
+- 创建唯一 B008R competition submission `55393959`，创建时间为
+  `2026-08-10 01:53:43.003 UTC`，初始状态为 `SubmissionStatus.PENDING`，Public/Private Score 均为空。
+
+**解释与限制**
+
+- 这是用户授权的最佳分数恢复例外，不是新的算法候选，不改变 B008 的任何行为变量。
+- 当前只能说明恢复 submission 已进入 Kaggle 队列；尚不能说明 leaderboard 已恢复。
+- 在 `55393959` 出终态前，不创建 B011 或其他正式 competition submission。
+
+**证据**
+
+- [`../evidence/2026-08-10_b008_restore_exception.md`](../evidence/2026-08-10_b008_restore_exception.md)
+- `kaggle kernels status heralces/ai-agent-security-b008r-restore-classify5`
+- `kaggle kernels output heralces/ai-agent-security-b008r-restore-classify5 -p artifacts/kaggle/B008R_v1 --force`
+- `kaggle competitions submissions ai-agent-security-multi-step-tool-attacks -v`
+
+**决策**
+
+- 保留 B008R `55393959` 为唯一恢复提交；严禁重复创建相同恢复 submission。
+- 按恢复预注册规则监控终态：`COMPLETE` 且 Public Score `>=92.165` 记为历史最佳恢复；
+  `52.330 < score < 92.165` 记为部分恢复；`<=52.330`、空分、失败或超时记为恢复失败。
+
+**下一门槛**
+
+- 下一次只查询并监控 B008R submission `55393959`。
+- 若 B008R 终态恢复成功，再重新下载 leaderboard 验证 team row；若失败，先评估 Kaggle Support
+  或新候选策略，再决定是否恢复 B011。

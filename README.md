@@ -116,8 +116,8 @@
 - [x] 核验当前 public leaderboard：账号行最新显示 B010 `52.330` / rank `711`，而 B008 `92.165` 若计入约为 rank `70`
 - [x] 核验 B008 当前状态：competition submission 为 `SubmissionStatus.ERROR` 但保留 Public Score `92.165`；Notebook worker 为 `COMPLETE`
 - [x] 获得用户明确授权，预注册一次狭义 B008R best-score restoration 例外；恢复前快照显示账号行 B010 `52.330` / rank `712`，B008 `92.165` 若计入约为 rank `71`
-- [ ] 构建并云端核验 B008R 恢复 Notebook，确认 attack hash 仍为 `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`
-- [ ] 最多创建一次 B008R 恢复 competition submission，并监控其终态与 leaderboard 是否恢复
+- [x] 构建并云端核验 B008R 恢复 Notebook v1，确认 attack hash 仍为 `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`
+- [x] 创建唯一 B008R 恢复 competition submission `55393959`，当前 `SubmissionStatus.PENDING`，等待终态判断 leaderboard 是否恢复
 - [ ] 以 B008 `92.165` 为直接对照，预注册机制低相关 B011
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
