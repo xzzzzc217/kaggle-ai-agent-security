@@ -1892,3 +1892,52 @@
 - 若用户能在 Kaggle UI 或 Kaggle Support 层恢复/选择 B008，重新下载 leaderboard 核验 team row。
 - 若无法恢复且用户授权 rerun，再按例外流程重新固定恢复目标、风险和退出条件。
 - 否则仅继续本地研究、公开审计和 B011 设计，不创建新正式提交。
+
+## 2026-08-10：用户授权 B008R 最佳分数恢复例外，先预注册再恢复
+
+**事实**
+
+- 用户明确授权“恢复最佳分数，授权所有操作”。
+- 2026-08-10 01:42 UTC 重新核验 Kaggle API：B008 submission `55266445`
+  当前为 `SubmissionStatus.ERROR`，但保留 Public Score `92.165`，Private Score 为空；
+  B010 submission `55327331` 为 `SubmissionStatus.COMPLETE`，Public Score `52.330`。
+- 重新下载 public leaderboard，共 `911` 个 team rows；账号/team `heralces` 当前行显示
+  rank `712`、score `52.330`、last submission date `2026-08-07 14:48:07`。
+- 同一 leaderboard 快照中，如果按 B008 `92.165` 计算，约为 rank `71`；
+  score_at_50 为 `94.160`，score_at_100 为 `90.585`，score_at_200 为 `88.560`。
+- B008R 恢复源固定为 B008 `baselines/replaysafe_classify5_v1/attack.py` 原样源码，
+  SHA-256 `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`，
+  size `10799` bytes；不改变任何算法行为变量。
+- 恢复前本地检查通过：preflight PASS、SDK validate PASS、101 项测试通过、Ruff check 通过、
+  Ruff format check 通过、`git diff --check` 通过、凭据值扫描 0。
+
+**解释与限制**
+
+- B008R 是用户授权下的狭义 best-score restoration 例外，不是 B011，不是新算法候选，也不改变
+  B008 的 `SPLIT_CLASSIFY_N`、prompt、URL、tail fraction、slow multipost 或 replay-cost 系数。
+- 这次恢复会消耗一次正式 competition submission，并有 hidden rerun 方差或再次被 Kaggle 标记为
+  `ERROR` 的风险；因此必须先预注册并推送，再构建和提交。
+- 当前可见 leaderboard rank 仍是 B010 `52.330` 对应的 `712`；B008 `92.165` 对应的 rank `71`
+  只是同一快照下的估算，不是当前 rank。
+
+**证据**
+
+- [`../evidence/2026-08-10_b008_restore_exception.md`](../evidence/2026-08-10_b008_restore_exception.md)
+- [`../evidence/2026-08-10_b008_status_audit.md`](../evidence/2026-08-10_b008_status_audit.md)
+- [`../evidence/2026-08-09_current_leaderboard_audit.md`](../evidence/2026-08-09_current_leaderboard_audit.md)
+
+**决策**
+
+- 预注册 B008R 恢复例外；预注册文档提交并推送后，允许构建一个新的私有 Notebook
+  `heralces/ai-agent-security-b008r-restore-classify5`。
+- 云端 Notebook 必须 `COMPLETE`，云端 `attack.py` SHA 必须等于
+  `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`，日志错误扫描和产物凭据值
+  扫描必须通过。
+- 最多创建一次 B008R competition submission；若 `COMPLETE` 且 Public Score `>=92.165`，记为历史最佳恢复；
+  若 `52.330 < score < 92.165`，记为部分恢复；若 `<=52.330`、空分、失败或超时，记为恢复失败。
+
+**下一门槛**
+
+- 提交并推送本恢复预注册文档。
+- 构建、推送并云端核验 B008R Notebook。
+- 创建唯一 B008R competition submission 后记录 submission ref，并只监控该恢复提交直到终态。
