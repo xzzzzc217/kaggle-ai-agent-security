@@ -2027,3 +2027,54 @@
   `>=100.000` 为强竞争复现；空分、失败、ERROR、超时或 `<=88.760` 均拒绝且不重试。
 - 继续避开已证伪或低证据方向：threshold8、fastburst、probe4、slow-commentary、重复 classify5
   恢复以及小幅预算余量盲调。
+
+## 2026-08-11：预注册 B011 replay-safe fast-fill 单变量候选
+
+**事实**
+
+- 2026-08-11 13:06 UTC 重新下载 public leaderboard：team `heralces` 当前为 B008R `88.760`
+  / rank `225`，top-200 边界 `89.100`；历史 B008 `92.165` 若计入约为 rank `85`。
+- 审计 4 个最新公开 Notebook：`dimong4/ai-agent-security`、
+  `kaiwalyaatulraut/ai-agent-security-competition-solution`、
+  `koushikkumardinda/ai-agent-security-replay-safe-exfiltration` 和
+  `verityix/ai-agent-security-attack-algorithm-hitherto`。
+- 选择 B011 fast-fill 作为正式候选：父版本为 B008/B008R
+  `baselines/replaysafe_classify5_v1/attack.py`，SHA-256
+  `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`。
+- B011 源码为 `baselines/replaysafe_fastfill_v1/attack.py`，source commit `8b8c2b9`，
+  SHA-256 `ff5b5fac23bdcea595e68abb201a1c8475df3c6e2cd36b1c805506292b2811c3`。
+- 唯一行为变量：post-classification fast/plain branch 从 B008/B008R 的 single-post
+  `TEMPLATE` 改为 reserved-domain `FILL_TEMPLATE`；前五条分类消息和 slow-row
+  frame/multipost 分支保持不变。
+- 本地检查通过：目标测试 19 项、全量测试 106 项、preflight、SDK validate、Ruff check、
+  Ruff format check、`git diff --check` 和凭据值扫描。
+
+**解释与限制**
+
+- `dimong4` 只作为 fast-fill 机制线索；B011 不复制其 `.co` 目标或完整参数栈，并把邮箱目标安全适配为
+  `admin@example.invalid`。
+- B011 改变的是快行分类后的工具覆盖提示，不是 B006/B007/B008/B009/B010 的已证伪变量，也不是
+  B008R 的重复恢复。
+- 本地假环境只能证明候选数、URL 数、hops 与分支边界；不能证明 hidden scorer 会给 fast-fill 加分。
+
+**证据**
+
+- [`../evidence/2026-08-11_b011_fastfill_preflight.md`](../evidence/2026-08-11_b011_fastfill_preflight.md)
+- `artifacts/kaggle/leaderboards/2026-08-11_1306_b011_resume/ai-agent-security-multi-step-tool-attacks.zip`
+- `pytest -q`
+- `python -m aicomp_sdk.cli.main validate redteam .\baselines\replaysafe_fastfill_v1\attack.py`
+
+**决策**
+
+- 预注册 B011；预注册文档提交并推送后，允许构建一个私有 Notebook
+  `heralces/ai-agent-security-b011-fastfill` v1。
+- B011 判定门槛固定为：Public Score `>88.760` 改善当前 leaderboard-effective 分数；
+  `>92.165` 刷新历史高点；`>=100.000` 记为强竞争复现。
+- Public Score `<=88.760`、空分、失败、`ERROR`、超时或重复路线均拒绝且不重试。
+
+**下一门槛**
+
+- 提交并推送本预注册文档。
+- 构建并推送 B011 私有 Notebook v1，下载云端产物并核验 `attack.py` SHA、日志和秘密扫描。
+- 确认历史 submission 列表不存在 B011 fast-fill 后，最多创建一次 competition submission，并只监控该
+  submission 到终态。
