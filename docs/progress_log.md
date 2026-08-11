@@ -2078,3 +2078,46 @@
 - 构建并推送 B011 私有 Notebook v1，下载云端产物并核验 `attack.py` SHA、日志和秘密扫描。
 - 确认历史 submission 列表不存在 B011 fast-fill 后，最多创建一次 competition submission，并只监控该
   submission 到终态。
+
+## 2026-08-11：创建 B011 唯一 Kaggle submission，等待真实评分
+
+**事实**
+
+- B011 预注册文档已在 commit `0c4191b` 提交并推送，早于任何 B011 Kaggle 写操作。
+- 使用 `scripts.build_kaggle_notebook` 构建私有 Notebook
+  `heralces/ai-agent-security-b011-fastfill` version 1；manifest 绑定 commit
+  `0c4191bc2c15773c0a85fa9ada8d52cbff96a729`。
+- Kaggle Notebook v1 状态为 `KernelWorkerStatus.COMPLETE`。
+- 下载云端产物到 `artifacts/kaggle/B011_v1`；云端 `attack.py` SHA-256 与本地候选一致：
+  `ff5b5fac23bdcea595e68abb201a1c8475df3c6e2cd36b1c805506292b2811c3`。
+- 云端日志可操作错误扫描为 `0`；云端产物凭据值扫描为 `0`。
+- 正式提交前重新查询 Kaggle 历史 submissions，未发现 B011 或 attack hash prefix `ff5b5fac`。
+- 使用 Notebook output binding 创建唯一 B011 competition submission `55433780`。
+- submission `55433780` 创建时间为 `2026-08-11 13:22:50.907 UTC`；创建后首次观测状态为
+  `SubmissionStatus.PENDING`，Public/Private Score 均为空。
+
+**解释与限制**
+
+- `submission.csv` 中的 `0.0` 仍是 Code Competition 普通运行占位值，不是 leaderboard score。
+- Notebook `COMPLETE`、云端哈希一致和日志/凭据扫描通过，只证明正式 submission 创建前的产物可追溯；
+  不代表 hidden rerun 已完成评分。
+- B011 在终态前不能与 B008R `88.760` 或历史 B008 `92.165` 作真实分数比较。
+
+**证据**
+
+- [`../evidence/2026-08-11_b011_fastfill_preflight.md`](../evidence/2026-08-11_b011_fastfill_preflight.md)
+- [`../submissions/B011/submission-manifest.json`](../submissions/B011/submission-manifest.json)
+- [`../artifacts/kaggle/B011_v1/attack.py`](../artifacts/kaggle/B011_v1/attack.py)
+
+**决策**
+
+- 只监控 B011 submission `55433780` 到终态；不重复提交、不重推同一 Notebook。
+- B011 判定门槛保持预注册规则：Public Score `>88.760` 改善当前 leaderboard-effective 分数；
+  `>92.165` 刷新历史高点；`>=100.000` 记为强竞争复现。
+- Public Score `<=88.760`、空分、失败、`ERROR`、超时或重复路线均拒绝且不重试。
+
+**下一门槛**
+
+- 查询并监控 B011 submission `55433780`。
+- 在 B011 结果未知前，不创建 B012 或任何其他正式 competition submission；等待期间只做本地研究、
+  公开参考审计、轨迹分析和测试。

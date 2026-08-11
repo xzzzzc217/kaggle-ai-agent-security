@@ -121,7 +121,8 @@
 - [x] 创建唯一 B008R 恢复 competition submission `55393959`；终态 `COMPLETE`、Public Score `88.760`，按预注册记为部分恢复且不重试
 - [x] 核验恢复后 public leaderboard：当前使用 B008R `88.760` / rank `205`；历史高点 B008 `92.165` 在同一快照约为 rank `79`
 - [x] 以当前 leaderboard-effective `88.760` 为直接对照、历史高点 `92.165` 为新高门槛，实现并预注册 B011 fast-fill 单变量候选
-- [ ] 构建并云端核验 B011 私有 Notebook v1，确认历史去重后最多创建一次 competition submission
+- [x] 构建并云端核验 B011 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55433780`
+- [ ] 只监控 B011 submission `55433780` 到终态；结果未知前不创建 B012
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

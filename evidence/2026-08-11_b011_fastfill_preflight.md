@@ -169,3 +169,58 @@ match `ff5b5fac23bdcea595e68abb201a1c8475df3c6e2cd36b1c805506292b2811c3`,
 Notebook logs must not contain actionable execution errors, the artifact
 credential-value scan must be clean, and the submission list must confirm that
 no previous B011 fast-fill candidate submission exists.
+
+## 7. Kaggle notebook and formal submission creation record
+
+The preregistration above was committed and pushed before any Kaggle write:
+
+```text
+source_commit=8b8c2b9
+prereg_commit=0c4191b
+prereg_full_commit=0c4191bc2c15773c0a85fa9ada8d52cbff96a729
+```
+
+The private Notebook was then built and pushed exactly once:
+
+```text
+kernel=heralces/ai-agent-security-b011-fastfill
+title=AI Agent Security B011 Fastfill
+experiment_id=B011
+kernel_version=1
+kernel_status=KernelWorkerStatus.COMPLETE
+manifest_git_commit=0c4191bc2c15773c0a85fa9ada8d52cbff96a729
+cloud_artifact_dir=artifacts/kaggle/B011_v1
+local_attack_sha256=ff5b5fac23bdcea595e68abb201a1c8475df3c6e2cd36b1c805506292b2811c3
+cloud_attack_sha256=ff5b5fac23bdcea595e68abb201a1c8475df3c6e2cd36b1c805506292b2811c3
+cloud_hash_matches_local=true
+submission_csv_bytes=88
+log_actionable_error_scan=0
+artifact_credential_value_scan=0
+```
+
+Immediately before formal submission, the Kaggle submissions list contained no
+B011 entry and no submission with attack hash prefix `ff5b5fac`. The correct
+Code Competition submission used Kaggle kernel output binding:
+
+```text
+kernel=heralces/ai-agent-security-b011-fastfill
+kernel_version=1
+submission_file=submission.csv
+submission_message=B011 fastfill | attack ff5b5fac | prereg 0c4191b | SDK 3.1.2
+```
+
+The only B011 competition submission created under this preregistration is:
+
+```text
+formal_submission_ref=55433780
+formal_submission_created_utc=2026-08-11 13:22:50.907
+initial_submission_observed_utc=2026-08-11 13:22
+initial_submission_status=SubmissionStatus.PENDING
+initial_public_score=
+initial_private_score=
+initial_error_description=
+```
+
+B011 must not be submitted again, and the Notebook must not be rerun for the
+same candidate. Until `55433780` reaches a terminal state, do not create B012 or
+any other new formal competition submission.
