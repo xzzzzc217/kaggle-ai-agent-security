@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-08-12
-> 当前阶段：B011 fast-fill 已出终态，Public Score `72.680`，低于当前 leaderboard-effective B008R `88.760`，按预注册拒绝且不重试
+> 当前阶段：B012 公开路线复查进行中；首轮复查未形成正式预注册候选，预注册前不创建新的 competition submission
 > 历史最高有分 submission ref：B008 `55266445`，Public Score `92.165`；当前 leaderboard-effective submission 为 B008R `55393959`，Public Score `88.760`
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -204,6 +204,7 @@ evaluator 回放单独保留预算。
 | B010 replay-safe slow-commentary | 完成，拒绝 | B008 子候选；唯一行为变量为 slow-row frame plan 的 injected channel 从 `analysis` 改为 `commentary`；源码 SHA `04eead5643b0240d69903cdb4ba3649a6f4ab7a6e496ad9b9b74b704eacfd8da`；source commit `236cf40`；prereg commit `e91bf35`；公开 Assiaben commentary template 只作为窄线索；B010 不复制五模板路线且保留 `.invalid`；101 项测试、preflight、SDK validate、Ruff、`git diff --check` 和秘密扫描通过；Notebook `heralces/ai-agent-security-b010-slow-commentary` v1 `COMPLETE`；云端哈希一致；唯一 submission `55327331` 为 `COMPLETE`，Public Score `52.330`，Private Score 为空；[B010 证据](../evidence/2026-08-07_b010_preflight.md) | 低于 B008 `92.165`，按预注册拒绝且不重试；B008 `92.165` 保留为历史高点 |
 | B008R best-score restoration | 完成，部分恢复 | 用户于 2026-08-10 明确授权恢复最佳分数；B008R 不是新算法候选，byte-identical 使用 B008 `baselines/replaysafe_classify5_v1/attack.py`，SHA `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`；恢复预注册 commit `2e45dd7`；Notebook `heralces/ai-agent-security-b008r-restore-classify5` v1 `COMPLETE`，云端哈希一致，日志错误扫描 0，产物秘密扫描 0；唯一 submission `55393959` 为 `COMPLETE`，CLI/API raw Public Score `88.760`，Private Score 为空；2026-08-10 15:36 UTC leaderboard 为 rank `205` / score `88.760`；[B008R 恢复例外](../evidence/2026-08-10_b008_restore_exception.md) | 因 `52.330 < 88.760 < 92.165`，按预注册记为部分恢复；不重试；当前 effective 对照为 `88.760`，历史高点仍为 `92.165` |
 | B011 replay-safe fast-fill | 完成，拒绝 | B008/B008R 子候选；唯一行为变量为 post-classification fast/plain branch 从单 `http.post` 模板改为 `http.post` + reserved-domain note-forwarding 的 `FILL_TEMPLATE`；源码 SHA `ff5b5fac23bdcea595e68abb201a1c8475df3c6e2cd36b1c805506292b2811c3`；source commit `8b8c2b9`；prereg commit `0c4191b`；公开 `dimong4/ai-agent-security` fast-fill 路线只作为线索，B011 使用 `admin@example.invalid` 和 `*.invalid`；106 项测试、preflight、SDK validate、Ruff、`git diff --check` 和秘密扫描通过；Notebook v1 `COMPLETE`，云端哈希一致，日志错误扫描 0，产物凭据值扫描 0；唯一 submission `55433780` `COMPLETE`，Public Score `72.680`，Private Score 为空，API errorDescription 为空；[B011 证据](../evidence/2026-08-11_b011_fastfill_preflight.md) | 低于当前 effective B008R `88.760`，按预注册拒绝且不重试；B008 `92.165` 仍为历史高点 |
+| B012 candidate screen | 筛查中，未预注册 | 2026-08-12 首轮复查拉取 Adhiraj probe-and-flood、Anas、Foysal V15、Nikita 当前公开 Notebook；Anas/Foysal/Nikita 抽取源码同哈希且属于已知 V15 replay-safe family，未提供强于 B008/B008R 的单变量；Adhiraj route 机制不同但需同时改域、验证、hop cap 与 replay sizing，不满足单变量边界；[B012 审计](../evidence/2026-08-12_b012_public_audit.md) | 暂不创建 B012 submission；继续寻找机制低相关、可证伪、单变量候选 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -289,16 +290,17 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
 ## 7. 下一步
 
 1. B011 fast-fill 已完成，唯一 submission `55433780` 为 `COMPLETE`，Public Score `72.680`，低于 B008R `88.760`，按预注册拒绝且不重试。
-2. 当前 public leaderboard 行为 B008R `88.760` / rank `243`；同一快照 top-200 边界为 `89.235`。
-3. B008 `92.165` 继续作为历史已观测高点，但不是当前 leaderboard-effective 分数；同一快照若计入约为 rank `93`。
-4. B012 候选若形成，判定门槛需固定为：`>88.760` 改善当前 effective 分数，`>92.165` 刷新历史高点，`>=100.000` 记为强竞争复现；`<=88.760`、空分、失败、`ERROR` 或超时拒绝且不重试。
-5. B012 必须重新预注册并先提交推送文档；在形成机制低相关、可证伪、单变量证据前，不创建新的正式 competition submission。
-6. 不重复 channel-token 方向，不盲调 `SPLIT_THRESHOLD_S`、`FAST_BURST_K`、`SPLIT_CLASSIFY_N`、
+2. 2026-08-12 13:12 UTC public leaderboard 行为 B008R `88.760` / rank `250`；同一快照 top-200 边界为 `89.325`。
+3. B008 `92.165` 继续作为历史已观测高点，但不是当前 leaderboard-effective 分数；同一快照若计入约为 rank `95`。
+4. B012 首轮公开路线复查未形成正式预注册候选；Adhiraj route 暂不满足单变量边界，Anas/Foysal/Nikita V15 family 未强于 B008/B008R。
+5. B012 候选若形成，判定门槛需固定为：`>88.760` 改善当前 effective 分数，`>92.165` 刷新历史高点，`>=100.000` 记为强竞争复现；`<=88.760`、空分、失败、`ERROR` 或超时拒绝且不重试。
+6. B012 必须重新预注册并先提交推送文档；在形成机制低相关、可证伪、单变量证据前，不创建新的正式 competition submission。
+7. 不重复 channel-token 方向，不盲调 `SPLIT_THRESHOLD_S`、`FAST_BURST_K`、`SPLIT_CLASSIFY_N`、
    `PROBE_HOPS`、`REPLAY_SAFE_FRAC` 或 `SLOW_MULTIPOST_N`。
-7. 为可获得的 trace 建立 source、transformation、sink 和 predicate 分类。
-8. 绘制分数、机制覆盖、有效候选数和运行时间的消融曲线。
-9. 保留至少两个机制低相关的最终候选，降低私榜 guardrail 风险。
-10. 把可公开部分整理为 Working Note；真实攻击目标适配、凭证和竞赛私有资产永不发布。
+8. 为可获得的 trace 建立 source、transformation、sink 和 predicate 分类。
+9. 绘制分数、机制覆盖、有效候选数和运行时间的消融曲线。
+10. 保留至少两个机制低相关的最终候选，降低私榜 guardrail 风险。
+11. 把可公开部分整理为 Working Note；真实攻击目标适配、凭证和竞赛私有资产永不发布。
 
 ## 8. 阶段成果更新规则
 

@@ -2166,3 +2166,58 @@
 - B012 必须机制低相关、可证伪、单变量；不要重复 B006、B007、B008、B009、B010、B008R、B011
   或 2026-08-09 B011 首轮审计已拒绝的弱路线。
 - 在形成足够强的单变量证据并完成预注册前，不创建新的正式 Kaggle competition submission。
+
+## 2026-08-12：B012 公开路线复查，暂不预注册
+
+**事实**
+
+- 2026-08-12 13:11 UTC 重新查询 Kaggle submissions；B011 `55433780` 仍为
+  `SubmissionStatus.COMPLETE`，Public Score `72.680`，B008R `55393959` 仍为
+  `SubmissionStatus.COMPLETE`，Public Score `88.760`。
+- 重新下载 public leaderboard，共 `1258` 个 team rows；team `heralces` 当前显示
+  score `88.760`、rank `250`、last submission date `2026-08-11 13:22:50`、
+  submission count `3`。
+- 同一快照中，score_at_50=`96.435`、score_at_100=`91.935`、score_at_200=`89.325`；
+  B008 `92.165` 若有效计入约为 rank `95`，B011 自身 `72.680` 若计入约为 rank `875`。
+- 本轮只读拉取并抽取当前公开 Notebook：
+  - `adhirajjagtap/probe-and-flood-strategy`：
+    notebook SHA `27a6243457e2d0f14e0d8d1a9b996773d7f80c4683557d52096b62973029b6d1`，
+    extracted attack SHA `ea319468f0115d2970dc4eb7e9a6d4ff7a745d6aa87c16c450fc8e9480c69620`。
+  - `anasriaz/ai-agent-security`：
+    notebook SHA `9da7e7483e6591c53b3b0479b2ecfb4f2a9a543a6509eb122f5093ea9a87c650`，
+    extracted attack SHA `bd99b0b0d0d5a600ce31d1070c7feadf575193d269ec72dae4fba21a736377a4`。
+  - `foysalemonshanto/ai-agent-security-v15`：
+    notebook SHA `f7f57088cff63d1d095a0f48e3499dfc0be18d09f45820b4163c2b39236e29f0`，
+    extracted attack SHA `bd99b0b0d0d5a600ce31d1070c7feadf575193d269ec72dae4fba21a736377a4`。
+  - `nikitagajbhiye30/ai-security-0011`：
+    notebook SHA `1894c209de08791d36d68a2d0faca77c35d86c5d23e9e61f17bef3932998ccf7`，
+    extracted attack SHA `bd99b0b0d0d5a600ce31d1070c7feadf575193d269ec72dae4fba21a736377a4`。
+
+**解释与限制**
+
+- Anas、Foysal V15、Nikita 当前抽取出的 attack 源码完全同哈希，属于已知 replay-safe V15
+  family。它使用 classify8、tail `0.98` 和 slow single-post，而 B008/B008R 已经叠加 classify5、
+  tail `0.99` 与 slow multipost；回退任一变量都缺少比 B008/B008R 更强的证据。
+- Adhiraj route 机制不同，但原始源码使用 `.co` 域、`max_tool_hops=1` 模板探测和无 replay-safe
+  全量 flood。安全适配它至少会同时改变域、验证策略、hop cap 与 replay sizing，不满足 B012
+  单变量边界。
+- B005 byte-identical restore 可能是有效分恢复方向，但它是重复历史候选的恢复例外，不是
+  机制低相关的 B012 正式算法候选；本轮不把它作为 B012。
+
+**证据**
+
+- [`../evidence/2026-08-12_b012_public_audit.md`](../evidence/2026-08-12_b012_public_audit.md)
+- `artifacts/kaggle/leaderboards/2026-08-12_1311_b012_resume/ai-agent-security-multi-step-tool-attacks.zip`
+- `artifacts/kaggle/public_audit/2026-08-12/`
+- `kaggle competitions submissions ai-agent-security-multi-step-tool-attacks -v`
+
+**决策**
+
+- 本轮不预注册 B012，不构建 Notebook，不创建 competition submission。
+- 继续以当前 effective B008R `88.760` 与历史高点 B008 `92.165` 分别记录门槛。
+
+**下一门槛**
+
+- B012 只有在形成能明确改变工具覆盖或 replay 可靠性的单变量证据后才进入预注册。
+- 若需要恢复 leaderboard-effective 分数而非测试新算法，B005-style restore 必须作为单独的
+  restoration exception 预注册，不得伪装成 B012。
