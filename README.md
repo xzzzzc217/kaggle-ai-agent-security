@@ -25,7 +25,7 @@
 - [`evidence/2026-08-09_current_leaderboard_audit.md`](evidence/2026-08-09_current_leaderboard_audit.md)：当前 public leaderboard 行使用 B010 `52.330` 而非历史最佳 B008 `92.165` 的风险记录
 - [`evidence/2026-08-10_b008_status_audit.md`](evidence/2026-08-10_b008_status_audit.md)：B008 当前为 score-bearing `ERROR` 状态的 API/Notebook 核验
 - [`evidence/2026-08-10_b008_restore_exception.md`](evidence/2026-08-10_b008_restore_exception.md)：用户授权的 B008R 最佳分数恢复例外、终态与部分恢复判定
-- [`evidence/2026-08-11_b011_fastfill_preflight.md`](evidence/2026-08-11_b011_fastfill_preflight.md)：B011 fast-fill 单变量候选的公开路线审计、安全适配、动态样本与预注册
+- [`evidence/2026-08-11_b011_fastfill_preflight.md`](evidence/2026-08-11_b011_fastfill_preflight.md)：B011 fast-fill 单变量候选的公开路线审计、安全适配、动态样本、预注册与终态拒绝
 - [`docs/safety.md`](docs/safety.md)：研究授权边界与工程控制
 
 ## 当前主赛
@@ -122,7 +122,8 @@
 - [x] 核验恢复后 public leaderboard：当前使用 B008R `88.760` / rank `205`；历史高点 B008 `92.165` 在同一快照约为 rank `79`
 - [x] 以当前 leaderboard-effective `88.760` 为直接对照、历史高点 `92.165` 为新高门槛，实现并预注册 B011 fast-fill 单变量候选
 - [x] 构建并云端核验 B011 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55433780`
-- [ ] 只监控 B011 submission `55433780` 到终态；结果未知前不创建 B012
+- [x] 完成 B011 fast-fill rerun：submission `55433780` 为 `COMPLETE`，Public Score `72.680`，低于 B008R `88.760`，按预注册拒绝且不重试
+- [ ] 以当前 leaderboard-effective `88.760` 和历史高点 `92.165` 分别为门槛，继续筛查机制低相关、可证伪、单变量的 B012 候选；预注册前不创建正式 submission
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

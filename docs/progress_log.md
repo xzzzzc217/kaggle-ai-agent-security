@@ -2121,3 +2121,48 @@
 - 查询并监控 B011 submission `55433780`。
 - 在 B011 结果未知前，不创建 B012 或任何其他正式 competition submission；等待期间只做本地研究、
   公开参考审计、轨迹分析和测试。
+
+## 2026-08-12：B011 fast-fill 终态为 72.680，低于 B008R，按预注册拒绝
+
+**事实**
+
+- 2026-08-12 09:11 UTC 首次在本任务中观测到 B011 submission `55433780` 进入
+  `SubmissionStatus.COMPLETE`。
+- Kaggle CLI Public Score 为 `72.680`，Private Score 为空。
+- Kaggle API 对同一 ref 返回 `status=SubmissionStatus.COMPLETE`、raw
+  `_public_score='72.680'`、`_private_score=None`、`errorDescription=None`。
+  SDK convenience `publicScore` 字段返回 `None`，与此前 B008R 观测到的 API wrapper 行为一致。
+- B011 是唯一 fast-fill competition submission；submission 创建时间为
+  `2026-08-11 13:22:50.907 UTC`，源码 SHA 为
+  `ff5b5fac23bdcea595e68abb201a1c8475df3c6e2cd36b1c805506292b2811c3`。
+- 2026-08-12 09:12 UTC 重新下载 public leaderboard：team `heralces` 当前显示 score
+  `88.760`、rank `243`、last submission date `2026-08-11 13:22:50`、submission count `3`。
+  同一快照中，score_at_50=`96.435`、score_at_100=`91.845`、score_at_200=`89.235`；
+  历史 B008 `92.165` 若有效计入约为 rank `93`，B011 自身 `72.680` 若计入约为 rank `857`。
+
+**解释与限制**
+
+- B011 的真实分数 `72.680` 低于当前 leaderboard-effective 对照 B008R `88.760`，因此未改善当前可见分数。
+- B011 也低于历史高点 B008 `92.165`，未刷新历史最佳；远低于强竞争参考 `100.000`。
+- 当前 leaderboard 行仍显示 `88.760`，说明可见榜单分数仍由更高的 B008R 分数支撑；但 last submission date
+  已变为 B011 创建时间，rank 和 top-200 边界会继续漂移。
+
+**证据**
+
+- [`../evidence/2026-08-11_b011_fastfill_preflight.md`](../evidence/2026-08-11_b011_fastfill_preflight.md)
+- `artifacts/kaggle/leaderboards/2026-08-12_0911_b011_terminal/ai-agent-security-multi-step-tool-attacks.zip`
+- `kaggle competitions submissions ai-agent-security-multi-step-tool-attacks -v`
+
+**决策**
+
+- 按预注册，因 `72.680 <= 88.760`，拒绝 B011。
+- 不重复提交 B011，不重推同一 Notebook，不沿同一 fast-fill route 创建变体提交。
+- 当前 leaderboard-effective 直接对照仍为 B008R `88.760`；B008 `92.165` 继续保留为历史已观测高点。
+
+**下一门槛**
+
+- B012 若形成正式候选，必须先预注册并固定三层门槛：`>88.760` 改善当前 effective 分数，
+  `>92.165` 刷新历史高点，`>=100.000` 记为强竞争复现。
+- B012 必须机制低相关、可证伪、单变量；不要重复 B006、B007、B008、B009、B010、B008R、B011
+  或 2026-08-09 B011 首轮审计已拒绝的弱路线。
+- 在形成足够强的单变量证据并完成预注册前，不创建新的正式 Kaggle competition submission。

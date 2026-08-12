@@ -224,3 +224,38 @@ initial_error_description=
 B011 must not be submitted again, and the Notebook must not be rerun for the
 same candidate. Until `55433780` reaches a terminal state, do not create B012 or
 any other new formal competition submission.
+
+## 8. Terminal observation and decision
+
+B011 first reached an observed terminal state in this task at
+`2026-08-12 09:11 UTC`:
+
+```text
+formal_submission_ref=55433780
+formal_submission_status=SubmissionStatus.COMPLETE
+formal_submission_public_score=72.680
+formal_submission_private_score=
+api_raw_public_score=72.680
+api_raw_private_score=
+api_error_description=
+first_observed_terminal_utc=2026-08-12 09:11
+```
+
+The Kaggle CLI reported `SubmissionStatus.COMPLETE` with Public Score `72.680`
+and blank Private Score. The Kaggle API model reported raw `_public_score` as
+`72.680`, raw `_private_score=None`, and `errorDescription=None`; its
+convenience `publicScore` field returned `None`, matching the known API wrapper
+quirk seen in prior submissions.
+
+The current public leaderboard snapshot downloaded at `2026-08-12 09:12 UTC`
+still shows team `heralces` at score `88.760`, rank `243`, last submission date
+`2026-08-11 13:22:50`, and submission count `3`. In that same snapshot,
+`score_at_50=96.435`, `score_at_100=91.845`, `score_at_200=89.235`; historical
+B008 `92.165` would rank approximately `93`, while B011's own `72.680` would
+rank approximately `857`.
+
+Per the fixed preregistration rule, B011 is rejected because `72.680 <= 88.760`.
+It did not improve the current leaderboard-effective score, did not refresh the
+historical B008 high-water mark `92.165`, and did not reach the strong
+competition reference `100.000`. Do not repeat B011, do not repush the same
+Notebook, and do not create another submission from the same fast-fill route.
