@@ -2221,3 +2221,54 @@
 - B012 只有在形成能明确改变工具覆盖或 replay 可靠性的单变量证据后才进入预注册。
 - 若需要恢复 leaderboard-effective 分数而非测试新算法，B005-style restore 必须作为单独的
   restoration exception 预注册，不得伪装成 B012。
+
+## 2026-08-12：预注册 B005R 分数恢复例外
+
+**事实**
+
+- 2026-08-12 15:12 UTC 重新查询 Kaggle submissions：B011 `55433780` 为
+  `SubmissionStatus.COMPLETE` / Public Score `72.680`；B008R `55393959` 为
+  `SubmissionStatus.COMPLETE` / Public Score `88.760`；B005 原 submission
+  `55185029` 当前为 score-bearing `SubmissionStatus.ERROR`，仍显示历史 Public Score
+  `91.930`。
+- 2026-08-12 15:15 UTC 重新下载 public leaderboard：team `heralces` 当前显示 score
+  `88.760`、rank `250`、last submission date `2026-08-11 13:22:50`、submission count
+  `3`；同一快照 score_at_50=`96.435`、score_at_100=`91.935`、score_at_200=`89.325`。
+- 同一快照中，B005 历史分 `91.930` 若恢复为当前 effective 分数，约为 rank `101`；B008
+  历史高点 `92.165` 若计入约为 rank `95`。
+- B005R 使用 B005 源码 `baselines/replaysafe_tail99_v1/attack.py` byte-identical 恢复，
+  SHA-256 为 `9d86d633b50a72f7499f7ad6c4f81c03fb61887e12351da977f7cb64e413c67f`。
+- 恢复前本地检查通过：preflight PASS、SDK validate PASS、目标 9 项测试通过、全量
+  106 项测试通过、Ruff check 通过、Ruff format check 通过、`git diff --check` 通过、
+  凭据值扫描 0。
+
+**解释与限制**
+
+- B005R 是用户授权的 leaderboard-effective 分数恢复例外，不是 B012 机制候选，不改变源码
+  行为变量。
+- B005R 的目标是尝试恢复 B005 历史 `91.930` 分数带；它不承诺恢复 B008 历史高点
+  `92.165`。
+- 该恢复操作必须先提交并推送本预注册记录；正式 Notebook 和 competition submission 只能在
+  云端哈希、日志与凭据扫描继续通过后创建一次。
+
+**证据**
+
+- [`../evidence/2026-08-12_b005_restore_exception.md`](../evidence/2026-08-12_b005_restore_exception.md)
+- `artifacts/kaggle/leaderboards/2026-08-12_1512_b005r_consider/ai-agent-security-multi-step-tool-attacks.zip`
+- `python .\scripts\preflight_submission.py .\baselines\replaysafe_tail99_v1\attack.py`
+- `python -m aicomp_sdk.cli.main validate redteam .\baselines\replaysafe_tail99_v1\attack.py`
+
+**决策**
+
+- 预注册 B005R：`COMPLETE` 且 Public Score `>=91.930` 记为恢复 B005 历史分；Public Score
+  `>88.760` 但 `<91.930` 记为改善当前 effective 分数但未恢复 B005；Public Score `>92.165`
+  额外记为刷新历史高点；`>=100.000` 额外记为强竞争复现。
+- Public Score `<=88.760`、空分、失败、`ERROR` 或超时均记为恢复失败。
+- 不重复 B005R，不重推相同 Notebook；B005R 结果未知前不创建 B012 或其他正式 submission。
+
+**下一门槛**
+
+- 提交并推送本预注册文档。
+- 构建并推送 B005R 私有 Notebook v1，下载云端产物并核验 `attack.py` SHA、日志和凭据扫描。
+- 确认历史 submission 列表不存在 B005R 后，最多创建一次 B005R competition submission，并只监控
+  该 submission 到终态。

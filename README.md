@@ -27,6 +27,7 @@
 - [`evidence/2026-08-10_b008_restore_exception.md`](evidence/2026-08-10_b008_restore_exception.md)：用户授权的 B008R 最佳分数恢复例外、终态与部分恢复判定
 - [`evidence/2026-08-11_b011_fastfill_preflight.md`](evidence/2026-08-11_b011_fastfill_preflight.md)：B011 fast-fill 单变量候选的公开路线审计、安全适配、动态样本、预注册与终态拒绝
 - [`evidence/2026-08-12_b012_public_audit.md`](evidence/2026-08-12_b012_public_audit.md)：B012 公开路线复查与候选筛查；未形成正式预注册候选
+- [`evidence/2026-08-12_b005_restore_exception.md`](evidence/2026-08-12_b005_restore_exception.md)：用户授权的 B005R 分数恢复例外预注册；不计作 B012 新算法候选
 - [`docs/safety.md`](docs/safety.md)：研究授权边界与工程控制
 
 ## 当前主赛
@@ -125,6 +126,8 @@
 - [x] 构建并云端核验 B011 私有 Notebook v1，确认历史去重后创建唯一 competition submission `55433780`
 - [x] 完成 B011 fast-fill rerun：submission `55433780` 为 `COMPLETE`，Public Score `72.680`，低于 B008R `88.760`，按预注册拒绝且不重试
 - [x] 完成 B012 首轮公开路线复查：拉取 Adhiraj、Anas、Foysal V15、Nikita 当前公开 Notebook；未发现足够强的低相关单变量候选，未创建正式 submission
+- [x] 预注册 B005R byte-identical Tail99 分数恢复例外；这是 leaderboard-effective 恢复操作，不计作 B012 新算法候选
+- [ ] 在 B005R 结果未知前只监控唯一恢复 submission；不创建 B012 或任何其他正式 submission
 - [ ] 以当前 leaderboard-effective `88.760` 和历史高点 `92.165` 分别为门槛，继续筛查机制低相关、可证伪、单变量的 B012 候选；预注册前不创建正式 submission
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
