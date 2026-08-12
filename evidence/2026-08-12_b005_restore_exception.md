@@ -137,3 +137,53 @@ Before formal competition submission, the cloud artifact hash must match the
 local B005 source hash, notebook logs must not show actionable execution errors,
 artifact credential-value scan must be clean, and the submission list must
 confirm that no previous B005R restoration submission exists.
+
+## 7. Actual restore creation record
+
+This restore was created only after the preregistration document was committed
+and pushed.
+
+```text
+restore_prereg_commit=9a4b96a
+restore_prereg_full_commit=9a4b96a4f87fab3ddbff635a8080ab938fdf0b95
+kernel=heralces/ai-agent-security-b005r-restore-tail99
+title=AI Agent Security B005R Restore Tail99
+experiment_id=B005R
+kernel_version=1
+kernel_status=KernelWorkerStatus.COMPLETE
+manifest_git_commit=9a4b96a4f87fab3ddbff635a8080ab938fdf0b95
+cloud_artifact_dir=artifacts/kaggle/B005R_v1
+local_attack_sha256=9d86d633b50a72f7499f7ad6c4f81c03fb61887e12351da977f7cb64e413c67f
+cloud_attack_sha256=9d86d633b50a72f7499f7ad6c4f81c03fb61887e12351da977f7cb64e413c67f
+cloud_hash_matches_local=true
+submission_csv_bytes=88
+log_actionable_error_scan=0
+artifact_credential_value_scan=0
+```
+
+Immediately before formal submission, the Kaggle submissions list contained no
+B005R entry and no submission with the restoration message. The correct Code
+Competition submission used Kaggle kernel output binding:
+
+```text
+kernel=heralces/ai-agent-security-b005r-restore-tail99
+kernel_version=1
+submission_file=submission.csv
+submission_message=B005R restore tail99 | attack 9d86d633 | authorized restore | SDK 3.1.2
+```
+
+The only B005R competition submission created under this restoration exception
+is:
+
+```text
+restore_submission_ref=55461853
+restore_submission_created_utc=2026-08-12 15:22:19.533
+restore_submission_initial_observed_utc=2026-08-12 15:22
+restore_submission_initial_status=SubmissionStatus.PENDING
+restore_submission_initial_public_score=
+restore_submission_initial_private_score=
+restore_submission_error_description=None
+```
+
+Until `55461853` reaches a terminal state, do not create B012 or any other new
+formal competition submission. Do not repeat B005R or repush the same Notebook.

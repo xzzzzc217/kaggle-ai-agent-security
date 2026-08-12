@@ -2272,3 +2272,48 @@
 - 构建并推送 B005R 私有 Notebook v1，下载云端产物并核验 `attack.py` SHA、日志和凭据扫描。
 - 确认历史 submission 列表不存在 B005R 后，最多创建一次 B005R competition submission，并只监控
   该 submission 到终态。
+
+## 2026-08-12：创建 B005R 唯一恢复 submission，等待真实评分
+
+**事实**
+
+- B005R 预注册文档已在 commit `9a4b96a` 提交并推送，早于任何 B005R Kaggle 写操作。
+- 使用 `scripts.build_kaggle_notebook` 构建私有 Notebook
+  `heralces/ai-agent-security-b005r-restore-tail99` version 1；manifest 绑定 commit
+  `9a4b96a4f87fab3ddbff635a8080ab938fdf0b95`。
+- Kaggle Notebook v1 状态为 `KernelWorkerStatus.COMPLETE`。
+- 下载云端产物到 `artifacts/kaggle/B005R_v1`；云端 `attack.py` SHA-256 与本地 B005
+  源码一致：
+  `9d86d633b50a72f7499f7ad6c4f81c03fb61887e12351da977f7cb64e413c67f`。
+- 云端日志可操作错误扫描为 `0`；云端产物凭据值扫描为 `0`。
+- 正式提交前重新查询 Kaggle 历史 submissions，未发现 B005R 恢复条目。
+- 使用 Notebook output binding 创建唯一 B005R competition submission `55461853`。
+- submission `55461853` 创建时间为 `2026-08-12 15:22:19.533 UTC`；创建后首次观测状态为
+  `SubmissionStatus.PENDING`，Public/Private Score 均为空，API errorDescription 为空。
+
+**解释与限制**
+
+- `submission.csv` 中的 `0.0` 仍是 Code Competition 普通运行占位值，不是 leaderboard score。
+- Notebook `COMPLETE`、云端哈希一致和日志/凭据扫描通过，只证明正式 submission 创建前的产物
+  可追溯；不代表 hidden rerun 已完成评分。
+- B005R 在终态前不能作为当前 effective 分数；当前 leaderboard-effective 对照仍是 B008R
+  `88.760`。
+
+**证据**
+
+- [`../evidence/2026-08-12_b005_restore_exception.md`](../evidence/2026-08-12_b005_restore_exception.md)
+- [`../submissions/B005R/submission-manifest.json`](../submissions/B005R/submission-manifest.json)
+- `artifacts/kaggle/B005R_v1/attack.py`
+
+**决策**
+
+- 只监控 B005R submission `55461853` 到终态；不重复提交、不重推相同 Notebook。
+- B005R 判定规则保持预注册规则：Public Score `>=91.930` 恢复 B005 历史分；`>88.760`
+  改善当前 effective 分数；`>92.165` 刷新历史高点；`>=100.000` 记为强竞争复现。
+- Public Score `<=88.760`、空分、失败、`ERROR` 或超时拒绝且不重试。
+
+**下一门槛**
+
+- 查询并监控 B005R submission `55461853`。
+- 在 B005R 结果未知前，不创建 B012 或任何其他正式 competition submission；等待期间只做本地研究、
+  公开参考审计、轨迹分析和测试。
