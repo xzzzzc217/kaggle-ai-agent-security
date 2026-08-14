@@ -382,3 +382,16 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
   constants remain unchanged.
 - B012 is preregistered as a small, clean mechanism; only one Notebook and one
   competition submission are allowed after the preregistration commit is pushed.
+
+## 2026-08-14 B012 submission override
+
+- B012 Notebook `heralces/ai-agent-security-b012-warmkeep` version 1 is
+  `KernelWorkerStatus.COMPLETE`.
+- Cloud `attack.py` SHA matches local B012 SHA
+  `68cea78ffdc1c255655a78884c70640737b6390b3ab6baed957d0c73e7f70e6c`; log error
+  scan and cloud artifact credential-shape scan are both `0`.
+- The only B012 competition submission is `55495429`, created
+  `2026-08-14 02:01:38.340 UTC`, initially `SubmissionStatus.PENDING` with blank
+  Public/Private Score.
+- Until `55495429` is terminal, do not create B013 or any other formal
+  competition submission.

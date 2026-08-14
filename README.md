@@ -219,3 +219,15 @@ uv sync
 - Preflight, SDK validate, 111 tests, ruff, format check, diff check, and
   candidate-file credential-shape scan passed before preregistration.
 - Evidence is recorded in `evidence/2026-08-14_b012_warmkeep_preflight.md`.
+
+## 2026-08-14 B012 submission
+
+- Private Notebook `heralces/ai-agent-security-b012-warmkeep` v1 is `COMPLETE`.
+- Cloud `attack.py` hash matches B012 source SHA
+  `68cea78ffdc1c255655a78884c70640737b6390b3ab6baed957d0c73e7f70e6c`; log
+  actionable error scan and cloud artifact credential-shape scan are both `0`.
+- Unique competition submission ref is `55495429`, created
+  `2026-08-14 02:01:38.340 UTC`; initial status is `SubmissionStatus.PENDING`
+  with blank Public/Private Score.
+- Do not repeat B012 and do not create B013 or any other formal competition
+  submission before B012 reaches a terminal state.

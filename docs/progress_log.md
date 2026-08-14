@@ -2444,3 +2444,40 @@
 **Evidence**
 
 - [`../evidence/2026-08-14_b012_warmkeep_preflight.md`](../evidence/2026-08-14_b012_warmkeep_preflight.md)
+
+## 2026-08-14: create B012 unique Kaggle submission, waiting for score
+
+**Facts**
+
+- B012 preregistration document was committed and pushed as commit `5511964`
+  before any B012 Kaggle write operation.
+- Built private Notebook package `submissions/B012` with manifest git commit
+  `5511964d777037f73c6e179ede9be14e140bba57`.
+- Pushed private Notebook
+  `heralces/ai-agent-security-b012-warmkeep` version 1. The first push attempt
+  was disconnected by Kaggle before returning a version; read-only list/status
+  checks found no B012 kernel, then the second push succeeded as version 1.
+- Notebook v1 reached `KernelWorkerStatus.COMPLETE`.
+- Downloaded cloud artifacts to `artifacts/kaggle/B012_v1`; cloud `attack.py`
+  SHA-256 matches the local B012 source:
+  `68cea78ffdc1c255655a78884c70640737b6390b3ab6baed957d0c73e7f70e6c`.
+- Notebook log actionable error scan: `0`; cloud artifact credential-shape scan:
+  `0`.
+- Immediately before formal submission, Kaggle submissions contained no B012,
+  `warmkeep`, or `68cea78f` entry.
+- Created the only B012 competition submission with Notebook output binding:
+  submission ref `55495429`, created `2026-08-14 02:01:38.340 UTC`, initial
+  status `SubmissionStatus.PENDING`, Public/Private Score blank, and
+  `errorDescription=None`.
+
+**Decision**
+
+- Monitor only B012 submission `55495429`.
+- Do not repeat B012, do not repush the same Notebook, and do not create B013 or
+  any other formal competition submission before B012 reaches a terminal state.
+
+**Evidence**
+
+- [`../evidence/2026-08-14_b012_warmkeep_preflight.md`](../evidence/2026-08-14_b012_warmkeep_preflight.md)
+- `artifacts/kaggle/B012_v1/attack.py`
+- `artifacts/kaggle/B012_v1/ai-agent-security-b012-warmkeep.log`

@@ -160,3 +160,52 @@ Before any Kaggle write operation after this preregistration, recheck:
    `68cea78ffdc1c255655a78884c70640737b6390b3ab6baed957d0c73e7f70e6c`;
 6. Notebook logs have zero operational errors except known benign warnings;
 7. cloud artifacts have zero credential-shape matches.
+
+## Kaggle Notebook and competition submission creation
+
+After preregistration commit `5511964` was pushed, B012 was built and submitted
+exactly once.
+
+```text
+kernel=heralces/ai-agent-security-b012-warmkeep
+title=AI Agent Security B012 Warmkeep
+experiment_id=B012
+kernel_version=1
+kernel_status=KernelWorkerStatus.COMPLETE
+manifest_git_commit=5511964d777037f73c6e179ede9be14e140bba57
+local_attack_sha256=68cea78ffdc1c255655a78884c70640737b6390b3ab6baed957d0c73e7f70e6c
+notebook_sha256=7e326658d78d66f14f1f9cf39eb4ca665dd4c4d407f1e2cc2af864e18c773ffe
+cloud_artifact_dir=artifacts/kaggle/B012_v1
+cloud_attack_sha256=68cea78ffdc1c255655a78884c70640737b6390b3ab6baed957d0c73e7f70e6c
+cloud_hash_matches_local=true
+submission_csv_bytes=88
+log_actionable_error_scan=0
+cloud_artifact_credential_shape_scan=0
+```
+
+Immediately before formal submission, the Kaggle submissions list contained no
+B012 entry and no submission with attack hash prefix `68cea78f` or `warmkeep`.
+The correct Code Competition submission used Kaggle kernel output binding:
+
+```text
+kernel=heralces/ai-agent-security-b012-warmkeep
+kernel_version=1
+submission_file=submission.csv
+submission_message=B012 warmkeep | attack 68cea78f | prereg 5511964 | SDK 3.1.2
+```
+
+The only B012 competition submission created under this preregistration is:
+
+```text
+formal_submission_ref=55495429
+formal_submission_created_utc=2026-08-14 02:01:38.340
+initial_submission_observed_utc=2026-08-14 02:01
+initial_submission_status=SubmissionStatus.PENDING
+initial_public_score=
+initial_private_score=
+initial_error_description=None
+```
+
+B012 must not be submitted again, and the Notebook must not be rerun for the
+same candidate. Until `55495429` reaches a terminal state, do not create B013 or
+any other new formal competition submission.
