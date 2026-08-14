@@ -193,3 +193,15 @@ uv sync
 - B005R is now terminal, so B012 scouting may resume, but no B012 or later formal
   competition submission is authorized until a new single-variable preregistration is
   committed and pushed.
+
+## 2026-08-14 B012 public audit round 2
+
+- Rechecked submissions and public leaderboard. Current effective score remains
+  B008R `88.760`; latest checked public rank is `277`, top-200 boundary is
+  `89.550`, and historical B008 `92.165` would rank approximately `97`.
+- Pulled current public snapshots for Dimong, Nctuan v25, Nctuan slow-multipost,
+  Kaiwalya, and Assiaben five-template aggressive replay.
+- No B012 candidate was selected: the routes either roll back known variables,
+  require multi-variable safe adaptation, or continue excluded prompt/template-bank
+  directions.
+- Evidence is recorded in `evidence/2026-08-14_b012_public_audit_round2.md`.

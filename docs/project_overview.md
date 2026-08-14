@@ -354,3 +354,16 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
   a new committed and pushed preregistration with fixed source hash, single
   behavior variable, dynamic-sample delta, replay cost, reserved-domain URL
   policy, comparison gates, failure exits, and no-retry rule.
+
+## 2026-08-14 current-state override
+
+- Current leaderboard-effective score remains B008R `88.760`; current public
+  leaderboard snapshot shows team `heralces` rank `277` and top-200 boundary
+  `89.550`.
+- Historical B008 `92.165` remains a non-effective score-bearing `ERROR`; in the
+  same snapshot it would rank approximately `97`.
+- B005R `55461853` is terminal at Public Score `86.945` and remains rejected.
+- B012 public audit round 2 pulled Dimong, Nctuan, Kaiwalya, and Assiaben public
+  snapshots. No mechanism-low-correlated single-variable candidate was selected.
+- B012 remains blocked on stronger evidence; no B012 preregistration, Notebook,
+  or competition submission exists.

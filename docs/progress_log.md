@@ -2367,3 +2367,35 @@
   route rejects without retry.
 - Do not create a B012 or later formal competition submission until preregistration
   documentation is committed and pushed.
+
+## 2026-08-14: B012 public audit round 2, no formal candidate
+
+**Facts**
+
+- Rechecked current submissions. B005R `55461853` remains `COMPLETE` with Public
+  Score `86.945`; B011 remains `72.680`; B008R remains the current
+  leaderboard-effective `COMPLETE` score at `88.760`; B008 `92.165` remains a
+  historical score-bearing `ERROR`.
+- Downloaded a fresh public leaderboard snapshot at `2026-08-14 01:47 UTC`:
+  team `heralces` score `88.760`, rank `277`, top-200 boundary `89.550`,
+  score_at_100 `92.025`, and B008 historical `92.165` would rank approximately
+  `97`.
+- Pulled current public Notebook snapshots for Dimong, Nctuan v25, Nctuan
+  slow-multipost, Kaiwalya, and Assiaben five-template aggressive replay.
+
+**Decision**
+
+- No B012 formal candidate was selected in this pass.
+- Dimong current, Nctuan, and Kaiwalya mostly point backward on known variables
+  (`SPLIT_CLASSIFY_N`, `REPLAY_SAFE_FRAC`, `SLOW_MULTIPOST_N`) or toward excluded
+  prompt-token changes.
+- Assiaben is mechanistically different but requires a multi-variable
+  template-bank/domain/probe/fill rewrite and is outside the B012 single-variable
+  gate.
+- No B012 preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-14_b012_public_audit_round2.md`](../evidence/2026-08-14_b012_public_audit_round2.md)
+- `artifacts/kaggle/leaderboards/2026-08-14_0145_b012_resume_v3/ai-agent-security-multi-step-tool-attacks.zip`
+- `artifacts/kaggle/public_audit/2026-08-14/`
