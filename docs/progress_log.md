@@ -2317,3 +2317,53 @@
 - 查询并监控 B005R submission `55461853`。
 - 在 B005R 结果未知前，不创建 B012 或任何其他正式 competition submission；等待期间只做本地研究、
   公开参考审计、轨迹分析和测试。
+
+## 2026-08-13: B005R terminal result is 86.945, below B008R, restore rejected
+
+**Facts**
+
+- During the `2026-08-13 23:53 UTC` monitor heartbeat, Kaggle API showed the
+  only B005R restoration submission `55461853` as `SubmissionStatus.COMPLETE`.
+- Raw Public Score is `86.945`; Private Score is blank; `errorDescription=None`.
+- The submission was created at `2026-08-12 15:22:19.533 UTC` with message
+  `B005R restore tail99 | attack 9d86d633 | authorized restore | SDK 3.1.2`.
+- A fresh public leaderboard download under
+  `artifacts/kaggle/leaderboards/2026-08-13_2353_b005r_terminal/` has `1348`
+  rows. Team `heralces` remains at score `88.760`, rank `277`,
+  last submission date `2026-08-12 15:22:19`, and submission count `4`.
+- The same leaderboard snapshot has score_at_50=`97.110`, score_at_100=`92.025`,
+  score_at_200=`89.550`; B005R `86.945` would rank approximately `565`, B005
+  historical `91.930` would rank approximately `104`, and B008 historical
+  `92.165` would rank approximately `97`.
+
+**Interpretation and limits**
+
+- B005R was a restoration exception only; it did not introduce an algorithmic
+  variable and is not a B012 candidate.
+- Because `86.945 <= 88.760`, it failed to improve the current
+  leaderboard-effective score and did not restore B005 historical `91.930` or
+  B008 historical `92.165`.
+- The leaderboard-effective score remains B008R `88.760`; B008 `92.165` remains
+  a historical observed high-water mark, not the current effective score.
+
+**Evidence**
+
+- [`../evidence/2026-08-12_b005_restore_exception.md`](../evidence/2026-08-12_b005_restore_exception.md)
+- `artifacts/kaggle/leaderboards/2026-08-13_2353_b005r_terminal/ai-agent-security-multi-step-tool-attacks.zip`
+- Kaggle API `competition_submissions('ai-agent-security-multi-step-tool-attacks')`
+
+**Decision**
+
+- Reject B005R per the preregistered restore rule.
+- Do not retry B005R and do not repush the same Notebook.
+- Resume B012 scouting only after this terminal record is committed and pushed.
+
+**Next gate**
+
+- B012 must be a new mechanism-low-correlated, falsifiable single-variable candidate.
+- B012 gates remain: `>88.760` improves current effective score, `>92.165`
+  refreshes the historical high, and `>=100.000` is a strong-competition
+  reproduction; `<=88.760`, blank score, failure, `ERROR`, timeout, or duplicate
+  route rejects without retry.
+- Do not create a B012 or later formal competition submission until preregistration
+  documentation is committed and pushed.

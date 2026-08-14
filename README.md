@@ -175,3 +175,21 @@ uv sync
   --kernel-id heralces/ai-agent-security-b000-official-baseline `
   --title "AI Agent Security B000 Official Baseline"
 ```
+
+## 2026-08-13 B005R terminal update
+
+- B005R restoration submission `55461853` reached `SubmissionStatus.COMPLETE` during the
+  `2026-08-13 23:53 UTC` monitor heartbeat.
+- Kaggle API raw Public Score is `86.945`, Private Score is blank, and
+  `errorDescription=None`.
+- Per the B005R preregistered restore rule, `86.945 <= 88.760`; therefore B005R is a
+  restoration failure, is rejected, and must not be retried or repushed.
+- The current leaderboard-effective score remains B008R `88.760`; B008 `92.165`
+  remains only the historical observed high-water mark.
+- Fresh public leaderboard artifact:
+  `artifacts/kaggle/leaderboards/2026-08-13_2353_b005r_terminal/ai-agent-security-multi-step-tool-attacks.zip`.
+  The team row still shows score `88.760`, rank `277`, last submission date
+  `2026-08-12 15:22:19`, submission count `4`, and top-200 boundary `89.550`.
+- B005R is now terminal, so B012 scouting may resume, but no B012 or later formal
+  competition submission is authorized until a new single-variable preregistration is
+  committed and pushed.

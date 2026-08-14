@@ -35,3 +35,9 @@
 3. 不用 public leaderboard 代替本地机制证据；
 4. 最终提交必须能追溯到 commit、Notebook version 与完整配置；
 5. 私榜候选至少保留两个机制低相关版本。
+
+## 2026-08-13 experiment-status override
+
+| ID | Terminal status update |
+|---|---|
+| B005R | Submission `55461853` is `COMPLETE` with raw Public Score `86.945`, Private Score blank, and `errorDescription=None`. This is lower than the current leaderboard-effective B008R score `88.760`, so the B005R restoration exception is rejected and must not be retried or repushed. The current effective score remains `88.760`; B008 `92.165` remains only a historical observed high. Fresh leaderboard snapshot: team `heralces` score `88.760` / rank `277`, top-200 boundary `89.550`; B005R `86.945` would rank approximately `565`. |

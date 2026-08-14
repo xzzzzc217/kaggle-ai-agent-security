@@ -187,3 +187,50 @@ restore_submission_error_description=None
 
 Until `55461853` reaches a terminal state, do not create B012 or any other new
 formal competition submission. Do not repeat B005R or repush the same Notebook.
+
+## 8. Actual terminal result
+
+The only B005R competition submission reached a terminal state during the
+`2026-08-13 23:53 UTC` monitor heartbeat:
+
+```text
+restore_submission_ref=55461853
+restore_submission_created_utc=2026-08-12 15:22:19.533
+restore_submission_first_terminal_observed_utc=2026-08-13 23:53
+restore_submission_terminal_status=SubmissionStatus.COMPLETE
+restore_submission_public_score=86.945
+restore_submission_private_score=
+restore_submission_error_description=None
+```
+
+The fresh leaderboard snapshot downloaded for terminal verification shows:
+
+```text
+leaderboard_rows=1348
+current_leaderboard_effective_submission=B008R 55393959
+current_leaderboard_effective_score=88.760
+team_rank=277
+team_last_submission_date=2026-08-12 15:22:19
+team_submission_count=4
+score_at_50=97.110
+score_at_100=92.025
+score_at_200=89.550
+rank_if_86_945=565
+rank_if_88_760=276
+rank_if_91_930=104
+rank_if_92_165=97
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-13_2353_b005r_terminal/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=artifacts/kaggle/leaderboards/2026-08-13_2353_b005r_terminal/extracted_py/ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-14T01_39_51.csv
+```
+
+Fixed decision:
+
+- `86.945 <= 88.760`, so B005R is a failed restoration under the preregistered
+  rule.
+- B005R did not improve the current leaderboard-effective score, did not restore
+  B005 historical `91.930`, did not refresh B008 historical `92.165`, and did not
+  reach the strong-competition reference `100.000`.
+- Do not retry B005R and do not repush the same Notebook.
+- B012 scouting may resume only after this terminal record is committed and
+  pushed; no B012 or later formal competition submission is authorized without a
+  new preregistration.

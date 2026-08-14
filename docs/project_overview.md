@@ -334,3 +334,23 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
 6. 显式暂存本阶段文件、提交到 Git，并同步到私有 GitHub 仓库；
 7. 当前仓库不得直接转为 public。公开前必须另做规则复核，移除私有 Notebook slug、
    submission ref 和不宜在活跃竞赛期公开的操作细节，并通过凭证扫描。
+
+## 2026-08-13 current-state override
+
+- B005R restoration submission `55461853` is now terminal:
+  `SubmissionStatus.COMPLETE`, raw Public Score `86.945`, Private Score blank,
+  and `errorDescription=None`.
+- Per the preregistered restoration rule, B005R is rejected because
+  `86.945 <= 88.760`; it did not improve the current leaderboard-effective score,
+  did not restore B005 historical `91.930`, and did not refresh B008 historical
+  `92.165`.
+- Current leaderboard-effective score remains B008R `88.760`; B008 `92.165`
+  remains only a historical observed high.
+- Fresh public leaderboard snapshot:
+  `artifacts/kaggle/leaderboards/2026-08-13_2353_b005r_terminal/ai-agent-security-multi-step-tool-attacks.zip`.
+  Team `heralces` shows score `88.760`, rank `277`, last submission date
+  `2026-08-12 15:22:19`, submission count `4`, and top-200 boundary `89.550`.
+- B012 scouting may resume, but any B012 formal Kaggle submission still requires
+  a new committed and pushed preregistration with fixed source hash, single
+  behavior variable, dynamic-sample delta, replay cost, reserved-domain URL
+  policy, comparison gates, failure exits, and no-retry rule.
