@@ -205,3 +205,17 @@ uv sync
   require multi-variable safe adaptation, or continue excluded prompt/template-bank
   directions.
 - Evidence is recorded in `evidence/2026-08-14_b012_public_audit_round2.md`.
+
+## 2026-08-14 B012 warmkeep preregistration
+
+- B012 source is `baselines/replaysafe_warmkeep_v1/attack.py`, SHA
+  `68cea78ffdc1c255655a78884c70640737b6390b3ab6baed957d0c73e7f70e6c`,
+  source commit `f84bbfd`.
+- Parent is B008/B008R classify5, SHA
+  `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`.
+- Single behavior variable: retain B008R's live warmup message as a returned
+  replay-safe candidate when the warmup already fired `SECRET_MARKER` through
+  `http.post`.
+- Preflight, SDK validate, 111 tests, ruff, format check, diff check, and
+  candidate-file credential-shape scan passed before preregistration.
+- Evidence is recorded in `evidence/2026-08-14_b012_warmkeep_preflight.md`.

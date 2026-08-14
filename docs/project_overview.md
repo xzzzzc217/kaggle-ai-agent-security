@@ -367,3 +367,18 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
   snapshots. No mechanism-low-correlated single-variable candidate was selected.
 - B012 remains blocked on stronger evidence; no B012 preregistration, Notebook,
   or competition submission exists.
+
+## 2026-08-14 B012 preregistration override
+
+- B012 warmkeep source is fixed at
+  `baselines/replaysafe_warmkeep_v1/attack.py`, SHA
+  `68cea78ffdc1c255655a78884c70640737b6390b3ab6baed957d0c73e7f70e6c`, source
+  commit `f84bbfd`.
+- Parent remains B008/B008R classify5, SHA
+  `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`.
+- Only behavior variable: retain the live warmup message as a returned candidate
+  if that warmup already fired `SECRET_MARKER` via `http.post`.
+- All B008R routing, replay, prompt, multipost, hop, and `.invalid` URL policy
+  constants remain unchanged.
+- B012 is preregistered as a small, clean mechanism; only one Notebook and one
+  competition submission are allowed after the preregistration commit is pushed.

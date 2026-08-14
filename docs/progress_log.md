@@ -2399,3 +2399,48 @@
 - [`../evidence/2026-08-14_b012_public_audit_round2.md`](../evidence/2026-08-14_b012_public_audit_round2.md)
 - `artifacts/kaggle/leaderboards/2026-08-14_0145_b012_resume_v3/ai-agent-security-multi-step-tool-attacks.zip`
 - `artifacts/kaggle/public_audit/2026-08-14/`
+
+## 2026-08-14: preregister B012 replay-safe warmkeep
+
+**Facts**
+
+- Implemented B012 source in `baselines/replaysafe_warmkeep_v1/attack.py` and
+  committed it as source commit `f84bbfd`.
+- Candidate SHA-256:
+  `68cea78ffdc1c255655a78884c70640737b6390b3ab6baed957d0c73e7f70e6c`.
+- Parent B008/B008R SHA-256:
+  `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`.
+- The single behavior variable is warmup retention: if B008R's live warmup
+  already fires a marker-bearing `http.post`, B012 returns that warmup message as
+  the first replay-safe candidate.
+- B012 keeps `SPLIT_CLASSIFY_N=5`, `SPLIT_THRESHOLD_S=12.0`,
+  `REPLAY_SAFE_FRAC=0.99`, `SLOW_MULTIPOST_N=4`, `BURST_K=1`, `PROBE_HOPS=0`,
+  replay-cost coefficients, prompt templates, slow-row frame/multipost behavior,
+  and reserved `.invalid` URLs unchanged.
+
+**Local validation**
+
+- `preflight_submission.py`: PASS.
+- SDK validate redteam: PASS with `PYTHONPATH=data/competition/extracted`.
+- `pytest tests/test_replaysafe_warmkeep.py -q`: 3 passed.
+- `pytest -q`: 111 passed.
+- `ruff check`, `ruff format --check`, `git diff --check`: PASS.
+- Candidate-file credential-shape scan: 0 matches.
+- Deterministic fake-env samples at 5/9/13/20 seconds all returned exactly one
+  additional fired warmup candidate while preserving hop cap `[8]`, `.invalid`
+  URLs, fast/plain shape, and slow forge4 shape.
+
+**Decision**
+
+- Preregister B012 warmkeep as a small but clean, low-correlated single-variable
+  candidate.
+- Acceptance gates: `>88.760` improves current effective score; `>92.165`
+  refreshes historical high; `>=100.000` marks strong competition reproduction;
+  `<=88.760`, blank score, failure, `ERROR`, timeout, duplicate route, or unsafe
+  artifact rejects without retry.
+- After this preregistration is committed and pushed, at most one B012 Notebook
+  version and one B012 competition submission may be created.
+
+**Evidence**
+
+- [`../evidence/2026-08-14_b012_warmkeep_preflight.md`](../evidence/2026-08-14_b012_warmkeep_preflight.md)
