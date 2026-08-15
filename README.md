@@ -28,6 +28,7 @@
 - [`evidence/2026-08-11_b011_fastfill_preflight.md`](evidence/2026-08-11_b011_fastfill_preflight.md)：B011 fast-fill 单变量候选的公开路线审计、安全适配、动态样本、预注册与终态拒绝
 - [`evidence/2026-08-12_b012_public_audit.md`](evidence/2026-08-12_b012_public_audit.md)：B012 公开路线复查与候选筛查；未形成正式预注册候选
 - [`evidence/2026-08-12_b005_restore_exception.md`](evidence/2026-08-12_b005_restore_exception.md)：用户授权的 B005R 分数恢复例外预注册；不计作 B012 新算法候选
+- [`evidence/2026-08-15_b013_public_audit.md`](evidence/2026-08-15_b013_public_audit.md)：B013 公开路线与本地机制审计；未形成正式预注册候选
 - [`docs/safety.md`](docs/safety.md)：研究授权边界与工程控制
 
 ## 当前主赛
@@ -128,8 +129,10 @@
 - [x] 完成 B012 首轮公开路线复查：拉取 Adhiraj、Anas、Foysal V15、Nikita 当前公开 Notebook；未发现足够强的低相关单变量候选，未创建正式 submission
 - [x] 预注册 B005R byte-identical Tail99 分数恢复例外；这是 leaderboard-effective 恢复操作，不计作 B012 新算法候选
 - [x] 构建并云端核验 B005R 私有 Notebook v1，确认历史去重后创建唯一恢复 submission `55461853`
-- [ ] 在 B005R 结果未知前只监控 submission `55461853`；不创建 B012 或任何其他正式 submission
-- [ ] 以当前 leaderboard-effective `88.760` 和历史高点 `92.165` 分别为门槛，继续筛查机制低相关、可证伪、单变量的 B012 候选；预注册前不创建正式 submission
+- [x] B005R submission `55461853` 已终态 `COMPLETE`，Public Score `86.945`，低于 B008R `88.760`，按恢复预注册拒绝且不重试
+- [x] B012 warmkeep submission `55495429` 已终态 `COMPLETE`，Public Score `88.665`，低于 B008R `88.760`，按预注册拒绝且不重试
+- [x] 完成 B013 公开路线与本地机制审计；未发现足够强的低相关单变量候选，未创建 B013 预注册、Notebook 或 competition submission
+- [ ] 继续以当前 leaderboard-effective `88.760` 和历史高点 `92.165` 分别为门槛筛查后续候选；预注册前不创建正式 submission
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note
@@ -247,3 +250,21 @@ uv sync
   `artifacts/kaggle/leaderboards/2026-08-15_0000_b012_monitor_v1/ai-agent-security-multi-step-tool-attacks.zip`.
   Team `heralces` shows score `88.760`, rank `298`, and top-200 boundary
   `89.865`; B012 `88.665` would rank approximately `311`.
+
+## 2026-08-15 B013 public audit
+
+- Rechecked current Kaggle submissions and public leaderboard after B012's
+  terminal result. Current leaderboard-effective score remains B008R `88.760`;
+  latest checked public rank is `298`, top-200 boundary is `89.865`, and
+  historical B008 `92.165` would rank approximately `103`.
+- Pulled current public snapshots for `yw8837/88-875-lb-open-source-jed-attack-full-code`,
+  `coolin666/jed-attack-v12`, `jvn3jean/rq2-newww`,
+  `verityix/ai-agent-security-attack-algorithm-hitherto`,
+  `dimong4/ai-agent-security`, and
+  `saitejabandaruin/ai-agent-security-red-teaming-toolkit`.
+- No B013 candidate was selected. The reviewed routes either rely on
+  prompt/template-bank exploration, repeat rejected variables, require
+  multi-variable safe adaptation, are not SDK-valid in current form, or do not
+  contain usable `AttackAlgorithm` source.
+- No B013 preregistration, Notebook, or competition submission was created.
+  Evidence is recorded in `evidence/2026-08-15_b013_public_audit.md`.

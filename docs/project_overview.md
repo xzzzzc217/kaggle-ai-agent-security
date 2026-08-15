@@ -410,3 +410,22 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
 - B013 scouting may resume only as a new, mechanism-low-correlated,
   single-variable candidate with its own preregistration. Do not retry B012 or
   repush the same Notebook.
+
+## 2026-08-15 B013 public-audit override
+
+- Current leaderboard-effective score remains B008R `88.760`; fresh public
+  leaderboard snapshot shows team `heralces` score `88.760`, rank `298`, and
+  top-200 boundary `89.865`. Historical B008 `92.165` would rank approximately
+  `103`, but remains non-effective because the original B008 submission is
+  score-bearing `ERROR`.
+- B013 public audit pulled current snapshots for `yw8837`, `coolin666`,
+  `jvn3jean`, `verityix`, `dimong4`, and `saiteja` public routes, with notebook
+  and extracted-source hashes recorded in
+  [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md).
+- No route produced a defensible B013 single-variable candidate. Rejected
+  reasons include prompt/template-bank dependency, public-domain URL policy,
+  repetition of rejected variables, multi-variable safe-adaptation requirements,
+  SDK contract mismatch, or lack of usable `AttackAlgorithm` source.
+- No B013 preregistration, Notebook, or competition submission was created.
+  Continue scouting only for a stronger mechanism-low-correlated candidate with
+  gates `>88.760`, `>92.165`, and `>=100.000`.

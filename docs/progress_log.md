@@ -2511,3 +2511,61 @@
 
 - [`../evidence/2026-08-14_b012_warmkeep_preflight.md`](../evidence/2026-08-14_b012_warmkeep_preflight.md)
 - `artifacts/kaggle/leaderboards/2026-08-15_0000_b012_monitor_v1/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-15: B013 public audit, no formal candidate
+
+**Facts**
+
+- Rechecked latest Kaggle submissions after B012 terminal documentation.
+  B012 `55495429` remains `SubmissionStatus.COMPLETE` with CLI Public Score
+  `88.665`, lower than B008R `88.760`, and is rejected without retry.
+- Current leaderboard-effective submission remains B008R `55393959` with Public
+  Score `88.760`; historical B008 `55266445` remains a score-bearing `ERROR`
+  with historical Public Score `92.165`, not leaderboard-effective.
+- Downloaded a fresh public leaderboard snapshot:
+  `artifacts/kaggle/leaderboards/2026-08-15_0915_b013_research/ai-agent-security-multi-step-tool-attacks.zip`.
+  Team `heralces` shows score `88.760`, rank `298`, last submission date
+  `2026-08-14 02:01:38`, and submission count `5`. Current boundary checks:
+  score_at_50=`97.640`, score_at_100=`92.250`, score_at_200=`89.865`;
+  historical B008 `92.165` would rank approximately `103`, and B012 `88.665`
+  would rank approximately `311`.
+- Pulled current public snapshots for `yw8837/88-875-lb-open-source-jed-attack-full-code`,
+  `coolin666/jed-attack-v12`, `jvn3jean/rq2-newww`,
+  `verityix/ai-agent-security-attack-algorithm-hitherto`,
+  `dimong4/ai-agent-security`, and
+  `saitejabandaruin/ai-agent-security-red-teaming-toolkit`.
+- Recorded notebook and extracted-source hashes in the B013 audit evidence.
+
+**Mechanism screen**
+
+- `yw8837` claims an `88.875` route, but it uses a public-domain prompt/template
+  bank with probe selection. A safe repository adaptation would change domain
+  policy, template bank, probe/selection policy, and fill behavior at once; the
+  claimed score is also below the current top-200 boundary.
+- `coolin666` repeats known rejected or excluded mechanisms: fast burst, hop
+  saturation, lower replay-safe fraction, known classify/replay rollbacks, and
+  public-domain targets.
+- `dimong4` remains a known public family that mostly rolls back B005/B008
+  variables or continues excluded template-token directions.
+- `verityix` is a broad multi-template grid and constructs candidates outside
+  the local SDK `AttackCandidate(user_messages=...)` contract.
+- `jvn3jean` and `saiteja` did not yield usable `AttackAlgorithm` source.
+- Local alternatives such as broader trace replay, extra warmkeep candidates,
+  confused-deputy email, and destructive write/delete routes do not yet provide
+  a defensible single-variable candidate with acceptable replay/guardrail risk.
+
+**Decision**
+
+- No B013 formal candidate is selected in this pass.
+- No B013 preregistration, Notebook, or competition submission is created.
+- Continue scouting only for a stronger mechanism-low-correlated,
+  falsifiable single-variable change. Gates remain `>88.760` for current
+  effective improvement, `>92.165` for historical high, and `>=100.000` for
+  strong competition reproduction; `<=88.760`, blank score, `ERROR`, failure,
+  timeout, duplicate, or unsafe artifact rejects without retry.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/leaderboards/2026-08-15_0915_b013_research/ai-agent-security-multi-step-tool-attacks.zip`
+- `artifacts/kaggle/public_audit/2026-08-15/`
