@@ -395,3 +395,18 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
   Public/Private Score.
 - Until `55495429` is terminal, do not create B013 or any other formal
   competition submission.
+
+## 2026-08-15 B012 terminal override
+
+- B012 submission `55495429` is terminal: `SubmissionStatus.COMPLETE`, Kaggle
+  CLI Public Score `88.665`, Private Score blank, and API
+  `errorDescription=None`.
+- Per the preregistered gate, B012 is rejected because `88.665 <= 88.760`; it
+  did not improve the current leaderboard-effective B008R score, did not refresh
+  historical B008 `92.165`, and did not reach the strong reference `100.000`.
+- Current leaderboard-effective score remains B008R `88.760`; latest public
+  leaderboard snapshot shows team `heralces` rank `298`, top-200 boundary
+  `89.865`, and historical B008 `92.165` would rank approximately `103`.
+- B013 scouting may resume only as a new, mechanism-low-correlated,
+  single-variable candidate with its own preregistration. Do not retry B012 or
+  repush the same Notebook.

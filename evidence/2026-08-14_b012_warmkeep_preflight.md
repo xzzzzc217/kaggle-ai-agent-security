@@ -209,3 +209,39 @@ initial_error_description=None
 B012 must not be submitted again, and the Notebook must not be rerun for the
 same candidate. Until `55495429` reaches a terminal state, do not create B013 or
 any other new formal competition submission.
+
+## Terminal result
+
+B012 reached terminal state during the `2026-08-15 01:37 UTC` monitor pass.
+
+```text
+formal_submission_ref=55495429
+first_terminal_observed_utc=2026-08-15 01:37
+kaggle_cli_status=SubmissionStatus.COMPLETE
+kaggle_cli_public_score=88.665
+kaggle_cli_private_score=
+kaggle_api_status=SubmissionStatus.COMPLETE
+kaggle_api_public_score=null
+kaggle_api_private_score=null
+kaggle_api_error_description=None
+```
+
+Fresh leaderboard artifact:
+
+```text
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-15_0000_b012_monitor_v1/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=artifacts/kaggle/leaderboards/2026-08-15_0000_b012_monitor_v1/extracted_py/ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-15T01_37_06.csv
+team_score=88.760
+team_rank=298
+score_at_50=97.640
+score_at_100=92.250
+score_at_200=89.865
+rank_if_88_665=311
+rank_if_88_760=298
+rank_if_92_165=103
+```
+
+Decision: B012 is rejected because `88.665 <= 88.760`. It did not improve the
+current leaderboard-effective B008R score, did not refresh the historical B008
+high-water mark `92.165`, and did not reach the `100.000` strong-competition
+reference. B012 must not be retried, and the same Notebook must not be repushed.

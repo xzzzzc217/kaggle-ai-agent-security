@@ -2481,3 +2481,33 @@
 - [`../evidence/2026-08-14_b012_warmkeep_preflight.md`](../evidence/2026-08-14_b012_warmkeep_preflight.md)
 - `artifacts/kaggle/B012_v1/attack.py`
 - `artifacts/kaggle/B012_v1/ai-agent-security-b012-warmkeep.log`
+
+## 2026-08-15: B012 terminal result
+
+**Facts**
+
+- B012 submission `55495429` reached `SubmissionStatus.COMPLETE` during the
+  `2026-08-15 01:37 UTC` monitor pass.
+- Kaggle CLI Public Score is `88.665`; Private Score is blank.
+- Kaggle API reports `SubmissionStatus.COMPLETE`, `publicScore=null`,
+  `privateScore=null`, and `errorDescription=None`.
+- Fresh leaderboard snapshot:
+  `artifacts/kaggle/leaderboards/2026-08-15_0000_b012_monitor_v1/ai-agent-security-multi-step-tool-attacks.zip`.
+  Team `heralces` remains on score `88.760` / rank `298`; top-200 boundary is
+  `89.865`. If B012 `88.665` were the effective score it would rank
+  approximately `311`; historical B008 `92.165` would rank approximately `103`.
+
+**Decision**
+
+- B012 is rejected because `88.665 <= 88.760`.
+- The current leaderboard-effective comparison remains B008R `88.760`; B008
+  `92.165` remains the historical observed high.
+- Do not retry B012 and do not repush the same Notebook.
+- B013 research may resume only after recording this terminal result and should
+  avoid repeating B006/B007/B008/B009/B010/B008R/B011/B012 or the already
+  rejected weak public-audit routes.
+
+**Evidence**
+
+- [`../evidence/2026-08-14_b012_warmkeep_preflight.md`](../evidence/2026-08-14_b012_warmkeep_preflight.md)
+- `artifacts/kaggle/leaderboards/2026-08-15_0000_b012_monitor_v1/ai-agent-security-multi-step-tool-attacks.zip`

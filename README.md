@@ -231,3 +231,19 @@ uv sync
   with blank Public/Private Score.
 - Do not repeat B012 and do not create B013 or any other formal competition
   submission before B012 reaches a terminal state.
+
+## 2026-08-15 B012 terminal update
+
+- B012 submission `55495429` reached `SubmissionStatus.COMPLETE` during the
+  `2026-08-15 01:37 UTC` monitor pass.
+- Kaggle CLI Public Score is `88.665`; Private Score is blank. Kaggle API shows
+  `SubmissionStatus.COMPLETE`, `publicScore=null`, `privateScore=null`, and
+  `errorDescription=None`.
+- Per the preregistered gate, `88.665 <= 88.760`; therefore B012 is rejected and
+  must not be retried or repushed.
+- The current leaderboard-effective score remains B008R `88.760`; B008
+  `92.165` remains only the historical observed high-water mark.
+- Latest checked public leaderboard snapshot:
+  `artifacts/kaggle/leaderboards/2026-08-15_0000_b012_monitor_v1/ai-agent-security-multi-step-tool-attacks.zip`.
+  Team `heralces` shows score `88.760`, rank `298`, and top-200 boundary
+  `89.865`; B012 `88.665` would rank approximately `311`.
