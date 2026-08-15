@@ -432,6 +432,15 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
   changes exfiltration, email, combo prompts, live verification, scheduling,
   replay-cost sorting, mutation, and fallback behavior together, so it is not a
   current single-variable B013 candidate.
+- A later `2026-08-15 11:22 UTC` addendum screened
+  `evgendvorkin/ai-agent`, which has a valid `AttackAlgorithm` and `http.post`
+  but combines `.co` URL policy, `SPLIT_CLASSIFY_N=8`,
+  `REPLAY_SAFE_FRAC=0.999`, `SLOW_MULTIPOST_N=1`, and raw
+  assistant/analysis-token prompt shaping. This is a multi-variable rollback
+  against B008R, not a preregisterable B013 candidate.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `305`,
+  score_at_200 `89.880`, and historical B008 `92.165` would rank approximately
+  `103`.
 - No B013 preregistration, Notebook, or competition submission was created.
   Continue scouting only for a stronger mechanism-low-correlated candidate with
   gates `>88.760`, `>92.165`, and `>=100.000`.

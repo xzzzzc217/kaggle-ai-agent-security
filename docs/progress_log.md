@@ -2606,3 +2606,36 @@
 
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-15_0922/`
+
+## 2026-08-15: B013 public audit addendum, Evgendvorkin route screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-15 11:22 UTC`
+  heartbeat. B008R `55393959` remains the current effective score at `88.760`;
+  team `heralces` is rank `305`; score_at_200 is `89.880`; historical B008
+  `92.165` would rank approximately `103`.
+- Pulled `evgendvorkin/ai-agent`, a recent public Notebook last run at
+  `2026-08-15 11:16:02.717 UTC` with `255` votes.
+- The pulled notebook has SHA
+  `2a553049aa12ee00c93a1db31c92229719edf5d17ebf6dfd1d27ae461ac67c7d` and an
+  extracted attack-code SHA
+  `e528a47f72dcd456d9427ea68d5298400c3ab6fcbe521a24f815ac811d053729`.
+- The artifact contains an SDK-valid `AttackAlgorithm` and `http.post`, but it
+  uses `.co` targets, `SPLIT_CLASSIFY_N=8`, `REPLAY_SAFE_FRAC=0.999`,
+  `SLOW_MULTIPOST_N=1`, and a raw assistant/analysis-token fallback.
+
+**Decision**
+
+- This route is not selected as B013 because a safe adaptation would change URL
+  policy, classify count, replay-tail sizing, slow-row multipost behavior, and
+  prompt-token shape together.
+- It also reverses known B008/B004 evidence and continues excluded prompt-token
+  or pure-budget directions.
+- No B013 preregistration, Notebook, or competition submission is created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-15_1122/evgendvorkin_ai-agent/`
+- `artifacts/kaggle/leaderboards/2026-08-15_1122_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

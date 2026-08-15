@@ -269,3 +269,66 @@ single-variable attack.
 
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
+
+## 2026-08-15 11:22 UTC addendum
+
+During the later heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+current_leaderboard_effective_submission=55393959
+current_leaderboard_effective_public_score=88.760
+team_rank=305
+score_at_50=97.640
+score_at_100=92.250
+score_at_200=89.880
+rank_if_88_665=321
+rank_if_88_760=305
+rank_if_92_165=103
+rank_if_100_000=37
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-15_1122_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-15T11:25:33.csv
+```
+
+The public kernels listing showed a recent high-vote artifact that had not been
+screened in earlier B013 passes:
+
+```text
+evgendvorkin/ai-agent
+  title=AI Agent
+  last_run=2026-08-15 11:16:02.717 UTC
+  total_votes=255
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-15_1122/evgendvorkin_ai-agent
+  notebook_sha256=2a553049aa12ee00c93a1db31c92229719edf5d17ebf6dfd1d27ae461ac67c7d
+  source_len=8787
+  attack_code_len=7294
+  attack_code_sha256=e528a47f72dcd456d9427ea68d5298400c3ab6fcbe521a24f815ac811d053729
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=True (markdown mention only)
+  EXFILTRATION=False
+  CONFUSED_DEPUTY=False
+  .invalid=False
+  .co=True
+```
+
+The extracted attack code is an SDK-valid `AttackAlgorithm`, but it is not a
+clean B013 candidate against B008R:
+
+- it uses public `.co` domains rather than the repository's retained
+  reserved-domain URL policy;
+- it rolls `SPLIT_CLASSIFY_N` back to `8`, reversing B008's successful
+  classify5 change;
+- it sets `REPLAY_SAFE_FRAC=0.999`, a pure replay-tail/budget variable that is
+  already excluded from the current search space;
+- it reduces `SLOW_MULTIPOST_N` to `1`, reversing the B004/B005/B008 slow-row
+  four-endpoint mechanism;
+- it introduces a raw `BEST_HARMONY` assistant/analysis-token prompt fallback,
+  which falls under the excluded prompt-token/template direction;
+- the notebook comment describes it as an `80+` fallback route, not as evidence
+  for bridging the current top-200 gap or refreshing the historical `92.165`
+  high.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.

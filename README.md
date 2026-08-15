@@ -267,6 +267,11 @@ uv sync
   a valid `AttackAlgorithm` with `http.post` and `email.send`, but it is a
   multi-family full route replacement rather than a B008R-derived single
   variable.
+- A further addendum screened `evgendvorkin/ai-agent`; it has a valid
+  `AttackAlgorithm` and `http.post`, but it combines `.co` targets,
+  `SPLIT_CLASSIFY_N=8`, `REPLAY_SAFE_FRAC=0.999`, `SLOW_MULTIPOST_N=1`, and a raw
+  assistant/analysis-token fallback, so it is not a safe single-variable B013
+  candidate.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not
