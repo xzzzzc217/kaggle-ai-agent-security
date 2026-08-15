@@ -2569,3 +2569,40 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/leaderboards/2026-08-15_0915_b013_research/ai-agent-security-multi-step-tool-attacks.zip`
 - `artifacts/kaggle/public_audit/2026-08-15/`
+
+## 2026-08-15: B013 public audit addendum, Ruhul route screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-15 09:22 UTC`
+  heartbeat. B008R `55393959` remains the current effective score at `88.760`;
+  team `heralces` is rank `302`; score_at_200 remains `89.865`; historical B008
+  `92.165` would rank approximately `103`.
+- Pulled two additional public snapshots:
+  `ruhul20/red-team-ai-agent-security` and
+  `georgymamarin/red-team-starter-what-fires-and-what-it-s-worth`.
+- `ruhul20/red-team-ai-agent-security` has notebook SHA
+  `9f4353543c9441fd9b8f73e71119797e67c337f3f054c2d1e3c3b9a80dd2a320` and
+  extracted candidate-text SHA
+  `6219c842aec74cdac91c2ebabe14958a071583ad935f1a6007e9b18556ade002`.
+  It contains `AttackAlgorithm`, `AttackCandidate`, `http.post`, `email.send`,
+  `EXFILTRATION`, and `CONFUSED_DEPUTY`.
+- `georgymamarin/...what-fires-and-what-it-s-worth` has notebook SHA
+  `9cc9825b189333b272182b7d8087f835e689e807ba0003e9ec8af082e0cd62a4` and
+  extracted candidate-text SHA
+  `b1df6b25154928186506b8e45f601c0cc22d8c43bfca712ed6d1649f3f410213`.
+
+**Decision**
+
+- Ruhul's route is useful evidence that confused-deputy `email.send` may be a
+  reachable score family, but it is a multi-family full route replacement:
+  exfiltration, confused-deputy email, combo prompts, live verification,
+  efficiency scheduling, replay-cost sorting, mutation, and fallback generation
+  change together.
+- This does not satisfy the current B013 single-variable gate against B008R.
+- No B013 preregistration, Notebook, or competition submission is created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-15_0922/`

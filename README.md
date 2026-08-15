@@ -262,6 +262,11 @@ uv sync
   `verityix/ai-agent-security-attack-algorithm-hitherto`,
   `dimong4/ai-agent-security`, and
   `saitejabandaruin/ai-agent-security-red-teaming-toolkit`.
+- Later addendum also screened `ruhul20/red-team-ai-agent-security` and
+  `georgymamarin/red-team-starter-what-fires-and-what-it-s-worth`; Ruhul contains
+  a valid `AttackAlgorithm` with `http.post` and `email.send`, but it is a
+  multi-family full route replacement rather than a B008R-derived single
+  variable.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not

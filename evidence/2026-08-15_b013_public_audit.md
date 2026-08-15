@@ -205,3 +205,67 @@ Current standing state after this audit:
   falsifiable single-variable change with gates `>88.760`, `>92.165`, and
   `>=100.000`; `<=88.760`, blank score, `ERROR`, failure, timeout, duplicate,
   or unsafe artifact rejects without retry.
+
+## 2026-08-15 09:22 UTC addendum
+
+During the later heartbeat, the latest submissions and leaderboard were
+rechecked:
+
+```text
+current_leaderboard_effective_submission=55393959
+current_leaderboard_effective_public_score=88.760
+team_rank=302
+score_at_200=89.865
+rank_if_88_665=317
+rank_if_88_760=302
+rank_if_92_165=103
+```
+
+Additional public snapshots were pulled into
+`artifacts/kaggle/public_audit/2026-08-15_0922/`:
+
+```text
+ruhul20/red-team-ai-agent-security
+  notebook_sha256=9f4353543c9441fd9b8f73e71119797e67c337f3f054c2d1e3c3b9a80dd2a320
+  candidate_text_sha256=6219c842aec74cdac91c2ebabe14958a071583ad935f1a6007e9b18556ade002
+  source_len=28370
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=True
+  CONFUSED_DEPUTY=True
+  EXFILTRATION=True
+
+georgymamarin/red-team-starter-what-fires-and-what-it-s-worth
+  notebook_sha256=9cc9825b189333b272182b7d8087f835e689e807ba0003e9ec8af082e0cd62a4
+  candidate_text_sha256=b1df6b25154928186506b8e45f601c0cc22d8c43bfca712ed6d1649f3f410213
+  source_len=157816
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=True
+  CONFUSED_DEPUTY=True
+  EXFILTRATION=True
+```
+
+`ruhul20/red-team-ai-agent-security` is the only newly checked artifact that
+contains a compact SDK-valid `AttackAlgorithm`. It is useful as public evidence
+that `email.send` confused-deputy scoring is considered reachable by another
+participant, but it is not selected as B013 in its current form:
+
+- it is a full route replacement, not a single variable against B008R;
+- it combines exfiltration, confused-deputy email, multi-endpoint prompts,
+  live replay verification, family efficiency scheduling, replay-cost sorting,
+  and fallback generation;
+- using it safely would require deciding whether to keep or remove the email
+  family, combo family, public-domain URL pool, discovery count, replay safety
+  fraction, mutation policy, and fallback policy together;
+- it therefore does not satisfy the current B013 single-variable gate.
+
+`georgymamarin/red-team-starter-what-fires-and-what-it-s-worth` is retained as
+background SDK/reachability evidence, not a formal candidate. It is a starter
+analysis notebook rather than a directly preregisterable B008R-derived
+single-variable attack.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.

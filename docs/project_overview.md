@@ -426,6 +426,12 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
   reasons include prompt/template-bank dependency, public-domain URL policy,
   repetition of rejected variables, multi-variable safe-adaptation requirements,
   SDK contract mismatch, or lack of usable `AttackAlgorithm` source.
+- Later B013 addendum screened `ruhul20/red-team-ai-agent-security` and
+  `georgymamarin/red-team-starter-what-fires-and-what-it-s-worth`. Ruhul is a
+  valid SDK route and confirms a public confused-deputy/email line, but it
+  changes exfiltration, email, combo prompts, live verification, scheduling,
+  replay-cost sorting, mutation, and fallback behavior together, so it is not a
+  current single-variable B013 candidate.
 - No B013 preregistration, Notebook, or competition submission was created.
   Continue scouting only for a stronger mechanism-low-correlated candidate with
   gates `>88.760`, `>92.165`, and `>=100.000`.
