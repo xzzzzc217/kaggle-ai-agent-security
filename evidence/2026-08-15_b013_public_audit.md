@@ -270,6 +270,91 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-15 13:22 UTC addendum
+
+During the later heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+current_leaderboard_effective_submission=55393959
+current_leaderboard_effective_public_score=88.760
+team_rank=308
+score_at_50=97.965
+score_at_100=92.340
+score_at_200=89.905
+rank_if_88_665=327
+rank_if_88_760=308
+rank_if_92_165=105
+rank_if_100_000=37
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-15_1322_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-15T13:23:06.csv
+```
+
+The public kernels listing did not show a newer candidate than the already
+screened `evgendvorkin/ai-agent`. This pass therefore screened older unreviewed
+or lightly reviewed public artifacts whose titles suggested possible throughput
+or attack-route mechanisms:
+
+```text
+aratisantoshshinde/ai-agent-security-adaptive-tool-call-throughput-se
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-15_1322/arati_adaptive_tool_call
+  notebook_sha256=5bdf337036027c3688c3c167ac8ea269bf98e0b2e40aa73b97425f1f36bd0551
+  decoded_attack_sha256=91d5cf0edb92b364197ce41b836d797dfc8a693c5ac5347a06ba8df25a858e97
+  decoded_len=20560
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  EXFILTRATION=True
+  CONFUSED_DEPUTY=False
+  .invalid=False
+  .co=True
+
+paul720810/hermes-attack-v72-m112-20260721-151926
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-15_1322/paul_hermes_v72
+  script_sha256=eb54da7f4a63fe45ec568053c63936b0609f9c0caefc1588e28b46eee227af06
+  decoded_attack_sha256=3fda6ca441ec0e718e5ccca66f2bed19fc5805ad6187b2466ee32ab8ce120890
+  decoded_len=2452
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  EXFILTRATION=False
+  CONFUSED_DEPUTY=False
+  .invalid=False
+  .co=False
+  .x=True
+
+prvsiyan/ai-agent-security-defense-in-depth-audit
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-15_1322/prvsiyan_defense_audit
+  notebook_sha256=75cd92c11c17d0dec9db92099d5735cb2ba6262e178bd87d230b40e14776aa9e
+  source_len=22800
+  AttackAlgorithm=True
+  AttackCandidate=False
+  http.post=True
+  email.send=True
+  return_empty_candidates=True
+```
+
+None of these artifacts is selected as a B013 candidate:
+
+- `aratisantoshshinde/...throughput-se` is a broad live arm-selection system. It
+  changes template families, single-vs-dual post density, exact predicate
+  validation, rolling probation/rollback, replay-budget accounting, dynamic
+  reserve sizing, and `.co` URL policy together. It also includes injected
+  analysis/commentary prompt-token variants. This is useful background evidence
+  about throughput search, but not a B008R-derived single variable.
+- `paul720810/hermes-attack-v72...` is a compact single-post generator with
+  micro-tuned target count and margin multiplier. It uses `.x` targets and is a
+  simple single-post rollback rather than a route expected to beat B008R's
+  classify5/four-endpoint lineage.
+- `prvsiyan/...defense-in-depth-audit` is explicitly defensive/inert: its
+  compatibility `AttackAlgorithm` returns no candidates. It is not an attack
+  candidate.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-15 11:22 UTC addendum
 
 During the later heartbeat, the latest submissions and leaderboard were

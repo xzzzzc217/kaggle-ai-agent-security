@@ -2639,3 +2639,47 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-15_1122/evgendvorkin_ai-agent/`
 - `artifacts/kaggle/leaderboards/2026-08-15_1122_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-15: B013 public audit addendum, older throughput/Hermes routes screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-15 13:22 UTC`
+  heartbeat. B008R `55393959` remains the current effective score at `88.760`;
+  team `heralces` is rank `308`; score_at_200 is `89.905`; historical B008
+  `92.165` would rank approximately `105`.
+- The public kernels list showed no newer candidate than the already screened
+  `evgendvorkin/ai-agent`, so this pass pulled older unreviewed or lightly
+  reviewed artifacts with relevant-looking titles:
+  `aratisantoshshinde/ai-agent-security-adaptive-tool-call-throughput-se`,
+  `paul720810/hermes-attack-v72-m112-20260721-151926`, and
+  `prvsiyan/ai-agent-security-defense-in-depth-audit`.
+- Arati's artifact has notebook SHA
+  `5bdf337036027c3688c3c167ac8ea269bf98e0b2e40aa73b97425f1f36bd0551` and
+  decoded attack SHA
+  `91d5cf0edb92b364197ce41b836d797dfc8a693c5ac5347a06ba8df25a858e97`.
+- Paul's artifact has script SHA
+  `eb54da7f4a63fe45ec568053c63936b0609f9c0caefc1588e28b46eee227af06` and
+  decoded attack SHA
+  `3fda6ca441ec0e718e5ccca66f2bed19fc5805ad6187b2466ee32ab8ce120890`.
+- Prvsiyan's defensive audit has notebook SHA
+  `75cd92c11c17d0dec9db92099d5735cb2ba6262e178bd87d230b40e14776aa9e`; its
+  compatibility adapter returns no candidates.
+
+**Decision**
+
+- Arati's route is not a B013 candidate because it is a multi-arm throughput
+  controller combining template families, single/dual-post density, predicate
+  validation, probation/rollback, replay accounting, reserve sizing, prompt-token
+  shapes, and `.co` URL policy.
+- Paul's Hermes route is not selected because it is a simple single-post
+  rollback with `.x` URL policy and micro-tuned count/margin parameters rather
+  than a defensible mechanism expected to beat B008R.
+- Prvsiyan's route is defensive/inert and intentionally returns no candidates.
+- No B013 preregistration, Notebook, or competition submission is created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-15_1322/`
+- `artifacts/kaggle/leaderboards/2026-08-15_1322_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

@@ -441,6 +441,15 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `305`,
   score_at_200 `89.880`, and historical B008 `92.165` would rank approximately
   `103`.
+- A later `2026-08-15 13:22 UTC` addendum screened Arati's adaptive throughput
+  route, Paul's Hermes v72 route, and Prvsiyan's defense audit. Arati is a
+  multi-arm throughput controller with `.co` targets and prompt-token variants;
+  Paul is a simple `.x` single-post rollback with micro-tuned count/margin
+  parameters; Prvsiyan is defensive and returns no candidates. None satisfies
+  the B013 single-variable gate.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `308`,
+  score_at_200 `89.905`, and historical B008 `92.165` would rank approximately
+  `105`.
 - No B013 preregistration, Notebook, or competition submission was created.
   Continue scouting only for a stronger mechanism-low-correlated candidate with
   gates `>88.760`, `>92.165`, and `>=100.000`.

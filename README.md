@@ -272,6 +272,11 @@ uv sync
   `SPLIT_CLASSIFY_N=8`, `REPLAY_SAFE_FRAC=0.999`, `SLOW_MULTIPOST_N=1`, and a raw
   assistant/analysis-token fallback, so it is not a safe single-variable B013
   candidate.
+- A later addendum screened `aratisantoshshinde/...throughput-se`,
+  `paul720810/hermes-attack-v72...`, and
+  `prvsiyan/ai-agent-security-defense-in-depth-audit`; none is selected because
+  they respectively require multi-arm/multi-variable throughput control, simple
+  single-post rollback with `.x` URL policy, or an inert no-candidate adapter.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not
