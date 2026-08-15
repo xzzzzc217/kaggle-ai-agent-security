@@ -277,6 +277,13 @@ uv sync
   `prvsiyan/ai-agent-security-defense-in-depth-audit`; none is selected because
   they respectively require multi-arm/multi-variable throughput control, simple
   single-post rollback with `.x` URL policy, or an inert no-candidate adapter.
+- A later addendum screened `uradkr/ai-security-urad-code`,
+  `karnakbaevarthur/multi-endpoint-severity-stacker`,
+  `yaroslavkholmirzayev/replay-dense-boundary-exact-aggressive`,
+  `lopure/jed-multi-step-attack-relay-push100`, and
+  `arizalfirdaus123/multi-turn-exfiltration-with-adaptive-burst`. URAD and
+  Yaroslav are fixed single-post portfolios; Karnak and Arizal are broad
+  multi-route systems; Lopure did not expose a usable attack implementation.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not

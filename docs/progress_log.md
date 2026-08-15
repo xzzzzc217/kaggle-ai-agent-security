@@ -2683,3 +2683,41 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-15_1322/`
 - `artifacts/kaggle/leaderboards/2026-08-15_1322_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-15: B013 public audit addendum, fixed-portfolio and multi-route artifacts screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-15 15:23 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `313`, top-200 boundary `89.910`, score_at_100 `92.385`, and historical
+  B008 `92.165` would rank approximately `106`.
+- The public kernels list showed no newer candidate than the already screened
+  `evgendvorkin/ai-agent`. This pass pulled and statically screened
+  `uradkr/ai-security-urad-code`,
+  `karnakbaevarthur/multi-endpoint-severity-stacker`,
+  `yaroslavkholmirzayev/replay-dense-boundary-exact-aggressive`,
+  `lopure/jed-multi-step-attack-relay-push100`, and
+  `arizalfirdaus123/multi-turn-exfiltration-with-adaptive-burst`.
+
+**Decision**
+
+- URAD and Yaroslav are fixed single-post portfolios without live validation and
+  would roll back B008R's proven classify5 / slow-row four-endpoint structure.
+- Karnak and Arizal are broad route replacements that mix payload families,
+  endpoint generation, live verification or burst probing, scheduling, replay or
+  fill policies, and URL-policy changes.
+- Lopure did not expose a usable `AttackAlgorithm`/`AttackCandidate`
+  implementation in the pulled snapshot.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-15_1523/`
+- `artifacts/kaggle/leaderboards/2026-08-15_1523_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

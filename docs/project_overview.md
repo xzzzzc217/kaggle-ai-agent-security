@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
-> 最后更新：2026-08-12
-> 当前阶段：B005R 分数恢复例外已创建唯一 submission `55461853`，等待真实评分；它不是 B012 新算法候选，B005R 结果未知前不创建新的 competition submission
+> 最后更新：2026-08-15
+> 当前阶段：B013 公开路线与本地机制继续筛查；暂无满足低相关、可证伪、单变量门槛的正式候选
 > 历史最高有分 submission ref：B008 `55266445`，Public Score `92.165`；当前 leaderboard-effective submission 为 B008R `55393959`，Public Score `88.760`
 > 仓库发布级别：**private；当前内容不适合直接公开**
 
@@ -450,6 +450,16 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `308`,
   score_at_200 `89.905`, and historical B008 `92.165` would rank approximately
   `105`.
+- A later `2026-08-15 15:23 UTC` addendum screened URAD's and Yaroslav's fixed
+  single-post portfolios, Karnak's multi-endpoint severity stacker, Lopure's
+  relay-push notebook, and Arizal's adaptive-burst route. The usable artifacts
+  either roll back to fixed single-post portfolios or combine multiple route
+  families, endpoint generation, live validation/burst probing, replay/fill
+  policy, and URL-policy changes in one artifact; Lopure did not expose a usable
+  attack implementation.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `313`,
+  score_at_200 `89.910`, and historical B008 `92.165` would rank approximately
+  `106`.
 - No B013 preregistration, Notebook, or competition submission was created.
   Continue scouting only for a stronger mechanism-low-correlated candidate with
   gates `>88.760`, `>92.165`, and `>=100.000`.

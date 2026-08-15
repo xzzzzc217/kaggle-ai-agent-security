@@ -417,3 +417,102 @@ clean B013 candidate against B008R:
 
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
+
+## 2026-08-15 15:23 UTC addendum
+
+During the later heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+current_leaderboard_effective_submission=55393959
+current_leaderboard_effective_public_score=88.760
+team_rank=313
+score_at_50=97.965
+score_at_100=92.385
+score_at_200=89.910
+rank_if_88_665=331
+rank_if_88_760=313
+rank_if_92_165=106
+rank_if_100_000=37
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-15_1523_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-15T15:25:33.csv
+```
+
+The public kernels list still showed no newer candidate than the already
+screened `evgendvorkin/ai-agent`. This pass therefore pulled older high-vote or
+mechanism-titled artifacts that had not been individually recorded in the B013
+evidence:
+
+```text
+uradkr/ai-security-urad-code
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-15_1523/urad_code
+  notebook_sha256=2b2045f1922c8bcd2482b03f8c03a5df9fd437591ccab44f65d6637d573a63bc
+  extracted_attack_sha256=d3894b2bb2038814d469ea0c83dc637957c2ed421ec667389015a99453aba325
+  extracted_len=3141
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  live_env_interact=False
+
+karnakbaevarthur/multi-endpoint-severity-stacker
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-15_1523/karnak_multi_endpoint
+  notebook_sha256=ff5b2f52d3f477ca0cd811db178bc73ddd6b671a47daf068ec9ade734529b0d6
+  extracted_attack_sha256=86047663cbfdf44e060b9afee0f4a8913422f42e2780e060fb1ab2d9d2ba9322
+  extracted_len=62219
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  EXFILTRATION=True
+  CONFUSED_DEPUTY=False
+
+yaroslavkholmirzayev/replay-dense-boundary-exact-aggressive
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-15_1523/yaroslav_replay_dense_boundary
+  notebook_sha256=b9a5ba88bf7587b3405e2bb337c1b6344c6393648bfea6169102308407f3b96c
+  extracted_attack_sha256=db6d15fabea97779b1563c685b5c20e26442d07ad793e9e52a956ff8e0882afc
+  extracted_len=2585
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  live_env_interact=False
+
+lopure/jed-multi-step-attack-relay-push100
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-15_1523/lopure_relay_push100
+  notebook_sha256=b6e05b39959f4b044f9c4235440a42cfa11045985a51c27c2eef2c85490e7bec
+  AttackAlgorithm=False
+  AttackCandidate=False
+  http.post=False
+
+arizalfirdaus123/multi-turn-exfiltration-with-adaptive-burst
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-15_1523/arizal_adaptive_burst
+  notebook_sha256=3bb3c9d5f4bc5e556572fed350a90ed03d22500ffabe29205fb753eebcb6cd85
+  extracted_class_cell_sha256=1004bb6a42febbc26461eb751baef546ff46d079fc573685846d49d707f42a18
+  extracted_len=10772
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  EXFILTRATION=True
+  CONFUSED_DEPUTY=True
+```
+
+None of these artifacts is selected as a formal B013 candidate:
+
+- `uradkr/ai-security-urad-code` and
+  `yaroslavkholmirzayev/replay-dense-boundary-exact-aggressive` are simple
+  fixed single-post portfolios. They do not use live validation, do not preserve
+  B008R's classify5 / slow-row four-endpoint split, and would require a
+  broad rollback plus URL-policy adaptation rather than a mechanism expected to
+  beat B008R.
+- `karnakbaevarthur/multi-endpoint-severity-stacker` is a broad route
+  replacement: it changes payload families, endpoint host generation,
+  live predicate verification, candidate priority, replay-hop budgeting,
+  mutation/mass-fallback behavior, and search profile settings together.
+- `arizalfirdaus123/multi-turn-exfiltration-with-adaptive-burst` combines
+  many exfil prompt families, multi-turn deputy wording, burst probing, stable
+  hit counting, budget-adaptive fill, and URL policy in one route.
+- `lopure/jed-multi-step-attack-relay-push100` did not expose a usable
+  `AttackAlgorithm`/`AttackCandidate` implementation in the pulled snapshot.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
