@@ -323,6 +323,15 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `342`,
   score_at_200 `90.270`, and historical B008 `92.165` would rank approximately
   `111`.
+- The `2026-08-16 15:20 UTC` addendum screened the newly rerun
+  `dimong4/ai-agent-security` snapshot. Its visible changes from the prior
+  Dimong screen combine prompt-tail wording, `REPLAY_COST_COEF=1.0`, and
+  full-`max_hops` live probing while retaining public `.co`, `fs.delete`,
+  analysis-token frame injection, and `REPLAY_SAFE_FRAC=0.975`; this is still a
+  multi-variable public-route rollback, not a B013 single-variable candidate.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `348`,
+  score_at_200 `90.360`, and historical B008 `92.165` would rank approximately
+  `116`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not

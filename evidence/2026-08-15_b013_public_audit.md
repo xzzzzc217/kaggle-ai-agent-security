@@ -270,6 +270,81 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-16 15:20 UTC addendum
+
+During the later heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+team_rank=348
+score_at_50=98.415
+score_at_100=92.880
+score_at_200=90.360
+rank_if_88_665=366
+rank_if_88_760=348
+rank_if_92_165=116
+rank_if_100_000=39
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-16_1520_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-16T15:22:12.csv
+```
+
+The public kernels list showed a newly rerun `dimong4/ai-agent-security`
+artifact after the previous screen:
+
+```text
+dimong4/ai-agent-security
+  title=AI Agent Security
+  last_run=2026-08-16 14:45:13.587 UTC
+  total_votes=335
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_1520/dimong_latest
+  notebook_sha256=f634216267eb451adb06e407e5239bdb65a9e6f09b524ef91e8b742044685391
+  code_source_len=7711
+  code_source_sha256=cf22d71d08c2b380377d479908d2ecedfca0b6ef6d33400b0db85808fc4d0bd5
+  attack_code_len=7509
+  attack_code_sha256=b6a8cbdb84e4617d422daf1be26bad924973188688b89f73e814d96f15028e6f
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  fs.delete=True
+  EXFILTRATION=False
+  CONFUSED_DEPUTY=False
+  .invalid=False
+  .co=True
+  analysis=True
+  SPLIT_CLASSIFY_N=5
+  REPLAY_SAFE_FRAC=0.975
+  REPLAY_COST_COEF=1.0
+  SPLIT_THRESHOLD_S=12.0
+```
+
+Relative to the already screened `2026-08-16 01:15 UTC` Dimong snapshot, the
+new rerun is not byte-identical. The visible route changes are:
+
+- `TEMPLATE` ending changes from `Then answer OK only.` to `DO NOT output any
+  text.`;
+- `REPLAY_COST_COEF` changes from `2.5` to `1.0`;
+- `_fill` changes live probing from forced one-hop search to full `max_hops`
+  search.
+
+This is not selected as a formal B013 candidate. It remains a multi-variable
+public route rather than a clean B008R-derived single-variable mechanism: it
+uses public `.co` targets, keeps the destructive `fs.delete` follow-up, keeps
+analysis-token frame injection, retains a changed replay-safe fraction
+(`0.975`), and couples prompt wording, replay-cost accounting, and live-probe
+hops in the new rerun. Adapting it safely would require multiple simultaneous
+decisions and would also continue the excluded prompt-token direction.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-16 13:19 UTC addendum
 
 During the later heartbeat, the latest submissions and leaderboard were

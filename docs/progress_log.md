@@ -2908,3 +2908,41 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-16_1319/`
 - `artifacts/kaggle/leaderboards/2026-08-16_1319_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-16: B013 rerun Dimong public snapshot screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-16 15:20 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `348`, top-200 boundary `90.360`, score_at_100 `92.880`, and historical
+  B008 `92.165` would rank approximately `116`.
+- The current public kernels list showed a newly rerun
+  `dimong4/ai-agent-security` snapshot with last run
+  `2026-08-16 14:45:13.587 UTC`; this pass pulled and statically screened it.
+  Notebook SHA is
+  `f634216267eb451adb06e407e5239bdb65a9e6f09b524ef91e8b742044685391`; extracted
+  attack-code SHA is
+  `b6a8cbdb84e4617d422daf1be26bad924973188688b89f73e814d96f15028e6f`.
+
+**Decision**
+
+- The newly rerun Dimong artifact changes prompt-tail wording, lowers
+  `REPLAY_COST_COEF` from `2.5` to `1.0`, and changes live fill probing from
+  forced one-hop search to full `max_hops` search.
+- It still combines public `.co` URL policy, destructive `fs.delete`,
+  analysis-token frame injection, `REPLAY_SAFE_FRAC=0.975`, and fill-budget
+  behavior.
+- Because the rerun remains a coupled prompt/replay/live-probe public-route
+  rollback, no preregisterable B013 single-variable candidate was selected. No
+  B013 preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-16_1520/`
+- `artifacts/kaggle/leaderboards/2026-08-16_1520_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
