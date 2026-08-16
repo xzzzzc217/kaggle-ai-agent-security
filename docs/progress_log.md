@@ -2763,3 +2763,36 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-16_0115/`
 - `artifacts/kaggle/leaderboards/2026-08-16_0115_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-16: B013 exfil-labeled public artifacts screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-16 05:16 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `334`, top-200 boundary `90.225`, score_at_100 `92.925`, and historical
+  B008 `92.165` would rank approximately `112`.
+- The current public kernels list showed no newly rerun artifact beyond the
+  already screened Verity and Dimong snapshots. This pass pulled and statically
+  screened `koushikkumardinda/ai-agent-security-replay-safe-exfiltration` and
+  `pilkwang/ai-agent-v3-1-2-single-post-exfiltration`.
+
+**Decision**
+
+- Koushik is not an SDK `AttackAlgorithm`/`AttackCandidate` implementation in
+  the pulled snapshot.
+- Pilkwang is a legacy live-fill single-post exfiltration route that combines
+  public `.co` targets, classify8, lower replay-safe sizing, `SLOW_MULTIPOST_N=1`,
+  and older live-fill behavior.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-16_0516/`
+- `artifacts/kaggle/leaderboards/2026-08-16_0516_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

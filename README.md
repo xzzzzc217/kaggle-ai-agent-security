@@ -292,6 +292,13 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `327`,
   score_at_200 `90.180`, and historical B008 `92.165` would rank approximately
   `110`.
+- The `2026-08-16 05:16 UTC` addendum screened two unrecorded
+  exfiltration-labeled public routes: `koushikkumardinda` does not expose an SDK
+  attack implementation, and `pilkwang` is a legacy single-post live-fill route
+  that rolls back multiple B008R/B004/B005 variables together.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `334`,
+  score_at_200 `90.225`, and historical B008 `92.165` would rank approximately
+  `112`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not

@@ -270,6 +270,76 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-16 05:16 UTC addendum
+
+During the next heartbeat, submissions and leaderboard were rechecked again:
+
+```text
+current_leaderboard_effective_submission=55393959
+current_leaderboard_effective_public_score=88.760
+team_rank=334
+score_at_50=98.415
+score_at_100=92.925
+score_at_200=90.225
+rank_if_88_665=352
+rank_if_88_760=334
+rank_if_92_165=112
+rank_if_100_000=39
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-16_0516_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-16T05:16:56.csv
+```
+
+The competition submission list is unchanged: B012 `55495429` remains
+`COMPLETE` with Public Score `88.665`, B008R `55393959` remains the current
+leaderboard-effective `COMPLETE` submission with Public Score `88.760`, and
+historical B008 `55266445` remains score-bearing `ERROR` with Public Score
+`92.165`.
+
+The current public kernels list showed no newly rerun artifact beyond already
+screened Verity and Dimong snapshots. This pass therefore pulled two
+unrecorded exfiltration-labeled public artifacts for static screening:
+
+```text
+koushikkumardinda/ai-agent-security-replay-safe-exfiltration
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0516/koushik_replay_safe_exfiltration
+  notebook_sha256=026a797a255953c281b87f4662411c62e9ac82a96a7b924f7897bfe4c28d842a
+  extracted_code_sha256=794560130e0221aff5cc1ba8b4b152a45eb787f3528e403b83a5e0cbaca3f0d3
+  code_len=7764
+  AttackAlgorithm=False
+  AttackCandidate=False
+  http.post=False
+  env.interact=False
+
+pilkwang/ai-agent-v3-1-2-single-post-exfiltration
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0516/pilkwang_single_post_exfiltration
+  notebook_sha256=447f892022f420d0ff9e8482fd30087d87a579943a148d282afc274717af3043
+  extracted_code_sha256=a636588b2155b991829b63abff222722b1f700f9d30c78543deffb2d5cf37d69
+  code_len=26370
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  EXFILTRATION=True
+  CONFUSED_DEPUTY=True
+  SPLIT_CLASSIFY_N=8
+  REPLAY_SAFE_FRAC=0.97
+  SLOW_MULTIPOST_N=1
+```
+
+Neither artifact is selected as a formal B013 candidate:
+
+- `koushikkumardinda/...replay-safe-exfiltration` is not an SDK
+  `AttackAlgorithm`/`AttackCandidate` implementation in the pulled snapshot; it
+  appears to be a notebook-side exploratory scaffold rather than a valid Code
+  Competition attack file.
+- `pilkwang/...single-post-exfiltration` is a legacy live-fill single-post
+  exfiltration route. It combines public `.co` URL policy, classify8, a lower
+  replay-safe fraction, `SLOW_MULTIPOST_N=1`, and older live-fill behavior. It
+  therefore rolls back several proven B008R/B004/B005 variables at once instead
+  of offering a B008R-derived single behavior variable.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-16 01:15 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were
