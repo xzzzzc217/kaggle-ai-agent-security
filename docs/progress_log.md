@@ -2832,3 +2832,42 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-16_0717/`
 - `artifacts/kaggle/leaderboards/2026-08-16_0717_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-16: B013 remaining visible public backfill screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-16 09:18 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `340`, top-200 boundary `90.270`, score_at_100 `92.925`, and historical
+  B008 `92.165` would rank approximately `112`.
+- The current public kernels list showed no newly rerun artifact beyond already
+  screened Verity and Dimong snapshots. This pass pulled and statically screened
+  `paul720810/hermes-attack-v71-n1000-20260721-102018`,
+  `paul720810/hermes-attack-v70-n900-20260721-101920`,
+  `paul720810/hermes-attack-v69-proven-code-20260721-052046`,
+  `paul720810/hermes-attack-v68-tight-20260721-003427`,
+  `ojanapalash/notebook6d94950baf`, and
+  `foysalemonshanto/ai-agent-security-v12`.
+
+**Decision**
+
+- Paul Hermes v68-v71 are compact `.x` single-post rollback variants in the
+  same family as the already rejected v72 route.
+- Ojana's pulled snapshot does not expose a usable SDK `AttackAlgorithm` /
+  `AttackCandidate` attack implementation.
+- Foysal v12 is an older broad exfil/deputy route that rolls back to public
+  `.co`, classify8, `REPLAY_SAFE_FRAC=0.97`, `SLOW_MULTIPOST_N=1`, and
+  analysis-token shaping.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-16_0918/`
+- `artifacts/kaggle/leaderboards/2026-08-16_0918_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

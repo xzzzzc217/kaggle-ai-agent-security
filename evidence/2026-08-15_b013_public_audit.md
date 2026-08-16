@@ -270,6 +270,128 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-16 09:18 UTC addendum
+
+During the later heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+team_rank=340
+score_at_50=98.415
+score_at_100=92.925
+score_at_200=90.270
+rank_if_88_665=359
+rank_if_88_760=340
+rank_if_92_165=112
+rank_if_100_000=39
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-16_0918_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-16T09:20:35.csv
+```
+
+The current public kernels listing did not show a newly rerun candidate beyond
+the already screened Verity and Dimong snapshots. This pass therefore filled in
+remaining older public artifacts from the visible listing that had not been
+individually recorded in the B013 evidence:
+
+```text
+paul720810/hermes-attack-v71-n1000-20260721-102018
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0918/paul_hermes_v71
+  script_sha256=00758654fb6ef095cd4b6ef129dd235e41d821627a973cbde30c5e2ce698610c
+  decoded_attack_sha256=a8c3947f7552ea5146935460cd63fc3c00e802b4ee9d68f1922ad01289859526
+  decoded_len=2554
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  .invalid=False
+  .co=False
+  .x=True
+
+paul720810/hermes-attack-v70-n900-20260721-101920
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0918/paul_hermes_v70
+  script_sha256=354492cb1d2b197ab34d23f885d80be803d9ada84f13cc526bb11a420cf61993
+  decoded_attack_sha256=dcae430fac2addb8b566e517b8681e9c17efa7bfbfca50ac312953282d1e8f2f
+  decoded_len=2553
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  .invalid=False
+  .co=False
+  .x=True
+
+paul720810/hermes-attack-v69-proven-code-20260721-052046
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0918/paul_hermes_v69
+  script_sha256=b6b58501a74b405a8bef492c4346a7afc1e7da56d9179f0b0d1479bfd3ee9585
+  decoded_attack_sha256=7bd7edf13f13a923ccdeef1e282f1e515806c98b6a15dc15bd330ff4008392a6
+  decoded_len=2553
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  .invalid=False
+  .co=False
+  .x=True
+
+paul720810/hermes-attack-v68-tight-20260721-003427
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0918/paul_hermes_v68
+  script_sha256=96c58e8d8daf076bebca237be091e0ecfe932c2c16cd618e106ff6a6c6677bde
+  decoded_attack_sha256=9e2112305b4ed426a87e27d603b72f950d70ee3a801560eeaff093dd46caeee2
+  decoded_len=1801
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  .invalid=False
+  .co=False
+  .x=True
+
+ojanapalash/notebook6d94950baf
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0918/ojana_notebook6d94950baf
+  script_sha256=6a8a00583f856844b085451f1a8b5cb46ce2ba19f51a2038a140a8466b3e4e1c
+  AttackAlgorithm=False
+  AttackCandidate=False
+  http.post=False
+
+foysalemonshanto/ai-agent-security-v12
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0918/foysal_v12
+  notebook_sha256=6a26b45402e8acc5b35f7a559c85aedbd70783b62a4ae6edfc1bd765a790ee9b
+  extracted_attack_sha256=6c01abb24a729f9a2aef0c5f6a5dccb5f8940dadd431e34618402b57f8d49eb5
+  extracted_len=27279
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  EXFILTRATION=True
+  CONFUSED_DEPUTY=True
+  .invalid=False
+  .co=True
+  SPLIT_CLASSIFY_N=8
+  REPLAY_SAFE_FRAC=0.97
+  SLOW_MULTIPOST_N=1
+```
+
+None of these artifacts is selected as a formal B013 candidate:
+
+- Paul's older Hermes v68-v71 snapshots are the same route family as the already
+  rejected v72 line: compact base64-wrapped single-post generators using `.x`
+  URL policy and tuned target-count variants, without evidence that rolling
+  back B008R's classify5 / slow-row four-endpoint lineage would improve the
+  current `88.760` effective score.
+- `ojanapalash/notebook6d94950baf` does not expose a usable SDK
+  `AttackAlgorithm`/`AttackCandidate` attack implementation in the pulled
+  snapshot.
+- `foysalemonshanto/ai-agent-security-v12` is an older broad exfil/deputy route
+  using public `.co` targets, `SPLIT_CLASSIFY_N=8`, `REPLAY_SAFE_FRAC=0.97`,
+  `SLOW_MULTIPOST_N=1`, and analysis-token shaping. This repeats or rolls back
+  excluded/rejected variables rather than isolating a new low-correlated
+  mechanism.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-16 07:17 UTC addendum
 
 During the next heartbeat, submissions and leaderboard were rechecked again:
