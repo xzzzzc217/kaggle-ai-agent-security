@@ -270,6 +270,76 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-16 13:19 UTC addendum
+
+During the later heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+team_rank=342
+score_at_50=98.415
+score_at_100=92.880
+score_at_200=90.270
+rank_if_88_665=360
+rank_if_88_760=342
+rank_if_92_165=111
+rank_if_100_000=39
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-16_1319_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-16T13:20:16.csv
+```
+
+The public kernels list showed a newly rerun `evgendvorkin/ai-agent` artifact
+after the previous screen:
+
+```text
+evgendvorkin/ai-agent
+  title=AI Agent
+  last_run=2026-08-16 11:41:04.377 UTC
+  total_votes=256
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_1319/evgendvorkin_ai-agent_latest
+  notebook_sha256=b88657e612ea653fae88206de4d5a38d7e6ba888ea0d669cf3260ca94f085ff0
+  code_source_len=7911
+  attack_code_len=7298
+  attack_code_sha256=9a9e9d1b86edca0c892457035e3f5925917ddf41c18ecabf858fa93e36d5c79a
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  EXFILTRATION=False
+  CONFUSED_DEPUTY=False
+  .invalid=False
+  .co=True
+  BEST_HARMONY=True
+  analysis=True
+  commentary=False
+  SPLIT_CLASSIFY_N=8
+  REPLAY_SAFE_FRAC=0.999
+  SLOW_MULTIPOST_N=1
+  SPLIT_THRESHOLD_S=12.0
+  PROBE_HOPS=0
+```
+
+Relative to the previously screened `2026-08-15 11:16 UTC` snapshot, the attack
+code is not byte-identical. The substantive code change is that `TEMPLATE` was
+changed from the verbose single `http.post` instruction to the same
+`BEST_HARMONY` analysis-token injection string that was previously only a
+fallback. The other core route variables remain `.co` targets,
+`SPLIT_CLASSIFY_N=8`, `REPLAY_SAFE_FRAC=0.999`, `SLOW_MULTIPOST_N=1`, and
+`PROBE_HOPS=0`.
+
+This is not selected as a formal B013 candidate because the new change is
+explicitly in the excluded prompt-token / analysis-channel direction and remains
+coupled to public `.co` URL policy plus rollback of B008R's classify5 and
+slow-row four-endpoint lineage. No B013 preregistration, Notebook, or competition
+submission is created from this addendum.
+
 ## 2026-08-16 09:18 UTC addendum
 
 During the later heartbeat, the latest submissions and leaderboard were

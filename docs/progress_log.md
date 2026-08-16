@@ -2871,3 +2871,40 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-16_0918/`
 - `artifacts/kaggle/leaderboards/2026-08-16_0918_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-16: B013 rerun Evgendvorkin public snapshot screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-16 13:19 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `342`, top-200 boundary `90.270`, score_at_100 `92.880`, and historical
+  B008 `92.165` would rank approximately `111`.
+- The current public kernels list showed a newly rerun `evgendvorkin/ai-agent`
+  snapshot with last run `2026-08-16 11:41:04.377 UTC`; this pass pulled and
+  statically screened it. Notebook SHA is
+  `b88657e612ea653fae88206de4d5a38d7e6ba888ea0d669cf3260ca94f085ff0`;
+  extracted attack-code SHA is
+  `9a9e9d1b86edca0c892457035e3f5925917ddf41c18ecabf858fa93e36d5c79a`.
+
+**Decision**
+
+- The newly rerun Evgendvorkin artifact changes the primary template from the
+  verbose single `http.post` instruction to the `BEST_HARMONY` analysis-token
+  injection string.
+- It still combines public `.co` URL policy, `SPLIT_CLASSIFY_N=8`,
+  `REPLAY_SAFE_FRAC=0.999`, `SLOW_MULTIPOST_N=1`, and prompt-token shaping.
+- Because the visible delta is in the explicitly excluded prompt-token /
+  analysis-channel direction and remains coupled to multiple B008R rollbacks, no
+  preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-16_1319/`
+- `artifacts/kaggle/leaderboards/2026-08-16_1319_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
