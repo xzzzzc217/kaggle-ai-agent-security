@@ -2721,3 +2721,45 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-15_1523/`
 - `artifacts/kaggle/leaderboards/2026-08-15_1523_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-16: B013 public audit addendum, updated public routes screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-16 01:15 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `327`, top-200 boundary `90.180`, score_at_100 `92.700`, and historical
+  B008 `92.165` would rank approximately `110`.
+- The current public kernels list showed updated `verityix` and `dimong4`
+  artifacts after the previous audit. This pass pulled and statically screened
+  `verityix/ai-agent-security-attack-algorithm-hitherto`,
+  `dimong4/ai-agent-security`,
+  `cleanorlabs/single-post-live-fill-reference-baseline`,
+  `shreyascppsc/jed-payload-blind-egress-working-note`, and
+  `ferencjuhsz/ghostpost-verify-and-keep-agent-red-team`.
+
+**Decision**
+
+- Updated `verityix` is a live-validated prompt/style and public-URL grid; it
+  changes template, URL policy, and validation/selection behavior together.
+- Updated `dimong4` combines public `.co` targets, destructive `fs.delete`,
+  prompt-token frame injection, replay-safe fraction change, and fill-budget
+  behavior.
+- Cleanor is a compact single-post live-fill baseline that rolls back toward
+  public `.co`, classify6, lower replay-safe sizing, and prompt-token switching.
+- Shreyas is working-note/background material, not an executable candidate.
+- Ferenc is useful evidence for verify-and-keep exfiltration plus
+  confused-deputy/email, but it is a broad multi-family route rather than a
+  B008R-derived single variable.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-16_0115/`
+- `artifacts/kaggle/leaderboards/2026-08-16_0115_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

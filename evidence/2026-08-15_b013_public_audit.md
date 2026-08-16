@@ -270,6 +270,112 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-16 01:15 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+current_leaderboard_effective_submission=55393959
+current_leaderboard_effective_public_score=88.760
+team_rank=327
+score_at_50=98.100
+score_at_100=92.700
+score_at_200=90.180
+rank_if_88_665=345
+rank_if_88_760=327
+rank_if_92_165=110
+rank_if_100_000=39
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-16_0115_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-16T01:16:08.csv
+```
+
+The competition submission list is unchanged: B012 `55495429` remains
+`COMPLETE` with Public Score `88.665`, B008R `55393959` remains the current
+leaderboard-effective `COMPLETE` submission with Public Score `88.760`, and
+historical B008 `55266445` remains score-bearing `ERROR` with Public Score
+`92.165`.
+
+The current public kernels list showed two updated artifacts after the previous
+audit window: `verityix/ai-agent-security-attack-algorithm-hitherto` last run
+`2026-08-15 23:47:54.347 UTC` and `dimong4/ai-agent-security` last run
+`2026-08-15 20:16:19.357 UTC`. This pass pulled those updated snapshots plus
+older relevant-looking artifacts that had not been separately recorded:
+
+```text
+verityix/ai-agent-security-attack-algorithm-hitherto
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0115/verityix_hitherto_latest
+  notebook_sha256=05424ef59655aef819f3e3ba35e3fcef3324cd593f6b8c2781062da9ea8717b9
+  extracted_code_sha256=800194653191d3fe45e3ee5b16fb6a44034ea2d71759c108f1a391ca480bf900
+  code_len=2898
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  eval_predicates=True
+
+dimong4/ai-agent-security
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0115/dimong_latest
+  notebook_sha256=de31e1f5811afb55d56b4cc2336c2d7a3cf50eed02b4344d83273e0a51941e7f
+  extracted_code_sha256=50cb69ec3a448054af2f20e95b76b2441a2c1461679152b32a1eb4e90a06d112
+  code_len=8800
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  SPLIT_CLASSIFY_N=5
+  REPLAY_SAFE_FRAC=0.975
+
+cleanorlabs/single-post-live-fill-reference-baseline
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0115/cleanorlabs_single_post_live_fill
+  notebook_sha256=246ef113e197b57f20bcfc3f7656ac3f06e6ff208af8ed209196521286cb0db0
+  extracted_attack_sha256=0315e823036de2f182a6e343cffe87d31a61d9054c96a09b833e1da13ec3a9f3
+  extracted_len=6751
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  env.interact=True
+
+shreyascppsc/jed-payload-blind-egress-working-note
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0115/shreyas_blind_egress
+  notebook_sha256=d72310a6e5f86e7be1a04e6c0b8b4904620dd3c99ead26204529afc97d23a472
+  code_len=0
+  AttackAlgorithm=True (markdown mention only)
+  AttackCandidate=False
+
+ferencjuhsz/ghostpost-verify-and-keep-agent-red-team
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0115/ferenc_ghostpost
+  notebook_sha256=55b1884e42b8a5a00dfd13edfb5ce98b1e06160bac08aab6d2cac1c1f548ca8f
+  extracted_attack_sha256=81b3c29995372c1f48810266df9cf11402cef9a5af73653d8fa2a237458377ac
+  extracted_len=10480
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=True
+  EXFILTRATION=True
+  CONFUSED_DEPUTY=True
+```
+
+None of these artifacts is selected as a formal B013 candidate:
+
+- The updated `verityix` artifact is a live-validated prompt/style and public
+  URL grid. It changes template family, URL policy, and validation/selection
+  behavior together, and does not preserve the B008R replay-safe split lineage.
+- The updated `dimong4` artifact now combines a public `.co` URL policy,
+  destructive `fs.delete` follow-up, prompt-token frame injection, a changed
+  replay-safe fraction, and fill-budget behavior. This is not a safe
+  single-variable change against B008R.
+- `cleanorlabs/...single-post-live-fill` is a compact live-fill baseline, but it
+  uses public `.co` hosts, classify6, `REPLAY_SAFE=0.97`, and prompt-token
+  switching. It largely rolls back or weakens the B008R/B005 evidence stack.
+- `shreyascppsc/...working-note` is markdown/background material rather than a
+  usable attack implementation.
+- `ferencjuhsz/...ghostpost` provides useful background evidence for
+  verify-and-keep exfiltration plus confused-deputy/email families, but it is a
+  broad multi-family route with calibration, exfil variants, deputy variants,
+  search budget allocation, and live keep-selection all changing together.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-15 13:22 UTC addendum
 
 During the later heartbeat, the latest submissions and leaderboard were

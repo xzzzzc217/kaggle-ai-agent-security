@@ -1,6 +1,6 @@
 # 竞赛说明、技术路线与项目进展
 
-> 最后更新：2026-08-15
+> 最后更新：2026-08-16
 > 当前阶段：B013 公开路线与本地机制继续筛查；暂无满足低相关、可证伪、单变量门槛的正式候选
 > 历史最高有分 submission ref：B008 `55266445`，Public Score `92.165`；当前 leaderboard-effective submission 为 B008R `55393959`，Public Score `88.760`
 > 仓库发布级别：**private；当前内容不适合直接公开**
@@ -186,7 +186,7 @@ evaluator 回放单独保留预算。
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | B011 fast-fill 已完成并拒绝；等待 B012 机制筛查 | B010 slow-commentary 已以 Public Score `52.330` 证伪并拒绝；B011 首轮公开路线与本地机制筛查未形成正式候选；B008R `55393959` 已 `COMPLETE`、Public Score `88.760`，把 leaderboard-effective 分数从 B010 `52.330` 部分恢复到 `88.760`；B011 fast-fill 源码 SHA `ff5b5fac23bdcea595e68abb201a1c8475df3c6e2cd36b1c805506292b2811c3`，目标测试 19 项、全量 106 项测试、preflight、SDK validate、Ruff、`git diff --check` 和秘密扫描通过；Notebook `heralces/ai-agent-security-b011-fastfill` v1 `COMPLETE`，云端 `attack.py` 哈希一致，日志错误扫描 0，产物凭据值扫描 0；唯一 submission `55433780` 于 2026-08-12 09:11 UTC 首次观测终态 `SubmissionStatus.COMPLETE`，Public Score `72.680`，Private Score 为空，API errorDescription 为空；2026-08-12 09:12 UTC leaderboard team row 仍为 B008R score `88.760` / rank `243`，top-200 边界 `89.235`；[B011 证据](../evidence/2026-08-11_b011_fastfill_preflight.md) | B011 低于 `88.760`，不重试；B012 必须机制低相关，且同时区分当前 effective 对照 `88.760` 与历史高点 `92.165` |
+| 本地搜索机制 | B013 公开路线与本地机制继续筛查；暂无正式候选 | B008R `55393959` 仍是当前 leaderboard-effective submission，Public Score `88.760`；B005R、B011、B012 均已终态且低于 B008R 并拒绝；2026-08-15/16 B013 多轮公开路线审计均未形成满足低相关、可证伪、单变量门槛的正式候选；2026-08-16 01:15 UTC leaderboard 快照中 team `heralces` 为 rank `327`，top-200 边界 `90.180`，历史 B008 `92.165` 若计入约 rank `110`；[B013 证据](../evidence/2026-08-15_b013_public_audit.md) | 只有形成强于既有 audit/addendum 的 B013 单变量证据后，才预注册并提交；门槛需区分 `>88.760`、`>92.165`、`>=100.000` |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3、B004 v1 与 B005 v1 均 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md)、[B005 证据](../evidence/2026-08-02_b005_preflight.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
@@ -203,9 +203,9 @@ evaluator 回放单独保留预算。
 | B009 replay-safe probe4 | 完成，可靠性失败 | B008 子候选；唯一行为变量为 live validation `PROBE_HOPS` 从 `0` 改为 `4`；源码 SHA `5fec8ee21232e8448d7cb17822b6e393ce33891ad20326c3eeb00b26581e63ff`；source commit `727ad45`；prereg commit `b84827b`；公开 Foysal/Nikita 路线只作为 probe-hop 线索；95 项测试、preflight、SDK validate、Ruff、`git diff --check` 和秘密扫描通过；常量时延样本显示候选消息形状与 B008 一致，仅 validation hops 变为 4；Notebook `heralces/ai-agent-security-b009-probe4` v1 `COMPLETE`；云端哈希一致；唯一 submission `55299759` 为 `ERROR`，Public/Private Score 均为空；API errorDescription 为 Kaggle system error；[B009 证据](../evidence/2026-08-06_b009_preflight.md) | 按预注册作为可靠性失败拒绝；不按 Kaggle 提示重试；B008 `92.165` 保留为历史高点 |
 | B010 replay-safe slow-commentary | 完成，拒绝 | B008 子候选；唯一行为变量为 slow-row frame plan 的 injected channel 从 `analysis` 改为 `commentary`；源码 SHA `04eead5643b0240d69903cdb4ba3649a6f4ab7a6e496ad9b9b74b704eacfd8da`；source commit `236cf40`；prereg commit `e91bf35`；公开 Assiaben commentary template 只作为窄线索；B010 不复制五模板路线且保留 `.invalid`；101 项测试、preflight、SDK validate、Ruff、`git diff --check` 和秘密扫描通过；Notebook `heralces/ai-agent-security-b010-slow-commentary` v1 `COMPLETE`；云端哈希一致；唯一 submission `55327331` 为 `COMPLETE`，Public Score `52.330`，Private Score 为空；[B010 证据](../evidence/2026-08-07_b010_preflight.md) | 低于 B008 `92.165`，按预注册拒绝且不重试；B008 `92.165` 保留为历史高点 |
 | B008R best-score restoration | 完成，部分恢复 | 用户于 2026-08-10 明确授权恢复最佳分数；B008R 不是新算法候选，byte-identical 使用 B008 `baselines/replaysafe_classify5_v1/attack.py`，SHA `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`；恢复预注册 commit `2e45dd7`；Notebook `heralces/ai-agent-security-b008r-restore-classify5` v1 `COMPLETE`，云端哈希一致，日志错误扫描 0，产物秘密扫描 0；唯一 submission `55393959` 为 `COMPLETE`，CLI/API raw Public Score `88.760`，Private Score 为空；2026-08-10 15:36 UTC leaderboard 为 rank `205` / score `88.760`；[B008R 恢复例外](../evidence/2026-08-10_b008_restore_exception.md) | 因 `52.330 < 88.760 < 92.165`，按预注册记为部分恢复；不重试；当前 effective 对照为 `88.760`，历史高点仍为 `92.165` |
-| B005R score restoration | 已创建，等待终态 | 授权恢复例外：B005 原 submission `55185029` 当前为 score-bearing `ERROR` 且历史 Public Score `91.930`；当前 leaderboard-effective score 仍为 B008R `88.760` / rank `250`，top-200 边界 `89.325`；B005R byte-identical 使用 B005 `baselines/replaysafe_tail99_v1/attack.py`，SHA `9d86d633b50a72f7499f7ad6c4f81c03fb61887e12351da977f7cb64e413c67f`；preflight、SDK validate、目标 9 项测试、全量 106 项测试、Ruff、format check、`git diff --check` 与凭据值扫描通过；Notebook `heralces/ai-agent-security-b005r-restore-tail99` v1 `COMPLETE`，云端哈希一致，日志错误扫描 0，产物凭据值扫描 0；唯一 submission `55461853` 创建于 2026-08-12 15:22 UTC，初始状态 `SubmissionStatus.PENDING`；[B005R 恢复例外](../evidence/2026-08-12_b005_restore_exception.md) | 这是分数恢复操作，不计作 B012；`>=91.930` 记为恢复 B005 历史分，`>88.760` 记为改善当前 effective 分，`<=88.760`、空分、失败、ERROR 或超时拒绝且不重试 |
+| B005R score restoration | 完成，拒绝 | 授权恢复例外：B005 原 submission `55185029` 当前为 score-bearing `ERROR` 且历史 Public Score `91.930`；B005R byte-identical 使用 B005 `baselines/replaysafe_tail99_v1/attack.py`，SHA `9d86d633b50a72f7499f7ad6c4f81c03fb61887e12351da977f7cb64e413c67f`；preflight、SDK validate、目标 9 项测试、全量 106 项测试、Ruff、format check、`git diff --check` 与凭据值扫描通过；Notebook `heralces/ai-agent-security-b005r-restore-tail99` v1 `COMPLETE`，云端哈希一致；唯一 submission `55461853` 为 `COMPLETE`，Public Score `86.945`，低于 B008R `88.760`；[B005R 恢复例外](../evidence/2026-08-12_b005_restore_exception.md) | 按恢复预注册拒绝且不重试；当前 effective 对照仍为 B008R `88.760` |
 | B011 replay-safe fast-fill | 完成，拒绝 | B008/B008R 子候选；唯一行为变量为 post-classification fast/plain branch 从单 `http.post` 模板改为 `http.post` + reserved-domain note-forwarding 的 `FILL_TEMPLATE`；源码 SHA `ff5b5fac23bdcea595e68abb201a1c8475df3c6e2cd36b1c805506292b2811c3`；source commit `8b8c2b9`；prereg commit `0c4191b`；公开 `dimong4/ai-agent-security` fast-fill 路线只作为线索，B011 使用 `admin@example.invalid` 和 `*.invalid`；106 项测试、preflight、SDK validate、Ruff、`git diff --check` 和秘密扫描通过；Notebook v1 `COMPLETE`，云端哈希一致，日志错误扫描 0，产物凭据值扫描 0；唯一 submission `55433780` `COMPLETE`，Public Score `72.680`，Private Score 为空，API errorDescription 为空；[B011 证据](../evidence/2026-08-11_b011_fastfill_preflight.md) | 低于当前 effective B008R `88.760`，按预注册拒绝且不重试；B008 `92.165` 仍为历史高点 |
-| B012 candidate screen | 筛查中，未预注册 | 2026-08-12 首轮复查拉取 Adhiraj probe-and-flood、Anas、Foysal V15、Nikita 当前公开 Notebook；Anas/Foysal/Nikita 抽取源码同哈希且属于已知 V15 replay-safe family，未提供强于 B008/B008R 的单变量；Adhiraj route 机制不同但需同时改域、验证、hop cap 与 replay sizing，不满足单变量边界；[B012 审计](../evidence/2026-08-12_b012_public_audit.md) | 暂不创建 B012 submission；继续寻找机制低相关、可证伪、单变量候选 |
+| B012 warmkeep and screens | 完成，拒绝 | 2026-08-12 首轮复查与 2026-08-14 round2 公开审计均未形成直接候选；随后 B012 warmkeep 作为单变量提交，唯一 submission `55495429` 为 `COMPLETE`，Public Score `88.665`，低于 B008R `88.760`；[B012 审计](../evidence/2026-08-12_b012_public_audit.md)、[B012 证据](../evidence/2026-08-14_b012_warmkeep_preflight.md) | 按预注册拒绝且不重试；后续转入 B013 机制低相关筛查 |
 | 轨迹分析与模板库 | 待开始 | 已有 trace 解析和 fixture harness | 建立真实轨迹分类与回归集 |
 | 榜单优化 | 待开始 | 候选机制已有三层原型 | 至少三次单变量有效提交 |
 | 最终候选与 Working Note | 待开始 | 已建立材料记录框架 | 两个低相关候选与完整消融 |
@@ -460,6 +460,14 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `313`,
   score_at_200 `89.910`, and historical B008 `92.165` would rank approximately
   `106`.
+- A later `2026-08-16 01:15 UTC` addendum screened updated Verity and Dimong
+  public artifacts, plus Cleanor's single-post live-fill baseline, Shreyas'
+  working note, and Ferenc's ghostpost verify-and-keep route. Verity, Dimong,
+  Cleanor, and Ferenc each require multiple simultaneous behavior changes or
+  roll back rejected families; Shreyas is not executable attack source.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `327`,
+  score_at_200 `90.180`, and historical B008 `92.165` would rank approximately
+  `110`.
 - No B013 preregistration, Notebook, or competition submission was created.
   Continue scouting only for a stronger mechanism-low-correlated candidate with
   gates `>88.760`, `>92.165`, and `>=100.000`.

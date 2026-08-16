@@ -284,6 +284,14 @@ uv sync
   `arizalfirdaus123/multi-turn-exfiltration-with-adaptive-burst`. URAD and
   Yaroslav are fixed single-post portfolios; Karnak and Arizal are broad
   multi-route systems; Lopure did not expose a usable attack implementation.
+- The `2026-08-16 01:15 UTC` addendum rechecked submissions/leaderboard and
+  screened updated `verityix` and `dimong4` artifacts plus `cleanorlabs`,
+  `shreyascppsc`, and `ferencjuhsz` routes. Verity, Dimong, Cleanor, and Ferenc
+  either combine multiple behavior changes or roll back rejected route families;
+  Shreyas is not executable attack source.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `327`,
+  score_at_200 `90.180`, and historical B008 `92.165` would rank approximately
+  `110`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not
