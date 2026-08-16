@@ -270,6 +270,87 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-16 07:17 UTC addendum
+
+During the next heartbeat, submissions and leaderboard were rechecked again:
+
+```text
+current_leaderboard_effective_submission=55393959
+current_leaderboard_effective_public_score=88.760
+team_rank=337
+score_at_50=98.415
+score_at_100=92.925
+score_at_200=90.250
+rank_if_88_665=356
+rank_if_88_760=337
+rank_if_92_165=112
+rank_if_100_000=39
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-16_0717_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-16T07:18:23.csv
+```
+
+The competition submission list is unchanged: B012 `55495429` remains
+`COMPLETE` with Public Score `88.665`, B008R `55393959` remains the current
+leaderboard-effective `COMPLETE` submission with Public Score `88.760`, and
+historical B008 `55266445` remains score-bearing `ERROR` with Public Score
+`92.165`.
+
+The current public kernels list showed no newly rerun artifact beyond already
+screened Verity and Dimong snapshots. This pass pulled three older unrecorded or
+partially recorded public artifacts for static screening:
+
+```text
+tiktoktrendz/jed-submission
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0717/tiktoktrendz_jed_submission
+  notebook_sha256=9dca9ce109b03bcfa618f456a92a23e1e36d0aa8ed7bcfe7e0f087429a365cfe
+  extracted_attack_sha256=9ce724435f180a81412d128bb1e0da35301ee7da19448888fd228ff25bb03857
+  extracted_len=68104
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  EXFILTRATION=True
+  CONFUSED_DEPUTY=True
+  eval_predicates=True
+  fs.delete=True
+
+sravanikamjula/ai-agent-security-multi-step-tool-attack-baseline
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0717/sravani_baseline
+  notebook_sha256=972716325417baa8be8a422b66d8ff4bb212f48c4ebe8a013abeca24c59b7227
+  extracted_attack_sha256=2e49f2cb59256b36c4ff33e3395b4da653564e8e04b5b9fbe095ae389696cf02
+  extracted_len=4073
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=False
+  eval_predicates=True
+
+anvithpothula/aisec-sevstack
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_0717/anvith_sevstack
+  notebook_sha256=6313b4f9ca32cb360c80115f7d522c99f0280e52570e405f686b22944c8ddf3e
+  extracted_attack_sha256=86047663cbfdf44e060b9afee0f4a8913422f42e2780e060fb1ab2d9d2ba9322
+  extracted_len=62219
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  eval_predicates=True
+  SEARCH_PROFILE=single_900
+```
+
+None of these artifacts is selected as a formal B013 candidate:
+
+- `tiktoktrendz/jed-submission` is a broad multi-family severity stack with
+  single/dual exfiltration templates, confused-deputy/deputy-style families,
+  destructive-write logic, predicate validation, randomization, and multi-route
+  prioritization. It is not a B008R-derived single behavior variable.
+- `sravanikamjula/...baseline` is a starter-style baseline with SDK predicate
+  scaffolding but no `http.post` exfiltration route in the extracted attack
+  implementation.
+- `anvithpothula/aisec-sevstack` is the same extracted attack SHA as the
+  previously screened multi-endpoint severity stacker route. It remains a broad
+  route replacement rather than a single-variable improvement over B008R.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-16 05:16 UTC addendum
 
 During the next heartbeat, submissions and leaderboard were rechecked again:

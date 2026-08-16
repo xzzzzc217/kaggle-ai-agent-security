@@ -299,6 +299,13 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `334`,
   score_at_200 `90.225`, and historical B008 `92.165` would rank approximately
   `112`.
+- The `2026-08-16 07:17 UTC` addendum screened older public backfill routes:
+  `tiktoktrendz` is a broad severity stack, `sravanikamjula` lacks a `http.post`
+  exfiltration implementation, and `anvithpothula/aisec-sevstack` duplicates the
+  previously rejected multi-endpoint severity stacker route.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `337`,
+  score_at_200 `90.250`, and historical B008 `92.165` would rank approximately
+  `112`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not
