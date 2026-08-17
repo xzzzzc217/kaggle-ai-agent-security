@@ -270,6 +270,83 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-17 12:58 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+fresh_leaderboard_rows=1693
+team_heralces_score=88.760
+team_submission_date=2026-08-14 02:01:38
+team_submission_count=5
+score_at_50=98.750
+score_at_100=93.360
+score_at_200=90.675
+rank_if_B012_88.665=400
+rank_if_B008R_88.760=381
+rank_if_B008_92.165=124
+rank_if_100.000=40
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-17_1258_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-17T12_59_18.csv
+kernels_list=artifacts/kaggle/public_audit/2026-08-17_1258_kernels_list.csv
+```
+
+The public kernels list showed a newly rerun `evgendvorkin/ai-agent` snapshot
+and otherwise no newer public rerun beyond the already screened Verity and
+Dimong snapshots. The pass pulled the rerun plus older starter, diary,
+validation, and baseline artifacts:
+
+```text
+evgendvorkin/ai-agent
+martynaplomecka/getting-started-notebook
+boristown/agi-ai-agent-security
+kokinnwakashuu/ai-agent-security-working-diary
+llkh0a/aas-local-validation
+pilkwang/ai-agent-replay-dense-exfiltration
+kojimar/ai-agent-security-attack-baseline
+yaroslavkholmirzayev/ai-agent-security-first-submission
+yaroslavkholmirzayev/ai-agent-security-k1-short
+nikitagajbhiye30/ai-agent-security-001
+```
+
+Static notebook/source extraction and string extraction produced the following
+hashes and route screen:
+
+| Artifact | Source/notebook SHA | Extracted attack SHA | Screen |
+|---|---|---|---|
+| `evgendvorkin/ai-agent` | `eb01e6014d719115685d5f7fc2cfbd82861ea0dec2e3110633a05c9b359beecf` | `1efc87afcb944add247cca7429d380cb5b183fb7e6e18c08230bb73b3c5cc9fc` | Rerun "PHOENIX V5" route combining public `.co`, `SPLIT_CLASSIFY_N=8`, `REPLAY_SAFE_FRAC=0.9995`, `SLOW_MULTIPOST_N=4`, `MARGIN_S=35.0`, `PROBE_HOPS=1`/live probing, and `BEST_HARMONY` analysis-token prompt text. |
+| `martynaplomecka/getting-started-notebook` | `e9d761103a901d76a01b8263b37e6064fed3aa04ed073097372a11ca3b0c0664` | `eed01a2b6a450f03da01e78ee266c2ecf725d0edef34244bea343402a9ec8c0c` | Starter/getting-started source with SDK classes, predicates, and example domains but no literal `http.post` attack mechanism. |
+| `boristown/agi-ai-agent-security` | `66376d4fd023cf98d90a0c99deb586ca9107eb653dbd809958b694385ba62ac7` | `7d96c96e14a640ec6e4da17aabc3dd647aceecaa76854b2a0f950b1a2714738e` | Public `.co`/reserved-domain fixed single-post style route with `max_tool_hops=1`; markdown/source score marker `57.78`. |
+| `kokinnwakashuu/ai-agent-security-working-diary` | `16dbb8e1f99e1f02c47cd614def41b7ad6b8b18fc3fac312ef283b2106075289` | `54db34ca13d0180dffebcf7a43b65490f39d6fa4edc5da5cfd6fe84e222a82b0` | Short public `.co` fixed single-post route; markdown/source score marker `57.96`. |
+| `llkh0a/aas-local-validation` | `575b44b62e1301ef12f85d789529e648e4595e227d09a4dcfac8b6a88d3ab3fd` | `f411dd6c8ea1e79f0f9dae2da4f1878f50387c97972e645c60cb4db1b98e1b09` | Local-validation notebook with SDK/predicate harness and public/reserved examples, not a standalone `http.post` attack candidate. |
+| `pilkwang/ai-agent-replay-dense-exfiltration` | `9511c75e97a2de039b367d2d2322fa3f83d08f6e0849fb9ad3f76fd9f75a7a8e` | `0cc78c5db70e2ce3473529cf6950b4cbaf24f4b7976ec829840f3a396c0847eb` | Broad replay-dense exfiltration route with live predicates, public/reserved URL mix, adaptive fill, and many profile variables; markdown/source score marker `0.0`. |
+| `kojimar/ai-agent-security-attack-baseline` | `3cde98f470f6aeadf28a0251cc0ae1529729674a53a5e21418fc4fc8f1a0c7f5` | `9847c03d23a0d10e91c5fdc00e3e17a0301d9f395ed3e04f72faf18f424288f4` | Broad baseline/live-validation route with public `.co`, derived prompts, `eval_predicates`, and fill/search profile variables; markdown/source score marker `0.0`. |
+| `yaroslavkholmirzayev/ai-agent-security-first-submission` | `70070799d72fe0066eb3201974460d0f8ff17197aa779d035c112f0fc8e3b803` | `1fa9d964e2bc7ae945efaa1ef47c561adb98e4055b7092bb77264b7a2b79cd71` | Public `.co` first-submission route with exfiltration, confused-deputy email, `eval_predicates`, and `MAX_CANDIDATES=350`. |
+| `yaroslavkholmirzayev/ai-agent-security-k1-short` | `41a874727081c7c941500b04a0792e8c675eb2b3f6efb42c52c66ab798fe5f0b` | `89c41611c55c6c9115b4574ec00e7ad7ca929c5d6673d6366ea557cbb641825b` | Very short public `.co` fixed `http.post` baseline. |
+| `nikitagajbhiye30/ai-agent-security-001` | `c8a5b50a227dadd8816debbc930adb6809ee80b6a877162ef0e5acc4efc882e2` | `d3894b2bb2038814d469ea0c83dc637957c2ed421ec667389015a99453aba325` | Same fixed single-post portfolio lineage already seen in URAD-style screening; markdown/source score marker `18.000`. |
+
+Decision:
+
+- The new Evgendvorkin rerun is still a public-route/prompt-token/replay-tail
+  rollback. It explicitly combines `SPLIT_CLASSIFY_N=8`, very high replay
+  safety, public `.co`, live probing, and analysis-token `BEST_HARMONY`, so it
+  is not a low-correlated single variable against B008R.
+- Martyna and LLKh0a are starter/local-validation material, not formal attack
+  candidates.
+- Boristown, Kokinn, Yaroslav K1, and Nikita are lower fixed single-post
+  routes; Pilkwang replay-dense, Kojimar baseline, and Yaroslav first submission
+  are broad public live-validation or multi-family routes.
+- No B013 preregistration, Notebook, or competition submission is created from
+  this addendum.
+
 ## 2026-08-17 10:58 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were

@@ -403,6 +403,15 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `378`,
   score_at_200 `90.675`, and historical B008 `92.165` would rank approximately
   `124`.
+- The `2026-08-17 12:58 UTC` addendum screened a newly rerun
+  `evgendvorkin/ai-agent` snapshot plus older Martyna, Boristown, Kokinn, LLKh0a,
+  Pilkwang replay-dense, Kojimar, Yaroslav first/K1, and Nikita artifacts. The
+  Evgendvorkin rerun still combines public `.co`, classify8, high replay-safety,
+  live probing, and analysis-token prompt text; the rest are starter/local
+  validation, lower fixed single-post, or broad public live-validation routes.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `381`,
+  score_at_200 `90.675`, and historical B008 `92.165` would rank approximately
+  `124`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not

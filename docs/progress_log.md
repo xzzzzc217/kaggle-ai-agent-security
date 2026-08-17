@@ -3204,3 +3204,39 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-17_1058/`
 - `artifacts/kaggle/leaderboards/2026-08-17_1058_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-17: B013 rerun Evgendvorkin and starter backfill screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-17 12:58 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `381`, top-200 boundary `90.675`, score_at_100 `93.360`, and historical
+  B008 `92.165` would rank approximately `124`.
+- The current public kernels list showed a newly rerun `evgendvorkin/ai-agent`
+  snapshot and otherwise no newer public rerun beyond the already screened
+  Verity and Dimong snapshots. This pass pulled and statically screened that
+  rerun plus older starter, diary, validation, and baseline artifacts from
+  Martyna, Boristown, Kokinn, LLKh0a, Pilkwang, Kojimar, Yaroslav, and Nikita.
+
+**Decision**
+
+- The new Evgendvorkin rerun still combines public `.co`, classify8,
+  `REPLAY_SAFE_FRAC=0.9995`, live probing, and `BEST_HARMONY` analysis-token
+  prompt text, so it is not a low-correlated single variable against B008R.
+- Martyna and LLKh0a are starter/local-validation material.
+- Boristown, Kokinn, Yaroslav K1, and Nikita are lower fixed single-post routes;
+  Pilkwang replay-dense, Kojimar baseline, and Yaroslav first submission are
+  broad public live-validation or multi-family routes.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-17_1258/`
+- `artifacts/kaggle/leaderboards/2026-08-17_1258_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
