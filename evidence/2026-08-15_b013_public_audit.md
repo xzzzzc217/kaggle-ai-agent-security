@@ -270,6 +270,67 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-17 04:58 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+fresh_leaderboard_rows=1657
+team_heralces_score=88.760
+team_heralces_rank=371
+team_submission_date=2026-08-14 02:01:38
+team_submission_count=5
+score_at_50=98.625
+score_at_100=93.015
+score_at_200=90.540
+rank_if_B012_88.665=388
+rank_if_B008R_88.760=371
+rank_if_B008_92.165=120
+rank_if_100.000=40
+```
+
+No newly rerun public artifact appeared beyond the already screened Verity,
+Dimong, and Evgendvorkin snapshots. The pass therefore continued older
+public-route backfill and pulled these visible artifacts:
+
+```text
+gouthamkonduru/firstscoreafteramonth
+haodou092/notebookcb9f3b04b6
+rokaiyasomapti/ai-agent-sec-another-approach-resubmission
+canqiang/aiagsec-submission
+alt0er/ai-agent-security-fresh
+sumangnalla/project-agent-security
+```
+
+Static notebook/source extraction produced the following hashes and route
+screen:
+
+| Artifact | Notebook SHA | Extracted attack SHA | Screen |
+|---|---|---|---|
+| `gouthamkonduru/firstscoreafteramonth` | `fe26fff7b91c150b1f777328a58276a0b168a2cf698aa47fb6d55de0a1ae90bc` | `e63daa4e78b678b90dad8632be0529da97dd805c4993bf2fd053a9e1170d82e1` | Contains SDK classes and live predicate logic but no literal `http.post` route in the extracted code, so it is not a clean B008R-compatible exfiltration variable. |
+| `haodou092/notebookcb9f3b04b6` | `820dba03e78c08a37a7e4b6e1eac323541386a772d187df401da2158bfacfbc3` | `78ceaeca82e3c65358c621437404f4d2fa632181913c41468bd77c94d55ad21b` | Uses public `.co`, template/probe/fill policy, live predicates, and analysis-token shaping; this repeats the rejected public-domain/template-bank family rather than isolating one B008R variable. |
+| `rokaiyasomapti/ai-agent-sec-another-approach-resubmission` | `82e551e963432cd52a5ddb77a7d02464630e55234f58d24852da409732fc1fe3` | `92e3b069952631f7a45951c31dcc2773cd70b607058c27d00cd87c5db3987d21` | The pulled snapshot exposes server/placeholder wiring and no usable `AttackAlgorithm`/`AttackCandidate` implementation. |
+| `canqiang/aiagsec-submission` | `26eb4b2e9b62f1a4960f7e686042f2b01ab5128c7d506eed4361051c4eb35449` | `db099a08730f883361da5fe433e7fc95c830c3409ae3bec1310e8e32c5f35e04` | Broad live-validation exfiltration/deputy route combining public `.co`, classify8, analysis-token shaping, and multiple prompt families; not a B013 single-variable candidate. |
+| `alt0er/ai-agent-security-fresh` | `c912e00e5d3fc5ed3b8a9406ff848d35b24f6908ca7e87a7805882582a3ef584` | `5e82d1c161478a7fca06e6877f4adce4b9d82ee55141e062e96c793f8af46bcb` | The pulled snapshot exposes only server/placeholder wiring and no usable SDK attack implementation. |
+| `sumangnalla/project-agent-security` | `a77b25de01afb2563d70c0b47e8360ff49b01dc2179e50c1360fccc978cd7fdd` | `66d20ca7f285ce0b28c0f2723526149dac9ed5c8466ae77ca15e6b959be4f71a` | The pulled snapshot exposes only server/placeholder wiring and no usable SDK attack implementation. |
+
+Decision:
+
+- The only SDK-usable routes in this pass are either public-domain
+  template/probe/fill families or broad exfiltration/deputy route replacements.
+- None provides evidence for a stronger low-correlated single variable against
+  B008R `88.760` and historical B008 `92.165`.
+- No B013 preregistration, Notebook, or competition submission is created from
+  this addendum.
+
 ## 2026-08-17 02:58 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were

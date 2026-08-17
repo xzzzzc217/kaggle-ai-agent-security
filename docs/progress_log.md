@@ -3058,3 +3058,41 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-17_0258/`
 - `artifacts/kaggle/leaderboards/2026-08-17_0258_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-17: B013 further older public route backfill screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-17 04:58 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `371`, top-200 boundary `90.540`, score_at_100 `93.015`, and historical
+  B008 `92.165` would rank approximately `120`.
+- The current public kernels list showed no newly rerun artifact beyond the
+  already screened Verity, Dimong, and Evgendvorkin snapshots. This pass pulled
+  and statically screened `gouthamkonduru/firstscoreafteramonth`,
+  `haodou092/notebookcb9f3b04b6`,
+  `rokaiyasomapti/ai-agent-sec-another-approach-resubmission`,
+  `canqiang/aiagsec-submission`, `alt0er/ai-agent-security-fresh`, and
+  `sumangnalla/project-agent-security`.
+
+**Decision**
+
+- Goutham contains SDK classes and live predicate logic but no literal
+  `http.post` in the extracted attack code.
+- Haodou is a public `.co` template/probe/fill route with live predicates and
+  analysis-token shaping, and Canqiang is a broad exfiltration/deputy
+  live-validation route; both are multi-variable public-route replacements.
+- Rokaiya, Alt0er, and Sumang expose only placeholder/server wiring in the
+  pulled snapshots.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-17_0458/`
+- `artifacts/kaggle/leaderboards/2026-08-17_0458_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
