@@ -3018,3 +3018,43 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-17_0057/`
 - `artifacts/kaggle/leaderboards/2026-08-17_0057_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-17: B013 additional older public route backfill screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-17 02:58 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `367`, top-200 boundary `90.495`, score_at_100 `93.015`, and historical
+  B008 `92.165` would rank approximately `120`.
+- The current public kernels list showed no newly rerun artifact beyond the
+  already screened Verity, Dimong, and Evgendvorkin snapshots. This pass pulled
+  and statically screened `uctpexx123/aas-kun-lb66015-official-v1`,
+  `haodou092/conservative-replay-safe-sizing`,
+  `yusuketogashi/ai-agent-sec-another-approach`,
+  `dakbsabsa/ai-agent-security-multi-step-tool-attacks`, and
+  `godofthunder2407/ai-agent-sec`.
+
+**Decision**
+
+- Uctpexx is a compact public `.co` single-post route with margin/fill tuning,
+  and Haodou is a public `.co` three-template predicate-filtered
+  conservative-replay route; both are older public-domain/template/fill route
+  families rather than new B008R-derived mechanisms.
+- Yusuke and GodofThunder expose only placeholder/server wiring in the pulled
+  snapshots.
+- Dakbsabsa is an exploratory branch/action search using text action pools,
+  live predicates, and branch scoring rather than a clean replay-safe split
+  candidate.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-17_0258/`
+- `artifacts/kaggle/leaderboards/2026-08-17_0258_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

@@ -351,6 +351,18 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `362`,
   score_at_200 `90.445`, and historical B008 `92.165` would rank approximately
   `118`.
+- The `2026-08-17 02:58 UTC` addendum again found no newer public rerun beyond
+  already screened Verity/Dimong/Evgendvorkin, then backfilled
+  `uctpexx123/aas-kun-lb66015-official-v1`,
+  `haodou092/conservative-replay-safe-sizing`,
+  `yusuketogashi/ai-agent-sec-another-approach`,
+  `dakbsabsa/ai-agent-security-multi-step-tool-attacks`, and
+  `godofthunder2407/ai-agent-sec`. The usable routes are public-domain
+  single-post/template/probe/fill or broad exploratory branch-search families;
+  two snapshots expose only placeholder/server wiring.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `367`,
+  score_at_200 `90.495`, and historical B008 `92.165` would rank approximately
+  `120`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not

@@ -270,6 +270,114 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-17 02:58 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+team_rank=367
+score_at_50=98.625
+score_at_100=93.015
+score_at_200=90.495
+rank_if_88_665=385
+rank_if_88_760=367
+rank_if_92_165=120
+rank_if_100_000=40
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-17_0258_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-17T02:59:36.csv
+```
+
+The public kernels list again showed no newly rerun artifact beyond the already
+screened Verity, Dimong, and Evgendvorkin snapshots. This pass therefore pulled
+additional older high-vote, high-title, or mechanism-titled visible artifacts
+that had not been individually recorded in the B013 evidence:
+
+```text
+uctpexx123/aas-kun-lb66015-official-v1
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-17_0258/uctpexx_aas_kun_lb66015
+  notebook_sha256=3418f8b6085098bce88c6c5aa056ea94de2ee5c682ed0463342d21e0bb8ced89
+  extracted_attack_sha256=1962cc45072d164b8544b7d24b9123885965b73c5264298e98ef8f3804c31ce3
+  extracted_len=4279
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  .co=True
+  template=single http.post then OK
+  MARGIN_S=46.0
+  FILL_BUDGET_FRAC=0.97
+
+haodou092/conservative-replay-safe-sizing
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-17_0258/haodou_conservative_replay_safe
+  notebook_sha256=630d890d686fd148c2486d708f0b2fd099eaeabff5d6ff4fd92984d1c1ff22e7
+  extracted_attack_sha256=f48d833f0345e54e0ef9c806bfb882cec8900ecfef6b569f1c6913373bd0a6c8
+  extracted_len=10074
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  eval_predicates=True
+  .co=True
+  REPLAY_SAFE=0.994
+  TEMPLATES=3
+
+yusuketogashi/ai-agent-sec-another-approach
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-17_0258/yusuke_another_approach
+  notebook_sha256=6ed3e8823c61ac0644fb1652b34834cfcf354bdcdc458ebd80602bb0315ed641
+  extracted_code_sha256=92e3b069952631f7a45951c31dcc2773cd70b607058c27d00cd87c5db3987d21
+  AttackAlgorithm=False
+  AttackCandidate=False
+  JEDAttackInferenceServer=True
+
+dakbsabsa/ai-agent-security-multi-step-tool-attacks
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-17_0258/dakbsabsa_multi_step_tool_attacks
+  notebook_sha256=f7fd30bf25c9fc190a80a8658e5a6c4f0ba13b61e4509b9aec4367be47a24fb3
+  extracted_attack_sha256=928fa3e50fdcc614fd3ea2abb3ed87954f42320a6b0e5dd08cddee08e2ffaa08
+  extracted_len=9005
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post_literal=False
+  eval_predicates=True
+  env.interact=True
+  action_pool_mentions=email/send/post/SECRET_MARKER
+
+godofthunder2407/ai-agent-sec
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-17_0258/godofthunder_ai_agent_sec
+  notebook_sha256=82e551e963432cd52a5ddb77a7d02464630e55234f58d24852da409732fc1fe3
+  extracted_code_sha256=92e3b069952631f7a45951c31dcc2773cd70b607058c27d00cd87c5db3987d21
+  AttackAlgorithm=False
+  AttackCandidate=False
+  JEDAttackInferenceServer=True
+```
+
+None of these artifacts is selected as a formal B013 candidate:
+
+- `uctpexx123/aas-kun-lb66015-official-v1` is a compact public `.co` single-post
+  route with margin/fill tuning. Its title implies a score below the current
+  B008R `88.760`, and it does not add a new mechanism beyond rejected
+  single-post/public-domain families.
+- `haodou092/conservative-replay-safe-sizing` is a public `.co` three-template
+  live predicate route with conservative replay-safe sizing. It is mostly a
+  replay-budget/template portfolio route, which is explicitly not a
+  mechanism-low-correlated B013 variable.
+- `yusuketogashi/...another-approach` and `godofthunder2407/ai-agent-sec` expose
+  only placeholder/server wiring in the pulled snapshots, not a usable attack
+  implementation.
+- `dakbsabsa/...multi-step-tool-attacks` is an exploratory branch/action search
+  using action text pools, live `eval_predicates`, and branch scoring. It does
+  not expose a clean B008R-derived `http.post` replay-safe split candidate and
+  would require a broad route rewrite.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-17 00:57 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were
