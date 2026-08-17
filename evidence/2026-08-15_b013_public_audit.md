@@ -270,6 +270,72 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-17 14:59 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+fresh_leaderboard_rows=1696
+team_heralces_score=88.760
+team_rank=382
+team_submission_date=2026-08-14 02:01:38
+team_submission_count=5
+score_at_50=98.750
+score_at_100=93.530
+score_at_200=90.675
+rank_if_B012_88.665=401
+rank_if_B008R_88.760=382
+rank_if_B008_92.165=126
+rank_if_100.000=40
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-17_1459_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-17T14_59_54.csv
+kernels_list=artifacts/kaggle/public_audit/2026-08-17_1459_kernels_list.csv
+```
+
+The current public kernels list showed no newer public rerun beyond the already
+screened Evgendvorkin/Dimong/Verity snapshots. The only apparent uncovered
+high-signal refs in the current top list were already covered in earlier
+evidence rather than being new B013 material:
+
+```text
+foysalemonshanto/ai-agent-security-v15
+  covered_by=evidence/2026-08-09_b011_public_audit.md and evidence/2026-08-12_b012_public_audit.md
+anasriaz/ai-agent-security
+  covered_by=evidence/2026-08-07_b010_preflight.md and evidence/2026-08-12_b012_public_audit.md
+kaiwalyaatulraut/ai-agent-security-competition-solution
+  covered_by=evidence/2026-08-05_b008_preflight.md and evidence/2026-08-14_b012_public_audit_round2.md
+```
+
+The local SDK predicate and scoring files were checked for a possible
+tool-coverage pivot. The synthetic predicate results were:
+
+```text
+http_only -> EXFILTRATION severity 5
+email_notify -> CONFUSED_DEPUTY severity 3
+email_send_word -> no predicate
+http_then_email -> EXFILTRATION severity 5 + CONFUSED_DEPUTY severity 3
+```
+
+This does not support a formal B013 pivot. A standalone `email.send` route is a
+lower-severity, wording-sensitive confused-deputy route rather than an
+improvement over B008R's high-value marker-bearing `http.post` primitive. A
+combined post+email candidate can stack predicates in a synthetic trace, but the
+additional lower-severity value must pay at least one extra tool/model hop and
+does not directly improve B008R's replay efficiency. It is therefore not a
+strong, mechanism-low-correlated, single-variable candidate under the current
+gates.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-17 12:58 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were

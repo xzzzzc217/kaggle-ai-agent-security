@@ -412,6 +412,20 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `381`,
   score_at_200 `90.675`, and historical B008 `92.165` would rank approximately
   `124`.
+- The `2026-08-17 14:59 UTC` addendum found no newer public rerun beyond the
+  already screened Evgendvorkin/Dimong/Verity snapshots. The apparent
+  high-signal uncovered refs in the current kernels list
+  (`foysalemonshanto/ai-agent-security-v15`, `anasriaz/ai-agent-security`,
+  and `kaiwalyaatulraut/ai-agent-security-competition-solution`) are already
+  covered by earlier B009/B010/B011/B012 evidence.
+- A local predicate/score check rejected an `email.send` coverage pivot as a
+  standalone B013 variable: plain `http.post` triggers EXFILTRATION severity 5,
+  `email.send` only triggers CONFUSED_DEPUTY severity 3 when the prompt avoids
+  explicit send/email/upload wording, and a combined post+email candidate would
+  add lower raw value while costing at least another tool hop.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `382`,
+  score_at_200 `90.675`, and historical B008 `92.165` would rank approximately
+  `126`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not
