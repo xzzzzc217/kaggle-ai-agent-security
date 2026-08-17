@@ -2984,3 +2984,37 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-16_2342/`
 - `artifacts/kaggle/leaderboards/2026-08-16_2342_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-17: B013 older public route backfill screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-17 00:57 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `362`, top-200 boundary `90.445`, score_at_100 `92.925`, and historical
+  B008 `92.165` would rank approximately `118`.
+- The current public kernels list showed no newly rerun artifact beyond the
+  already screened Verity, Dimong, and Evgendvorkin snapshots. This pass pulled
+  and statically screened `canqiang/aiagsec-ea-b-0721`,
+  `anvithpothula/aisec-pilk`, and
+  `tetsutani/ai-agent-sec-adaptive-uniform-two-probe-recovery`.
+
+**Decision**
+
+- Canqiang is a large live-validation route that combines exfiltration and
+  confused-deputy prompt families, public `.co`, classify8, lower replay-safe
+  sizing, single slow post, probe/fill policy, and analysis-token shaping.
+- Anvith Pilk and Tetsutani are older public `.co` template/probe/fill routes
+  with live predicate filtering, not B008R-derived single-variable mechanisms.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-17_0057/`
+- `artifacts/kaggle/leaderboards/2026-08-17_0057_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

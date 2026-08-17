@@ -270,6 +270,101 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-17 00:57 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+team_rank=362
+score_at_50=98.625
+score_at_100=92.925
+score_at_200=90.445
+rank_if_88_665=379
+rank_if_88_760=362
+rank_if_92_165=118
+rank_if_100_000=40
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-17_0057_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-17T00:58:44.csv
+```
+
+The public kernels list showed no newly rerun artifact beyond the already
+screened Verity, Dimong, and Evgendvorkin snapshots. This pass therefore pulled
+older high-vote or mechanism-titled visible artifacts that had not been
+individually recorded in the B013 evidence:
+
+```text
+canqiang/aiagsec-ea-b-0721
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-17_0057/canqiang_ea_b_0721
+  notebook_sha256=6a6ad5bcbb3a959ef7dac04aed7e26d180fb71a50849bfb585185d686429f33d
+  extracted_attack_sha256=b1a6b1350bb35ee7dc49a6a5e9a6b977b04d5cba5069d4dadfedc4607c558d82
+  extracted_len=25994
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  EXFILTRATION=True
+  CONFUSED_DEPUTY=True
+  .co=True
+  SPLIT_CLASSIFY_N=8
+  REPLAY_SAFE_FRAC=0.97
+  SLOW_MULTIPOST_N=1
+  PROBE_HOPS=1/0
+
+anvithpothula/aisec-pilk
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-17_0057/anvith_aisec_pilk
+  notebook_sha256=c183d58f9f24efa6f62818d34ca65f394f26d8631d9d641cffd6a543f44db82b
+  extracted_attack_sha256=5dfbc9fca96cc25c950196e37102370f806b84a819020115873b4734bb03f775
+  extracted_len=11336
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  EXFILTRATION=True
+  CONFUSED_DEPUTY=False
+  eval_predicates=True
+  .co=True
+
+tetsutani/ai-agent-sec-adaptive-uniform-two-probe-recovery
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-17_0057/tetsutani_two_probe_recovery
+  notebook_sha256=54b7d943dc717ea9c357d954dd3ac3f1f4d6bf3eae9d43b65092f25913666bb1
+  extracted_attack_sha256=e4434d723043b4def058d8b4005d9f57215514d0e89d1978ced223b88867b40a
+  extracted_len=10389
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  EXFILTRATION=False
+  CONFUSED_DEPUTY=False
+  eval_predicates=True
+  .co=True
+```
+
+None of these artifacts is selected as a formal B013 candidate:
+
+- `canqiang/aiagsec-ea-b-0721` is a large live-validation route that combines
+  exfiltration and confused-deputy prompt families, public `.co` URL policy,
+  classify8, lower replay-safe sizing, single slow post, probe/fill policy, and
+  analysis-token shaping.
+- `anvithpothula/aisec-pilk` is a Pilkwang-style single-message exfiltration
+  route with public `.co` targets, template search/racing, live predicate
+  filtering, and replay-budget fill behavior. It would be a broad rollback from
+  B008R rather than one variable.
+- `tetsutani/...two-probe-recovery` is an adaptive uniform two-probe recovery
+  route using public `.co` targets, template racing, live predicate filtering,
+  and probe/fill scheduling. It does not preserve B008R's classify5 slow-row
+  four-endpoint lineage.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-16 23:42 UTC addendum
 
 During the later heartbeat, the latest submissions and leaderboard were

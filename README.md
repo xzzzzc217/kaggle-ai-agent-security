@@ -341,6 +341,16 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `362`,
   score_at_200 `90.445`, and historical B008 `92.165` would rank approximately
   `118`.
+- The `2026-08-17 00:57 UTC` addendum found no newer public rerun beyond the
+  already screened Verity/Dimong/Evgendvorkin snapshots, then backfilled three
+  older visible routes: `canqiang/aiagsec-ea-b-0721`,
+  `anvithpothula/aisec-pilk`, and
+  `tetsutani/ai-agent-sec-adaptive-uniform-two-probe-recovery`. They remain
+  public-domain prompt/template/probe/fill route replacements, not B013
+  single-variable candidates.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `362`,
+  score_at_200 `90.445`, and historical B008 `92.165` would rank approximately
+  `118`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not
