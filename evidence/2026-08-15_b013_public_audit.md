@@ -270,6 +270,83 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-16 23:42 UTC addendum
+
+During the later heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+team_rank=362
+score_at_50=98.625
+score_at_100=92.925
+score_at_200=90.445
+rank_if_88_665=379
+rank_if_88_760=362
+rank_if_92_165=118
+rank_if_100_000=40
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-16_2342_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-17T00:55:03.csv
+```
+
+The public kernels list showed a newly rerun
+`verityix/ai-agent-security-attack-algorithm-hitherto` artifact after the
+previous screen:
+
+```text
+verityix/ai-agent-security-attack-algorithm-hitherto
+  title=AI Agent Security — Attack Algorithm (Hitherto)
+  last_run=2026-08-16 18:27:40.963 UTC
+  total_votes=27
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-16_2342/verityix_hitherto_latest
+  notebook_sha256=19ee358d4c0acdf27940608bb6ea71e0e482fdf396b5fae270a8ce4efb04acd6
+  code_source_len=4267
+  attack_code_len=4229
+  attack_code_sha256=9553e2b5e364fead2ba9e93d8550fc6b68e5499843e8a4b3bad47393f1f2c29c
+  markdown_returned_public_score=43.720
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  fs.delete=False
+  EXFILTRATION=False
+  CONFUSED_DEPUTY=False
+  .invalid=False
+  .co=True
+  env.interact=True
+  eval_predicates=True
+  styles_a=True
+  styles_c=True
+  url_patterns=8
+```
+
+Relative to the already screened `2026-08-16 01:15 UTC` Verity snapshot, the
+new rerun changes from a single canonical V239/V130 candidate grid to a V244
+"two-line portfolio" with separate Line A and Line C streams:
+
+- Line A: 6 prompt styles x 8 public URL patterns x indices 0..15, producing
+  768 configured candidates;
+- Line C: 8 prompt styles x 8 public URL patterns x indices 16..27, producing
+  768 configured candidates;
+- candidates are interleaved by a deterministic weighted scheduler and
+  retained by live `eval_predicates(env.export_trace_dict())`.
+
+This is not selected as a formal B013 candidate. The artifact itself reports a
+Public Score of `43.720`, far below B008R `88.760`, and the implementation is a
+large public-domain prompt/style portfolio replacement. It changes URL policy,
+prompt style inventory, index ranges, portfolio mix, live validation, and
+scheduling together, so it does not satisfy the B013 low-correlated
+single-variable gate.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-16 15:20 UTC addendum
 
 During the later heartbeat, the latest submissions and leaderboard were

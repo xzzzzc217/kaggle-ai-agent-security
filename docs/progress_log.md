@@ -2946,3 +2946,41 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-16_1520/`
 - `artifacts/kaggle/leaderboards/2026-08-16_1520_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-16: B013 rerun Verity public snapshot screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-16 23:42 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `362`, top-200 boundary `90.445`, score_at_100 `92.925`, and historical
+  B008 `92.165` would rank approximately `118`.
+- The current public kernels list showed a newly rerun
+  `verityix/ai-agent-security-attack-algorithm-hitherto` snapshot with last run
+  `2026-08-16 18:27:40.963 UTC`; this pass pulled and statically screened it.
+  Notebook SHA is
+  `19ee358d4c0acdf27940608bb6ea71e0e482fdf396b5fae270a8ce4efb04acd6`; extracted
+  attack-code SHA is
+  `9553e2b5e364fead2ba9e93d8550fc6b68e5499843e8a4b3bad47393f1f2c29c`.
+
+**Decision**
+
+- The newly rerun Verity artifact is a V244 two-line prompt/style portfolio: it
+  combines Line A and Line C streams, public URL patterns, live
+  `eval_predicates` retention, and a deterministic weighted scheduler.
+- The notebook markdown reports Public Score `43.720`, far below the current
+  B008R `88.760` effective score.
+- Because the rerun changes portfolio mix, URL policy, prompt styles, index
+  ranges, live validation, and scheduling together, no preregisterable B013
+  single-variable candidate was selected. No B013 preregistration, Notebook, or
+  competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-16_2342/`
+- `artifacts/kaggle/leaderboards/2026-08-16_2342_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

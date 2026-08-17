@@ -332,6 +332,15 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `348`,
   score_at_200 `90.360`, and historical B008 `92.165` would rank approximately
   `116`.
+- The `2026-08-16 23:42 UTC` addendum screened the newly rerun
+  `verityix/ai-agent-security-attack-algorithm-hitherto` snapshot. It is a V244
+  two-line prompt/style portfolio using public URL patterns and live
+  `eval_predicates` retention; the notebook itself reports Public Score
+  `43.720`, and the route changes portfolio mix, URL policy, prompt styles,
+  index ranges, live validation, and scheduling together.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `362`,
+  score_at_200 `90.445`, and historical B008 `92.165` would rank approximately
+  `118`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not
