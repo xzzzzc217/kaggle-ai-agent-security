@@ -3132,3 +3132,40 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-17_0658/`
 - `artifacts/kaggle/leaderboards/2026-08-17_0658_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-17: B013 lower older public route backfill screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-17 08:58 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `376`, top-200 boundary `90.630`, score_at_100 `93.065`, and historical
+  B008 `92.165` would rank approximately `123`.
+- The current public kernels list showed no newly rerun artifact beyond the
+  already screened Verity, Dimong, and Evgendvorkin snapshots. This pass pulled
+  and statically screened Assiaben, Caoyupeng, Biohack, Fares, Nabid, Coolin
+  getting-started, and representative older Paul/Hermes v51/v50/v49/v48
+  snapshots.
+
+**Decision**
+
+- Assiaben, Caoyupeng, Biohack, Fares, and Nabid are public `.co`
+  template/live-selector/replay-safe routes in the already rejected public
+  prompt/template-bank family.
+- Coolin is starter material and does not expose a literal `http.post`
+  mechanism in the extracted attack code.
+- The audited Paul/Hermes variants are older `.x` fixed single-post
+  count/margin rollbacks with no new tool-coverage or replay-reliability
+  mechanism.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-17_0858/`
+- `artifacts/kaggle/leaderboards/2026-08-17_0858_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

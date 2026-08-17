@@ -270,6 +270,80 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-17 08:58 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+fresh_leaderboard_rows=1677
+team_heralces_score=88.760
+team_heralces_rank=376
+team_submission_date=2026-08-14 02:01:38
+team_submission_count=5
+score_at_50=98.750
+score_at_100=93.065
+score_at_200=90.630
+rank_if_B012_88.665=393
+rank_if_B008R_88.760=376
+rank_if_B008_92.165=123
+rank_if_100.000=40
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-17_0858_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-17T08_58_56.csv
+```
+
+No newly rerun public artifact appeared beyond the already screened Verity,
+Dimong, and Evgendvorkin snapshots. The pass therefore continued lower older
+public-route backfill and pulled these artifacts:
+
+```text
+assiaben/jed-attack-5-templates-aggressive-replay-0-99
+caoyupeng/jed-multi-step-attack-2
+biohack44/jed-multi-step-attack-3753a0
+faresrafat/notebook85c5782962
+nabidnur/notebookc5ecb4c0e7
+coolin666/getting-started-notebook
+paul720810/hermes-attack-v51-pure-n950-m1p2-20260717-001708
+paul720810/hermes-attack-v50-pure-n950-m1p15-20260717-001610
+paul720810/hermes-attack-v49-pure-n950-m1p05-20260717-001515
+paul720810/hermes-attack-v48-pure-n950-m1p0-20260717-001415
+```
+
+Static notebook/source extraction and Paul base64 decode produced the following
+hashes and route screen:
+
+| Artifact | Source/notebook SHA | Extracted or decoded attack SHA | Screen |
+|---|---|---|---|
+| `assiaben/jed-attack-5-templates-aggressive-replay-0-99` | `8db83f6ae42cd315885129ac17f2e272085b100568f6e3dda40cf7da7a5b7fec` | `97a839b8755cf996a69914e0ae619f6e52cfa34937fbbe730212c3a397cde767` | Public `.co` five-template route with analysis/commentary prompts, `PROBE_REPS=5`, `REPLAY_SAFE=0.99`, live validation, and replay-budget sizing. |
+| `caoyupeng/jed-multi-step-attack-2` | `b6e05b39959f4b044f9c4235440a42cfa11045985a51c27c2eef2c85490e7bec` | `ee75e4cca064d865bc50dfd191cb6d1baa4353330e2c3110f64f970a587985f2` | Near-duplicate public `.co` relay-push/template/live-selector route with `PROBE_REPS=5` and `REPLAY_SAFE=0.99`. |
+| `biohack44/jed-multi-step-attack-3753a0` | `967235ae5fb3f505664aa2405590c47af1c72e0b026cf4ea265f35e87837a395` | `a62db63436a5e0391bc5d2847e35c8a3a75ed11eb76e6e131c7ad8b65a4d7e49` | Public `.co` relay/harmony-injection route with prompt templates, live selector, and `REPLAY_SAFE=0.94`. |
+| `faresrafat/notebook85c5782962` | `fda22b6614b6762745ce56afe737d01f04e453fc5d1adc2567e1a71b41ae2fed` | `af0d8317e77a32b84c0b80e8c1ee594fbd3c576ea99231fc8cf8338795f67801` | Same public `.co` multi-template/live-selector/replay-safe family as the already rejected relay-push route. |
+| `nabidnur/notebookc5ecb4c0e7` | `e70a7d823b2ad40716fb04d6a791deb88684b010b139fd60fed5559c2b7ef552` | `e83f6ab8f5c57b05fd1283aae21aa5bdc77828a40efbbc47326da632c72482bc` | Public `.co` injection/template/live-predicate route with `EXFILTRATION`, analysis/commentary prompts, and `REPLAY_SAFE=0.90`. |
+| `coolin666/getting-started-notebook` | `bdfa9fde365a5a5de6bcd8d9345cca027533b84a37988212a21e68d61491cb4a` | `783aa582170c4613225c37fdb9dff500db28ff3447addbe1654364fe7e923e27` | Starter/getting-started route with SDK classes and public/example domains but no literal `http.post` in the extracted attack code. |
+| `paul720810/hermes-attack-v51-pure-n950-m1p2-20260717-001708` | `fd452f02de301892e4ade479577e456cd635ba7a2ee2a9e4a71a653894890462` | `e682d3bc64ddaca05df7ca54d7bb43fd430841f50409dd3430380a9b6ed13adf` | Public `.x` fixed single-post rollback with `TARGET_N=950`, `MARGIN_MULT=1.2`, and no B008R-derived split/replay mechanism. |
+| `paul720810/hermes-attack-v50-pure-n950-m1p15-20260717-001610` | `bc85a064902c75d8d89ebd376618e89fb31d610ad10167dfd506287eaaaf246c` | `35f38e122ff379ee0dba693ed92bbd99ca1d3be5df1b6a4f837d50d5aac2997d` | Public `.x` fixed single-post rollback with `MARGIN_MULT=1.15`; same rejected Paul/Hermes family. |
+| `paul720810/hermes-attack-v49-pure-n950-m1p05-20260717-001515` | `bc51c4fdabb0cfb5015feb4b4c347d53b799b79bd612bf251f6e389596c62fa5` | `9b2dffcd2a39d8d38b959e279d40c8904d1f116e9bfa5b32d1f0acea5844771c` | Public `.x` fixed single-post rollback with `MARGIN_MULT=1.05`; same rejected Paul/Hermes family. |
+| `paul720810/hermes-attack-v48-pure-n950-m1p0-20260717-001415` | `82029d2cc2fc80caa4c410d51f9a16078517e2b4ee4756daf364d44c600e2fa7` | `81273a9fef4dc7cf8c35fef9e90f78a9fd4aee5144686dd8de3e7212a4a10009` | Public `.x` fixed single-post rollback with `MARGIN_MULT=1.0`; same rejected Paul/Hermes family. |
+
+Decision:
+
+- Assiaben, Caoyupeng, Biohack, Fares, and Nabid are public-domain
+  template/live-selector/replay-safe variants in the already rejected
+  prompt/template-bank and replay-tail families.
+- Coolin is a starter-style artifact and does not expose the `http.post`
+  mechanism needed for a stronger B008R-derived candidate.
+- The audited Paul variants are older fixed single-post `.x` count/margin
+  rollbacks with no new tool-coverage or replay-reliability mechanism.
+- No B013 preregistration, Notebook, or competition submission is created from
+  this addendum.
+
 ## 2026-08-17 06:58 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were

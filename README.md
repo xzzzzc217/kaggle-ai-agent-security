@@ -385,6 +385,15 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `373`,
   score_at_200 `90.630`, and historical B008 `92.165` would rank approximately
   `123`.
+- The `2026-08-17 08:58 UTC` addendum again found no newer public rerun beyond
+  already screened Verity/Dimong/Evgendvorkin, then backfilled Assiaben,
+  Caoyupeng, Biohack, Fares, Nabid, Coolin getting-started, and representative
+  older Paul/Hermes v51/v50/v49/v48 snapshots. The usable routes are either
+  public-domain template/live-selector/replay-safe variants, starter material,
+  or older `.x` single-post count/margin rollbacks.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `376`,
+  score_at_200 `90.630`, and historical B008 `92.165` would rank approximately
+  `123`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not
