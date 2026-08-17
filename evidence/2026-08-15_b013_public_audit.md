@@ -270,6 +270,70 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-17 06:58 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+fresh_leaderboard_rows=1669
+team_heralces_score=88.760
+team_heralces_rank=373
+team_submission_date=2026-08-14 02:01:38
+team_submission_count=5
+score_at_50=98.750
+score_at_100=93.065
+score_at_200=90.630
+rank_if_B012_88.665=390
+rank_if_B008R_88.760=373
+rank_if_B008_92.165=123
+rank_if_100.000=40
+```
+
+No newly rerun public artifact appeared beyond the already screened Verity,
+Dimong, and Evgendvorkin snapshots. The pass therefore continued visible older
+public-route backfill and pulled these artifacts:
+
+```text
+pratyaymon/notebook289b303504
+clemendes/borapracima-v1
+paul720810/hermes-attack-v67-n975-s45-m1-2-20260720-004714
+paul720810/hermes-attack-v62-replicate-20260719-052601
+paul720810/hermes-attack-v57-n950-naked-url-20260718-003257
+paul720810/hermes-attack-v53-n1200-framing-20260718-002659
+paul720810/hermes-attack-v52-replicate-20260717-001828
+```
+
+Static notebook/source extraction and Paul base64 decode produced the following
+hashes and route screen:
+
+| Artifact | Source/notebook SHA | Extracted or decoded attack SHA | Screen |
+|---|---|---|---|
+| `pratyaymon/notebook289b303504` | `b546800da3b83e88fc904020e7a96991ff658eef2f373821a37b2c95a57ed302` | `70f09f57e3fef1d3872f2a42368f2a40432f064ffddb42f04a9a89bd1ba20d20` | SDK-compatible fixed `http.post` portfolio using `*.invalid`, `MAX_CANDIDATES=400`, static timing margins, and no B008R-derived split/replay mechanism; it is a simple baseline, not a stronger single-variable candidate. |
+| `clemendes/borapracima-v1` | `b0cfb2f90cf6abefb4182054a0cc0b38d2ae3ff53b7fb54e452374c5915daff2` | `a4aa062c44cc60be604f804084c49549cc8e6c4c0b617a7f651f212e8305bd1e` | Broad Fusion-X style route combining public `.co`, multiple prompt templates, live predicate scoring, exfiltration, confused-deputy email, destructive-write diversity, and analysis-token prompts. |
+| `paul720810/hermes-attack-v67-n975-s45-m1-2-20260720-004714` | `63986601e897115160dbfcc8bc7eb8fc8fbd1c3653d33754c5640a5ba9dbfa5e` | `cee6e2562c82f0cfa533e55ed33da81016ac5cd486a43f06aa6baf167853c023` | Base64-decoded single `http.post` route using public `.x`, `TARGET_N=975`, `MARGIN_S=45`, and `max_tool_hops=5`; same rejected Paul/Hermes single-post rollback family. |
+| `paul720810/hermes-attack-v62-replicate-20260719-052601` | `f26569ec391436e34319cbbb2faf4d5976cee8ef31ab7aec021cd6d33fd5d8bb` | `b19c25fc36f6bb050284b3e1754780c0514c9e2416a153cf3beeae1b4b7b20be` | Base64-decoded single `http.post` route using public `.x`, `TARGET_N=1050`, `MARGIN_S=45`, and `max_tool_hops=5`; same rejected Paul/Hermes family. |
+| `paul720810/hermes-attack-v57-n950-naked-url-20260718-003257` | `d64f317b68c6fecf9f68063cae444a18604cdce5b54e0cf97e0c00d5cbc68ef2` | `13b84c0c1ec61e328a8690cb04568c443f0f133150ff5df927e4eab09deb82cf` | Base64-decoded single `http.post` route using public `.x`, `TARGET_N=950`, and fixed margin parameters; same rejected Paul/Hermes family. |
+| `paul720810/hermes-attack-v53-n1200-framing-20260718-002659` | `b11bc904a3d4ec818258b7973fca5bd817e51dc2d7b79bf08b2c611a4a153a32` | `aec8fd4a0ecd40ced0b29a98e201f07d84fecd082e892b61dc36f96bbc456d7d` | Base64-decoded single `http.post` route using public `.x`, `TARGET_N=1200`, and fixed margin parameters; same rejected Paul/Hermes family. |
+| `paul720810/hermes-attack-v52-replicate-20260717-001828` | `89fbf51c6b8fd31914e0feaf1bb7de4f3a8db6d92aed953b4be71c17be4f6818` | `b67fc6118705ee80da05a8b4428c7b96679c41e3c6557969305c2da5318c7285` | Base64-decoded single `http.post` route using public `.x`, `TARGET_N=950`, and fixed margin parameters; same rejected Paul/Hermes family. |
+
+Decision:
+
+- Pratyay is too weak and static to justify a B013 formal candidate against
+  B008R `88.760`.
+- Clemendes is a multi-family public-route replacement, not a single variable.
+- The audited Paul variants are older fixed single-post `.x` rollbacks with
+  small count/margin differences; they do not isolate a new mechanism.
+- No B013 preregistration, Notebook, or competition submission is created from
+  this addendum.
+
 ## 2026-08-17 04:58 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were

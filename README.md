@@ -375,6 +375,16 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `371`,
   score_at_200 `90.540`, and historical B008 `92.165` would rank approximately
   `120`.
+- The `2026-08-17 06:58 UTC` addendum again found no newer public rerun beyond
+  already screened Verity/Dimong/Evgendvorkin, then backfilled
+  `pratyaymon/notebook289b303504`, `clemendes/borapracima-v1`, and
+  representative older Paul/Hermes v67/v62/v57/v53/v52 snapshots. Pratyay is a
+  static fixed `http.post` baseline, Clemendes is a broad multi-family
+  public-route replacement, and the Paul variants are older `.x` single-post
+  count/margin rollbacks.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `373`,
+  score_at_200 `90.630`, and historical B008 `92.165` would rank approximately
+  `123`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not

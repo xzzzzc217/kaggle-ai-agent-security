@@ -3096,3 +3096,39 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-17_0458/`
 - `artifacts/kaggle/leaderboards/2026-08-17_0458_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-17: B013 next older public route backfill screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-17 06:58 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `373`, top-200 boundary `90.630`, score_at_100 `93.065`, and historical
+  B008 `92.165` would rank approximately `123`.
+- The current public kernels list showed no newly rerun artifact beyond the
+  already screened Verity, Dimong, and Evgendvorkin snapshots. This pass pulled
+  and statically screened `pratyaymon/notebook289b303504`,
+  `clemendes/borapracima-v1`, and representative older Paul/Hermes
+  v67/v62/v57/v53/v52 snapshots.
+
+**Decision**
+
+- Pratyay is an SDK-compatible but static fixed `http.post` baseline using
+  `*.invalid`, not a stronger B008R-derived mechanism.
+- Clemendes is a broad Fusion-X route combining public `.co`, multiple prompt
+  templates, live predicate scoring, exfiltration, confused-deputy email,
+  destructive-write diversity, and analysis-token prompts.
+- The audited Paul/Hermes variants are older `.x` single-post routes with
+  count/margin/hops differences in the same rollback family already rejected.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-17_0658/`
+- `artifacts/kaggle/leaderboards/2026-08-17_0658_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
