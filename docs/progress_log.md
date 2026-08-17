@@ -3169,3 +3169,38 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-17_0858/`
 - `artifacts/kaggle/leaderboards/2026-08-17_0858_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-17: B013 older public score-route backfill screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-17 10:58 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `378`, top-200 boundary `90.675`, score_at_100 `93.360`, and historical
+  B008 `92.165` would rank approximately `124`.
+- The current public kernels list showed no newly rerun artifact beyond the
+  already screened Verity, Dimong, and Evgendvorkin snapshots. This pass pulled
+  and statically screened older public Caoyupeng, Junaid, ImBikram, Pilkwang,
+  Yusuke, and Yaroslav routes.
+
+**Decision**
+
+- Caoyupeng V22/V23/LB66.015 are lower public single-post/fill-budget routes,
+  and V2 is a broad live-validation prompt-bank/fill route.
+- Junaid, Yaroslav, and Yusuke are broad multi-family route replacements that
+  combine prompt families, URL policy, live validation, fill/search behavior,
+  and replay behavior.
+- ImBikram and Pilkwang are lower-scoring or working-note public exfil/fill
+  references, not clean B008R-derived single variables.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-17_1058/`
+- `artifacts/kaggle/leaderboards/2026-08-17_1058_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

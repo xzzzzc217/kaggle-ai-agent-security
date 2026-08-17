@@ -270,6 +270,80 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-17 10:58 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+fresh_leaderboard_rows=1683
+team_heralces_score=88.760
+team_submission_date=2026-08-14 02:01:38
+team_submission_count=5
+score_at_50=98.750
+score_at_100=93.360
+score_at_200=90.675
+rank_if_B012_88.665=396
+rank_if_B008R_88.760=378
+rank_if_B008_92.165=124
+rank_if_100.000=40
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-17_1058_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-17T10_59_39.csv
+kernels_list=artifacts/kaggle/public_audit/2026-08-17_1058_kernels_list.csv
+```
+
+The current public kernels list still showed no newly rerun artifact beyond the
+already screened Verity, Dimong, and Evgendvorkin snapshots. The pass therefore
+continued visible older public-route backfill and pulled these artifacts:
+
+```text
+caoyupeng/ai-agent-security-v2-exfil-mass-shift
+caoyupeng/ai-agent-security-v22-urlcompact-642
+caoyupeng/v23-alpha2co-667-break60
+caoyupeng/lb-66-015-from-kun-zhang
+junaid512/agent-security-attack-submission
+imbikramsaha/ai-agent-security-v10-score-56-87
+pilkwang/ai-agent-working-note
+yusuketogashi/lb60-525-july-safe-edge-prune-tail8-upgrade
+yaroslavkholmirzayev/ai-agent-security-achieve-and-validate
+```
+
+Static notebook/source extraction and base64/string extraction produced the
+following hashes and route screen:
+
+| Artifact | Source/notebook SHA | Extracted or decoded attack SHA | Screen |
+|---|---|---|---|
+| `caoyupeng/ai-agent-security-v2-exfil-mass-shift` | `80f74d32033451bd482718323536daab9d7c03be79d8f005f6565a95f6e41cc1` | `c53ed2eed270dced6e11b0f5e9351222ff9d52374fc586f66d510730fc15faac` | Broad live-validation route with `eval_predicates`, public/reserved URL mix, derived prompt bank, adaptive/static fallback, and fill/search profile variables; markdown/source score marker `0.0`. |
+| `caoyupeng/ai-agent-security-v22-urlcompact-642` | `82fae2313d85e082675a20cd45dee3e1ed205d71bd9732359509299f8e08abd3` | `29334b24a90e95a41489527f645e8e9fe24888ff82d213240dbb4f1c6047720b` | Static fixed single-post URL-compact route around `count=642`, public domain geometry, and no B008R classify5 / slow-row four-endpoint mechanism. |
+| `caoyupeng/v23-alpha2co-667-break60` | `d9481f2be87f345aa69c967caa66ff626214007351b39d4d36cf81fc6f1d63fe` | `1ed606155d94604c01aaec3bc5256a035b4374b7ef578a9190ce9ee767e14468` | Static fixed single-post `alpha2.co` route around `count=667`; markdown/source score marker `57.78`. |
+| `caoyupeng/lb-66-015-from-kun-zhang` | `3418f8b6085098bce88c6c5aa056ea94de2ee5c682ed0463342d21e0bb8ced89` | `1962cc45072d164b8544b7d24b9123885965b73c5264298e98ef8f3804c31ce3` | Single-post `.co` live-warmup/fill route with `FILL_BUDGET_FRAC=0.97`, `MARGIN_S=46.0`, and `HARD_N_CAP=2000`; still a public-domain fill-budget route. |
+| `junaid512/agent-security-attack-submission` | `89392035294f403389c77477b7983ff71ce4dd07b85ac0b0c0b67ec9960987c9` | `49582d959eb5585ddb84d69cb5e3c6182219b8bc50b6fdd76eeac73d5168edb1` | Very broad multi-family search route with live predicates, exfil/deputy/destructive setup families, adaptive fill, replay-hop filtering, and many profile variables. |
+| `imbikramsaha/ai-agent-security-v10-score-56-87` | `c14b9a78aab1c604b3defb39ea699f1a7d5c99326b408b6fcb1dc37006e01287` | `c301330d51ed29eb712cc4c95c7b08042486e4f4be41c9b0296454d775f57aa3` | Base64-decoded replay-safe exfiltration route with public `.co`, live `eval_predicates`, `REPLAY_SAFETY=0.90`, and title-reported score `56.87`. |
+| `pilkwang/ai-agent-working-note` | `71925ee58bd79f12a5160b024760afea6dbd7da6e48cced13bd1b915d62d6207` | `8a059453a9f7a57ad6909d8e35647b1a1245b54915c48081c6cec5fcc2e551a6` | Parameterized working-note template using public `.co` configuration and live validation placeholders, not a finalized B008R-derived single-variable attack. |
+| `yusuketogashi/lb60-525-july-safe-edge-prune-tail8-upgrade` | `1f17a3ec9044dcda7318b7cb545b3d4ec77fe1f87b7525f272451788f458b3cb` | `d76092ec23f091cde22db38ce74ded1c7adb21e70e1cc5d3c968ae7da37521e2` | Multi-mode public/reserved route with `http.post`, `email.send`, confused-deputy guardrail hedge, live validation, target-count and probe-cap variables; markdown/source score marker `51.255`. |
+| `yaroslavkholmirzayev/ai-agent-security-achieve-and-validate` | `aa52155d53f95c125d3467df48078d2a1219952c63fec349131fe891c53577a7` | `9b0aa44136ef2f2ba8dfc847b7d66ce234e1894947daf59f8b7e0ebceda2ed12` | Enhanced URAD-style route with public `.co`, exfiltration, confused-deputy email, live validation, and bounded dual-post prompts; markdown/source score marker `80.0`. |
+
+Decision:
+
+- The Caoyupeng static/urlcompact variants and LB66.015 route are lower public
+  single-post/fill-budget rollbacks, not mechanisms expected to beat B008R
+  `88.760`.
+- Junaid, Yaroslav, Yusuke, and Caoyupeng V2 are broad multi-family route
+  replacements; selecting any would change prompt families, URL policy, live
+  validation, fill/search policy, and replay behavior together.
+- ImBikram and Pilkwang are lower-scoring or working-note public exfil/fill
+  references rather than a clean, reserved-domain, B008R-derived single
+  variable.
+- No B013 preregistration, Notebook, or competition submission is created from
+  this addendum.
+
 ## 2026-08-17 08:58 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were

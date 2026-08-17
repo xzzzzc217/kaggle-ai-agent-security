@@ -394,6 +394,15 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `376`,
   score_at_200 `90.630`, and historical B008 `92.165` would rank approximately
   `123`.
+- The `2026-08-17 10:58 UTC` addendum again found no newer public rerun beyond
+  already screened Verity/Dimong/Evgendvorkin, then backfilled older Caoyupeng,
+  Junaid, ImBikram, Pilkwang, Yusuke, and Yaroslav public routes. They are
+  lower public single-post/fill rollbacks, broad multi-family live-validation
+  route replacements, or working-note material rather than a clean B008R-derived
+  single variable.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `378`,
+  score_at_200 `90.675`, and historical B008 `92.165` would rank approximately
+  `124`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not
