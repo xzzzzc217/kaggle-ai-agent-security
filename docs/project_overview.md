@@ -616,6 +616,17 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
 - Latest checked leaderboard snapshot still shows B008R `88.760` as rank
   `402`, score_at_200 `90.855`, and historical B008 `92.165` would rank
   approximately `134`.
+- A later `2026-08-18 08:00 UTC` addendum again found no newer public rerun
+  beyond Verity V249 in the latest 100-kernel date-run list, then backfilled
+  Pengwang v26 replaysafe, Quan edge-fill, QYQ dense-v9, Weizhou JED v2,
+  Shayml latest best v3, and Kleniopadilha WINNEX v65. Weizhou and Shayml
+  yielded SDK-valid literal attack extracts, but both are broad route
+  replacements; Pengwang/QYQ/Kleniopadilha did not validate as standalone
+  top-level `AttackAlgorithm` implementations, and Quan returned a pull-time
+  `400` with no source artifact.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `403`,
+  score_at_200 `90.855`, and historical B008 `92.165` would rank approximately
+  `134`.
 - No B013 preregistration, Notebook, or competition submission was created.
   Continue scouting only for a stronger mechanism-low-correlated candidate with
   gates `>88.760`, `>92.165`, and `>=100.000`.

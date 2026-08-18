@@ -3412,3 +3412,56 @@
 - `artifacts/kaggle/public_audit/2026-08-18_0600/`
 - `artifacts/kaggle/public_audit/2026-08-18_0600_kernels_list_utf8.csv`
 - `artifacts/kaggle/leaderboards/2026-08-18_0600_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-18: B013 current-list and older public backfill round 3 screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-18 08:00 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `403`, top-200 boundary `90.855`, score_at_100 `93.870`, and historical
+  B008 `92.165` would rank approximately `134`.
+- The current 100-row public kernels list showed no newer public rerun beyond
+  the already screened Verity V249 snapshot (`2026-08-17 22:08:25.583 UTC`).
+- This pass backfilled six older uncovered or exact-ref-unrecorded public
+  references from the current list:
+  `pengwang91/jed-fill-v26-replaysafe`,
+  `quan0095/security-eval-edge-fill`,
+  `qyq1693/ai-agent-security-dense-v9`,
+  `weizhouliu/jed-attack-v2`,
+  `shayml/ai-agent-security-latest-best-v3`, and
+  `kleniopadilha/winnex-v65-attack`.
+
+**Decision**
+
+- Weizhou JED v2 yielded an SDK-valid literal extract, SHA
+  `98d10b8ea0f2e2f2bb6f211ca11443eb938d55990eb3e31c20de9fcf9aa7dc70`, but it
+  is a static multi-family route replacement: roughly 500 confused-deputy
+  email candidates plus a small web-secret / fs-read wash / `http.post`
+  exfiltration bank.
+- Shayml latest-best v3 yielded an SDK-valid literal extract, SHA
+  `2e67ca20b6e4f9ed00b3b1531ec54527857509ba4bab0a7a3b96b5e23464643d`, but it
+  is starter-style `eval_predicates` / snapshot branch exploration with natural
+  language secret-post and email-notification actions rather than a B008R-shaped
+  replay-efficiency variable.
+- QYQ dense-v9 is a broad dense portfolio / timeit / auto-probe generator with
+  public `.co`, live validation, template portfolios, burst/fallback/tail
+  scheduling, and budget/latency encoding knobs; its clean artifact did not
+  validate as a standalone top-level `AttackAlgorithm`.
+- Pengwang v26 and Kleniopadilha WINNEX v65 did not expose a standalone
+  top-level `AttackAlgorithm` in the clean/literal extraction; Quan edge-fill
+  returned a Kaggle pull-time `400` and no source artifact.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-18_0800/`
+- `artifacts/kaggle/public_audit/2026-08-18_0800_kernels_list_utf8.csv`
+- `artifacts/kaggle/public_audit/2026-08-18_0800_current_list_summary.json`
+- `artifacts/kaggle/leaderboards/2026-08-18_0800_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

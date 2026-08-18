@@ -336,6 +336,132 @@ gates.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-18 08:00 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+fresh_leaderboard_rows=1783
+team_heralces_score=88.760
+team_rank=403
+team_submission_date=2026-08-14 02:01:38
+team_submission_count=5
+score_at_50=99.070
+score_at_100=93.870
+score_at_200=90.855
+rank_if_B012_88.665=424
+rank_if_B008R_88.760=403
+rank_if_B008_92.165=134
+rank_if_100.000=42
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-18_0800_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-18T08:02:53.csv
+kernels_list=artifacts/kaggle/public_audit/2026-08-18_0800_kernels_list_utf8.csv
+current_list_summary=artifacts/kaggle/public_audit/2026-08-18_0800_current_list_summary.json
+```
+
+The current 100-row public kernels list showed no rerun newer than the already
+screened Verity V249 snapshot (`2026-08-17 22:08:25.583 UTC`). This pass
+therefore backfilled six older uncovered or exact-ref-unrecorded public
+references:
+
+```text
+pengwang91/jed-fill-v26-replaysafe
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0800/pengwang91_jed_fill_v26_replaysafe
+  notebook_sha256=f2f33fff9cac6c5dedde73557f1c546405a19c727763c390fa0bf9b02d2de42e
+  clean_extracted_attack_sha256=c459b1eddc2d75064df051f1f0ceeb67205bf412c052ba56c800a311e3feac41
+  AttackAlgorithm_text=True
+  AttackCandidate=False
+  http.post=False
+  .co=True
+  SDK_validate=failed_missing_top_level_AttackAlgorithm_or_run
+
+quan0095/security-eval-edge-fill
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0800/quan0095_security_eval_edge_fill
+  pull_status=failed_400_no_source_file
+
+qyq1693/ai-agent-security-dense-v9
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0800/qyq1693_dense_v9
+  notebook_sha256=f2d1e8e4da2e4f05b29d49f38f9e328282f713a02e9be3476621f860a0dd51e6
+  clean_extracted_attack_sha256=1182e4c9cfa7e93f28e86ed6771758d95182f446c90b0beff2f00f792069ee00
+  AttackAlgorithm_text=True
+  AttackCandidate=True
+  http.post=True
+  email.send=True
+  CONFUSED_DEPUTY=True
+  eval_predicates=True
+  env.interact=True
+  .invalid=True
+  .co=True
+  visible_score_marker=0.09
+  SDK_validate=failed_missing_top_level_AttackAlgorithm_or_run
+
+weizhouliu/jed-attack-v2
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0800/weizhouliu_jed_attack_v2
+  notebook_sha256=d406a7262341b10a1b1cad859c92075e9c729fe8e8d2b6fe49d9688f9d19a5b0
+  literal_extracted_attack_sha256=98d10b8ea0f2e2f2bb6f211ca11443eb938d55990eb3e31c20de9fcf9aa7dc70
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=True
+  fs.read=True
+  .invalid=True
+  .example.com=True
+  .co=True
+  SDK_validate=passed_literal_extract
+
+shayml/ai-agent-security-latest-best-v3
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0800/shayml_latest_best_v3
+  notebook_sha256=b8a0f215550e6027c99b859579396acf2f86efdb310a4d7a9ab51da0bcec56b0
+  literal_extracted_attack_sha256=2e67ca20b6e4f9ed00b3b1531ec54527857509ba4bab0a7a3b96b5e23464643d
+  AttackAlgorithm=True
+  AttackCandidate=True
+  eval_predicates=True
+  env.snapshot=True
+  .invalid=True
+  .example.com=True
+  .co=True
+  SDK_validate=passed_literal_extract
+
+kleniopadilha/winnex-v65-attack
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0800/kleniopadilha_winnex_v65
+  notebook_sha256=9ee34cbc0eae89363e83950577e3a1a6e82524ce46e227696ccf24362197ed09
+  clean_extracted_attack_sha256=6018e22de693fe46e2ef6596d3914e05be29615ba5ddc2407d947d7174fcde96
+  AttackAlgorithm=False
+  AttackCandidate=False
+  http.post=False
+  SDK_validate=failed_missing_top_level_AttackAlgorithm_or_run
+```
+
+None of these artifacts is selected as a formal B013 candidate:
+
+- Weizhou JED v2 has an SDK-valid literal attack, but it is a full route
+  replacement: a large confused-deputy email bank plus a smaller web-secret /
+  `fs.read` wash / `http.post` exfiltration bank. It changes predicate family,
+  tool coverage, message count, source handling, and replay-cost profile
+  together rather than isolating one B008R-compatible variable.
+- Shayml latest-best v3 has an SDK-valid literal attack, but it is
+  starter-style `eval_predicates` / snapshot branch exploration with direct
+  secret-post actions, many email-notification variants, and local/web/mail
+  branch search. It is not a direct descendant of B008R's replay-safe classify5
+  / slow-row four-endpoint mechanism.
+- QYQ dense-v9 is a broad dense portfolio generator with public `.co`, live
+  validation, timeit/auto modes, template portfolios, burst/fallback/tail
+  scheduling, and budget/latency encoding knobs. It also did not validate as a
+  standalone top-level `AttackAlgorithm` in the clean extraction.
+- Pengwang v26, Kleniopadilha WINNEX v65, and Quan edge-fill do not provide a
+  currently usable standalone SDK-valid attack artifact from this pull.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-18 06:00 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were
