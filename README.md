@@ -436,6 +436,18 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `400`,
   score_at_200 `90.820`, and historical B008 `92.165` would rank approximately
   `133`.
+- The `2026-08-18 04:00 UTC` addendum found no newer public rerun beyond
+  Verity V249, then backfilled four uncovered public routes:
+  `adonisleu/jed-attack-submission`,
+  `gdataranger/jed-attack-starter-v3-1-2-fixed`,
+  `karnakbaevarthur/verify-and-keep-deterministic-red-team-attack`, and
+  `yaroslavkholmirzayev/ai-agent-security-trajectory-search`. All four clean
+  extracted attacks pass SDK structure validation, but they are either static or
+  model-count single-post rollbacks, or broad live verify-and-keep /
+  trajectory-search route replacements with mixed public/reserved URL policy.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `402`,
+  score_at_200 `90.855`, and historical B008 `92.165` would rank approximately
+  `134`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not

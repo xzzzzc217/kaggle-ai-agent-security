@@ -336,6 +336,116 @@ gates.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-18 04:00 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+fresh_leaderboard_rows=1767
+team_heralces_score=88.760
+team_rank=402
+team_submission_date=2026-08-14 02:01:38
+team_submission_count=5
+score_at_50=99.070
+score_at_100=93.870
+score_at_200=90.855
+rank_if_B012_88.665=422
+rank_if_B008R_88.760=402
+rank_if_B008_92.165=134
+rank_if_100.000=42
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-18_0400_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-18T04:01:51.csv
+kernels_list=artifacts/kaggle/public_audit/2026-08-18_0400_kernels_list_utf8.csv
+```
+
+The public kernels list showed no rerun newer than the already screened Verity
+V249 snapshot. This pass therefore backfilled four older uncovered public
+attack-route references:
+
+```text
+adonisleu/jed-attack-submission
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0400/adonis_jed_attack
+  notebook_sha256=db8d59d185f6dc1cc14cce6a4934c25049529db39595ef73b8a37e083e8d6603
+  clean_extracted_attack_sha256=e2602943b90a12c66771e5c5f237eba612a0a5569fe0fa4439150ed64c86962b
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  .invalid=True
+  SDK_validate=passed
+
+gdataranger/jed-attack-starter-v3-1-2-fixed
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0400/gdataranger_jed_starter
+  notebook_sha256=b32589204923fc72387095b650559c51cb8bbbf6652bf253445f98e58c9aa11f
+  clean_extracted_attack_sha256=badeae6e5c57b024d6bc9cdc8a9f3b4c637ec84c483d0161c29dfde0b7bb473d
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  .invalid=True
+  SDK_validate=passed
+
+karnakbaevarthur/verify-and-keep-deterministic-red-team-attack
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0400/karnak_verify_keep
+  notebook_sha256=3e4d2dde81ccc9d6d233afc4e8bbe8e77028ec8ab04e960e74033d522790a6f3
+  clean_extracted_attack_sha256=2774038eb26e499f2d15472aa489140275056e4a2ffb2f8dd7b985772d76e6e5
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=True
+  EXFILTRATION=True
+  CONFUSED_DEPUTY=True
+  eval_predicates=True
+  .example.net=True
+  .co=True
+  SDK_validate=passed
+
+yaroslavkholmirzayev/ai-agent-security-trajectory-search
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0400/yaroslav_trajectory_search
+  notebook_sha256=16b983ec1364b96c6b8eb7dfe36af729dca6bae4098aa7058f4bdfee44ac8445
+  clean_extracted_attack_sha256=b82e4b36d79002cc4b5a130f6028a8ff6a01b05d50a314bfc1782f58d3fd23fb
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  eval_predicates=True
+  .invalid=True
+  .example.com=True
+  .example.net=True
+  .co=True
+  visible_score_marker=73.22
+  SDK_validate=passed
+```
+
+None of these artifacts is selected as a formal B013 candidate:
+
+- Adonis uses retained `.invalid` hosts and is SDK-valid, but its mechanism is a
+  model-probe/dynamic-count single-post route (`GPT_N=425`, `GEMMA_N=950`).
+  That is mostly a target-count/probe sizing rollback and does not preserve
+  B008R's classify5 plus slow-row four-endpoint lineage.
+- GDataRanger is an SDK-valid fixed `_N=168` starter single-post route with
+  retained `.invalid` hosts, but no live validation and no evidence for crossing
+  B008R.
+- Karnak verify-and-keep is a broad route replacement: it combines
+  EXFILTRATION, CONFUSED_DEPUTY/email, live `eval_predicates` retention,
+  multi-host messages, staged search-budget allocation, and `.example.net` /
+  public URL policy.
+- Yaroslav trajectory-search is also broad: it combines multiple scoring
+  payloads, prompt variants, live validation, aggressive scheduling, and mixed
+  `.invalid`/`.example.com`/`.example.net`/`.co` URL policy; its visible hosted
+  score marker is `73.22`, below B008R.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-17 23:43 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were

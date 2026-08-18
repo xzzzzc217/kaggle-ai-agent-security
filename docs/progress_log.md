@@ -3324,3 +3324,48 @@
 - `artifacts/kaggle/public_audit/2026-08-17_2343_kernels_list.csv`
 - `artifacts/kaggle/public_audit/2026-08-17_2343/verityix_hitherto_20260817_2208/analysis_summary.json`
 - `artifacts/kaggle/leaderboards/2026-08-17_2343_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-18: B013 older public backfill screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-18 04:00 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `402`, top-200 boundary `90.855`, score_at_100 `93.870`, and historical
+  B008 `92.165` would rank approximately `134`.
+- The current public kernels list showed no newer public rerun beyond the
+  already screened Verity V249 snapshot.
+- This pass backfilled four uncovered public attack-route references:
+  `adonisleu/jed-attack-submission`,
+  `gdataranger/jed-attack-starter-v3-1-2-fixed`,
+  `karnakbaevarthur/verify-and-keep-deterministic-red-team-attack`, and
+  `yaroslavkholmirzayev/ai-agent-security-trajectory-search`. Clean extracted
+  `attack.py` files for all four pass SDK structure validation.
+
+**Decision**
+
+- Adonis is a reserved-domain dynamic-N single-post route with model probing
+  (`GPT_N=425`, `GEMMA_N=950`), which mostly changes count/probe policy and
+  rolls back B008R's classify5 plus slow-row four-endpoint mechanism.
+- GDataRanger is a fixed `_N=168` reserved-domain starter route with no live
+  validation and no evidence for crossing B008R.
+- Karnak verify-and-keep combines EXFILTRATION, CONFUSED_DEPUTY/email,
+  `eval_predicates` live retention, multi-host messages, staged search budget,
+  and `.example.net`/public URL policy in one route.
+- Yaroslav trajectory-search combines multiple scoring payloads, prompt
+  variants, live validation, aggressive scheduling, and mixed
+  `.invalid`/`.example.com`/`.example.net`/`.co` URL policy; the notebook's
+  visible hosted-score marker is `73.22`, below B008R.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-18_0400/`
+- `artifacts/kaggle/public_audit/2026-08-18_0400_kernels_list_utf8.csv`
+- `artifacts/kaggle/leaderboards/2026-08-18_0400_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
