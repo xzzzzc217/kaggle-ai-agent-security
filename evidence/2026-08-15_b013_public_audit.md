@@ -336,6 +336,72 @@ gates.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-18 12:02 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+fresh_leaderboard_rows=1798
+team_heralces_score=88.760
+team_rank=407
+team_submission_date=2026-08-14 02:01:38
+team_submission_count=5
+score_at_50=99.070
+score_at_100=93.920
+score_at_200=90.855
+rank_if_B012_88.665=428
+rank_if_B008R_88.760=407
+rank_if_B008_92.165=135
+rank_if_100.000=42
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-18_1202_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-18T12:03:32.csv
+kernels_list=artifacts/kaggle/public_audit/2026-08-18_1202_kernels_list_utf8.csv
+current_list_summary=artifacts/kaggle/public_audit/2026-08-18_1202_current_list_summary.json
+```
+
+The current public kernels list showed `evgendvorkin/ai-agent` rerun at
+`2026-08-18 11:51:37.277 UTC`. The pass pulled and extracted it:
+
+```text
+evgendvorkin/ai-agent
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_1202/evgendvorkin_ai_agent
+  notebook_sha256=eb01e6014d719115685d5f7fc2cfbd82861ea0dec2e3110633a05c9b359beecf
+  clean_code_cells_sha256=193447edae0e4b7d89ebd714e0363ee7f47d32d59b967a19acbd213f0b87459c
+  literal_attack_sha256=1efc87afcb944add247cca7429d380cb5b183fb7e6e18c08230bb73b3c5cc9fc
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  fs.read=False
+  fs.delete=False
+  eval_predicates=False
+  env.interact=True
+  env.reset=True
+  .invalid=False
+  .example.com=False
+  .co=True
+  SDK_validate_literal=passed
+```
+
+This rerun is byte-identical at the notebook and extracted literal-attack level
+to the Evgendvorkin PHOENIX V5 artifact already screened in the
+`2026-08-17 12:58 UTC` addendum. It remains a multi-variable route combining
+public `.co` URLs, `SPLIT_CLASSIFY_N=8`, `REPLAY_SAFE_FRAC=0.9995`,
+`SLOW_MULTIPOST_N=4`, `MARGIN_S=35.0`, `PROBE_HOPS=1` live probing, and
+`BEST_HARMONY` analysis-token prompt text. It is therefore rejected again under
+the duplicate/evidence and single-variable gates.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-18 10:01 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were

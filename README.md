@@ -483,6 +483,19 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `406`,
   score_at_200 `90.855`, and historical B008 `92.165` would rank approximately
   `134`.
+- The `2026-08-18 12:02 UTC` addendum found a newly rerun
+  `evgendvorkin/ai-agent` snapshot (`2026-08-18 11:51:37 UTC`). The pulled
+  notebook SHA
+  `eb01e6014d719115685d5f7fc2cfbd82861ea0dec2e3110633a05c9b359beecf` and
+  extracted literal attack SHA
+  `1efc87afcb944add247cca7429d380cb5b183fb7e6e18c08230bb73b3c5cc9fc` are
+  byte-identical to the previously screened Evgendvorkin PHOENIX V5 artifact;
+  SDK validate passed, but the route still combines public `.co`, classify8,
+  `REPLAY_SAFE_FRAC=0.9995`, `SLOW_MULTIPOST_N=4`, live probing, and
+  analysis-token prompt text.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `407`,
+  score_at_200 `90.855`, and historical B008 `92.165` would rank approximately
+  `135`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not

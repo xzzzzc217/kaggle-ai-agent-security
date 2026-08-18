@@ -3518,3 +3518,43 @@
 - `artifacts/kaggle/public_audit/2026-08-18_1001_current_list_summary.json`
 - `artifacts/kaggle/public_audit/2026-08-18_1001/unknown_refs_summary.json`
 - `artifacts/kaggle/leaderboards/2026-08-18_1001_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-18: B013 duplicate Evgendvorkin rerun screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-18 12:02 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `407`, top-200 boundary `90.855`, score_at_100 `93.920`, and historical
+  B008 `92.165` would rank approximately `135`.
+- The current public kernels list showed `evgendvorkin/ai-agent` rerun at
+  `2026-08-18 11:51:37.277 UTC`; this pass pulled it to
+  `artifacts/kaggle/public_audit/2026-08-18_1202/evgendvorkin_ai_agent`.
+- The pulled notebook SHA is
+  `eb01e6014d719115685d5f7fc2cfbd82861ea0dec2e3110633a05c9b359beecf`; the
+  extracted literal attack SHA is
+  `1efc87afcb944add247cca7429d380cb5b183fb7e6e18c08230bb73b3c5cc9fc`; SDK
+  validate passed for the literal attack.
+
+**Decision**
+
+- The rerun is byte-identical at the notebook and literal-attack level to the
+  Evgendvorkin PHOENIX V5 artifact already screened in the `2026-08-17 12:58
+  UTC` addendum.
+- It still combines public `.co` URLs, `SPLIT_CLASSIFY_N=8`,
+  `REPLAY_SAFE_FRAC=0.9995`, `SLOW_MULTIPOST_N=4`, `MARGIN_S=35.0`,
+  `PROBE_HOPS=1` live probing, and `BEST_HARMONY` analysis-token prompt text.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-18_1202/evgendvorkin_ai_agent/`
+- `artifacts/kaggle/public_audit/2026-08-18_1202_kernels_list_utf8.csv`
+- `artifacts/kaggle/public_audit/2026-08-18_1202_current_list_summary.json`
+- `artifacts/kaggle/leaderboards/2026-08-18_1202_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
