@@ -336,6 +336,142 @@ gates.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-18 06:00 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+fresh_leaderboard_rows=1773
+team_heralces_score=88.760
+team_rank=402
+team_submission_date=2026-08-14 02:01:38
+team_submission_count=5
+score_at_50=99.070
+score_at_100=93.870
+score_at_200=90.855
+rank_if_B012_88.665=422
+rank_if_B008R_88.760=402
+rank_if_B008_92.165=134
+rank_if_100.000=42
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-18_0600_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-18T06:01:41.csv
+kernels_list=artifacts/kaggle/public_audit/2026-08-18_0600_kernels_list_utf8.csv
+```
+
+The public kernels list showed no rerun newer than the already screened Verity
+V249 snapshot. This pass therefore backfilled five older uncovered public
+references:
+
+```text
+pilkwang/eda-agent-security-trajectory-search
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0600/pilkwang_eda_trajectory
+  notebook_sha256=664a2687c67b1ee8581a9410bec47d64a1566c56e2f3aac9b342c3d46980a48f
+  clean_extracted_attack_sha256=937aa9a403594b1b2bed30ba13cb5ec4ca6158d8b8d7de27d4a31a8167a92c5e
+  AttackAlgorithm_text=True
+  AttackCandidate=True
+  http.post=True
+  email.send=True
+  EXFILTRATION=True
+  CONFUSED_DEPUTY=True
+  eval_predicates=True
+  .invalid=True
+  .example.com=True
+  .example.net=True
+  .co=True
+  visible_score_marker=17.085
+  SDK_validate=failed_missing_top_level_AttackAlgorithm_or_run
+
+assiaben/jed-attack-ultra-aggressive-final-30
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0600/assiaben_ultra_aggressive_final30
+  notebook_sha256=d52577f5d652f0049510623b1a64d0764ffcc5118d93d0d8472921434066bd81
+  clean_extracted_attack_sha256=90af4ca0c28ef99e7dc314910cbdf36a8138ad53222ab2e65f2722e1e5c75394
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  eval_predicates=True
+  env.interact=True
+  .co=True
+  SDK_validate=passed
+
+karnakbaevarthur/dynamic-replay-architecture
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0600/karnak_dynamic_replay_architecture
+  notebook_sha256=b0c98cc9aeb21aa747db77ffe76e816b1db490d60761e1a2649174e82ded5e0f
+  clean_extracted_attack_sha256=4997371daa8452aef4361be64a420d2332ece8e4adb25b361d6221ad441e665c
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  eval_predicates=True
+  env.interact=True
+  .invalid=True
+  .example.com=True
+  .example.net=True
+  .co=True
+  TOKEN_admin=True
+  SDK_validate=passed
+
+caoyupeng/ai-agent-security-trajectory-search-plus-2
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0600/caoyupeng_trajectory_plus2
+  notebook_sha256=3171f5bc96e4d7e9ec6a96c2f55f7eb8f0e2624e01b571dc827156f76697bf56
+  clean_extracted_attack_sha256=c57068189e84a7a1c18d73c9195217724ab57015dff87bdf8827f5d8c25c5b79
+  AttackAlgorithm_text=True
+  AttackCandidate=True
+  http.post=True
+  email.send=True
+  CONFUSED_DEPUTY=True
+  eval_predicates=True
+  fs.delete=True
+  fs.write=True
+  .invalid=True
+  .example.com=True
+  .example.net=True
+  .co=True
+  SDK_validate=failed_missing_top_level_AttackAlgorithm_or_run
+
+devchandra/ai-agent-security-v65b-yusuke-lb60-margin32
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_0600/devchandra_v65b_yusuke_lb60
+  notebook_sha256=1d003b7029fb1c2934397b3eb96c045daa61260215f066f0b691bc376c747b0f
+  clean_extracted_attack_sha256=767f453f34ef1dc9780ec2de3229b829c238a04a8b5802fb869b089f667a241b
+  AttackAlgorithm_text=True
+  AttackCandidate=True
+  http.post=True
+  email.send=True
+  CONFUSED_DEPUTY=True
+  eval_predicates=True
+  .invalid=True
+  .co=True
+  visible_score_markers=60.125,51.255
+  SDK_validate=failed_missing_top_level_AttackAlgorithm_or_run
+```
+
+None of these artifacts is selected as a formal B013 candidate:
+
+- Assiaben final30 is SDK-valid, but it is a public `.co` live single-post fill
+  route (`MARGIN_S=30`, `FILL_BUDGET_FRAC=0.98`, `HARD_N_CAP=2000`) and rolls
+  back B008R's retained `.invalid` target policy, classify5, and slow-row
+  four-endpoint frame behavior.
+- Karnak dynamic replay architecture is SDK-valid, but it is a broad
+  multi-profile route replacement with live calibration, payload/profile
+  families, mutation, chain/adaptive fill behavior, replay hop caps, scheduling,
+  and mixed public/reserved URL policy.
+- Caoyupeng trajectory plus2, Devchandra v65b, and Pilkwang EDA trajectory
+  expose useful public-route notes or embedded code, but the clean extracted
+  artifacts do not validate as standalone top-level `AttackAlgorithm`
+  implementations. Devchandra's visible score markers (`60.125`, `51.255`) and
+  Pilkwang's visible score marker (`17.085`) are also far below B008R.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-18 04:00 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were

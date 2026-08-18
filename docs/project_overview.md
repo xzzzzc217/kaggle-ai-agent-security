@@ -606,6 +606,16 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `402`,
   score_at_200 `90.855`, and historical B008 `92.165` would rank approximately
   `134`.
+- A later `2026-08-18 06:00 UTC` addendum again found no newer public rerun
+  beyond Verity V249, then backfilled Pilkwang EDA trajectory search, Assiaben
+  ultra-aggressive final30, Karnak dynamic replay architecture, Caoyupeng
+  trajectory plus2, and Devchandra v65b. Assiaben/Karnak are SDK-valid but are
+  respectively a public `.co` live single-post fill rollback and a broad
+  multi-profile dynamic replay route; Caoyupeng/Devchandra/Pilkwang did not
+  validate as standalone top-level `AttackAlgorithm` implementations.
+- Latest checked leaderboard snapshot still shows B008R `88.760` as rank
+  `402`, score_at_200 `90.855`, and historical B008 `92.165` would rank
+  approximately `134`.
 - No B013 preregistration, Notebook, or competition submission was created.
   Continue scouting only for a stronger mechanism-low-correlated candidate with
   gates `>88.760`, `>92.165`, and `>=100.000`.

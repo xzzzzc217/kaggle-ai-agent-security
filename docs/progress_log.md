@@ -3369,3 +3369,46 @@
 - `artifacts/kaggle/public_audit/2026-08-18_0400/`
 - `artifacts/kaggle/public_audit/2026-08-18_0400_kernels_list_utf8.csv`
 - `artifacts/kaggle/leaderboards/2026-08-18_0400_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-18: B013 older public backfill round 2 screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-18 06:00 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `402`, top-200 boundary `90.855`, score_at_100 `93.870`, and historical
+  B008 `92.165` would rank approximately `134`.
+- The current public kernels list showed no newer public rerun beyond the
+  already screened Verity V249 snapshot.
+- This pass backfilled five older uncovered public references:
+  `pilkwang/eda-agent-security-trajectory-search`,
+  `assiaben/jed-attack-ultra-aggressive-final-30`,
+  `karnakbaevarthur/dynamic-replay-architecture`,
+  `caoyupeng/ai-agent-security-trajectory-search-plus-2`, and
+  `devchandra/ai-agent-security-v65b-yusuke-lb60-margin32`.
+
+**Decision**
+
+- Assiaben's clean attack is SDK-valid, but it is a public `.co` live
+  single-post fill rollback with `MARGIN_S=30`, `FILL_BUDGET_FRAC=0.98`,
+  `HARD_N_CAP=2000`, and no B008R classify5 / slow-row four-endpoint lineage.
+- Karnak dynamic replay is SDK-valid, but it is a broad multi-profile route
+  replacement with live calibration, multiple payload/profile families, replay
+  hop caps, scheduling, mutation, chain fill, adaptive fill, and mixed
+  public/reserved URL policy.
+- Caoyupeng trajectory plus2, Devchandra v65b, and Pilkwang EDA trajectory
+  produced clean code artifacts for review but did not validate as standalone
+  top-level `AttackAlgorithm` implementations in the local SDK structure check.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-18_0600/`
+- `artifacts/kaggle/public_audit/2026-08-18_0600_kernels_list_utf8.csv`
+- `artifacts/kaggle/leaderboards/2026-08-18_0600_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

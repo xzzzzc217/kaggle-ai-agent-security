@@ -448,6 +448,17 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `402`,
   score_at_200 `90.855`, and historical B008 `92.165` would rank approximately
   `134`.
+- The `2026-08-18 06:00 UTC` addendum again found no newer public rerun beyond
+  Verity V249, then backfilled five older uncovered public references:
+  Pilkwang EDA trajectory search, Assiaben ultra-aggressive final30, Karnak
+  dynamic replay architecture, Caoyupeng trajectory plus2, and Devchandra v65b.
+  Only Assiaben and Karnak produced standalone SDK-valid clean attacks; Assiaben
+  is a public `.co` live single-post fill rollback, and Karnak is a broad
+  multi-profile dynamic replay route. Caoyupeng, Devchandra, and Pilkwang did
+  not validate as standalone top-level `AttackAlgorithm` implementations.
+- Latest checked leaderboard snapshot remains B008R `88.760` as rank `402`,
+  score_at_200 `90.855`, and historical B008 `92.165` would rank approximately
+  `134`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not
