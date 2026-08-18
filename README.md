@@ -426,6 +426,16 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `382`,
   score_at_200 `90.675`, and historical B008 `92.165` would rank approximately
   `126`.
+- The `2026-08-17 23:43 UTC` addendum found a newly rerun
+  `verityix/ai-agent-security-attack-algorithm-hitherto` snapshot with last run
+  `2026-08-17 22:08:25 UTC`. Its extracted `attack.py` is SDK-valid, SHA
+  `98f3ca2d005ba58e020cfbfd7d6d48095941e39b396053da69ebe8e670bf72f7`, but it is
+  a V249 public endpoint-topology/style portfolio: 8 direct `http.post` styles
+  times 8 public URL patterns (`.ai`, `.cloud`, `.app`, `.dev`, `.io`, `.org`,
+  `.com`, `.net`) times 25 indices, with live `eval_predicates` retention.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `400`,
+  score_at_200 `90.820`, and historical B008 `92.165` would rank approximately
+  `133`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not

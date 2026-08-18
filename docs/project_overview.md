@@ -186,7 +186,7 @@ evaluator 回放单独保留预算。
 |---|---|---|---|
 | 赛题选择与安全边界 | 完成 | 主赛决策、规则与安全文档 | 持续遵守 |
 | SDK 与官方基线 | 完成 | SDK 3.1.2 校验；官方 starter 可复现 | 保持回归测试 |
-| 本地搜索机制 | B013 公开路线与本地机制继续筛查；暂无正式候选 | B008R `55393959` 仍是当前 leaderboard-effective submission，Public Score `88.760`；B005R、B011、B012 均已终态且低于 B008R 并拒绝；2026-08-15/16/17 B013 多轮公开路线审计均未形成满足低相关、可证伪、单变量门槛的正式候选；2026-08-17 14:59 UTC leaderboard 快照中 team `heralces` 为 rank `382`，top-200 边界 `90.675`，历史 B008 `92.165` 若计入约 rank `126`；本轮本地 predicate 检查亦未支持 `email.send` 覆盖作为单变量 pivot；[B013 证据](../evidence/2026-08-15_b013_public_audit.md) | 只有形成强于既有 audit/addendum 的 B013 单变量证据后，才预注册并提交；门槛需区分 `>88.760`、`>92.165`、`>=100.000` |
+| 本地搜索机制 | B013 公开路线与本地机制继续筛查；暂无正式候选 | B008R `55393959` 仍是当前 leaderboard-effective submission，Public Score `88.760`；B005R、B011、B012 均已终态且低于 B008R 并拒绝；2026-08-15/16/17 B013 多轮公开路线审计均未形成满足低相关、可证伪、单变量门槛的正式候选；2026-08-17 23:43 UTC heartbeat 刷新 leaderboard 快照中 team `heralces` 为 rank `400`，top-200 边界 `90.820`，历史 B008 `92.165` 若计入约 rank `133`；新 rerun Verity V249 通过 SDK 结构校验但仍是 public endpoint-topology/style portfolio 而非 B008R-derived 单变量；[B013 证据](../evidence/2026-08-15_b013_public_audit.md) | 只有形成强于既有 audit/addendum 的 B013 单变量证据后，才预注册并提交；门槛需区分 `>88.760`、`>92.165`、`>=100.000` |
 | Kaggle Notebook 管线 | 完成 | 私有 Notebook v3、B004 v1 与 B005 v1 均 `COMPLETE`；云端源码哈希一致；[脱敏证据](../evidence/2026-07-23_b000_v3.md)、[B005 证据](../evidence/2026-08-02_b005_preflight.md) | 保持版本可追溯 |
 | B000 competition rerun | 完成 | submission `54925726` 为 `COMPLETE`；public score `0.075`；private score 未返回；[状态证据](../evidence/2026-07-23_b000_v3.md) | 以 B000 为锚点设计 E001 单变量提交 |
 | E001 competition rerun | 完成，未支持假设 | submission `54952586` 为 `COMPLETE`；public score `0.075`，等于 B000；private score 未返回；[证据](../evidence/2026-07-24_e001_preflight.md) | E001 仅作为 E002 的单变量对照，不作为已证实改进 |
@@ -588,6 +588,14 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `382`,
   score_at_200 `90.675`, and historical B008 `92.165` would rank approximately
   `126`.
+- A later `2026-08-17 23:43 UTC` addendum screened the newly rerun Verity V249
+  endpoint-topology snapshot. Its extracted attack is SDK-valid but changes URL
+  topology, style portfolio, public URL policy, candidate allocation, and live
+  validation together, while dropping B008R's retained reserved-domain,
+  classify5, and slow-row four-endpoint mechanism.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `400`,
+  score_at_200 `90.820`, and historical B008 `92.165` would rank approximately
+  `133`.
 - No B013 preregistration, Notebook, or competition submission was created.
   Continue scouting only for a stronger mechanism-low-correlated candidate with
   gates `>88.760`, `>92.165`, and `>=100.000`.

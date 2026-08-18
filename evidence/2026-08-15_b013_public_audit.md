@@ -336,6 +336,74 @@ gates.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-17 23:43 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+fresh_leaderboard_rows=1758
+team_heralces_score=88.760
+team_rank=400
+team_submission_date=2026-08-14 02:01:38
+team_submission_count=5
+score_at_50=99.070
+score_at_100=93.870
+score_at_200=90.820
+rank_if_B012_88.665=422
+rank_if_B008R_88.760=400
+rank_if_B008_92.165=133
+rank_if_100.000=42
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-17_2343_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-18T01_54_54.csv
+kernels_list=artifacts/kaggle/public_audit/2026-08-17_2343_kernels_list.csv
+```
+
+The public kernels list showed one newly rerun artifact beyond the previous
+screen:
+
+```text
+verityix/ai-agent-security-attack-algorithm-hitherto
+  title=AI Agent Security - Attack Algorithm (Hitherto)
+  last_run=2026-08-17 22:08:25.583 UTC
+  total_votes=27
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-17_2343/verityix_hitherto_20260817_2208
+  notebook_sha256=23ed8e8e2a5d5bf26d1c431bd969fcda493659155442e3347049b13f332f1d48
+  extracted_attack_sha256=98f3ca2d005ba58e020cfbfd7d6d48095941e39b396053da69ebe8e670bf72f7
+  extracted_attack_len=2617
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  eval_predicates=True
+  .invalid=False
+  public_url_patterns=.ai/.cloud/.app/.dev/.io/.org/.com/.net
+  SDK_validate=passed
+```
+
+The extracted V249 route is SDK-valid, but it is not selected as B013:
+
+- it is an endpoint-topology/style portfolio rather than a B008R-derived single
+  variable: eight direct-action `http.post` styles are crossed with eight public
+  URL patterns and 25 indices each;
+- it keeps live `eval_predicates` retention but drops the B008R lineage of
+  retained reserved-domain URLs, classify5 latency routing, and slow-row
+  four-endpoint frame behavior;
+- it would require a broad route replacement or a risky URL policy pivot, not a
+  single falsifiable change against B008R;
+- no V249 terminal Public Score was available in the pulled notebook markdown
+  comparable to the B008R/B008 thresholds.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-17 12:58 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were

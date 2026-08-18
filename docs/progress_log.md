@@ -3280,3 +3280,47 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/public_audit/2026-08-17_1459_kernels_list.csv`
 - `artifacts/kaggle/leaderboards/2026-08-17_1459_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-17: B013 Verity V249 rerun screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-17 23:43 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `400`, top-200 boundary `90.820`, score_at_100 `93.870`, and historical
+  B008 `92.165` would rank approximately `133`.
+- The current public kernels list showed a newly rerun
+  `verityix/ai-agent-security-attack-algorithm-hitherto` snapshot with last run
+  `2026-08-17 22:08:25.583 UTC`.
+- Pulled artifact:
+  `artifacts/kaggle/public_audit/2026-08-17_2343/verityix_hitherto_20260817_2208/`.
+  Notebook SHA is
+  `23ed8e8e2a5d5bf26d1c431bd969fcda493659155442e3347049b13f332f1d48`; stripped
+  `attack.py` SHA is
+  `98f3ca2d005ba58e020cfbfd7d6d48095941e39b396053da69ebe8e670bf72f7`.
+- SDK validate passed for the stripped `attack.py`.
+
+**Decision**
+
+- The V249 route is an endpoint-topology/style portfolio: eight direct
+  `http.post` styles crossed with eight public URL patterns (`.ai`, `.cloud`,
+  `.app`, `.dev`, `.io`, `.org`, `.com`, `.net`) and 25 indices each, with live
+  `eval_predicates` retention.
+- It drops the B008R lineage that made the current effective high score:
+  retained reserved-domain URLs, classify5 latency routing, and slow-row
+  four-endpoint frame behavior.
+- Treating V249 as B013 would require a broad route replacement or a risky URL
+  policy pivot, not a falsifiable single variable.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-17_2343_kernels_list.csv`
+- `artifacts/kaggle/public_audit/2026-08-17_2343/verityix_hitherto_20260817_2208/analysis_summary.json`
+- `artifacts/kaggle/leaderboards/2026-08-17_2343_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
