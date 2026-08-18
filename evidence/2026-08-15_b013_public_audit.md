@@ -336,6 +336,137 @@ gates.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-18 10:01 UTC addendum
+
+During the next heartbeat, the latest submissions and leaderboard were
+rechecked again:
+
+```text
+latest_competition_submissions_unchanged=True
+B012_submission=55495429 COMPLETE Public Score 88.665 Private Score blank
+B005R_submission=55461853 COMPLETE Public Score 86.945 Private Score blank
+B011_submission=55433780 COMPLETE Public Score 72.680 Private Score blank
+B008R_submission=55393959 COMPLETE Public Score 88.760 Private Score blank
+B008_submission=55266445 ERROR Public Score 92.165 Private Score blank
+current_leaderboard_effective_public_score=88.760
+fresh_leaderboard_rows=1793
+team_heralces_score=88.760
+team_rank=406
+team_submission_date=2026-08-14 02:01:38
+team_submission_count=5
+score_at_50=99.070
+score_at_100=93.870
+score_at_200=90.855
+rank_if_B012_88.665=427
+rank_if_B008R_88.760=406
+rank_if_B008_92.165=134
+rank_if_100.000=42
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-18_1001_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-18T10:03:22.csv
+kernels_list=artifacts/kaggle/public_audit/2026-08-18_1001_kernels_list_utf8.csv
+current_list_summary=artifacts/kaggle/public_audit/2026-08-18_1001_current_list_summary.json
+```
+
+The current 100-row public kernels list still showed no rerun newer than the
+already screened Verity V249 snapshot (`2026-08-17 22:08:25.583 UTC`). A
+current-list coverage check found `65/100` refs exact-recorded in the B013/B012
+or earlier evidence. The remaining exact-ref gaps were old and dominated by
+already-rejected Paul/Hermes count-margin rollbacks, Kleniopadilha WINNEX
+placeholder/no-attack variants, Coolin starter copies, or other low-vote
+older artifacts.
+
+This pass pulled six low-vote, not-yet-exact-recorded older references that
+were not just additional Paul/Kleniopadilha version increments:
+
+```text
+erkkj98/notebook1e97ff965b
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_1001/erkkj98_notebook1e97ff965b
+  code_cells_clean_sha256=0e5e71f71f77b7f91e2296f69597d6b99357f21fa86df9063386991c1dcef4a6
+  AttackAlgorithm_text=True
+  AttackCandidate=True
+  http.post=False
+  env.interact=True
+  .co=True
+  SDK_validate=failed_missing_top_level_AttackAlgorithm_or_run
+
+saharmgh/notebook3
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_1001/saharmgh_notebook3
+  code_cells_clean_sha256=55c3b97f3d7f4b309ea0163e99605d833deba7d4c3bdcd4e5497fda622aa829e
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  eval_predicates=True
+  env.interact=True
+  .co=True
+  SDK_validate=passed
+
+andrewmedran0/ai-agent-security-submit
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_1001/andrewmedran0_ai_agent_security_submit
+  code_cells_clean_sha256=8936a441392614613d339c40df611b4c8f2a6e47e78c592ba4f611985a22fe44
+  AttackAlgorithm_text=True
+  AttackCandidate=True
+  http.post=True
+  eval_predicates=True
+  env.interact=True
+  .co=True
+  SDK_validate=failed_missing_top_level_AttackAlgorithm_or_run
+
+kyleslight/ai-agent-security-public-anchor-v1
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_1001/kyleslight_public_anchor_v1
+  code_cells_clean_sha256=11d522744c75e7e6db52b969e971d13804755f4eed7370e27e246b8cbf12e7bc
+  AttackAlgorithm_text=True
+  AttackCandidate=True
+  http.post=True
+  email.send=False
+  env.interact=False
+  .co=False
+  SDK_validate=failed_missing_top_level_AttackAlgorithm_or_run
+
+yuriymikityuk/read-the-source-not-the-leaderboard
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_1001/yuriymikityuk_read_source
+  code_cells_clean_sha256=3e9a322dda980538b088e2cce6e09b8d004274a053850232ece734bc05c7ffe9
+  AttackAlgorithm=False
+  AttackCandidate=False
+  http.post=True
+  fs.delete=True
+  eval_predicates=True
+  .invalid=True
+  .co=True
+  visible_score_marker=0.09
+  SDK_validate=failed_missing_top_level_AttackAlgorithm_or_run
+
+llccqq624/shadow-cat-firewall
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-18_1001/llccqq624_shadow_cat_firewall
+  code_cells_clean_sha256=7bf3ce1ef3d2b5426a27d1731bb8033f876d71e5de40e676518d58e624d8bde7
+  AttackAlgorithm=True
+  AttackCandidate=True
+  http.post=True
+  env.interact=True
+  .co=True
+  SDK_validate=passed
+```
+
+None of these artifacts is selected as a formal B013 candidate:
+
+- Sahar's artifact is SDK-valid, but it is a public-domain live-validation
+  portfolio. It changes URL policy, prompt phrasing, multi-post batching,
+  `eval_predicates` filtering, best-repeat fill, backup probes, and replay-cost
+  profile together. That is a broad route replacement rather than a
+  B008R-derived single variable.
+- LLCC/Jiachen's Shadow Cat artifact is SDK-valid, but it is a warmup +
+  validation-fill public `.co` single-post route with fill-budget/margin/cap
+  knobs. It overlaps the rejected B012/B005R restoration-style public-domain
+  fill family and does not isolate a new low-correlated mechanism.
+- Erkkj98 has no literal `http.post` primitive, Andrew/Kyle/Yuriy do not
+  validate as standalone top-level `AttackAlgorithm` implementations from this
+  pull, and Yuriy additionally mixes destructive `fs.delete` material with a
+  read-the-source artifact.
+- The remaining not-exact-recorded current-list gaps are old version increments
+  or starter/placeholder families already represented in earlier B013 evidence.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-18 08:00 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were

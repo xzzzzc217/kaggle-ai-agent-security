@@ -3465,3 +3465,56 @@
 - `artifacts/kaggle/public_audit/2026-08-18_0800_kernels_list_utf8.csv`
 - `artifacts/kaggle/public_audit/2026-08-18_0800_current_list_summary.json`
 - `artifacts/kaggle/leaderboards/2026-08-18_0800_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-18: B013 current-list coverage and older unknown refs screened
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-18 10:01 UTC`
+  heartbeat. Latest competition submissions are unchanged: B012 `55495429`
+  remains `COMPLETE` with Public Score `88.665`; B008R `55393959` remains the
+  current leaderboard-effective score at `88.760`; historical B008 `55266445`
+  remains score-bearing `ERROR` with Public Score `92.165`.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `406`, top-200 boundary `90.855`, score_at_100 `93.870`, and historical
+  B008 `92.165` would rank approximately `134`.
+- The current 100-row public kernels list still showed no newer public rerun
+  beyond the already screened Verity V249 snapshot (`2026-08-17 22:08:25.583
+  UTC`).
+- A current-list evidence coverage check found `65/100` refs exact-recorded.
+  The remaining exact-ref gaps are old and dominated by already rejected
+  Paul/Hermes count-margin rollbacks, Kleniopadilha WINNEX variants, Coolin
+  starter copies, and other low-vote older artifacts.
+- This pass pulled six non-family-increment older refs not yet exact-recorded:
+  `erkkj98/notebook1e97ff965b`, `saharmgh/notebook3`,
+  `andrewmedran0/ai-agent-security-submit`,
+  `kyleslight/ai-agent-security-public-anchor-v1`,
+  `yuriymikityuk/read-the-source-not-the-leaderboard`, and
+  `llccqq624/shadow-cat-firewall`.
+
+**Decision**
+
+- Sahar's cleaned code-cell artifact validates with SDK and has SHA
+  `55c3b97f3d7f4b309ea0163e99605d833deba7d4c3bdcd4e5497fda622aa829e`, but it
+  is a public-domain live-validation portfolio that changes URL policy, prompt
+  phrasing, multi-post batching, `eval_predicates` filtering, repeat-best fill,
+  backup probes, and replay-cost profile together.
+- LLCC/Jiachen's cleaned code-cell artifact validates with SDK and has SHA
+  `7bf3ce1ef3d2b5426a27d1731bb8033f876d71e5de40e676518d58e624d8bde7`, but it
+  is a warmup + validation-fill public `.co` single-post route with
+  fill-budget/margin/cap knobs, overlapping the rejected B012/B005R-style
+  public-domain fill family.
+- Erkkj98 has no literal `http.post` primitive; Andrew, Kyle, and Yuriy do not
+  validate as standalone top-level `AttackAlgorithm` implementations from this
+  pull; Yuriy additionally mixes destructive `fs.delete` material.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-18_1001/`
+- `artifacts/kaggle/public_audit/2026-08-18_1001_kernels_list_utf8.csv`
+- `artifacts/kaggle/public_audit/2026-08-18_1001_current_list_summary.json`
+- `artifacts/kaggle/public_audit/2026-08-18_1001/unknown_refs_summary.json`
+- `artifacts/kaggle/leaderboards/2026-08-18_1001_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`

@@ -471,6 +471,18 @@ uv sync
 - Latest checked leaderboard snapshot shows B008R `88.760` as rank `403`,
   score_at_200 `90.855`, and historical B008 `92.165` would rank approximately
   `134`.
+- The `2026-08-18 10:01 UTC` addendum again found no newer public rerun beyond
+  Verity V249. A current-list coverage check found `65/100` refs already
+  exact-recorded; the remaining gaps were old Paul/Hermes count-margin
+  rollbacks, Kleniopadilha WINNEX variants, Coolin starter copies, or other
+  low-vote older refs. Six non-family-increment unknown refs were pulled:
+  Erkkj98, Sahar, Andrew, Kyle, Yuriy, and LLCC/Jiachen. Sahar and LLCC yielded
+  SDK-valid cleaned code-cell artifacts, but they are respectively a broad
+  public-domain live-validation portfolio and a B012/B005R-overlapping public
+  `.co` warmup/fill route rather than B008R-derived single variables.
+- Latest checked leaderboard snapshot shows B008R `88.760` as rank `406`,
+  score_at_200 `90.855`, and historical B008 `92.165` would rank approximately
+  `134`.
 - No B013 candidate was selected. The reviewed routes either rely on
   prompt/template-bank exploration, repeat rejected variables, require
   multi-variable safe adaptation, are not SDK-valid in current form, or do not
