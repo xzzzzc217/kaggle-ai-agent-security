@@ -502,3 +502,14 @@ uv sync
   contain usable `AttackAlgorithm` source.
 - No B013 preregistration, Notebook, or competition submission was created.
   Evidence is recorded in `evidence/2026-08-15_b013_public_audit.md`.
+- Latest `2026-08-20 14:59 UTC` refresh: B008R `55393959` remains the current
+  leaderboard-effective best at `88.760`, rank `474`, with score_at_200
+  `91.155`. B008 `55266445` is now CLI-visible as `SubmissionStatus.COMPLETE`
+  with Public Score `88.070`; the earlier observed `92.165` is retained only as
+  historical evidence and would rank approximately `152` in this snapshot.
+- The same refresh screened updated public refs from Evgendvorkin, Verity,
+  Georgy, and Lopure. Evgendvorkin repeats public `.co` PHOENIX-family rollback
+  variables, Verity is a public endpoint/style live-validation portfolio,
+  Georgy is a starter/local-scoring notebook, and Lopure still lacks a usable
+  top-level attack implementation. No B013 preregistration, Notebook, or
+  competition submission was created.

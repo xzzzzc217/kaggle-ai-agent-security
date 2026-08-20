@@ -270,6 +270,90 @@ single-variable attack.
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
 
+## 2026-08-20 14:59 UTC addendum
+
+The heartbeat refreshed current competition submissions, the public
+leaderboard, and the newest public reruns.
+
+```text
+current_leaderboard_effective_submission=55393959
+current_leaderboard_effective_public_score=88.760
+team_rank=474
+score_at_50=99.675
+score_at_100=94.590
+score_at_200=91.155
+rank_if_88_665=495
+rank_if_88_760=474
+rank_if_92_165=152
+rank_if_100_000=48
+leaderboard_rows=3777
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-20_1459_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-20T15:00:48.csv
+submissions_artifact=artifacts/kaggle/leaderboards/2026-08-20_1459_heartbeat/submissions.csv
+```
+
+Material status drift was observed in the latest Kaggle submissions list:
+B008 `55266445`, previously recorded as score-bearing `ERROR` with an observed
+Public Score `92.165`, is now CLI-visible as `SubmissionStatus.COMPLETE` with
+Public Score `88.070`. The `92.165` value remains historical evidence only and
+is not treated as current leaderboard-effective state. The current
+leaderboard-effective best remains B008R `55393959`, `COMPLETE`, Public Score
+`88.760`.
+
+The newest public-kernel pass pulled and screened four rerun or recently
+updated refs:
+
+```text
+evgendvorkin/ai-agent
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-20_1459/evgendvorkin_ai_agent
+  notebook_sha256=f61ded4f4eaab7cf627d2308a13263a9436e90ed377b930f83c58205d7e537d8
+  clean_code_cells_sha256=d1983f92c4af4ac7e4691f979a775b350a8b8b9739a8abb4578227fec9f69093
+  literal_attack_sha256=dfee8d38ec98fdf1479b633da7c9a10fc2c05c32f53b8de9d72fe15c03e64941
+  SDK_validate_literal=passed
+  constants=SPLIT_CLASSIFY_N=8, REPLAY_SAFE_FRAC=0.999, SLOW_MULTIPOST_N=1, PROBE_HOPS=0, SPLIT_THRESHOLD_S=12.0, FILL_BUDGET_FRAC=0.99, HARD_N_CAP=2000, MARGIN_S=38.0
+
+verityix/ai-agent-security-attack-algorithm-hitherto
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-20_1459/verityix_hitherto
+  notebook_sha256=915a01d83a6969b873b75ec1bc76bd2c9229ef6cdc4a9df0f52afd5ae9535248
+  clean_code_cells_sha256=27c1c6407f23cdaf420c69e73d25d5b899e176be328ec15c281c38d2daba9887
+  SDK_validate_code_cells=passed
+  flags=http.post, eval_predicates, env.interact, env.reset, public .co
+
+georgymamarin/red-team-starter-what-fires-and-what-it-s-worth
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-20_1459/georgymamarin_red_team_starter
+  notebook_sha256=11d61b2ffb1518f552f8bf22bf5b62c58603e11c61f4f281a146f71ce3eb135e
+  clean_code_cells_sha256=c710880b1da22f492812d633ebcedd7ec8dc0d545d665ac1452b4d8a0937ce46
+  SDK_validate_code_cells=passed
+  flags=no literal http.post route
+
+lopure/jed-multi-step-attack-relay-push100
+  local_pull_dir=artifacts/kaggle/public_audit/2026-08-20_1459/lopure_relay_push100
+  notebook_sha256=b6e05b39959f4b044f9c4235440a42cfa11045985a51c27c2eef2c85490e7bec
+  clean_code_cells_sha256=943d584536f7a1dc53b7d33e6afd35b22868ec49f99b30c9428bc71ab772d86d
+  SDK_validate_code_cells=failed
+  flags=no AttackAlgorithm, no AttackCandidate, no http.post
+```
+
+None of these artifacts is selected as a formal B013 candidate:
+
+- `evgendvorkin/ai-agent` is another public `.co` PHOENIX-family route. It
+  rolls classify back to `8`, reduces slow multipost to `1`, uses replay-tail
+  sizing near `1.0`, and retains analysis-channel prompt text. These overlap
+  already rejected variables and excluded prompt-token/template-bank direction.
+- `verityix/ai-agent-security-attack-algorithm-hitherto` is an SDK-valid
+  public endpoint/style portfolio with live `eval_predicates` retention. It
+  changes URL topology, prompt/style bank, validation, and scheduling together
+  rather than providing a B008R-derived single variable.
+- `georgymamarin/red-team-starter-what-fires-and-what-it-s-worth` is an
+  educational local-scoring/starter notebook. Its cleaned code is SDK-valid but
+  intentionally exposes no usable `http.post` attack route.
+- `lopure/jed-multi-step-attack-relay-push100` still exposes no usable
+  top-level `AttackAlgorithm`/`AttackCandidate` implementation in the pulled
+  snapshot.
+
+No B013 preregistration, Notebook, or competition submission is created from
+this addendum.
+
 ## 2026-08-17 14:59 UTC addendum
 
 During the next heartbeat, the latest submissions and leaderboard were
@@ -2373,3 +2457,19 @@ None of these artifacts is selected as a formal B013 candidate:
 
 No B013 preregistration, Notebook, or competition submission is created from
 this addendum.
+
+## 2026-08-20 14:59 UTC latest index
+
+The detailed `2026-08-20 14:59 UTC` addendum is recorded above in this file.
+Key current-state deltas for future tail reads:
+
+- B008 `55266445` is now CLI-visible as `SubmissionStatus.COMPLETE` with Public
+  Score `88.070`; the earlier observed `92.165` is retained as historical
+  evidence only.
+- B008R `55393959` remains the current leaderboard-effective best at `88.760`.
+- Latest checked rank is `474`, score_at_200 is `91.155`, and historical
+  `92.165` would rank approximately `152`.
+- Evgendvorkin, Verity, Georgy, and Lopure reruns were screened under
+  `artifacts/kaggle/public_audit/2026-08-20_1459/`; no preregisterable B013
+  single-variable candidate was selected, and no B013 Notebook/submission was
+  created.

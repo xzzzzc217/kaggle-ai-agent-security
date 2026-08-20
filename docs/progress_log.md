@@ -3558,3 +3558,51 @@
 - `artifacts/kaggle/public_audit/2026-08-18_1202_kernels_list_utf8.csv`
 - `artifacts/kaggle/public_audit/2026-08-18_1202_current_list_summary.json`
 - `artifacts/kaggle/leaderboards/2026-08-18_1202_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-20: B013 public reruns screened; B008 status drift recorded
+
+**Facts**
+
+- Rechecked submissions and leaderboard during the `2026-08-20 14:59 UTC`
+  heartbeat. Current leaderboard-effective best remains B008R `55393959`,
+  `COMPLETE`, Public Score `88.760`.
+- The latest Kaggle submissions list now shows B008 `55266445` as
+  `SubmissionStatus.COMPLETE` with Public Score `88.070`. This differs from the
+  earlier recorded score-bearing `ERROR`/`92.165` state; `92.165` is retained
+  only as a historical observed high, not as current leaderboard-effective
+  state.
+- Fresh public leaderboard snapshot shows team `heralces` at score `88.760`,
+  rank `474`, top-200 boundary `91.155`, score_at_100 `94.590`, and historical
+  B008 `92.165` would rank approximately `152`.
+- The newest public rerun screen pulled `evgendvorkin/ai-agent`,
+  `verityix/ai-agent-security-attack-algorithm-hitherto`,
+  `georgymamarin/red-team-starter-what-fires-and-what-it-s-worth`, and
+  `lopure/jed-multi-step-attack-relay-push100` into
+  `artifacts/kaggle/public_audit/2026-08-20_1459/`.
+
+**Decision**
+
+- Evgendvorkin literal attack SHA
+  `dfee8d38ec98fdf1479b633da7c9a10fc2c05c32f53b8de9d72fe15c03e64941` passed
+  SDK validation, but it is a public `.co` PHOENIX-family rollback with
+  classify8, `REPLAY_SAFE_FRAC=0.999`, `SLOW_MULTIPOST_N=1`, and analysis-token
+  prompt text.
+- Verity clean code SHA
+  `27c1c6407f23cdaf420c69e73d25d5b899e176be328ec15c281c38d2daba9887` passed
+  SDK validation, but it is a public endpoint/style portfolio with live
+  predicate retention, not a B008R-derived single variable.
+- Georgy validates as a starter/local-scoring notebook but has no usable
+  literal `http.post` route; Lopure still lacks a standalone
+  `AttackAlgorithm`/`AttackCandidate` and fails SDK structure validation.
+- No preregisterable B013 single-variable candidate was selected. No B013
+  preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/public_audit/2026-08-20_1459/`
+- `artifacts/kaggle/public_audit/2026-08-20_1459_kernels_list_utf8.csv`
+- `artifacts/kaggle/public_audit/2026-08-20_1459_current_list_summary.json`
+- `artifacts/kaggle/public_audit/2026-08-20_1459/new_reruns_summary.json`
+- `artifacts/kaggle/leaderboards/2026-08-20_1459_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+- `artifacts/kaggle/leaderboards/2026-08-20_1459_heartbeat/submissions.csv`

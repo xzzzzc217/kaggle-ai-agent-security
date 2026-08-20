@@ -653,3 +653,15 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
 - No B013 preregistration, Notebook, or competition submission was created.
   Continue scouting only for a stronger mechanism-low-correlated candidate with
   gates `>88.760`, `>92.165`, and `>=100.000`.
+- The `2026-08-20 14:59 UTC` heartbeat recorded material current-state drift:
+  B008 `55266445` is now CLI-visible as `SubmissionStatus.COMPLETE` with Public
+  Score `88.070`, so its earlier observed `92.165` remains historical evidence
+  only. B008R `55393959` remains the current leaderboard-effective best at
+  `88.760`; latest checked rank is `474`, score_at_200 is `91.155`, and a
+  `92.165` score would rank approximately `152`.
+- The same pass pulled new or newly rerun Evgendvorkin, Verity, Georgy, and
+  Lopure public refs. Evgendvorkin is another public `.co` PHOENIX rollback with
+  classify8/replay-tail/analysis-token choices; Verity is a public
+  endpoint/style portfolio with live predicates; Georgy is an educational
+  starter/local-scoring notebook; and Lopure still lacks a standalone
+  `AttackAlgorithm`. No B013 candidate was selected.
