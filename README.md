@@ -29,7 +29,7 @@
 - [`evidence/2026-08-12_b012_public_audit.md`](evidence/2026-08-12_b012_public_audit.md)：B012 公开路线复查与候选筛查；未形成正式预注册候选
 - [`evidence/2026-08-12_b005_restore_exception.md`](evidence/2026-08-12_b005_restore_exception.md)：用户授权的 B005R 分数恢复例外预注册；不计作 B012 新算法候选
 - [`evidence/2026-08-15_b013_public_audit.md`](evidence/2026-08-15_b013_public_audit.md)：B013 公开路线与本地机制审计及后续 addenda
-- [`evidence/2026-08-21_b013_chain4_preflight.md`](evidence/2026-08-21_b013_chain4_preflight.md)：B013 chain4 单变量候选预注册；尚未创建 Kaggle submission
+- [`evidence/2026-08-21_b013_chain4_preflight.md`](evidence/2026-08-21_b013_chain4_preflight.md)：B013 chain4 单变量候选预注册、Notebook v1 云端核验与唯一 submission `55658141` 创建记录
 - [`docs/safety.md`](docs/safety.md)：研究授权边界与工程控制
 
 ## 当前主赛
@@ -133,8 +133,9 @@
 - [x] B005R submission `55461853` 已终态 `COMPLETE`，Public Score `86.945`，低于 B008R `88.760`，按恢复预注册拒绝且不重试
 - [x] B012 warmkeep submission `55495429` 已终态 `COMPLETE`，Public Score `88.665`，低于 B008R `88.760`，按预注册拒绝且不重试
 - [x] 完成 B013 公开路线与本地机制审计；未发现足够强的低相关单变量候选，未创建 B013 预注册、Notebook 或 competition submission
-- [x] 基于 B008R 慢行 replay 包装形成 B013 chain4 单变量候选并锁定源码 commit `685e311`；当前只完成预注册前本地验证，尚未创建 Kaggle Notebook 或 competition submission
-- [ ] 完成 B013 chain4 全量预提交验证、提交并推送预注册文档后，至多创建一次 B013 Kaggle submission 并监控终态
+- [x] 基于 B008R 慢行 replay 包装形成 B013 chain4 单变量候选，锁定源码 commit `685e311` 并提交/推送预注册 commit `7ad613a`
+- [x] 完成 B013 chain4 全量预提交验证，构建并云端核验 Notebook v1，确认 cloud `attack.py` SHA 一致后创建唯一 competition submission `55658141`
+- [ ] 只监控 B013 submission `55658141` 至终态；不得重提 B013 或在结果未知时创建 B014
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note
@@ -532,3 +533,12 @@ uv sync
   keeps B008R's one-message four-endpoint frame, while replay packaging returns
   four direct user messages over the same `.invalid` endpoints. No Kaggle
   Notebook or competition submission had been created at preregistration time.
+- Later `2026-08-21 02:09 UTC`, after preregistration commit `7ad613a` was
+  pushed, B013 chain4 Notebook v1 was cloud-verified with matching
+  `attack.py` SHA and used exactly once to create competition submission
+  `55658141`. Initial and `02:12 UTC` checks show `SubmissionStatus.PENDING`,
+  Public/Private Score blank, and `errorDescription=None`; do not retry B013 or
+  create B014 before this submission reaches terminal state.
+- Latest `2026-08-21 02:12 UTC` leaderboard refresh still shows B008R
+  `88.760`, rank `482`; top-200 boundary `91.215`; approximate bronze 10% cut
+  rank `382` at `89.415`; historical `92.165` would rank approximately `157`.

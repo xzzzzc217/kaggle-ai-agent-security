@@ -3711,3 +3711,50 @@
 - [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
 - `artifacts/kaggle/leaderboards/2026-08-21_0154_manual_refresh/ai-agent-security-multi-step-tool-attacks.zip`
 - `artifacts/kaggle/public_audit/2026-08-21_0154_kernels_list_utf8.csv`
+
+## 2026-08-21: B013 chain4 submitted; waiting for terminal result
+
+**Facts**
+
+- After preregistration commit `7ad613a` was pushed, B013 chain4 was built as
+  private Kaggle Notebook `heralces/ai-agent-security-b013-chain4` with kernel
+  version `1`.
+- Kernel version `1` reached `KernelWorkerStatus.COMPLETE`; downloaded cloud
+  output in `artifacts/kaggle/B013_v1/` contains `attack.py` with SHA
+  `5ac85de2991ccd7771b527be3a850023388fef904637986d4252d54382521e2b`, matching
+  the local candidate and preregistration.
+- Cloud artifact checks were clean: log actionable-error scan `0`, credential
+  value hits `0`, and credential-shape hit files `0`.
+- The correct Code Competition submission path used Kaggle kernel output
+  binding from `heralces/ai-agent-security-b013-chain4` version `1`,
+  `submission.csv`.
+- Exactly one B013 competition submission was created:
+  `55658141`, created `2026-08-21 02:09:06.230 UTC`, description
+  `B013 chain4 | attack 5ac85de2 | prereg 7ad613a | SDK 3.1.2`.
+- Initial and `2026-08-21 02:12 UTC` checks show submission `55658141` is
+  `SubmissionStatus.PENDING`, Public/Private Score blank, and
+  `errorDescription=None`.
+- Fresh `2026-08-21 02:12 UTC` leaderboard artifact has `3819` teams:
+  `heralces` remains rank `482` at score `88.760`, top-200 boundary is
+  `91.215`, approximate bronze 10% cut is rank `382` at score `89.415`, and
+  historical `92.165` would rank approximately `157`.
+
+**Decision**
+
+- B013 has now consumed its single authorized formal submission. Do not rerun,
+  repush, or resubmit B013.
+- Do not create B014 or any other new formal competition submission while
+  B013 submission `55658141` is unknown.
+- Terminal gates remain preregistered: `>88.760` improves the current
+  leaderboard-effective score, `>92.165` refreshes the historical high,
+  `>=100.000` marks strong competition reproduction; `<=88.760`, blank score,
+  failure, `ERROR`, timeout, duplicate route, unsafe artifact, or hash mismatch
+  rejects B013 without retry.
+
+**Evidence**
+
+- [`../evidence/2026-08-21_b013_chain4_preflight.md`](../evidence/2026-08-21_b013_chain4_preflight.md)
+- `submissions/B013/kernel-metadata.json`
+- `submissions/B013/submission-manifest.json`
+- `artifacts/kaggle/B013_v1/`
+- `artifacts/kaggle/leaderboards/2026-08-21_0212_b013_pending/ai-agent-security-multi-step-tool-attacks.zip`

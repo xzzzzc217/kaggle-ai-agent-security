@@ -205,3 +205,88 @@ Before any Kaggle write operation after this preregistration, recheck:
    `5ac85de2991ccd7771b527be3a850023388fef904637986d4252d54382521e2b`;
 6. Notebook logs have zero operational errors except known benign warnings;
 7. cloud artifacts have zero credential-shape matches.
+
+## Kaggle Notebook and competition submission creation
+
+After preregistration commit `7ad613a` was pushed, B013 was built and submitted
+exactly once.
+
+```text
+kernel=heralces/ai-agent-security-b013-chain4
+title=AI Agent Security B013 Chain4
+experiment_id=B013
+kernel_version=1
+kernel_status=KernelWorkerStatus.COMPLETE
+manifest_git_commit=7ad613a75f78edb1ee9d35740741ce14e4098978
+local_attack_sha256=5ac85de2991ccd7771b527be3a850023388fef904637986d4252d54382521e2b
+cloud_artifact_dir=artifacts/kaggle/B013_v1
+cloud_attack_sha256=5ac85de2991ccd7771b527be3a850023388fef904637986d4252d54382521e2b
+cloud_hash_matches_local=true
+submission_csv_bytes=88
+log_actionable_error_scan=0
+cloud_artifact_credential_value_hits=0
+cloud_artifact_credential_shape_hit_files=0
+```
+
+Immediately before formal submission, the Kaggle submissions list contained no
+B013 entry and no submission with attack hash prefix `5ac85de2` or `chain4`.
+The correct Code Competition submission used Kaggle kernel output binding:
+
+```text
+kernel=heralces/ai-agent-security-b013-chain4
+kernel_version=1
+submission_file=submission.csv
+submission_message=B013 chain4 | attack 5ac85de2 | prereg 7ad613a | SDK 3.1.2
+```
+
+The only B013 competition submission created under this preregistration is:
+
+```text
+formal_submission_ref=55658141
+formal_submission_created_utc=2026-08-21 02:09:06.230
+initial_submission_observed_utc=2026-08-21 02:09
+initial_submission_status=SubmissionStatus.PENDING
+initial_public_score=
+initial_private_score=
+initial_error_description=None
+```
+
+B013 must not be submitted again, and the Notebook must not be rerun for the
+same candidate. Until `55658141` reaches a terminal state, do not create B014 or
+any other new formal competition submission.
+
+## Pending monitor snapshot
+
+The `2026-08-21 02:12 UTC` monitor refresh confirmed that B013 is still
+non-terminal:
+
+```text
+formal_submission_ref=55658141
+status=SubmissionStatus.PENDING
+publicScore=None
+privateScore=None
+errorDescription=None
+```
+
+The same refresh downloaded a fresh public leaderboard artifact:
+
+```text
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-21_0212_b013_pending/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-21T02:12:11.csv
+rows=3819
+heralces_rank=482
+heralces_score=88.760
+score_at_100=94.850
+score_at_200=91.215
+score_at_300=89.955
+bronze_10pct_rank=382
+bronze_10pct_score=89.415
+rank_if_88.760=482
+rank_if_92.165=157
+rank_if_100.000=51
+```
+
+As of this snapshot, the account is not in the approximate public bronze band.
+B013 must reach at least the current `89.415` 10% cut to enter that band in this
+leaderboard snapshot, and it must exceed `88.760` to improve the current
+leaderboard-effective score.
