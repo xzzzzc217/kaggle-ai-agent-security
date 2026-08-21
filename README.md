@@ -28,7 +28,8 @@
 - [`evidence/2026-08-11_b011_fastfill_preflight.md`](evidence/2026-08-11_b011_fastfill_preflight.md)：B011 fast-fill 单变量候选的公开路线审计、安全适配、动态样本、预注册与终态拒绝
 - [`evidence/2026-08-12_b012_public_audit.md`](evidence/2026-08-12_b012_public_audit.md)：B012 公开路线复查与候选筛查；未形成正式预注册候选
 - [`evidence/2026-08-12_b005_restore_exception.md`](evidence/2026-08-12_b005_restore_exception.md)：用户授权的 B005R 分数恢复例外预注册；不计作 B012 新算法候选
-- [`evidence/2026-08-15_b013_public_audit.md`](evidence/2026-08-15_b013_public_audit.md)：B013 公开路线与本地机制审计；未形成正式预注册候选
+- [`evidence/2026-08-15_b013_public_audit.md`](evidence/2026-08-15_b013_public_audit.md)：B013 公开路线与本地机制审计及后续 addenda
+- [`evidence/2026-08-21_b013_chain4_preflight.md`](evidence/2026-08-21_b013_chain4_preflight.md)：B013 chain4 单变量候选预注册；尚未创建 Kaggle submission
 - [`docs/safety.md`](docs/safety.md)：研究授权边界与工程控制
 
 ## 当前主赛
@@ -132,7 +133,8 @@
 - [x] B005R submission `55461853` 已终态 `COMPLETE`，Public Score `86.945`，低于 B008R `88.760`，按恢复预注册拒绝且不重试
 - [x] B012 warmkeep submission `55495429` 已终态 `COMPLETE`，Public Score `88.665`，低于 B008R `88.760`，按预注册拒绝且不重试
 - [x] 完成 B013 公开路线与本地机制审计；未发现足够强的低相关单变量候选，未创建 B013 预注册、Notebook 或 competition submission
-- [ ] 继续以当前 leaderboard-effective `88.760` 和历史高点 `92.165` 分别为门槛筛查后续候选；预注册前不创建正式 submission
+- [x] 基于 B008R 慢行 replay 包装形成 B013 chain4 单变量候选并锁定源码 commit `685e311`；当前只完成预注册前本地验证，尚未创建 Kaggle Notebook 或 competition submission
+- [ ] 完成 B013 chain4 全量预提交验证、提交并推送预注册文档后，至多创建一次 B013 Kaggle submission 并监控终态
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note
@@ -523,3 +525,10 @@ uv sync
   notebook was pulled and SDK-validated, but it is a broad public endpoint/style
   portfolio rather than a B008R-derived single variable; no B013 candidate or
   submission was created.
+- Later `2026-08-21 01:54 UTC` refresh: leaderboard still showed B008R
+  `88.760`, rank `482`; top-200 boundary `91.240`; approximate bronze 10% cut
+  rank `382` at `89.415`. No newer public rerun appeared. B013 chain4 was
+  preregistered as a B008R-derived single variable: slow-row live validation
+  keeps B008R's one-message four-endpoint frame, while replay packaging returns
+  four direct user messages over the same `.invalid` endpoints. No Kaggle
+  Notebook or competition submission had been created at preregistration time.

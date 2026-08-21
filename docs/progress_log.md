@@ -3670,3 +3670,44 @@
 - `artifacts/kaggle/public_audit/2026-08-21_0140/verityix_hitherto/`
 - `artifacts/kaggle/public_audit/2026-08-21_0140_kernels_list_utf8.csv`
 - `artifacts/kaggle/leaderboards/2026-08-21_0140_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-21: B013 chain4 preregistered
+
+**Facts**
+
+- Rechecked current submissions and leaderboard during the `2026-08-21 01:54
+  UTC` manual refresh. B008R `55393959` remains the leaderboard-effective best
+  at `88.760`; B008 `55266445` remains CLI-visible as
+  `SubmissionStatus.COMPLETE` with Public Score `88.070`.
+- Fresh leaderboard snapshot has `3819` teams: `heralces` is rank `482`,
+  top-200 boundary is `91.240`, approximate bronze 10% cut is rank `382` at
+  `89.415`, and historical `92.165` would rank approximately `157`.
+- The date-run public kernel list showed no new high-signal rerun beyond the
+  already screened Verity V262 snapshot.
+- A B008R-derived chain4 candidate was implemented and source-locked at commit
+  `685e311e5e015e85ccda2087d3436810e9a0b9b2`, candidate SHA
+  `5ac85de2991ccd7771b527be3a850023388fef904637986d4252d54382521e2b`.
+
+**Decision**
+
+- B013 chain4 is selected as a formal single-variable candidate. It preserves
+  B008R's live slow-row frame validation, latency split, classify5 batch,
+  replay-safe sizing, hop policy, replay-cost coefficient, templates, and
+  `.invalid` endpoint policy.
+- The only intended behavior change is slow-row replay packaging: a fired
+  slow-row finding is returned as four direct replay user messages instead of
+  one frame message naming four endpoints.
+- Local fake-env samples show unchanged returned-candidate counts, URL counts,
+  live frame probes, and hop caps. Under a conservative
+  one-post-per-user-message replay shape, the first slow-row candidate changes
+  from `1` scored post / raw `18.0` to `4` scored posts / raw `66.0`.
+- No Kaggle Notebook or competition submission has been created yet. B013
+  remains gated on full validation, committed-and-pushed preregistration docs,
+  dedup checks, manifest checks, cloud artifact hash checks, and secret scans.
+
+**Evidence**
+
+- [`../evidence/2026-08-21_b013_chain4_preflight.md`](../evidence/2026-08-21_b013_chain4_preflight.md)
+- [`../evidence/2026-08-15_b013_public_audit.md`](../evidence/2026-08-15_b013_public_audit.md)
+- `artifacts/kaggle/leaderboards/2026-08-21_0154_manual_refresh/ai-agent-security-multi-step-tool-attacks.zip`
+- `artifacts/kaggle/public_audit/2026-08-21_0154_kernels_list_utf8.csv`

@@ -2584,3 +2584,63 @@ replacement rather than a B008R-derived low-correlated single variable.
 
 Decision: no preregisterable B013 candidate is selected. No B013
 preregistration, Notebook, or competition submission is created.
+
+## 2026-08-21 01:54 UTC addendum: B013 chain4 candidate preregistered
+
+The manual refresh at `2026-08-21 01:54 UTC` rechecked current submissions,
+public leaderboard, and the date-run public kernel list:
+
+```text
+current_leaderboard_effective_submission=55393959
+current_leaderboard_effective_public_score=88.760
+B008_current_cli_status=SubmissionStatus.COMPLETE
+B008_current_cli_public_score=88.070
+team_rank=482
+score_at_100=94.985
+score_at_200=91.240
+score_at_300=89.990
+bronze_10pct_cut_rank=382
+bronze_10pct_cut_score=89.415
+rank_if_88_760=482
+rank_if_92_165=157
+rank_if_100_000=51
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-21_0154_manual_refresh/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-21T01:54:41.csv
+```
+
+No new high-signal public rerun appeared after the already screened Verity V262
+snapshot. The latest date-run list remains led by Verity, Evgendvorkin, Georgy,
+Lopure, Dimong, Coolin, Kaiwalya, and Anas, all already covered by this audit or
+earlier B009/B010/B011/B012 evidence.
+
+This pass then promoted the local multi-message replay-chain mechanism from the
+`2026-08-20 22:57 UTC` research note into a formal B013 candidate because it can
+now be expressed as one B008R-derived behavior variable:
+
+```text
+candidate_id=B013
+candidate_name=replaysafe_chain4_v1
+candidate_path=baselines/replaysafe_chain4_v1/attack.py
+candidate_sha256=5ac85de2991ccd7771b527be3a850023388fef904637986d4252d54382521e2b
+candidate_source_commit=685e311e5e015e85ccda2087d3436810e9a0b9b2
+parent_path=baselines/replaysafe_classify5_v1/attack.py
+parent_sha256=4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1
+```
+
+The single behavior variable is slow-row replay packaging only: B008R's live
+slow-row frame probe remains unchanged, but a fired slow-row finding is returned
+as four direct replay user messages, preserving the same four `.invalid`
+endpoints. Fast/plain rows, latency split, classify5, replay-safe fraction,
+slow-multipost count, hop policy, replay-cost coefficient, prompt templates, and
+reserved URL policy remain unchanged.
+
+Local dynamic samples show unchanged candidate counts, URL counts, and hop caps
+for B008R versus B013 under identical fake-env latencies. Under a conservative
+one-post-per-user-message replay model, the first slow-row candidate changes
+from `1` scored post / raw `18.0` to `4` scored posts / raw `66.0`.
+
+Formal preregistration evidence is in
+`evidence/2026-08-21_b013_chain4_preflight.md`. No Kaggle Notebook or
+competition submission has been created yet; those remain gated on full local
+validation, committed-and-pushed preregistration docs, dedup checks, manifest
+checks, cloud artifact hash checks, and secret scans.
