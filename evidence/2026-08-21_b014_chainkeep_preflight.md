@@ -300,3 +300,78 @@ terminal):
   Risk: chain reliability degrades with longer chains.
 
 All B015 candidates remain sketches until B014 terminal.
+
+## B014 submission record
+
+```text
+prereg_commit=ec43467689642b40892cd23094003da9382404c3
+push_commit=ec43467689642b40892cd23094003da9382404c3
+local_attack_sha256=493b901f2144a08a68c408b23e779185efe1e98efba80d055fc71c4eae1f8568
+kernel_id=heralces/ai-agent-security-b014-chainkeep
+kernel_version=1
+kernel_status=KernelWorkerStatus.COMPLETE
+submission_artifact_dir=artifacts/kaggle/B014_v1
+submission_artifact_log=artifacts/kaggle/B014_v1.log
+cloud_attack_sha256=493b901f2144a08a68c408b23e779185efe1e98efba80d055fc71c4eae1f8568
+cloud_hash_matches_local=true
+submission_csv_bytes=88
+log_actionable_error_scan=0
+cloud_artifact_credential_value_hits=0
+cloud_artifact_credential_shape_hit_files=0
+submission_message=B014 chainkeep | attack 493b901f | prereg ec43467 | SDK 3.1.2
+formal_submission_ref=PENDING
+formal_submission_created_utc=2026-08-21 16:17:10.210
+initial_submission_observed_utc=2026-08-21 16:17
+initial_submission_status=SubmissionStatus.PENDING
+initial_public_score=
+initial_private_score=
+initial_error_description=None
+competition_submission_refresh_companion_to=b013 55658141
+```
+
+Submission flow used:
+
+```text
+1. Local: ruff check + ruff format --check + pytest -q + preflight + SDK validate
+2. Local: scripts/build_kaggle_notebook.py -> submission-manifest.json binds prereg commit
+3. Kaggle: scripts/push_kernel.py submissions/B014 -> kernel version 1 QUEUED
+4. Kaggle: kernels status poll until COMPLETE
+5. Kaggle: kernels output -> attack.py + submission.csv + log
+6. Local: SHA matches manifest attack_sha256 -> confirms artifact fidelity
+7. Kaggle: competitions submit -k heralces/ai-agent-security-b014-chainkeep -v 1 -f submission.csv
+   with submission_message listing attack hash, prereg commit, and SDK version
+8. Refresh: competitions submissions shows B014 row in PENDING state
+```
+
+The cloud log contains only the standard committed-notebook boot output
+("Dataset root: ...", "attack.py written", "placeholder submission.csv
+written") followed by the hidden-gateway rerun. There are no actionable
+errors. The same log file is preserved at `artifacts/kaggle/B014_v1.log` so
+the rerun can be inspected when B014 reaches terminal state.
+
+## B013 terminal result (concurrent with B014 preregistration)
+
+B013 chain4 (`55658141`) reached terminal state during the B014 build
+window:
+
+```text
+formal_submission_ref=55658141
+kaggle_cli_status=SubmissionStatus.COMPLETE
+kaggle_cli_public_score=61.930
+kaggle_cli_private_score=
+kaggle_api_status=SubmissionStatus.COMPLETE
+kaggle_api_public_score=null
+kaggle_api_private_score=null
+kaggle_api_error_description=None
+```
+
+B013 scored `61.930` — significantly below the B008R `88.760` baseline and
+also below the historical_excluded B007 `76.905` and B010 `52.330` rejects.
+Per the B013 acceptance gates, B013 is rejected at terminal.
+
+B013's negative result is the strongest available evidence for the B014
+multi-variable bundling rationale: pure chain4 alone collapses the
+score-bearing replay set below the B008R reliable floor, but combining it
+with `KEEP_WARMUP_FIRED` and a tighter slow-row replay budget adds back
+the suppressed score-bearing candidates incrementally rather than fully
+restoring them.
