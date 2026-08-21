@@ -672,3 +672,9 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
   need a proven hidden-agent replay-reliability gain over B008R's existing
   slow-row four-endpoint frame before becoming a formal single-variable B013
   candidate. No B013 preregistration or submission was created.
+- A later `2026-08-21 01:40 UTC` heartbeat pulled the newly rerun Verity V262
+  public notebook. Its extracted code validates, but the route is a public
+  endpoint/style portfolio over eight prompt styles and eight public URL
+  patterns with live predicate retention, not a B008R-derived single variable.
+  Latest checked leaderboard remains B008R `88.760`, rank `482`, top-200
+  boundary `91.215`.

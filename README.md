@@ -518,3 +518,8 @@ uv sync
   `89.415`, and historical `92.165` would rank approximately `157`. A local SDK
   audit of multi-message replay chains found plausible scoring support but no
   target-agent reliability proof strong enough for a formal B013 candidate.
+- Later `2026-08-21 01:40 UTC` refresh: leaderboard remained B008R `88.760`,
+  rank `482`, with top-200 boundary `91.215`. A newly rerun Verity V262 public
+  notebook was pulled and SDK-validated, but it is a broad public endpoint/style
+  portfolio rather than a B008R-derived single variable; no B013 candidate or
+  submission was created.

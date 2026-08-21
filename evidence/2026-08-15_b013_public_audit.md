@@ -2532,3 +2532,55 @@ behavior together unless a narrower design is proven.
 Decision: no preregisterable B013 single-variable candidate is selected from
 this pass. No B013 preregistration, Notebook, or competition submission is
 created.
+
+## 2026-08-21 01:40 UTC addendum
+
+The later heartbeat refreshed current submissions, a fresh public leaderboard,
+and the date-run public kernel list:
+
+```text
+current_leaderboard_effective_submission=55393959
+current_leaderboard_effective_public_score=88.760
+B008_current_cli_status=SubmissionStatus.COMPLETE
+B008_current_cli_public_score=88.070
+team_rank=482
+score_at_100=94.850
+score_at_200=91.215
+score_at_300=89.955
+score_at_382=89.415
+score_at_400=89.245
+rank_if_88_760=482
+rank_if_92_165=157
+rank_if_100_000=51
+bronze_10pct_cut=382
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-21_0140_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-21T01:40:33.csv
+```
+
+The latest public kernel list showed a newly rerun
+`verityix/ai-agent-security-attack-algorithm-hitherto` at
+`2026-08-21 00:01:56 UTC`. This pass pulled it to
+`artifacts/kaggle/public_audit/2026-08-21_0140/verityix_hitherto/`.
+
+```text
+notebook_sha256=6ef7d4ce62595ea067b72ed8cb3b21b08f101dd058976130c464d7d6bd400ae5
+extracted_code_cells_sha256=5da106186b4744c4b76337e86b5ccf6c3d78d26c282223eed24ef1df78bca29b
+AttackAlgorithm=True
+AttackCandidate=True
+http.post=True
+email.send=False
+.invalid=False
+.co=True
+SDK_validate=passed
+```
+
+The extracted code is a V262 public endpoint/style portfolio: two weighted
+streams over eight prompt styles and eight public URL patterns
+(`.xyz/.cloud/.app/.dev/.io/.org/.com/.net`) with 1600 total live-tested
+candidates. It uses `eval_predicates` retention but does not preserve B008R's
+reserved-domain URL policy, classify5 latency split, replay-safe sizing, or
+slow-row four-endpoint frame. It is therefore another broad public route
+replacement rather than a B008R-derived low-correlated single variable.
+
+Decision: no preregisterable B013 candidate is selected. No B013
+preregistration, Notebook, or competition submission is created.

@@ -3635,3 +3635,38 @@
 
 - `evidence/2026-08-15_b013_public_audit.md`
 - `artifacts/kaggle/leaderboards/2026-08-20_2257_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-21: B013 Verity V262 rerun screened
+
+**Facts**
+
+- Rechecked current submissions and leaderboard during the `2026-08-21 01:40
+  UTC` heartbeat. B008R `55393959` remains the leaderboard-effective best at
+  `88.760`; B008 `55266445` remains CLI-visible as `SubmissionStatus.COMPLETE`
+  with Public Score `88.070`.
+- Fresh leaderboard snapshot still has `heralces` at rank `482`, top-200
+  boundary `91.215`, approximate bronze 10% cut rank `382` at `89.415`, and
+  historical `92.165` would rank approximately `157`.
+- The current public kernel list showed newly rerun
+  `verityix/ai-agent-security-attack-algorithm-hitherto` at `2026-08-21
+  00:01:56 UTC`. Pulled notebook SHA is
+  `6ef7d4ce62595ea067b72ed8cb3b21b08f101dd058976130c464d7d6bd400ae5`;
+  extracted code-cell SHA is
+  `5da106186b4744c4b76337e86b5ccf6c3d78d26c282223eed24ef1df78bca29b`; SDK
+  validate passed.
+
+**Decision**
+
+- Verity V262 is a broad public endpoint/style portfolio over eight prompt
+  styles and eight public URL patterns, with live predicate retention. It does
+  not preserve B008R's reserved-domain policy, classify5 split, replay-safe
+  sizing, or slow-row four-endpoint frame, so it is not a preregisterable
+  B008R-derived single variable.
+- No B013 preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- `evidence/2026-08-15_b013_public_audit.md`
+- `artifacts/kaggle/public_audit/2026-08-21_0140/verityix_hitherto/`
+- `artifacts/kaggle/public_audit/2026-08-21_0140_kernels_list_utf8.csv`
+- `artifacts/kaggle/leaderboards/2026-08-21_0140_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
