@@ -2473,3 +2473,62 @@ Key current-state deltas for future tail reads:
   `artifacts/kaggle/public_audit/2026-08-20_1459/`; no preregisterable B013
   single-variable candidate was selected, and no B013 Notebook/submission was
   created.
+
+## 2026-08-20 22:57 UTC addendum
+
+The later heartbeat refreshed current submissions and a fresh public leaderboard
+snapshot:
+
+```text
+current_leaderboard_effective_submission=55393959
+current_leaderboard_effective_public_score=88.760
+B008_current_cli_status=SubmissionStatus.COMPLETE
+B008_current_cli_public_score=88.070
+team_rank=482
+score_at_50=100.185
+score_at_100=94.850
+score_at_189=91.440
+score_at_200=91.215
+score_at_300=89.955
+score_at_378=89.415
+score_at_400=89.245
+score_at_474=88.830
+score_at_500=88.695
+rank_if_88_760=482
+rank_if_92_165=157
+rank_if_100_000=51
+bronze_10pct_cut=382
+leaderboard_artifact=artifacts/kaggle/leaderboards/2026-08-20_2257_heartbeat/ai-agent-security-multi-step-tool-attacks.zip
+leaderboard_csv=ai-agent-security-multi-step-tool-attacks-publicleaderboard-2026-08-21T01:37:14.csv
+```
+
+The latest submission list is unchanged in substance: B008R remains the current
+leaderboard-effective best at `88.760`; B012 `88.665`, B005R `86.945`, B011
+`72.680`, and the current B008 CLI-visible `88.070` are all below B008R.
+
+A local SDK scoring audit checked whether a B008R-derived multi-message replay
+chain could be a clean B013 mechanism. SDK constants allow up to `32` replay
+messages per candidate and `2000` replay findings, and `score_cell_signature`
+uses only tool events, not user intent. Synthetic traces with repeated
+successful `http.post` events score as follows:
+
+```text
+n_posts=1 raw=18.0 normalized=0.09
+n_posts=2 raw=34.0 normalized=0.17
+n_posts=4 raw=66.0 normalized=0.33
+n_posts=8 raw=130.0 normalized=0.65
+```
+
+This confirms the SDK would score multiple successful exfiltration posts in one
+replayed candidate, but the raw efficiency is still slightly lower than the same
+number of separate one-post candidates because the `+2` novelty bonus is paid
+once per finding. A multi-message chain would therefore only be competitive if
+it materially improves hidden-agent replay reliability over B008R's existing
+slow-row one-message four-endpoint frame. Current local evidence does not prove
+that reliability gain against the target agent, and testing it formally would
+also change replay shape, replay-cost accounting, and slow-row validation
+behavior together unless a narrower design is proven.
+
+Decision: no preregisterable B013 single-variable candidate is selected from
+this pass. No B013 preregistration, Notebook, or competition submission is
+created.

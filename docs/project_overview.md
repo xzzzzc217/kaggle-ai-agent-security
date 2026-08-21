@@ -665,3 +665,10 @@ leaderboard-effective B008R `88.760` 而拒绝且不重试。
   endpoint/style portfolio with live predicates; Georgy is an educational
   starter/local-scoring notebook; and Lopure still lacks a standalone
   `AttackAlgorithm`. No B013 candidate was selected.
+- A later `2026-08-20 22:57 UTC` heartbeat refreshed the leaderboard to rank
+  `482` at score `88.760`, top-200 boundary `91.215`, and bronze 10% cut rank
+  `382` at score `89.415`. A local SDK scoring audit found multi-message replay
+  chains can score multiple exfiltration predicates in one finding, but they
+  need a proven hidden-agent replay-reliability gain over B008R's existing
+  slow-row four-endpoint frame before becoming a formal single-variable B013
+  candidate. No B013 preregistration or submission was created.

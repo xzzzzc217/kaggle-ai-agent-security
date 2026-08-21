@@ -513,3 +513,8 @@ uv sync
   Georgy is a starter/local-scoring notebook, and Lopure still lacks a usable
   top-level attack implementation. No B013 preregistration, Notebook, or
   competition submission was created.
+- Later `2026-08-20 22:57 UTC` refresh: B008R remains `88.760`, now rank `482`;
+  top-200 boundary is `91.215`, approximate bronze 10% cut is rank `382` at
+  `89.415`, and historical `92.165` would rank approximately `157`. A local SDK
+  audit of multi-message replay chains found plausible scoring support but no
+  target-agent reliability proof strong enough for a formal B013 candidate.

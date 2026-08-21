@@ -3606,3 +3606,32 @@
 - `artifacts/kaggle/public_audit/2026-08-20_1459/new_reruns_summary.json`
 - `artifacts/kaggle/leaderboards/2026-08-20_1459_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
 - `artifacts/kaggle/leaderboards/2026-08-20_1459_heartbeat/submissions.csv`
+
+## 2026-08-20: B013 chain-score local audit
+
+**Facts**
+
+- Rechecked current submissions and a fresh public leaderboard during the
+  `2026-08-20 22:57 UTC` heartbeat. B008R `55393959` remains the current
+  leaderboard-effective best at `88.760`; B008 `55266445` remains CLI-visible as
+  `SubmissionStatus.COMPLETE` with Public Score `88.070`.
+- Fresh leaderboard snapshot has `3818` teams: `heralces` is rank `482`, top-200
+  boundary is `91.215`, approximate bronze 10% cut is rank `382` at `89.415`,
+  and historical `92.165` would rank approximately `157`.
+- Local SDK inspection confirmed `MAX_REPLAY_MESSAGES_PER_FINDING=32`,
+  `MAX_REPLAY_FINDINGS=2000`, and score-cell novelty hashes are computed from
+  replay tool events. Synthetic successful `http.post` traces with 1/2/4/8 posts
+  score raw `18/34/66/130`.
+
+**Decision**
+
+- Multi-message replay chains remain a possible research mechanism, but this
+  pass did not prove a target-agent reliability gain over B008R's existing
+  one-message slow-row four-endpoint frame. Without that proof, it is not strong
+  enough for a formal B013 preregistration.
+- No B013 preregistration, Notebook, or competition submission was created.
+
+**Evidence**
+
+- `evidence/2026-08-15_b013_public_audit.md`
+- `artifacts/kaggle/leaderboards/2026-08-20_2257_heartbeat/ai-agent-security-multi-step-tool-attacks.zip`
