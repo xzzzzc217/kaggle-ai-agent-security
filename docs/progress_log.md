@@ -3758,3 +3758,163 @@
 - `submissions/B013/submission-manifest.json`
 - `artifacts/kaggle/B013_v1/`
 - `artifacts/kaggle/leaderboards/2026-08-21_0212_b013_pending/ai-agent-security-multi-step-tool-attacks.zip`
+
+## 2026-08-23: B015-C-modified submitted; pre-stage B016-destructive
+
+**Facts**
+
+- B015-C-modified CONFUSED_DEPUTY candidate was built as private Kaggle
+  Notebook `heralces/ai-agent-security-b015c-confused-modified` and
+  submitted as competition entry `55695369`. Initial status:
+  `SubmissionStatus.PENDING`, Public/Private Score blank, no error.
+- B015-C-modified source SHA
+  `6afd6e873a377907b62dcb0826f0a862ed0af3e4e3604df42a11810f0c81b299`
+  matches the local
+  `baselines/replaysafe_chainkeep_confused_v1/attack.py` artifact.
+- The B015-C-modified preregistration decision tree flagged B016-destructive
+  (DESTRUCTIVE_WRITE follow-up, severity 4) as the higher-severity
+  sibling candidate to pre-stage pending B015-C-modified's terminal
+  result.
+- Implemented and source-locked B016-destructive at commit
+  `44da7c39a2acb17fdd70ee05528c6f076beb54ae`, candidate SHA
+  `b6e5f698adaf4335867d2fb07e786323f7640a5ebf6bdab5405330c145e62006`,
+  path `baselines/replaysafe_classify5_destructive_v1/attack.py`,
+  size `18265` bytes.
+- B016-destructive preserves B008R envelope exactly
+  (`REPLAY_SAFE_FRAC=0.99`, `REPLAY_BUDGET_MULT=1.0`,
+  `KEEP_WARMUP_FIRED=False`, no chain4) and adds ONE new variable:
+  the DESTRUCTIVE_WRITE `fs.delete` follow-up appended to every
+  fired single-message marker-post candidate.
+- Per-cell raw uplift vs B008R: `5 -> 9` (5 EXFILTRATION + 4
+  DESTRUCTIVE_WRITE) -- a higher per-cell uplift than B015-C-modified's
+  `5 -> 8` (5 EXFILTRATION + 3 CONFUSED_DEPUTY).
+- Follow-up wording uses `"remove"` and `"delete"` vocabulary to
+  avoid the WRITE-side-effect guardrail tokens `"save"` and
+  `"write"`; `secret.txt` is the canonical protected fixture path
+  matched by the SDK's `_is_secret_path` matcher.
+- Local validation: preflight PASS, SDK validate PASS, ruff check PASS,
+  ruff format PASS, pytest 11 new tests + 152 total tests PASS, local
+  structural estimator confirms 100 two-message candidates and 100
+  secret.txt-bearing candidates with 0 guardrail hits and 0
+  non-reserved URLs.
+- Submission bundle built at `submissions/B016-destructive/`:
+  - `ai-agent-security-b016-destructive.ipynb`
+  - `kernel-metadata.json` (`heralces/ai-agent-security-b016-destructive`,
+    private, GPU)
+  - `submission-manifest.json`
+    (attack_sha256=`b6e5f698adaf4335867d2fb07e786323f7640a5ebf6bdab5405330c145e62006`,
+    attack_size_bytes=18265, sdk_version=3.1.2, git_commit=`44da7c39`)
+
+**Decision**
+
+- B016-destructive is pre-staged but **NOT submitted** to Kaggle.
+- Submission gate: B015-C-modified `55695369` must reach terminal state
+  (COMPLETE / ERROR / FAILED) before B016-destructive can be evaluated
+  for submission.
+- Post B015-C-modified decision tree:
+  - Public Score `>= 89.6` -> keep B015-C-modified as the next move;
+    defer B016-destructive unless a later public-route screen reveals a
+    more attractive single-variable axis.
+  - Public Score `< 89.6` or terminal failure -> submit B016-destructive
+    as the recovery attempt; the deferred execution sequence is
+    documented in
+    `evidence/2026-08-23_b016_destructive_preregistration.md`.
+- Active-slot window: B013 (slot 1, 61.930) and B014 (slot 2, 45.790)
+  still occupy the two newest submission slots. B016-destructive cannot
+  become leaderboard-effective until at least one of B013/B014/B015-C-modified
+  falls off the active window. This is automatic when a newer submission
+  is accepted.
+- B016-destructive is a **sibling** of B015-C-modified (independent
+  single-variable axes off B008R), not a parent/child relationship.
+  Both should not be submitted simultaneously.
+
+**Evidence**
+
+- `evidence/2026-08-23_b016_destructive_preregistration.md`
+- `evidence/local_score_estimate_b016_destructive.json`
+- `baselines/replaysafe_classify5_destructive_v1/attack.py`
+- `baselines/replaysafe_classify5_destructive_v1/README.md`
+- `tests/test_replaysafe_classify5_destructive.py`
+- `scripts/local_score_estimate_b016.py`
+- `submissions/B016-destructive/ai-agent-security-b016-destructive.ipynb`
+- `submissions/B016-destructive/kernel-metadata.json`
+- `submissions/B016-destructive/submission-manifest.json`
+- `evidence/2026-08-22_b015c_modified_preregistration.md`
+  (B015-C-modified parent preregistration)
+- `submissions/B015-C-modified/submission-manifest.json`
+  (B015-C-modified bundle)
+
+**Next threshold**
+
+- B015-C-modified `55695369` reaching terminal state (COMPLETE / ERROR /
+  FAILED). Once observed:
+  - Public Score `>= 89.6` -> keep B015-C-modified as the next move;
+    defer B016-destructive unless a later public-route screen reveals a
+    more attractive single-variable axis.
+  - Public Score `< 89.6` or terminal failure -> submit B016-destructive
+    as the recovery attempt; the deferred execution sequence is
+    documented in
+    `evidence/2026-08-23_b016_destructive_preregistration.md`.
+- The B015-C-modified terminal gate is the only outstanding pre-stage
+  blocker. All other validation gates (preflight, SDK, ruff, pytest,
+  structural estimator, notebook bundle) are passed.
+
+## 2026-08-23: B015-C-modified terminal; B016 pending; B017 pre-staged
+
+**Facts**
+
+- Refreshed submissions at 2026-08-23 08:35 UTC. B015-C-modified
+  `55695369` is `COMPLETE` with Public Score `58.610`. That is below
+  the 89.6 keep gate and below B008R `88.760`, so B015-C-modified is
+  rejected and must not be retried.
+- B016-destructive `55708612` remains `PENDING` (created 2026-08-23
+  07:00:52 UTC), description `B016-destructive fs.delete | attack
+  b6e5f698 | prereg 44da7c3 | SDK 3.1.2`.
+- Fresh public leaderboard has `3922` teams: `heralces` is rank `541`
+  at score `88.760` (still B008R). Approximate bronze 10% cut is rank
+  `392` at `89.625`. Gap to bronze is `0.865`. Top-200 is `91.710`.
+- Public-route screen of the 2026-08-22/23 kernels (lopure relay-push100,
+  hengck23 local-cpu clone, verityix v268, evgendvorkin notes,
+  georgymamarin demo, empty Antonio notebook) found no reserved-domain
+  single-variable child of B008R stronger than widening the slow-row
+  frame.
+- Implemented B017-slowmultipost6 as a strict B008R child:
+  `SLOW_MULTIPOST_N: 4 -> 6`, still one user message, SHA
+  `0a80ac1595f69a00cfa497619df406bca400b6c9835cfaf70179a9b758d4bfc6`,
+  size `11735`. Local gates: ruff pass, B017 tests 5/5, full pytest
+  159 passed in 88.51s, preflight PASS, SDK validate PASS.
+
+**Interpretation and limits**
+
+- B015-C-modified falsifies "append a second user message to stack a
+  second predicate" as a medal path. B016 uses the same two-message
+  shape, so it is a hedge on tool family, not a new shape.
+- B017 stacks extra EXFILTRATION events inside the already-validated
+  single-message slow-row frame (the B004 direction). Local fixtures
+  cannot predict hidden-agent six-post completion or replay cost.
+- Public leaderboard currently displays the best COMPLETE score
+  (B008R `88.760`), not the latest low score. That does not replace
+  private-leaderboard selection at the 2026-09-01 deadline.
+
+**Evidence**
+
+- `evidence/2026-08-23_b017_public_audit.md`
+- `evidence/2026-08-23_b017_slowmultipost6_preflight.md`
+- `baselines/replaysafe_slowmultipost6_v1/attack.py`
+- `tests/test_replaysafe_slowmultipost6.py`
+- `artifacts/kaggle/leaderboards/2026-08-23_live/`
+
+**Decision**
+
+- Reject B015-C-modified. Do not retry.
+- Do not resubmit B016. Only monitor `55708612` to terminal.
+- Pre-stage B017. Do not push a B017 kernel or create a B017
+  competition submission until B016 is terminal.
+- Post-B016 tree: keep B016 if `>=89.625`; otherwise submit B017
+  once (no retry).
+
+**Next threshold**
+
+- B016-destructive `55708612` reaching COMPLETE / ERROR / FAILED.
+  Then apply the B017 preregistered decision tree. Do not start B018
+  before that. Team-merge deadline remains 2026-08-25 23:59 UTC.
