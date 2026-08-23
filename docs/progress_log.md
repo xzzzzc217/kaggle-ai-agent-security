@@ -3918,3 +3918,50 @@
 - B016-destructive `55708612` reaching COMPLETE / ERROR / FAILED.
   Then apply the B017 preregistered decision tree. Do not start B018
   before that. Team-merge deadline remains 2026-08-25 23:59 UTC.
+
+## 2026-08-23: executor takes remaining decisions; GPU probe launched
+
+**Facts**
+
+- User authorized autonomous competition decisions and named local RTX 4060
+  plus weekly Kaggle GPU/TPU as available compute.
+- Local 4060 is 8188 MiB, idle. `compass-fx` has PyTorch 2.6+cu124.
+  Target GGUFs are 11.6 GB (gpt-oss-20b Q4) and 16.9 GB (Gemma 4 Q4); neither
+  fits the 8 GB card, so local GPU stays on tests/preflight only.
+- TPU is unused for this tool-calling gym.
+- Pushed private T4 probe kernel
+  `heralces/ai-agent-security-probe-n4n6-gptoss` v1 (`kernelId=131697497`)
+  with model `llkh0a/gpt-oss-20b-gguf/PyTorch/default/1`. Wall 18 minutes,
+  4 trials each of 1/4/6-endpoint B008R/B017 messages against OptimalGuardrail.
+  Status at push: `KernelWorkerStatus.RUNNING`. This is research compute, not
+  a competition submission.
+- B016 `55708612` still `PENDING` at 09:05 UTC.
+
+**Decision**
+
+- Keep B017 unsubmitted until B016 is terminal.
+- Spend one short Kaggle T4 run this week on 4-vs-6 fire-rate evidence.
+- Do not download multi-GB GGUFs onto the laptop.
+- Continue B016 monitor. If B016 misses 89.625, submit B017 without a
+  further user prompt.
+
+## 2026-08-23: n4n6 gpt-oss probe COMPLETE
+
+**Facts**
+
+- Probe kernel v1 reached `COMPLETE` with no failure message.
+- Output `probe_n4n6.json`: width 1/4/6 all 4/4 full-fire; mean live
+  1.05s / 2.83s / 4.16s; six-endpoint trials each produced six
+  EXFILTRATION predicates.
+- B016 `55708612` still PENDING at 09:05 UTC.
+
+**Decision**
+
+- 6-endpoint single-message shape is prompt-valid on gpt-oss GGUF.
+- B017 remains gated on B016 terminal. No competition submit in this
+  update.
+
+**Evidence**
+
+- `evidence/2026-08-23_probe_n4n6_gptoss.md`
+- `artifacts/kaggle/probe_n4n6_v1/probe_n4n6.json`
