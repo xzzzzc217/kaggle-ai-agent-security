@@ -172,7 +172,39 @@ submission_message_template=B017-slowmultipost6 n=6 | attack {short_sha} | prere
 
 ## Submission guard
 
-Do **not** push the kernel or create a competition submission in this
-evidence cycle. Local notebook packaging is allowed. The authenticated
-Kaggle write sequence runs only after B016 `55708612` is terminal and
-the decision tree above resolves to "submit B017".
+## B016 terminal gate (resolved)
+
+```text
+b016_submission_ref=55708612
+b016_terminal_status=COMPLETE
+b016_terminal_public_score=66.485
+b016_observed_utc=2026-08-23 20:37:56
+decision=reject B016 (66.485 <= 88.760); submit B017 once; do not retry B016
+```
+
+## Formal submission record
+
+Submitted once after B016 55708612 COMPLETE publicScore 66.485.
+attack.py was not modified after preregistration. Cloud hash matched local.
+
+```text
+formal_submission_ref=55724973
+formal_submission_created_utc=2026-08-23 20:41:06.183
+initial_submission_status=SubmissionStatus.PENDING
+initial_public_score=
+initial_error_description=None
+kernel_id=heralces/ai-agent-security-b017-slowmultipost6
+kernel_version=1
+kernel_status=KernelWorkerStatus.COMPLETE
+kernelId=131749736
+local_attack_sha256=0a80ac1595f69a00cfa497619df406bca400b6c9835cfaf70179a9b758d4bfc6
+cloud_artifact_dir=artifacts/kaggle/B017_v1
+cloud_attack_sha256=0a80ac1595f69a00cfa497619df406bca400b6c9835cfaf70179a9b758d4bfc6
+cloud_hash_matches_local=true
+submission_csv_bytes=88
+submission_file=submission.csv
+submission_message=B017-slowmultipost6 n=6 | attack 0a80ac15 | prereg 96b1d2d | SDK 3.1.2
+git_commit=5d7bf0149e41496812e66cf5e459aeb09eade48b
+```
+
+Do not submit B017 again. Do not start B018 until 55724973 reaches a terminal state.

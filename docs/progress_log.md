@@ -3965,3 +3965,36 @@
 
 - `evidence/2026-08-23_probe_n4n6_gptoss.md`
 - `artifacts/kaggle/probe_n4n6_v1/probe_n4n6.json`
+
+## 2026-08-23: B016 rejected at 66.485; B017 submitted
+
+**Facts**
+
+- B016-destructive `55708612` reached `COMPLETE` at 20:37 UTC with
+  Public Score `66.485`. That is below B008R `88.760` and the 89.625
+  bronze-cut keep gate.
+- Per the B016/B017 preregistered tree, B016 is rejected and not retried.
+  The two-message DESTRUCTIVE_WRITE follow-up failed in the same family
+  as B015-C (58.610).
+- B017-slowmultipost6 was submitted once:
+  kernel `heralces/ai-agent-security-b017-slowmultipost6` v1
+  `kernelId=131749736` COMPLETE; cloud `attack.py` SHA
+  `0a80ac1595f69a00cfa497619df406bca400b6c9835cfaf70179a9b758d4bfc6`
+  matches local; competition submission `55724973` created
+  2026-08-23 20:41:06 UTC, initial status `PENDING`.
+
+**Decision**
+
+- Reject B016. Do not retry.
+- Monitor only B017 `55724973` to terminal. Do not resubmit B017.
+- Do not create B018 while B017 is unknown.
+- Gates: `>88.760` improves the floor; `>=89.625` is the bronze-cut
+  chase; `>92.165` refreshes the historical high; `>=100` is strong
+  reproduction. `<=88.760`, blank, ERROR, or unsafe artifact rejects
+  B017 without retry.
+
+**Evidence**
+
+- `evidence/b016_monitor.log`
+- `evidence/2026-08-23_b017_slowmultipost6_preflight.md`
+- `artifacts/kaggle/B017_v1/`
