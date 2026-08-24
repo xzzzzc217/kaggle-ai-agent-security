@@ -76,10 +76,24 @@ SDK validate redteam: PASS
 
 Do not retry B018. Do not start B019 until B018 is terminal.
 
-## Planned artifact
+## Formal submission record
+
+Submitted once after B017 55724973 COMPLETE publicScore 88.505.
+Cloud attack.py hash matched local. Do not submit B018 again.
 
 ```text
+formal_submission_ref=55737814
+formal_submission_created_utc=2026-08-24 08:39:02.783
+initial_submission_status=SubmissionStatus.PENDING
 kernel_id=heralces/ai-agent-security-b018-fastharmony
-title=AI Agent Security B018 Fastharmony
-submission_message=B018-fastharmony | attack c5cbc484 | prereg {short} | SDK 3.1.2
+kernel_version=1
+kernelId=131791935
+kernel_status=KernelWorkerStatus.COMPLETE
+local_attack_sha256=c5cbc484867077eb027ad655cad90152c666f6faed773916069d5c3ff331f2c4
+cloud_attack_sha256=c5cbc484867077eb027ad655cad90152c666f6faed773916069d5c3ff331f2c4
+cloud_hash_matches_local=true
+submission_message=B018-fastharmony | attack c5cbc484 | prereg 494e586 | SDK 3.1.2
+git_commit=494e586f215c51d87547858c419a303d247a3581
 ```
+
+Do not start B019 until 55737814 is terminal.

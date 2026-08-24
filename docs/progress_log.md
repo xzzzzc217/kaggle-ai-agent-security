@@ -4015,3 +4015,17 @@
 - Reject B017. Next aggressor is fast-row harmony, not another width
   change and not another two-message predicate.
 - Submit B018 once after local gates. Do not retry B018.
+
+## 2026-08-24: B018 fastharmony submitted
+
+**Facts**
+
+- Kernel `heralces/ai-agent-security-b018-fastharmony` v1 `kernelId=131791935`
+  COMPLETE. Cloud attack.py SHA matches
+  `c5cbc484867077eb027ad655cad90152c666f6faed773916069d5c3ff331f2c4`.
+- Unique competition submission `55737814` created 2026-08-24 08:39:02 UTC,
+  initial status PENDING.
+
+**Decision**
+
+- Monitor only `55737814`. Do not resubmit B018 or start B019.
