@@ -3998,3 +3998,20 @@
 - `evidence/b016_monitor.log`
 - `evidence/2026-08-23_b017_slowmultipost6_preflight.md`
 - `artifacts/kaggle/B017_v1/`
+
+## 2026-08-24: B017 rejected at 88.505; B018 fastharmony selected
+
+**Facts**
+
+- B017 `55724973` COMPLETE Public Score `88.505` at 08:23 UTC. Rejected
+  versus B008R `88.760`. Not retried.
+- Leaderboard 3964 teams: heralces rank 573 at 88.760 (still B008R).
+  Bronze 10% cut 89.83 (rank 396). Gap 1.07.
+- B018 is B008R + `FAST_USE_FRAME=True` only. Slow-row stays 4 endpoints.
+  SHA `c5cbc484867077eb027ad655cad90152c666f6faed773916069d5c3ff331f2c4`.
+
+**Decision**
+
+- Reject B017. Next aggressor is fast-row harmony, not another width
+  change and not another two-message predicate.
+- Submit B018 once after local gates. Do not retry B018.
