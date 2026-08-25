@@ -4115,5 +4115,45 @@
 **Next threshold**
 
 - B019 unique competition submission reaching COMPLETE / ERROR / FAILED.
-  Then apply the B019 preregistered gates. Team-merge deadline remains
-  2026-08-25 23:59 UTC.
+  Then apply the B019 preregistered gates.
+
+## 2026-08-25: solo team confirmed; B019 submitted
+
+**Facts**
+
+- User confirmed the team stays solo as `heralces`. No merge.
+- B019 kernel `heralces/ai-agent-security-b019-tail995` v1 remained
+  `COMPLETE` with cloud `attack.py` SHA
+  `ac50d36a21f2dc53d2cbe53e13daa95fe4a90c55ba2467e27a6294d7affd0f37`
+  matching local. Placeholder `submission.csv` is 88 bytes.
+- Unique competition submission `55772221` created
+  2026-08-25 14:15:54.500 UTC. Initial status `PENDING`, public/private
+  scores blank, `errorDescription` blank, `scriptVersionId=344741395`.
+  Message: `B019-tail995 | attack ac50d36a | prereg df44041 | SDK 3.1.2`.
+- After create: `numToday=1`, `numTotal=14`, `numAllowedNow=4`.
+- Live leaderboard at 14:00 UTC: 4016 teams, heralces rank 594 at
+  88.760 (B008R). Bronze 10% cut rank 401 at 89.910. Gap 1.150.
+
+**Interpretation and limits**
+
+- A PENDING competition rerun is not a score. Recent COMPLETE times were
+  12–18 hours, so this age is inside the historical queue.
+- Solo confirmation closes the team-merge action. It does not change
+  B019 gates or the B008R envelope.
+
+**Evidence**
+
+- `evidence/2026-08-25_b018_terminal_b019_tail995.md`
+- `scripts/monitor_b019.py`
+- `artifacts/kaggle/B019_v1/`
+
+**Decision**
+
+- Monitor only `55772221`. Do not resubmit B019.
+- Do not start B020 until that submission is COMPLETE / ERROR / FAILED.
+- Stay solo; do not merge.
+
+**Next threshold**
+
+- B019 `55772221` reaching terminal state. Then apply the B019
+  preregistered gates.
