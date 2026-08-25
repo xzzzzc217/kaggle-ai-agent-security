@@ -4029,3 +4029,91 @@
 **Decision**
 
 - Monitor only `55737814`. Do not resubmit B018 or start B019.
+
+## 2026-08-24: B018 still PENDING; monitor restarted
+
+**Facts**
+
+- Live Kaggle check at 2026-08-24 13:09 UTC: B018 `55737814` remains
+  `PENDING` with blank public score, age about 4.5 hours.
+- Previous 20-minute poller stopped after 11:40 UTC (connection resets,
+  then session end). Restarted `scripts/monitor_b018.py` with a fresh
+  16-hour window. First restarted check is still `PENDING`.
+- Public leaderboard 3960 teams: `heralces` rank 575 at `88.760` (B008R).
+  Bronze 10% cut rank 396 at `89.850`. Gap 1.090.
+- Read-only kernel screen pulled `llkh0a/aas-local-validation` (GGUF
+  validator, no new attack) and `addonyas/adiya` (multi-family searcher
+  with a real `attacker.com` URL, rejected by the reserved-domain policy).
+  No B019 candidate selected.
+
+**Interpretation and limits**
+
+- A PENDING competition rerun is not a score. B017/B016 COMPLETE times
+  were 12-13.5 hours, so this age is still inside the historical queue.
+- Public notebooks from this pass are not a reserved-domain
+  single-variable child of B008R.
+
+**Evidence**
+
+- `evidence/b018_monitor.log`
+- `evidence/2026-08-24_b018_monitor_resume.md`
+- `artifacts/kaggle/leaderboards/2026-08-24_b018_resume/`
+- `artifacts/kaggle/public_audit/2026-08-24_1310/`
+
+**Decision**
+
+- Keep monitoring `55737814` only. Do not retry B018. Do not start B019
+  until that submission is COMPLETE / ERROR / FAILED.
+
+**Next threshold**
+
+- B018 `55737814` reaching terminal state. Then apply the B018
+  preregistered gates. Team-merge deadline remains 2026-08-25 23:59 UTC.
+
+## 2026-08-25: B018 rejected at 83.310; B019 tail995 selected
+
+**Facts**
+
+- B018 `55737814` is `COMPLETE` with Public Score `83.310` at 02:24 UTC.
+  That is below B008R `88.760`. Fast-row `FRAME_TEMPLATE` is rejected
+  and must not be retried.
+- Leaderboard 3998 teams: heralces rank 588 at 88.760 (still B008R).
+  Bronze 10% cut 89.905 (rank 399). Gap 1.145.
+- Read-only reruns of koushik, verityix, and lopure are not reserved-domain
+  single-variable children of B008R.
+- B019 is B008R + `REPLAY_SAFE_FRAC` 0.99 -> 0.995 only. Slow-row stays
+  4 endpoints. Fast-row stays plain. SHA
+  `ac50d36a21f2dc53d2cbe53e13daa95fe4a90c55ba2467e27a6294d7affd0f37`.
+  Local gates: ruff pass, B019 tests 5/5, full pytest 172 passed in
+  88.67s, preflight PASS, SDK validate PASS. Fake 9000s/13s slow-row
+  returns 686 vs B008R 682.
+
+**Interpretation and limits**
+
+- Fast-row prompt injection is a losing family (B010 52.330, B011 72.680,
+  B018 83.310). Slow-row width 6 was a wash (B017 88.505). The remaining
+  unused winning-direction knob on the B008R envelope is the B005 tail
+  increment. Local +4 candidates is not a bronze-gap prediction.
+- Team-merger deadline is 2026-08-25 23:59 UTC. A B019 submit does not
+  replace a merge in the Kaggle UI.
+
+**Evidence**
+
+- `evidence/2026-08-25_b018_terminal_b019_tail995.md`
+- `evidence/b018_monitor.log`
+- `baselines/replaysafe_tail995_v1/attack.py`
+- `tests/test_replaysafe_tail995.py`
+- `artifacts/kaggle/leaderboards/2026-08-25_b018_terminal/`
+
+**Decision**
+
+- Reject B018. Do not retry.
+- Next aggressor is replay-safe tail 0.995, not another prompt or width
+  change and not another two-message predicate.
+- Submit B019 once after local gates. Do not retry B019.
+
+**Next threshold**
+
+- B019 unique competition submission reaching COMPLETE / ERROR / FAILED.
+  Then apply the B019 preregistered gates. Team-merge deadline remains
+  2026-08-25 23:59 UTC.

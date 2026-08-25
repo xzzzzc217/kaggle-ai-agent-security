@@ -36,6 +36,13 @@
 4. 最终提交必须能追溯到 commit、Notebook version 与完整配置；
 5. 私榜候选至少保留两个机制低相关版本。
 
+## 2026-08-25 experiment-status override
+
+| ID | Terminal status update |
+|---|---|
+| B018 | Submission `55737814` is `COMPLETE` with Public Score `83.310`, Private Score blank, and `errorDescription=None`. This is lower than the current leaderboard-effective B008R score `88.760`, so B018 fastharmony is rejected and must not be retried. Current effective score remains `88.760`; latest checked rank `588` / 3998, bronze 10% cut `89.905`. Evidence: `evidence/2026-08-25_b018_terminal_b019_tail995.md`. |
+| B019 | Preregistered tail995 candidate. Parent B008/B008R SHA `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`; candidate SHA `ac50d36a21f2dc53d2cbe53e13daa95fe4a90c55ba2467e27a6294d7affd0f37`. Only behavior variable: `REPLAY_SAFE_FRAC` 0.99 -> 0.995. Gates: `>88.760`, `>92.165`, `>=100.000`, bronze-cut `>=89.905` on the 2026-08-25 snapshot; reject `<=88.760`, blank score, failure, `ERROR`, timeout, duplicate, or unsafe artifact without retry. |
+
 ## 2026-08-13 experiment-status override
 
 | ID | Terminal status update |
