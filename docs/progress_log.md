@@ -4252,3 +4252,36 @@
 **Decision**
 
 - Monitor only `55784609`. Do not resubmit B020 or start B021.
+
+## 2026-08-26: multi-step tool-chain portfolio staged (no submit)
+
+**Facts**
+
+- Added `baselines/multistep_tool_chain_v1/attack.py` as a B021-staged
+  portfolio algorithm. It keeps B008R EXFIL as the floor and adds
+  one-shot untrusted chains, two-turn UTA, and snapshot branching.
+  SHA `d7cdfeb3a1b450bd3717438522a77add2f6eb72eb546595960dc90d75407a022`.
+- Local gates: ruff pass, 6 target tests, full pytest 189 passed in
+  90.12s, preflight PASS, SDK validate PASS.
+
+**Interpretation and limits**
+
+- This makes the repository show the competition's multi-step threat
+  model. It is not a public score. Fake-env fire is not a bronze-gap
+  prediction.
+
+**Evidence**
+
+- `evidence/2026-08-26_multistep_tool_chain_portfolio.md`
+- `baselines/multistep_tool_chain_v1/`
+- `tests/test_multistep_tool_chain.py`
+
+**Decision**
+
+- Keep as portfolio code. Do not create a Kaggle Notebook or competition
+  submission until B020 is terminal.
+
+**Next threshold**
+
+- B020 `55784609` reaching COMPLETE / ERROR / FAILED. Then decide
+  whether to preregister this file as B021.
