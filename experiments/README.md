@@ -42,6 +42,7 @@
 |---|---|
 | B019 | Submission `55772221` is `COMPLETE` with Public Score `87.470`, Private Score blank, and `errorDescription=None`. This is lower than the current leaderboard-effective B008R score `88.760`, so B019 tail995 is rejected and must not be retried. Current effective score remains `88.760`; latest checked rank `601` / 4059, bronze 10% cut `89.910`. Evidence: `evidence/2026-08-26_b019_terminal.md`. |
 | B020 | Preregistered disjoint-uta candidate. Parent B008/B008R SHA `4d433a7736f9f9d90a03b96c40652236e5088f4fea4eeef2e5133216fa7490f1`; candidate SHA `6d8b4be018caf33cfb8a56d7ade89681aa5ea08c744c4ee7c480ede113a03512`. Only behavior variable: `DISJOINT_FAMILY` with a 0.05 replay-safe carve after unchanged B008R EXFIL fill. Gates: `>88.760`, `>92.165`, `>=100.000`, bronze-cut `>=89.910` on the 2026-08-26 snapshot; reject `<=88.760`, blank score, failure, `ERROR`, timeout, duplicate, or unsafe artifact without retry. Evidence: `evidence/2026-08-26_b020_disjoint_uta_preflight.md`. |
+| B020 submission | Notebook `heralces/ai-agent-security-b020-disjoint-uta` v1 is `COMPLETE`, cloud attack hash matches `6d8b4be018caf33cfb8a56d7ade89681aa5ea08c744c4ee7c480ede113a03512`. Unique competition submission ref `55784609`, created `2026-08-26 03:36:58.993 UTC`, initial status `PENDING`, scores blank. Do not retry B020 or start B021 before terminal result. |
 
 ## 2026-08-25 experiment-status override
 

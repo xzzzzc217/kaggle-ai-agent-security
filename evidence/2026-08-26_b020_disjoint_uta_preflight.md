@@ -68,3 +68,31 @@ candidates when untrusted tools then a marker post fire.
 Do not retry B020. Do not start B021 until B020 is terminal.
 Keep the already-selected private pair B008R + B012 unless B020 public
 score is `>88.760`.
+
+## Formal submission record
+
+Submitted once after B019 `55772221` COMPLETE publicScore 87.470.
+Cloud `attack.py` hash matched local. Competition submit used kernel
+output basename `submission.csv`. Do not submit B020 again.
+
+```text
+formal_submission_ref=55784609
+formal_submission_created_utc=2026-08-26 03:36:58.993
+initial_submission_status=SubmissionStatus.PENDING
+initial_public_score=
+initial_error_description=None
+kernel_id=heralces/ai-agent-security-b020-disjoint-uta
+kernel_version=1
+kernelId=132018645
+kernel_status=KernelWorkerStatus.COMPLETE
+local_attack_sha256=6d8b4be018caf33cfb8a56d7ade89681aa5ea08c744c4ee7c480ede113a03512
+cloud_artifact_dir=artifacts/kaggle/B020_v1
+cloud_attack_sha256=6d8b4be018caf33cfb8a56d7ade89681aa5ea08c744c4ee7c480ede113a03512
+cloud_hash_matches_local=true
+submission_csv_bytes=88
+submission_file=submission.csv
+submission_message=B020-disjoint-uta | attack 6d8b4be0 | prereg f00c45d | SDK 3.1.2
+git_commit=f00c45dd038c3df4f2b958108658f0875aa119a4
+```
+
+Do not start B021 until `55784609` is terminal.

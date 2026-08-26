@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 COMPETITION = "ai-agent-security-multi-step-tool-attacks"
-SUBMISSION_REF = ""  # filled after create
+SUBMISSION_REF = "55784609"
 LOG_PATH = Path("evidence/b020_monitor.log")
 INTERVAL_S = 20 * 60
 MAX_CHECKS = 72

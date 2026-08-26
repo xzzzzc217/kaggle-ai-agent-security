@@ -4238,3 +4238,17 @@
 
 - B020 unique competition submission reaching COMPLETE / ERROR / FAILED.
   Then apply the B020 preregistered gates.
+
+## 2026-08-26: B020 submitted
+
+**Facts**
+
+- Kernel `heralces/ai-agent-security-b020-disjoint-uta` v1 `kernelId=132018645`
+  COMPLETE. Cloud attack.py SHA matches
+  `6d8b4be018caf33cfb8a56d7ade89681aa5ea08c744c4ee7c480ede113a03512`.
+- Unique competition submission `55784609` created 2026-08-26 03:36:58.993 UTC,
+  initial status PENDING.
+
+**Decision**
+
+- Monitor only `55784609`. Do not resubmit B020 or start B021.

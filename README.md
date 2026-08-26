@@ -138,7 +138,8 @@
 - [x] B013/B014/B015-C/B016/B017/B018 均已终态且低于 B008R `88.760`，按各自预注册拒绝且不重试
 - [x] B019-tail995 submission `55772221` 终态 `COMPLETE`，Public Score `87.470`，低于 B008R `88.760`，按预注册拒绝且不重试
 - [x] 预注册 B020 disjoint-uta（B008R EXFIL 不变 + 0.05 独立 web/inbox 池）
-- [ ] 只监控 B020 唯一 competition submission 至终态；不得重提 B020
+- [x] 构建并云端核验 B020 私有 Notebook v1，确认 cloud `attack.py` SHA 一致后创建唯一 competition submission `55784609`
+- [ ] 只监控 B020 submission `55784609` 至终态；不得重提 B020 或在结果未知时创建 B021
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note
