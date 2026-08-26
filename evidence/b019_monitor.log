@@ -1,0 +1,7 @@
+[2026-08-25 14:17:38 UTC] start ref=55772221 interval=1200s max=72
+[2026-08-25 14:17:43 UTC] check 1/72 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-26 02:26:05 UTC] resume-after-gap last-log=2026-08-25 14:17:43 UTC live=PENDING public= age~12.2h restart 24h window
+[2026-08-26 02:26:11 UTC] start ref=55772221 interval=1200s max=72
+[2026-08-26 02:26:22 UTC] check 1/72 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-26 02:46:25 UTC] check 2/72 status=SubmissionStatus.COMPLETE public='87.470' err=''
+[2026-08-26 02:46:25 UTC] TERMINAL status=SubmissionStatus.COMPLETE public='87.470'

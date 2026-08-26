@@ -135,7 +135,10 @@
 - [x] 完成 B013 公开路线与本地机制审计；未发现足够强的低相关单变量候选，未创建 B013 预注册、Notebook 或 competition submission
 - [x] 基于 B008R 慢行 replay 包装形成 B013 chain4 单变量候选，锁定源码 commit `685e311` 并提交/推送预注册 commit `7ad613a`
 - [x] 完成 B013 chain4 全量预提交验证，构建并云端核验 Notebook v1，确认 cloud `attack.py` SHA 一致后创建唯一 competition submission `55658141`
-- [ ] 只监控 B013 submission `55658141` 至终态；不得重提 B013 或在结果未知时创建 B014
+- [x] B013/B014/B015-C/B016/B017/B018 均已终态且低于 B008R `88.760`，按各自预注册拒绝且不重试
+- [x] B019-tail995 submission `55772221` 终态 `COMPLETE`，Public Score `87.470`，低于 B008R `88.760`，按预注册拒绝且不重试
+- [x] 预注册 B020 disjoint-uta（B008R EXFIL 不变 + 0.05 独立 web/inbox 池）
+- [ ] 只监控 B020 唯一 competition submission 至终态；不得重提 B020
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

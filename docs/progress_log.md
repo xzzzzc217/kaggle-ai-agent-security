@@ -4157,3 +4157,84 @@
 
 - B019 `55772221` reaching terminal state. Then apply the B019
   preregistered gates.
+
+## 2026-08-26: B019 rejected at 87.470; no B020 selected
+
+**Facts**
+
+- B019 `55772221` is `COMPLETE` with Public Score `87.470` at 02:46 UTC,
+  age 12.54h. Private Score blank. `errorDescription` blank.
+- `87.470 <= 88.760`, so the preregistered reject gate fires. B019 is
+  not retried.
+- Leaderboard 4059 teams: heralces rank 601 at 88.760 (still B008R).
+  Bronze 10% cut 89.910 (rank 405). Gap 1.150.
+- Read-only reruns of verityix, mccocoful, evgendvorkin, and koushik are
+  not reserved-domain single-variable children of B008R.
+
+**Interpretation and limits**
+
+- Extra replay-safe tail (local +4 candidates) cost 1.290 public points.
+  B005's 0.98 -> 0.99 move remains the last winning increment on this
+  axis. The B008R envelope has no unused winning-direction knob left.
+- Interpolation leftovers (width 5, nearby classify N, hops=1, tail
+  0.992, margin/cost coefficients) are not B020.
+- A PENDING-to-COMPLETE score is not a bronze-gap prediction for any
+  untested constant.
+
+**Evidence**
+
+- `evidence/2026-08-26_b019_terminal.md`
+- `evidence/b019_monitor.log`
+- `artifacts/kaggle/leaderboards/2026-08-26_b019_terminal/`
+- `artifacts/kaggle/public_audit/2026-08-26_0247/`
+
+**Decision**
+
+- Reject B019. Do not retry.
+- Keep B008R as parent.
+- Do not start B020 until a preregistered reserved-domain
+  single-variable B008R child exists. This pass did not select one.
+
+**Next threshold**
+
+- A documented B020 preregistration that is a reserved-domain
+  single-variable child of B008R, or an explicit decision that no
+  further competition submit is justified before the 2026-09-01
+  deadline.
+
+## 2026-08-26: B020 disjoint-uta preregistered
+
+**Facts**
+
+- User confirmed private selection of B008R `55393959` and B012
+  `55495429`, then authorized the disjoint untrusted-source family.
+- B020 is B008R + `DISJOINT_FAMILY=True` with `DISJOINT_REPLAY_FRAC=0.05`.
+  EXFIL messages stay the B008R plain / four-endpoint forge. Disjoint
+  candidates are one user message over web/inbox fixture content.
+  SHA `6d8b4be018caf33cfb8a56d7ade89681aa5ea08c744c4ee7c480ede113a03512`.
+- Local gates: ruff pass, B020 tests 7/7, full pytest 181 passed in
+  88.86s, preflight PASS, SDK validate PASS. Fake 9000s/13s EXFIL
+  returned 648 vs B008R 682; disjoint_kept=0 on the no-web FiringEnv.
+
+**Interpretation and limits**
+
+- This is not a tail/width/prompt knob and not a 2-message piggyback.
+  The 0.05 carve is an implementation detail of the one switch.
+- Local +0 disjoint on a marker-only fake env is not a bronze-gap
+  prediction.
+
+**Evidence**
+
+- `evidence/2026-08-26_b020_disjoint_uta_preflight.md`
+- `baselines/replaysafe_disjoint_uta_v1/attack.py`
+- `tests/test_replaysafe_disjoint_uta.py`
+
+**Decision**
+
+- Submit B020 once after cloud hash match. Do not retry B020.
+- Keep B008R as parent unless B020 public score is `>88.760`.
+
+**Next threshold**
+
+- B020 unique competition submission reaching COMPLETE / ERROR / FAILED.
+  Then apply the B020 preregistered gates.
