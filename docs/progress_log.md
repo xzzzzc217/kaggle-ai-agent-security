@@ -4320,3 +4320,20 @@
 
 - Either freeze on B008R through the 2026-09-01 deadline, or an explicit
   new preregistration that is not another untrusted-source budget carve.
+
+## 2026-08-27: B021 fastnotify selected from public screen
+
+**Facts**
+
+- Public screen of dateRun heads pulled goutham, verityix, antoniorotundo2,
+  nctuan slow-multipost, kaiwalya, and coolin v12.
+- B020's web-then-sink path is denied by OptimalGuardrail taint. A
+  fresh-session deputy does not taint. B021 appends Notify to B008R
+  plain TEMPLATE only; SHA
+  `b04a02d15bff13f22da4f025c9ae00da73383417386dd81b7bc29e20e94a3313`.
+- Local gates: ruff pass, 4 B021 tests, full pytest 195 passed in 89.42s,
+  preflight PASS, SDK validate PASS.
+
+**Decision**
+
+- Submit B021 once after cloud hash match. Do not retry B021.

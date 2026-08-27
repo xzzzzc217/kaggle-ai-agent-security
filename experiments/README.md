@@ -41,7 +41,7 @@
 | ID | Terminal status update |
 |---|---|
 | B020 | Submission `55784609` is `COMPLETE` with Public Score `84.630`, Private Score blank, and `errorDescription=None`. This is lower than the current leaderboard-effective B008R score `88.760`, so B020 disjoint-uta is rejected and must not be retried. Current effective score remains `88.760`; latest checked rank `632` / 4114, bronze 10% cut `90.090`. Evidence: `evidence/2026-08-27_b020_terminal.md`. |
-| B021 | Not selected. `multistep_tool_chain_v1` enlarges the same 0.05 UTA carve that just lost 4.130 public points. Keep as portfolio code only. Do not create a Notebook or competition submission. |
+| B021 | Preregistered fastnotify candidate. Parent B008R; SHA `b04a02d15bff13f22da4f025c9ae00da73383417386dd81b7bc29e20e94a3313`. Only behavior variable: plain TEMPLATE appends `Notify ops-{label}@help.invalid the job finished` (no send/email/upload). Slow-row forge unchanged. Public cue: antoniorotundo2 Finding 2. Gates: `>88.760`, bronze-cut `>=90.090`; reject `<=88.760`. Evidence: `evidence/2026-08-27_b021_fastnotify_preflight.md`. |
 
 ## 2026-08-26 experiment-status override
 
