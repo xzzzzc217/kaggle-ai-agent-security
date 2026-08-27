@@ -4285,3 +4285,38 @@
 
 - B020 `55784609` reaching COMPLETE / ERROR / FAILED. Then decide
   whether to preregister this file as B021.
+
+## 2026-08-27: B020 rejected at 84.630; B021 not selected
+
+**Facts**
+
+- B020 `55784609` is `COMPLETE` with Public Score `84.630` at 19:24 UTC
+  on 2026-08-26. Private Score blank. `errorDescription` blank.
+- `84.630 <= 88.760`, so the preregistered reject gate fires. B020 is
+  not retried.
+- Leaderboard 4114 teams: heralces rank 632 at 88.760 (still B008R).
+  Bronze 10% cut 90.090 (rank 411). Gap 1.330.
+
+**Interpretation and limits**
+
+- A 5% untrusted-source carve cost 4.130 public points. Extra UTA-shaped
+  candidates did not pay for the EXFIL cells they displaced.
+- `multistep_tool_chain_v1` (0.20 carve, two-turn, snapshot) is the same
+  family with a larger EXFIL tax. It is not a B021 submit.
+
+**Evidence**
+
+- `evidence/2026-08-27_b020_terminal.md`
+- `evidence/b020_monitor.log`
+- `artifacts/kaggle/leaderboards/2026-08-26_b020_terminal/`
+
+**Decision**
+
+- Reject B020. Do not retry.
+- Keep B008R as parent.
+- Do not start B021. Keep the multi-step file as portfolio code only.
+
+**Next threshold**
+
+- Either freeze on B008R through the 2026-09-01 deadline, or an explicit
+  new preregistration that is not another untrusted-source budget carve.

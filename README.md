@@ -140,7 +140,8 @@
 - [x] 预注册 B020 disjoint-uta（B008R EXFIL 不变 + 0.05 独立 web/inbox 池）
 - [x] 构建并云端核验 B020 私有 Notebook v1，确认 cloud `attack.py` SHA 一致后创建唯一 competition submission `55784609`
 - [x] 落地多步工具链 portfolio 基线（one-shot UTA + 两轮 discover/follow-up + snapshot 分支 + B008R 外泄底分）；B020 出分前不提交
-- [ ] 只监控 B020 submission `55784609` 至终态；不得重提 B020 或在结果未知时创建 B021
+- [x] B020-disjoint-uta submission `55784609` 终态 `COMPLETE`，Public Score `84.630`，低于 B008R `88.760`，按预注册拒绝且不重试
+- [ ] 不创建 B021；公开分地板冻结为 B008R `88.760`，除非另有明确预注册
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

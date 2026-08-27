@@ -36,6 +36,13 @@
 4. 最终提交必须能追溯到 commit、Notebook version 与完整配置；
 5. 私榜候选至少保留两个机制低相关版本。
 
+## 2026-08-27 experiment-status override
+
+| ID | Terminal status update |
+|---|---|
+| B020 | Submission `55784609` is `COMPLETE` with Public Score `84.630`, Private Score blank, and `errorDescription=None`. This is lower than the current leaderboard-effective B008R score `88.760`, so B020 disjoint-uta is rejected and must not be retried. Current effective score remains `88.760`; latest checked rank `632` / 4114, bronze 10% cut `90.090`. Evidence: `evidence/2026-08-27_b020_terminal.md`. |
+| B021 | Not selected. `multistep_tool_chain_v1` enlarges the same 0.05 UTA carve that just lost 4.130 public points. Keep as portfolio code only. Do not create a Notebook or competition submission. |
+
 ## 2026-08-26 experiment-status override
 
 | ID | Terminal status update |
