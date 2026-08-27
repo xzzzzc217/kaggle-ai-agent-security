@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-08-27
-> 当前阶段：B021-fastnotify 已预注册；B020 已拒绝；当前 effective 仍为 B008R `88.760`
+> 当前阶段：B021-fastnotify 唯一 competition submission `55808416` 已创建；不得重试；当前 effective 仍为 B008R `88.760`
 > 历史最高有分 submission ref：B008 `55266445`，Public Score `92.165`；当前 leaderboard-effective submission 为 B008R `55393959`，Public Score `88.760`
 > 仓库发布级别：**private；当前内容不适合直接公开**
 

@@ -69,3 +69,20 @@ SDK validate redteam: PASS
 | ERROR / blank / unsafe | Reject |
 
 Do not retry B021.
+
+## Formal submission record
+
+```text
+formal_submission_ref=55808416
+kernel_id=heralces/ai-agent-security-b021-fastnotify
+kernel_version=1
+kernelId=132152992
+kernel_status=COMPLETE
+cloud_attack_sha256=b04a02d15bff13f22da4f025c9ae00da73383417386dd81b7bc29e20e94a3313
+cloud_hash_matches_local=true
+submission_file=submission.csv
+submission_message=B021-fastnotify | attack b04a02d1 | prereg 59f8934 | SDK 3.1.2
+git_commit=59f8934ed64c18a57ffab053d2df6c8511dda2a9
+```
+
+Do not start B022 until `55808416` is terminal.

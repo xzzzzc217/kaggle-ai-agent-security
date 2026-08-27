@@ -4337,3 +4337,14 @@
 **Decision**
 
 - Submit B021 once after cloud hash match. Do not retry B021.
+
+## 2026-08-27: B021 submitted
+
+**Facts**
+
+- Kernel `heralces/ai-agent-security-b021-fastnotify` v1 COMPLETE, cloud
+  hash matches `b04a02d1`. Unique competition submission `55808416`.
+
+**Decision**
+
+- Monitor only `55808416`. Do not resubmit B021 or start B022.
