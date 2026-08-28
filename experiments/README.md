@@ -41,6 +41,7 @@
 | ID | Terminal status update |
 |---|---|
 | B022 | Preregistered examplecom candidate. Parent B008R; SHA `9472a06d2d77141359af0dff30d63b9b035b96d36a643325f74c758dd74ac4f7`. Only behavior variable: URL host suffix `invalid` -> `example.com`. Gates: `>88.760`, bronze-cut `>=90.270`; reject `<=88.760`. Evidence: `evidence/2026-08-28_b022_examplecom_preflight.md`. |
+| B022 submission | Notebook v1 COMPLETE, cloud hash matches. Unique competition submission `55832399`. Do not retry B022 or start B023 before terminal. |
 
 ## 2026-08-27 B021 terminal override
 

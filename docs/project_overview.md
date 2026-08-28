@@ -1,7 +1,7 @@
 # 竞赛说明、技术路线与项目进展
 
 > 最后更新：2026-08-28
-> 当前阶段：B022-examplecom 已预注册（URL 主机后缀 `invalid` → `example.com`）；B021 `55808416` 终态 `73.700` 已拒绝；当前 effective 仍为 B008R `88.760`
+> 当前阶段：B022-examplecom `55832399` 已提交、`PENDING`；B021 `55808416` 终态 `73.700` 已拒绝；当前 effective 仍为 B008R `88.760`
 > 历史最高有分 submission ref：B008 `55266445`，Public Score `92.165`；当前 leaderboard-effective submission 为 B008R `55393959`，Public Score `88.760`
 > 仓库发布级别：**private；当前内容不适合直接公开**
 

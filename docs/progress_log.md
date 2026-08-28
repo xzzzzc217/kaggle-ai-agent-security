@@ -4403,3 +4403,37 @@
 
 - B022 unique competition submission reaching COMPLETE / ERROR / FAILED.
   Then apply the B022 preregistered gates.
+
+## 2026-08-28: B022 submitted
+
+**Facts**
+
+- Kernel `heralces/ai-agent-security-b022-examplecom` v1
+  `kernelId=132282969` COMPLETE. Cloud attack.py SHA matches
+  `9472a06d2d77141359af0dff30d63b9b035b96d36a643325f74c758dd74ac4f7`.
+  Placeholder `submission.csv` is 88 bytes. Log error scan 0.
+- Unique competition submission `55832399` created
+  2026-08-28 03:23:00.373 UTC. Initial status PENDING, public/private
+  scores blank, `errorDescription` blank, `scriptVersionId=345509303`.
+  Message: `B022-examplecom | attack 9472a06d | prereg 0fd406d | SDK 3.1.2`.
+
+**Interpretation and limits**
+
+- A PENDING competition rerun is not a score. Recent COMPLETE times were
+  about 11 hours.
+
+**Evidence**
+
+- `evidence/2026-08-28_b022_examplecom_preflight.md`
+- `scripts/monitor_b022.py`
+- `artifacts/kaggle/B022_v1/`
+
+**Decision**
+
+- Monitor only `55832399`. Do not resubmit B022 or start B023.
+- Private pair stays B008R `55393959` + B012 `55495429`.
+
+**Next threshold**
+
+- B022 `55832399` reaching terminal state. Then apply the B022
+  preregistered gates.

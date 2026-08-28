@@ -76,3 +76,28 @@ nctuan_score=90.630
 
 Do not retry B022. Keep the already-selected private pair B008R
 `55393959` + B012 `55495429` unless B022 public score is `>88.760`.
+
+## Formal submission record
+
+Submitted once after B021 `55808416` COMPLETE publicScore 73.700.
+Cloud `attack.py` hash matched local. Competition submit used kernel
+output basename `submission.csv`. Do not submit B022 again.
+
+```text
+formal_submission_ref=55832399
+formal_submission_created_utc=2026-08-28 03:23:00.373
+status=SubmissionStatus.PENDING
+public_score=
+private_score=
+errorDescription=
+file_name=submission.csv
+kernel_id=heralces/ai-agent-security-b022-examplecom
+kernel_version=1
+kernelId=132282969
+kernel_status=COMPLETE
+cloud_attack_sha256=9472a06d2d77141359af0dff30d63b9b035b96d36a643325f74c758dd74ac4f7
+cloud_hash_matches_local=true
+submission_message=B022-examplecom | attack 9472a06d | prereg 0fd406d | SDK 3.1.2
+git_commit=0fd406d787277aa22d22ed102082aee089f82e1f
+scriptVersionId=345509303
+```
