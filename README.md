@@ -143,6 +143,8 @@
 - [x] B020-disjoint-uta submission `55784609` 终态 `COMPLETE`，Public Score `84.630`，低于 B008R `88.760`，按预注册拒绝且不重试
 - [x] 预注册 B021-fastnotify（快行 Notify deputy，不切预算、不先碰 web/email）
 - [x] B021 唯一 competition submission `55808416` 已创建；只监控至终态
+- [x] B021-fastnotify `55808416` 终态 `COMPLETE` Public Score `73.700`，低于 B008R `88.760`，按预注册拒绝且不重试
+- [x] 预注册 B022-examplecom（B008R 唯一变量：保留域主机后缀 `invalid` → `example.com`）
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note

@@ -4348,3 +4348,58 @@
 **Decision**
 
 - Monitor only `55808416`. Do not resubmit B021 or start B022.
+
+## 2026-08-27: B021 rejected at 73.700
+
+**Facts**
+
+- B021 `55808416` COMPLETE Public Score `73.700` at 14:01 UTC, age 10.95h.
+- `73.700 <= 88.760`. Fast-row Notify is rejected in the same family as
+  B011 (72.680) and B018 (83.310).
+- Leaderboard 4131 teams: heralces rank 639 at 88.760. Bronze 90.135
+  (rank 413). Gap 1.375.
+
+**Decision**
+
+- Reject B021. Do not retry. Keep B008R.
+- Do not start B022 as another fast-row wording change.
+
+## 2026-08-28: B022 example.com selected
+
+**Facts**
+
+- User authorized one more scoring submit after the B021 reject.
+- B022 is B008R + reserved URL host suffix `invalid` -> `example.com`
+  only. SHA
+  `9472a06d2d77141359af0dff30d63b9b035b96d36a643325f74c758dd74ac4f7`.
+- Prompt templates, classify5, replay-safe 0.99, slow-row four-endpoint
+  forge, hops, and one-message candidates stay unchanged. Not a
+  fast-row wording change, UTA carve, tail, width, or public `.co`.
+- Local gates: ruff pass, 5 B022 tests, full pytest 202 passed in
+  90.65s, preflight PASS, SDK validate PASS.
+- Live leaderboard 2026-08-28 02:27 UTC: 4148 teams, heralces rank 658
+  at 88.760, bronze 10% cut 90.270 (rank 414). Gap 1.510.
+
+**Interpretation and limits**
+
+- Public `.co` remains forbidden. `example.com` is the reserved-domain
+  analog of that host-looking gap. Same routing count as B008R on the
+  fake clock is not a bronze-gap prediction.
+- Eval drift on identical B008 code (92.165 -> 88.760) still applies.
+
+**Evidence**
+
+- `evidence/2026-08-28_b022_examplecom_preflight.md`
+- `baselines/replaysafe_examplecom_v1/attack.py`
+- `tests/test_replaysafe_examplecom.py`
+
+**Decision**
+
+- Submit B022 once after cloud hash match. Do not retry B022.
+- Keep B008R as parent unless B022 public score is `>88.760`.
+- Private pair stays B008R `55393959` + B012 `55495429`.
+
+**Next threshold**
+
+- B022 unique competition submission reaching COMPLETE / ERROR / FAILED.
+  Then apply the B022 preregistered gates.

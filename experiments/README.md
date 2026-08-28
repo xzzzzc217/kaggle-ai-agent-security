@@ -36,6 +36,18 @@
 4. 最终提交必须能追溯到 commit、Notebook version 与完整配置；
 5. 私榜候选至少保留两个机制低相关版本。
 
+## 2026-08-28 B022 preregister override
+
+| ID | Terminal status update |
+|---|---|
+| B022 | Preregistered examplecom candidate. Parent B008R; SHA `9472a06d2d77141359af0dff30d63b9b035b96d36a643325f74c758dd74ac4f7`. Only behavior variable: URL host suffix `invalid` -> `example.com`. Gates: `>88.760`, bronze-cut `>=90.270`; reject `<=88.760`. Evidence: `evidence/2026-08-28_b022_examplecom_preflight.md`. |
+
+## 2026-08-27 B021 terminal override
+
+| ID | Terminal status update |
+|---|---|
+| B021 | Submission `55808416` is `COMPLETE` with Public Score `73.700`. Below B008R `88.760`; rejected without retry. Effective score remains `88.760`; rank `639` / 4131, bronze 10% cut `90.135`. Evidence: `evidence/2026-08-27_b021_terminal.md`. |
+
 ## 2026-08-27 experiment-status override
 
 | ID | Terminal status update |
