@@ -36,6 +36,12 @@
 4. 最终提交必须能追溯到 commit、Notebook version 与完整配置；
 5. 私榜候选至少保留两个机制低相关版本。
 
+## 2026-08-29 B022 terminal override
+
+| ID | Terminal status update |
+|---|---|
+| B022 | Submission `55832399` is `COMPLETE` with Public Score `86.925`. Below B008R `88.760`; rejected without retry. Effective score remains `88.760`; rank `694` / 4164, bronze 10% cut `90.410`. Evidence: `evidence/2026-08-29_b022_terminal.md`. |
+
 ## 2026-08-28 B022 preregister override
 
 | ID | Terminal status update |

@@ -4437,3 +4437,34 @@
 
 - B022 `55832399` reaching terminal state. Then apply the B022
   preregistered gates.
+
+## 2026-08-29: B022 rejected at 86.925
+
+**Facts**
+
+- B022 `55832399` is `COMPLETE` with Public Score `86.925` at first
+  observed 2026-08-29 00:36 UTC, age 21.23h. Private Score blank.
+  `errorDescription` blank.
+- `86.925 <= 88.760`, so the preregistered reject gate fires. B022 is
+  not retried.
+- Leaderboard 4164 teams: heralces rank 694 at 88.760 (still B008R).
+  Bronze 10% cut 90.410 (rank 416). Gap 1.650.
+
+**Interpretation and limits**
+
+- Swapping `.invalid` for `.example.com` cost 1.835 public points.
+  Host-looking reserved domains are not a drop-in for public `.co`.
+- Envelope knobs, fast-row wording, UTA carve, extra messages, tail,
+  width, and now host suffix are all rejected.
+
+**Evidence**
+
+- `evidence/2026-08-29_b022_terminal.md`
+- `evidence/b022_monitor.log`
+- `artifacts/kaggle/leaderboards/2026-08-29_b022_terminal/`
+
+**Decision**
+
+- Reject B022. Do not retry. Keep B008R.
+- Do not start B023 as another host, wording, tail, width, or carve change.
+- Private pair stays B008R `55393959` + B012 `55495429`.
