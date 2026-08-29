@@ -36,6 +36,12 @@
 4. 最终提交必须能追溯到 commit、Notebook version 与完整配置；
 5. 私榜候选至少保留两个机制低相关版本。
 
+## 2026-08-29 ABC probe override
+
+| ID | Terminal status update |
+|---|---|
+| probe_abc | gpt-oss Q4 kernel `132467820` COMPLETE. http 4/4, https 4/4, framing 3/4. No fire-rate lift. B023 not submitted. Evidence: `evidence/2026-08-29_probe_abc_gptoss.md`. |
+
 ## 2026-08-29 B023 public-audit override
 
 | ID | Terminal status update |

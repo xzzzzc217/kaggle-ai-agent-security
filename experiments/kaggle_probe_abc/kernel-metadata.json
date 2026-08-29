@@ -1,0 +1,21 @@
+{
+  "id": "heralces/ai-agent-security-probe-abc-gptoss",
+  "title": "AI Agent Security Probe Abc Gptoss",
+  "code_file": "ai-agent-security-probe-abc-gptoss.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": [],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [
+    "ai-agent-security-multi-step-tool-attacks"
+  ],
+  "model_sources": [
+    "llkh0a/gpt-oss-20b-gguf/PyTorch/default/1"
+  ],
+  "machine_shape": "NvidiaTeslaT4"
+}

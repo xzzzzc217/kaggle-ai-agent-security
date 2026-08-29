@@ -4486,3 +4486,21 @@
 - No B023 preregistration or submit.
 - Do not take `http`→`https` as the next shot without an explicit
   override; it is the same URL-surface family as rejected B022.
+
+## 2026-08-29: ABC gpt-oss probe; no B023
+
+**Facts**
+
+- Research kernel `heralces/ai-agent-security-probe-abc-gptoss` v1
+  `kernelId=132467820` COMPLETE in 138.5 s. Not a competition submit.
+- Plain http 4/4 fire; plain https 4/4; framing 3/4 (one trial zero
+  tools); forge4 http and https both 4/4 full-fire.
+- Evidence: `evidence/2026-08-29_probe_abc_gptoss.md`.
+
+**Decision**
+
+- Probe gate fails. Do not preregister or submit B023.
+- Freeze leaderboard-effective B008R `88.760`.
+- Private pair stays B008R `55393959` + B012 `55495429`.
+- Next work is private-slot confirmation and Working Note, not another
+  envelope submit.

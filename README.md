@@ -148,6 +148,7 @@
 - [x] B022 唯一 competition submission `55832399` 已创建；只监控至终态
 - [x] B022-examplecom `55832399` 终态 `COMPLETE` Public Score `86.925`，低于 B008R `88.760`，按预注册拒绝且不重试
 - [x] 完成 B023 公开高分源码筛查：无合法单变量候选，未创建 submission
+- [x] 完成 gpt-oss A/B/C 探针（http / https / framing）：https 打平、framing 更差，不提交 B023
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
 - [ ] 完成私榜提交选择与 Working Note
