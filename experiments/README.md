@@ -36,6 +36,12 @@
 4. 最终提交必须能追溯到 commit、Notebook version 与完整配置；
 5. 私榜候选至少保留两个机制低相关版本。
 
+## 2026-08-29 B023 public-audit override
+
+| ID | Terminal status update |
+|---|---|
+| B023 screen | Read-only public audit after B022 86.925 reject. 18 heads pulled. No reserved-domain single-variable B008R child selected. Evidence: `evidence/2026-08-29_b023_public_audit.md`. |
+
 ## 2026-08-29 B022 terminal override
 
 | ID | Terminal status update |

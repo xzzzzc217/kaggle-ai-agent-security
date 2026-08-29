@@ -4468,3 +4468,21 @@
 - Reject B022. Do not retry. Keep B008R.
 - Do not start B023 as another host, wording, tail, width, or carve change.
 - Private pair stays B008R `55393959` + B012 `55495429`.
+
+## 2026-08-29: B023 public screen, no candidate
+
+**Facts**
+
+- Listed 120 public kernels by dateRun and pulled 18 current heads
+  into `artifacts/kaggle/public_audit/2026-08-29_b023_screen/`.
+- nctuan/evgendvorkin/dimong/verityix remain `.co` or real TLDs.
+- ducnamphan `.invalid` notebooks are static N=225 sprays with
+  self-estimated ~20 public plus DWX/CDX/UTA paths we already lost.
+- Yuriy's taint-window demo confirms OptimalGuardrail denies web→post
+  and `secret.txt` delete.
+
+**Decision**
+
+- No B023 preregistration or submit.
+- Do not take `http`→`https` as the next shot without an explicit
+  override; it is the same URL-surface family as rejected B022.
