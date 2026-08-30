@@ -36,6 +36,12 @@
 4. 最终提交必须能追溯到 commit、Notebook version 与完整配置；
 5. 私榜候选至少保留两个机制低相关版本。
 
+## 2026-08-30 B023 allforge preregister override
+
+| ID | Terminal status update |
+|---|---|
+| B023 | Preregistered allforge new route. SHA `1d2b15548795417ca9cb05235781513e8e6369eba2506b274055c44a23bb4755`. Always four-endpoint forge, no fast-row 1-post. Gates: `>88.760`, bronze-cut `>=90.585`; reject `<=88.760`. Evidence: `evidence/2026-08-30_b023_allforge_preflight.md`. |
+
 ## 2026-08-30 rescreen override
 
 | ID | Terminal status update |

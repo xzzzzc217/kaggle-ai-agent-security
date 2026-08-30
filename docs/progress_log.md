@@ -4522,3 +4522,18 @@
 
 - No competition submit.
 - Keep B008R. User must confirm private slots B008R+B012 in the UI.
+
+## 2026-08-30: B023 allforge new route
+
+**Facts**
+
+- User authorized a new route. B023 sets `ALWAYS_FORGE=True`: every
+  live-validated candidate is the four-endpoint `.invalid` forge.
+  SHA `1d2b15548795417ca9cb05235781513e8e6369eba2506b274055c44a23bb4755`.
+- Local gates: ruff pass, 5 B023 tests, full pytest 209 passed in
+  92.54s, preflight PASS, SDK validate PASS.
+
+**Decision**
+
+- Submit B023 once after cloud hash match. Do not retry.
+- Keep B008R unless B023 public score is `>88.760`.

@@ -151,6 +151,7 @@
 - [x] 完成 gpt-oss A/B/C 探针（http / https / framing）：https 打平、framing 更差，不提交 B023
 - [x] 2026-08-30 再筛公开高分源码：无合法新轴，不提交
 - [x] 起草 Working Note（`docs/working_note.md`，09-08 截止）
+- [x] 预注册 B023-allforge（新路：全程四端点 forge，无快行单 post）
 - [ ] 在 Kaggle UI 确认私榜两席为 B008R + B012
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区
