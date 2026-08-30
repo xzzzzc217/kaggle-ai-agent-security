@@ -48,3 +48,19 @@ SDK validate redteam: PASS
 
 Do not retry B023. Private pair stays B008R `55393959` + B012
 `55495429` unless public score is `>88.760`.
+
+## Formal submission record
+
+```text
+formal_submission_ref=55879554
+formal_submission_created_utc=2026-08-30 02:01:39.223
+status=SubmissionStatus.PENDING
+kernel_id=heralces/ai-agent-security-b023-allforge
+kernel_version=1
+kernelId=132507401
+cloud_attack_sha256=1d2b15548795417ca9cb05235781513e8e6369eba2506b274055c44a23bb4755
+cloud_hash_matches_local=true
+submission_message=B023-allforge | attack 1d2b1554 | prereg f038841 | SDK 3.1.2
+git_commit=f038841028ae5ce69d8aac02a90bf29269fb0d5d
+scriptVersionId=345950511
+```

@@ -4537,3 +4537,16 @@
 
 - Submit B023 once after cloud hash match. Do not retry.
 - Keep B008R unless B023 public score is `>88.760`.
+
+## 2026-08-30: B023 submitted
+
+**Facts**
+
+- Kernel `heralces/ai-agent-security-b023-allforge` v1 COMPLETE, cloud
+  hash matches. Unique competition submission `55879554` created
+  2026-08-30 02:01:39 UTC, status PENDING.
+
+**Decision**
+
+- Monitor only `55879554`. Do not resubmit B023 or start B024.
+- Private pair stays B008R + B012.

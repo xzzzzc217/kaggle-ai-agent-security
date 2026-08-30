@@ -41,6 +41,7 @@
 | ID | Terminal status update |
 |---|---|
 | B023 | Preregistered allforge new route. SHA `1d2b15548795417ca9cb05235781513e8e6369eba2506b274055c44a23bb4755`. Always four-endpoint forge, no fast-row 1-post. Gates: `>88.760`, bronze-cut `>=90.585`; reject `<=88.760`. Evidence: `evidence/2026-08-30_b023_allforge_preflight.md`. |
+| B023 submission | Notebook v1 COMPLETE, cloud hash matches. Unique competition submission `55879554`. Do not retry B023 or start B024 before terminal. |
 
 ## 2026-08-30 rescreen override
 
