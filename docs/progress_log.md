@@ -4504,3 +4504,21 @@
 - Private pair stays B008R `55393959` + B012 `55495429`.
 - Next work is private-slot confirmation and Working Note, not another
   envelope submit.
+
+## 2026-08-30: rescreen; freeze; Working Note draft
+
+**Facts**
+
+- Live board 4183 teams, heralces rank 723 / 88.760, bronze 90.585,
+  gap 1.825. nctuan still 91.710.
+- Pulled anasriaz (`.co` n=6 frac 0.9999), ruhul20 (mixed TLD
+  multi-family), evgendvorkin (`.co` n=10 classify8), verityix, nctuan
+  v25 unchanged. Evidence:
+  `evidence/2026-08-30_public_rescreen.md`.
+- Drafted `docs/working_note.md` for the 2026-09-08 award. Private-pair
+  checklist: `evidence/2026-08-30_private_pair_checklist.md`.
+
+**Decision**
+
+- No competition submit.
+- Keep B008R. User must confirm private slots B008R+B012 in the UI.

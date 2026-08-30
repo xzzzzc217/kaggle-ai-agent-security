@@ -36,6 +36,12 @@
 4. 最终提交必须能追溯到 commit、Notebook version 与完整配置；
 5. 私榜候选至少保留两个机制低相关版本。
 
+## 2026-08-30 rescreen override
+
+| ID | Terminal status update |
+|---|---|
+| 08-30 screen | Newest public reruns still `.co` or multi-family. No B023. Working Note draft in `docs/working_note.md`. Evidence: `evidence/2026-08-30_public_rescreen.md`. |
+
 ## 2026-08-29 ABC probe override
 
 | ID | Terminal status update |
