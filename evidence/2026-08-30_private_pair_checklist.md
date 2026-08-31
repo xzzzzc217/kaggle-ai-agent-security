@@ -14,3 +14,8 @@ Confirm before deadline:
 
 If the UI shows the newest two COMPLETE scores as auto-selected,
 manually re-select B008R + B012.
+
+As of 2026-08-31 the two newest COMPLETE scores are B023 `79.910`
+and B022 `86.925`. If Kaggle auto-selects newest, **both are worse
+than B008R**. Re-select before 2026-09-01 23:59 UTC or the private
+medal row will not be the 88.760 envelope.

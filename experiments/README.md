@@ -36,6 +36,12 @@
 4. 最终提交必须能追溯到 commit、Notebook version 与完整配置；
 5. 私榜候选至少保留两个机制低相关版本。
 
+## 2026-08-31 avikdas screen override
+
+| ID | Terminal status update |
+|---|---|
+| 08-31 screen | New public kernel avikdas567 state-space search is reserved-domain but 3 hosts / no SECRET_MARKER / 2–3 messages. No B024. Evidence: `evidence/2026-08-31_public_rescreen.md`. |
+
 ## 2026-08-31 B023 terminal override
 
 | ID | Terminal status update |

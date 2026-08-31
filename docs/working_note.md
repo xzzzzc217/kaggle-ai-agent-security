@@ -3,7 +3,7 @@
 **Team:** heralces (solo)  
 **Competition:** AI Agent Security — Multi-Step Tool Attacks (Kaggle Featured, OpenAI / Google / IEEE)  
 **Effective public score:** 88.760 (B008R `55393959`)  
-**Draft date:** 2026-08-30  
+**Draft date:** 2026-08-31  
 **Working Note deadline:** 2026-09-08 23:59 UTC
 
 This draft is for the optional Working Note award. It describes a
@@ -94,6 +94,7 @@ terminals:
 | B019 | tail 0.99 → 0.995 | 87.470 | Overfill eats replay margin |
 | B020 | 5% untrusted-source carve | 84.630 | Public taint denies the sink |
 | B022 | host `.invalid` → `.example.com` | 86.925 | Look-alike reserved hosts are not `.co` |
+| B023 | always four-endpoint forge, no fast 1-post | 79.910 | Fast-row single-post path is load-bearing |
 
 A 2026-08-29 gpt-oss Q4 probe (4 trials, OptimalGuardrail):
 
@@ -113,6 +114,16 @@ boundary forbids that. ducnamphan’s `.invalid` notebooks spray 225
 static templates and self-estimate ~20 public points. evgendvorkin’s
 later snapshots widen slow-row N to 8–10 and tails to 0.9999 on `.co`;
 we already lost N=6 and tail 0.995 on reserved hosts.
+
+On 2026-08-31 we pulled
+`avikdas567/state-space-search-for-multi-step-agent-attacks`, a
+snapshot-branching searcher on `example.com` / `.invalid` (legal
+hosts). It is the closest public multi-step implementation to the
+contest’s threat model, but it uses three HTTP hostnames, no
+`SECRET_MARKER`, and two- to three-user-message chains. Under this
+SDK that combination cannot match unique-host live fill: cell hashes
+bucket `http.post` by hostname, and extra user messages already
+failed here (B013–B016).
 
 ## 5. Defense implications (sandbox only)
 
@@ -157,4 +168,5 @@ mechanism.
 - Rahman & Kim, “The Framing Gap,” arXiv:2608.27092, 2026.
 - Dong et al., “The Claws in Plain Sight,” arXiv:2608.20658, 2026.
 - Public Kaggle kernels: nctuan/jed-v25, evgendvorkin/ai-agent,
-  ducnamphan/jed-v21-0-best-combo (read-only screens).
+  ducnamphan/jed-v21-0-best-combo, avikdas567/state-space-search
+  (read-only screens).

@@ -4575,3 +4575,21 @@
 
 - Reject B023. Do not retry. Keep B008R.
 - Private pair stays B008R `55393959` + B012 `55495429`.
+
+## 2026-08-31: avikdas state-space screen; no B024
+
+**Facts**
+
+- Newest public kernel `avikdas567/state-space-search-for-multi-step-agent-attacks`
+  is reserved-domain snapshot search, but three hostnames, no
+  `SECRET_MARKER`, and 2–3 user messages. Evidence:
+  `evidence/2026-08-31_public_rescreen.md`.
+- Deadline is 2026-09-01 23:59 UTC. Another 11 h submit cannot be
+  a unique-host 1-message algorithm without becoming B008R, and
+  cannot keep snapshot chains without repeating B013–B016.
+
+**Decision**
+
+- Do not submit B024.
+- Working Note updated with B023 and avikdas.
+- User must lock private pair B008R+B012 in the UI.
