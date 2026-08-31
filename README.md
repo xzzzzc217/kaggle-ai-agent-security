@@ -154,7 +154,8 @@
 - [x] 预注册 B023-allforge（新路：全程四端点 forge，无快行单 post）
 - [x] B023 唯一 competition submission `55879554` 已创建；只监控至终态
 - [x] B023-allforge `55879554` 终态 `COMPLETE` Public Score `79.910`，低于 B008R `88.760`，按预注册拒绝且不重试
-- [x] 2026-08-31 再筛：avikdas 状态空间搜索不能改成 88 分档，不提交 B024
+- [x] 2026-08-31 再筛：avikdas 状态空间搜索不能改成 88 分档
+- [x] 预注册 B024-probe1（B008R 现场 hops=1；公开线索 evgendvorkin V93）
 - [ ] 在 Kaggle UI 确认私榜两席为 B008R + B012
 - [ ] 建立本地可复现评测与攻击轨迹分析
 - [ ] 进入并稳定保持公开榜奖牌区

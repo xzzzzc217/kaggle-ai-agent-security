@@ -36,6 +36,12 @@
 4. 最终提交必须能追溯到 commit、Notebook version 与完整配置；
 5. 私榜候选至少保留两个机制低相关版本。
 
+## 2026-08-31 B024 probe1 preregister override
+
+| ID | Terminal status update |
+|---|---|
+| B024 | Preregistered probe1. SHA `1ff5343a3c900cd5869ea28262b8d227054457aa5eb48ae2baa6865b1bc7a846`. Only `PROBE_HOPS` 0->1. Public cue: evgendvorkin V93. Gates: `>88.760`, bronze `>=90.855`; reject `<=88.760` or ERROR. Evidence: `evidence/2026-08-31_b024_probe1_preflight.md`. |
+
 ## 2026-08-31 avikdas screen override
 
 | ID | Terminal status update |

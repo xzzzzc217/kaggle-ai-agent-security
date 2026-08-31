@@ -4590,6 +4590,21 @@
 
 **Decision**
 
-- Do not submit B024.
+- Do not submit the avikdas snapshot searcher.
 - Working Note updated with B023 and avikdas.
 - User must lock private pair B008R+B012 in the UI.
+
+## 2026-08-31: B024 probe1 from evgendvorkin V93
+
+**Facts**
+
+- Latest evgendvorkin uses live hops=1, replay still 8. B024 is B008R
+  + `PROBE_HOPS` 0 -> 1 only. SHA
+  `1ff5343a3c900cd5869ea28262b8d227054457aa5eb48ae2baa6865b1bc7a846`.
+- Local gates: ruff, 4 target tests, full pytest 215, preflight, SDK
+  validate PASS.
+
+**Decision**
+
+- Submit once after cloud hash match. Do not retry. Keep B008R unless
+  public `>88.760`.
