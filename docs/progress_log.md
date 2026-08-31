@@ -4550,3 +4550,28 @@
 
 - Monitor only `55879554`. Do not resubmit B023 or start B024.
 - Private pair stays B008R + B012.
+
+## 2026-08-31: B023 rejected at 79.910
+
+**Facts**
+
+- B023 `55879554` COMPLETE Public Score `79.910` at 13:27 UTC on
+  2026-08-30, first observed then, verified 2026-08-31 03:19 UTC.
+  Private blank. `79.910 <= 88.760`.
+- Leaderboard 4207 teams: heralces rank 769 at 88.760. Bronze 90.785
+  (rank 420). Gap 2.025.
+
+**Interpretation and limits**
+
+- All-forge on the fast row cost 8.850 public points. The 1-post
+  classify/fast path is load-bearing.
+
+**Evidence**
+
+- `evidence/2026-08-31_b023_terminal.md`
+- `evidence/b023_monitor.log`
+
+**Decision**
+
+- Reject B023. Do not retry. Keep B008R.
+- Private pair stays B008R `55393959` + B012 `55495429`.

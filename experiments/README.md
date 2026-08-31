@@ -36,6 +36,12 @@
 4. 最终提交必须能追溯到 commit、Notebook version 与完整配置；
 5. 私榜候选至少保留两个机制低相关版本。
 
+## 2026-08-31 B023 terminal override
+
+| ID | Terminal status update |
+|---|---|
+| B023 | Submission `55879554` COMPLETE Public Score `79.910`. Below B008R `88.760`; rejected without retry. Effective score remains `88.760`; rank `769` / 4207, bronze 10% cut `90.785`. Evidence: `evidence/2026-08-31_b023_terminal.md`. |
+
 ## 2026-08-30 B023 allforge preregister override
 
 | ID | Terminal status update |
