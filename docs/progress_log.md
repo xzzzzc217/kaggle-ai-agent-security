@@ -4608,3 +4608,15 @@
 
 - Submit once after cloud hash match. Do not retry. Keep B008R unless
   public `>88.760`.
+
+## 2026-08-31: B024 submitted
+
+**Facts**
+
+- Kernel v1 COMPLETE, cloud hash matches. Unique competition
+  submission `55916092` created 2026-08-31 13:07:21 UTC, PENDING.
+
+**Decision**
+
+- Monitor only `55916092`. Do not resubmit B024.
+- Private pair stays B008R + B012 until terminal.

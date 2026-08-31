@@ -41,3 +41,19 @@ SDK validate redteam: PASS
 | ERROR / blank / unsafe | Reject (B009-style ERROR is reject, no retry) |
 
 Do not retry B024. Private pair stays B008R + B012 unless public `>88.760`.
+
+## Formal submission record
+
+```text
+formal_submission_ref=55916092
+formal_submission_created_utc=2026-08-31 13:07:21.883
+status=SubmissionStatus.PENDING
+kernel_id=heralces/ai-agent-security-b024-probe1
+kernel_version=1
+kernelId=132669683
+cloud_attack_sha256=1ff5343a3c900cd5869ea28262b8d227054457aa5eb48ae2baa6865b1bc7a846
+cloud_hash_matches_local=true
+submission_message=B024-probe1 | attack 1ff5343a | prereg 3dbefb3 | SDK 3.1.2
+git_commit=3dbefb342f51888a0d73fdc08046ea93a23837a3
+scriptVersionId=346284281
+```

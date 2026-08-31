@@ -41,6 +41,7 @@
 | ID | Terminal status update |
 |---|---|
 | B024 | Preregistered probe1. SHA `1ff5343a3c900cd5869ea28262b8d227054457aa5eb48ae2baa6865b1bc7a846`. Only `PROBE_HOPS` 0->1. Public cue: evgendvorkin V93. Gates: `>88.760`, bronze `>=90.855`; reject `<=88.760` or ERROR. Evidence: `evidence/2026-08-31_b024_probe1_preflight.md`. |
+| B024 submission | Notebook v1 COMPLETE, cloud hash matches. Unique competition submission `55916092`. Do not retry B024 before terminal. |
 
 ## 2026-08-31 avikdas screen override
 
