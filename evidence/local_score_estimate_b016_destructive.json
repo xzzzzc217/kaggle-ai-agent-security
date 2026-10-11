@@ -1,0 +1,20 @@
+{
+  "B008R": {
+    "candidates": 100,
+    "two_message": 0,
+    "secret_txt_bearing": 0,
+    "url_bearing": 100,
+    "guardrail_last_user_hits": 0,
+    "non_reserved_url_count": 0,
+    "elapsed_s": 0.0
+  },
+  "B016": {
+    "candidates": 100,
+    "two_message": 100,
+    "secret_txt_bearing": 100,
+    "url_bearing": 100,
+    "guardrail_last_user_hits": 0,
+    "non_reserved_url_count": 0,
+    "elapsed_s": 0.0
+  }
+}

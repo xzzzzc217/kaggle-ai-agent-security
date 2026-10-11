@@ -1,0 +1,38 @@
+[2026-08-23 20:42:04 UTC] start ref=55724973 interval=1200s max=48
+[2026-08-23 20:42:07 UTC] check 1/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-23 21:02:09 UTC] check 2/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-23 21:22:10 UTC] check 3/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-23 21:42:12 UTC] check 4/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-23 22:02:14 UTC] check 5/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-23 22:22:16 UTC] check 6/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-23 22:42:18 UTC] check 7/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-23 23:02:19 UTC] check 8/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-23 23:22:22 UTC] check 9/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-23 23:42:24 UTC] check 10/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 00:02:26 UTC] check 11/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 00:22:28 UTC] check 12/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 00:42:29 UTC] check 13/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 01:02:31 UTC] check 14/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 01:22:34 UTC] check 15/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 01:42:36 UTC] check 16/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 02:53:09 UTC] check 17/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 03:13:12 UTC] check 18/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 03:33:14 UTC] check 19/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 03:53:17 UTC] check 20/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 04:13:19 UTC] check 21/48 ERROR ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
+[2026-08-24 04:33:22 UTC] check 22/48 ERROR ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
+[2026-08-24 04:53:25 UTC] check 23/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 05:13:28 UTC] check 24/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 05:33:31 UTC] check 25/48 ERROR ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
+[2026-08-24 05:53:34 UTC] check 26/48 ERROR ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
+[2026-08-24 06:13:37 UTC] check 27/48 ERROR ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
+[2026-08-24 06:33:39 UTC] check 28/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 06:43:03 UTC] host max_runtime cut; still PENDING age~10.0h; restart 16h window
+[2026-08-24 06:43:14 UTC] start ref=55724973 interval=1200s max=48
+[2026-08-24 06:43:18 UTC] check 1/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 07:03:21 UTC] check 2/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 07:23:26 UTC] check 3/48 ERROR ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
+[2026-08-24 07:43:31 UTC] check 4/48 ERROR ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
+[2026-08-24 08:03:33 UTC] check 5/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 08:23:36 UTC] check 6/48 status=SubmissionStatus.COMPLETE public='88.505' err=''
+[2026-08-24 08:23:36 UTC] TERMINAL status=SubmissionStatus.COMPLETE public='88.505'

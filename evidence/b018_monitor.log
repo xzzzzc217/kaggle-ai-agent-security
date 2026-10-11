@@ -1,0 +1,26 @@
+[2026-08-24 08:39:40 UTC] start ref=55737814 interval=1200s max=48
+[2026-08-24 08:39:45 UTC] check 1/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 08:59:47 UTC] check 2/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 09:19:50 UTC] check 3/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 09:39:52 UTC] check 4/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 09:59:55 UTC] check 5/48 ERROR ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
+[2026-08-24 10:19:59 UTC] check 6/48 ERROR ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
+[2026-08-24 10:40:01 UTC] check 7/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 11:00:06 UTC] check 8/48 ERROR ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
+[2026-08-24 11:20:09 UTC] check 9/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 11:40:14 UTC] check 10/48 ERROR ('Connection aborted.', ConnectionResetError(10054, '远程主机强迫关闭了一个现有的连接。', None, 10054, None))
+[2026-08-24 13:09:25 UTC] resume-after-gap last-log=2026-08-24 11:40:14 UTC live=PENDING public='' age~4.5h restart 16h window
+[2026-08-24 13:09:33 UTC] start ref=55737814 interval=1200s max=48
+[2026-08-24 13:09:37 UTC] check 1/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 13:29:40 UTC] check 2/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 13:49:42 UTC] check 3/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 14:09:45 UTC] check 4/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 14:29:47 UTC] check 5/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 14:49:51 UTC] check 6/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 15:09:53 UTC] check 7/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 15:29:55 UTC] check 8/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 15:49:58 UTC] check 9/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 16:10:00 UTC] check 10/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-24 16:30:03 UTC] check 11/48 status=SubmissionStatus.PENDING public='' err=''
+[2026-08-25 02:25:03 UTC] host max_runtime cut; live COMPLETE public=83.310 age~17.7h
+[2026-08-25 02:25:03 UTC] TERMINAL status=SubmissionStatus.COMPLETE public='83.310'

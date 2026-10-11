@@ -10,8 +10,8 @@ from pathlib import Path
 COMPETITION = "ai-agent-security-multi-step-tool-attacks"
 SUBMISSION_REF = "55708612"
 LOG_PATH = Path("evidence/b016_monitor.log")
-INTERVAL_S = 15 * 60
-MAX_CHECKS = 32  # 8 hours
+INTERVAL_S = 20 * 60
+MAX_CHECKS = 36  # 12 hours
 
 
 def _now() -> str:

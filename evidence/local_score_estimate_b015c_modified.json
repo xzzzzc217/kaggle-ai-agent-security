@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "scope": "deterministic SDK-free structural estimator; NOT a Kaggle score; compares B015-C-modified against the B008R and B011 baselines under the same firing-environment fixture.",
+  "claims_tested": [
+    "B015-C-modified produces strictly more two-message candidates than B008R",
+    "B015-C-modified introduces CONFUSED_DEPUTY email-bearing candidates",
+    "B015-C-modified does not introduce any non-reserved URL destinations",
+    "B015-C-modified does not introduce any guardrail-token hits in last user message"
+  ],
+  "rows": [
+    {
+      "variant": "B008R",
+      "path": "baselines\\replaysafe_classify5_v1\\attack.py",
+      "latency_s": 0.5,
+      "time_budget_s": 60.0,
+      "elapsed_s": 50.5,
+      "candidates": 100,
+      "two_message": 0,
+      "email_bearing": 0,
+      "url_bearing": 100,
+      "marker_bearing": 100,
+      "guardrail_last_user_hits": 0,
+      "non_reserved_url_count": 0
+    },
+    {
+      "variant": "B011",
+      "path": "baselines\\replaysafe_fastfill_v1\\attack.py",
+      "latency_s": 0.5,
+      "time_budget_s": 60.0,
+      "elapsed_s": 50.5,
+      "candidates": 100,
+      "two_message": 0,
+      "email_bearing": 95,
+      "url_bearing": 100,
+      "marker_bearing": 100,
+      "guardrail_last_user_hits": 0,
+      "non_reserved_url_count": 0
+    },
+    {
+      "variant": "B015-C-modified",
+      "path": "baselines\\replaysafe_chainkeep_confused_v1\\attack.py",
+      "latency_s": 0.5,
+      "time_budget_s": 60.0,
+      "elapsed_s": 50.5,
+      "candidates": 100,
+      "two_message": 100,
+      "email_bearing": 100,
+      "url_bearing": 100,
+      "marker_bearing": 100,
+      "guardrail_last_user_hits": 0,
+      "non_reserved_url_count": 0
+    }
+  ]
+}

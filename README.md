@@ -1,4 +1,4 @@
-# Kaggle LLM Medal Project
+# AI Agent Security — Multi-Step Tool Attacks
 
 本仓库服务于一个明确目标：在与 LLM/Agent 高度相关的 Kaggle 竞赛中获得奖牌或官方奖项，并把全过程沉淀为可核验的求职与深造材料。
 
@@ -564,3 +564,9 @@ uv sync
 - Latest `2026-08-21 02:12 UTC` leaderboard refresh still shows B008R
   `88.760`, rank `482`; top-200 boundary `91.215`; approximate bronze 10% cut
   rank `382` at `89.415`; historical `92.165` would rank approximately `157`.
+
+## 开源状态（2026-10-11）
+
+竞赛已于 2026-09-01 23:59 UTC 截止；Working Note 截止为 2026-09-08。当前仓库公开供研究与复现，历史实验记录保留原日期，不据此声明最终成绩或奖牌。
+
+本项目原创贡献使用 [Apache-2.0](LICENSE)；第三方来源与许可边界见 [THIRD_PARTY.md](THIRD_PARTY.md)。
